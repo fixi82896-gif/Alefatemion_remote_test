@@ -1,0 +1,730 @@
+{
+  "schema_version": 1,
+  "revision": 1,
+  "source": {
+    "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
+  },
+  "permissions": {
+    "allow_screenshot": false,
+    "allow_share": false,
+    "allow_download": false
+  },
+  "nava": {
+    "enabled": true,
+    "mourning_enabled": true,
+    "celebration_enabled": true,
+    "stop_in_background": true,
+    "repeat_last_track": true,
+    "tracks": [
+      {
+        "id": "nava-1787769245927",
+        "title": "نوای حسین",
+        "performer": "محمدالجنامی",
+        "page_url": "",
+        "stream_url": "https://navaapp.com/nava/64ebf0a67509bc749a048607",
+        "category": "mourning",
+        "enabled": true
+      },
+      {
+        "id": "nava-1787787139804",
+        "title": "خاطره بازی",
+        "performer": "امین قدیم",
+        "page_url": "https://navaapp.com/nava/67de22de2398427ee30510e3",
+        "stream_url": "https://navaapp.com/nava/67de22de2398427ee30510e3",
+        "category": "mourning",
+        "enabled": true
+      },
+      {
+        "id": "nava-1787829323244",
+        "title": "کرببلا زائری ام",
+        "performer": "مهدی رسولی",
+        "page_url": "https://navaapp.com/nava/68870cbbd8e361f7c307fd1c",
+        "stream_url": "https://navaapp.com/nava/68870cbbd8e361f7c307fd1c",
+        "category": "mourning",
+        "enabled": true
+      },
+      {
+        "id": "nava-1787875880287",
+        "title": "یاحسین بوماه",
+        "performer": "حسین ستوده",
+        "page_url": "https://navaapp.com/nava/6896ed81ca30ff90310704d7",
+        "stream_url": "https://navaapp.com/nava/6896ed81ca30ff90310704d7",
+        "category": "mourning",
+        "enabled": true
+      },
+      {
+        "id": "nava-1787876156548",
+        "title": "تموم زندگیم",
+        "performer": "سید رضا نریمانی",
+        "page_url": "https://navaapp.com/nava/67f0be09828ac154b106e852",
+        "stream_url": "https://navaapp.com/nava/67f0be09828ac154b106e852",
+        "category": "mourning",
+        "enabled": true
+      },
+      {
+        "id": "nava-1787876517287",
+        "title": "سحرهای کربلا",
+        "performer": "سید رضا نریمانی",
+        "page_url": "https://navaapp.com/nava/6494aee807baeca78e068718",
+        "stream_url": "https://navaapp.com/nava/6494aee807baeca78e068718",
+        "category": "mourning",
+        "enabled": true
+      },
+      {
+        "id": "nava-1787944473611",
+        "title": "دلشوره اربعین",
+        "performer": "حسین ستوده",
+        "page_url": "https://kashoob.com/audio/yZAp8/",
+        "stream_url": "https://kashoob.com/audio/yZAp8/",
+        "category": "mourning",
+        "enabled": true
+      },
+      {
+        "id": "nava-1787993116947",
+        "title": "طوفان الاربعین",
+        "performer": "ابوذر روحی",
+        "page_url": "https://navaapp.com/nava/66b71bec6cef60b94a014d47",
+        "stream_url": "https://navaapp.com/nava/66b71bec6cef60b94a014d47",
+        "category": "mourning",
+        "enabled": true
+      },
+      {
+        "id": "nava-1788001300700",
+        "title": "سید محمد رضا نوشه ور",
+        "performer": "جاریه رحمت خدا",
+        "page_url": "https://navaapp.com/nava/68c6ac623288a0afc20b58d1",
+        "stream_url": "https://navaapp.com/nava/68c6ac623288a0afc20b58d1",
+        "category": "celebration",
+        "enabled": true
+      },
+      {
+        "id": "nava-1788001451571",
+        "title": "ما مجنون لیلامون محمده",
+        "performer": "ابوذر روحی",
+        "page_url": "https://navaapp.com/nava/68c7b778025b735fd10ea732",
+        "stream_url": "https://navaapp.com/nava/68c7b778025b735fd10ea732",
+        "category": "celebration",
+        "enabled": true
+      },
+      {
+        "id": "nava-1788001600135",
+        "title": "حبیبی",
+        "performer": "سجاد محمدی",
+        "page_url": "https://navaapp.com/nava/6a92815f0797d3085104d9dd",
+        "stream_url": "https://navaapp.com/nava/6a92815f0797d3085104d9dd",
+        "category": "celebration",
+        "enabled": true
+      },
+      {
+        "id": "nava-1788125719455",
+        "title": "جانم به آقای نجف",
+        "performer": "محمدحسین پویان فر",
+        "page_url": "https://navaapp.com/nava/6896f11194d9bb3760003158",
+        "stream_url": "https://navaapp.com/nava/6896f11194d9bb3760003158",
+        "category": "celebration",
+        "enabled": true
+      },
+      {
+        "id": "nava-1788125834034",
+        "title": "گفتم که علی گفت بگو سرالله",
+        "performer": "سید مهدی حسینی",
+        "page_url": "https://navaapp.com/nava/67e4077be405d596b5091f54",
+        "stream_url": "https://navaapp.com/nava/67e4077be405d596b5091f54",
+        "category": "mourning",
+        "enabled": true
+      },
+      {
+        "id": "nava-1788127369730",
+        "title": "شاد کن جان من که غمگین است",
+        "performer": "سید مهدی حسینی",
+        "page_url": "https://navaapp.com/nava/67e4073da3fc119513060453",
+        "stream_url": "https://navaapp.com/nava/67e4073da3fc119513060453",
+        "category": "mourning",
+        "enabled": true
+      }
+    ],
+    "assignments": [
+      {
+        "target_key": "home",
+        "display_name": "صفحه اصلی",
+        "track_ids": [
+          "nava-1787769245927",
+          "nava-1787787139804",
+          "nava-1787829323244"
+        ]
+      },
+      {
+        "target_key": "albums:all",
+        "display_name": "همه آلبوم‌ها و زیرآلبوم‌ها",
+        "track_ids": [
+          "nava-1787769245927",
+          "nava-1787787139804",
+          "nava-1787829323244"
+        ]
+      }
+    ]
+  },
+  "announcements": {
+    "enabled": true,
+    "automation": {
+      "enabled": true,
+      "album_updates_enabled": true,
+      "radio_updates_enabled": true
+    },
+    "items": [
+      {
+        "id": "manual-1787925631048",
+        "category": "notice",
+        "origin": "manual",
+        "title": "بسم الله الرحمن الرحیم",
+        "summary": "معرفی نرم‌افزار",
+        "body": "با سلام،\n\nاین نرم‌افزار حاوی عکسهای اعضای گروه آل فاطمیون بوده و جهت استفاده اعضای داخلی گروه می‌باشد، لطفاً در اختیار افراد غیر قرار نگیرد\n\nبا تشکر",
+        "image_url": "",
+        "published": true,
+        "pinned": true,
+        "published_at_millis": 1787925631048,
+        "expires_at_millis": 0,
+        "related_album_hash": "",
+        "related_album_name": "",
+        "related_track_id": ""
+      },
+      {
+        "id": "auto-folder-1788245251973-0-b4b0371014bc",
+        "category": "album_update",
+        "origin": "auto_album",
+        "title": "آلبوم تازه «جاماندگان اربعین ۱۴۰۰ روستای مورود» منتشر شد",
+        "summary": "10 تصویر به این آلبوم اضافه شد.",
+        "body": "10 تصویر به این آلبوم اضافه شد. برای مشاهده مستقیم، دکمه آلبوم را بزنید.",
+        "image_url": "",
+        "published": true,
+        "pinned": false,
+        "published_at_millis": 1788245251973,
+        "expires_at_millis": 1790837251973,
+        "related_album_hash": "R2NzYDDAv_iid_Z_lQG4MA",
+        "related_album_name": "جاماندگان اربعین ۱۴۰۰ روستای مورود",
+        "related_track_id": ""
+      },
+      {
+        "id": "auto-radio-nava-1787944473611-mthsri32",
+        "category": "radio_update",
+        "origin": "auto_radio",
+        "title": "نوای تازه در رادیو آل فاطمیون",
+        "summary": "نوای «دلشوره اربعین» با صدای حسین ستوده به رادیو آل فاطمیون افزوده شد.",
+        "body": "نوای «دلشوره اربعین» با صدای حسین ستوده به رادیو آل فاطمیون افزوده شد.",
+        "image_url": "",
+        "published": true,
+        "pinned": false,
+        "published_at_millis": 1788214535246,
+        "expires_at_millis": 0,
+        "related_album_hash": "",
+        "related_album_name": "",
+        "related_track_id": "nava-1787944473611"
+      },
+      {
+        "id": "auto-radio-nava-1787876517287-mthsrhn3",
+        "category": "radio_update",
+        "origin": "auto_radio",
+        "title": "نوای تازه در رادیو آل فاطمیون",
+        "summary": "نوای «سحرهای کربلا» با صدای سید رضا نریمانی به رادیو آل فاطمیون افزوده شد.",
+        "body": "نوای «سحرهای کربلا» با صدای سید رضا نریمانی به رادیو آل فاطمیون افزوده شد.",
+        "image_url": "",
+        "published": true,
+        "pinned": false,
+        "published_at_millis": 1788214534671,
+        "expires_at_millis": 0,
+        "related_album_hash": "",
+        "related_album_name": "",
+        "related_track_id": "nava-1787876517287"
+      },
+      {
+        "id": "auto-radio-nava-1787876156548-mthsrgfg",
+        "category": "radio_update",
+        "origin": "auto_radio",
+        "title": "نوای تازه در رادیو آل فاطمیون",
+        "summary": "نوای «تموم زندگیم» با صدای سید رضا نریمانی به رادیو آل فاطمیون افزوده شد.",
+        "body": "نوای «تموم زندگیم» با صدای سید رضا نریمانی به رادیو آل فاطمیون افزوده شد.",
+        "image_url": "",
+        "published": true,
+        "pinned": false,
+        "published_at_millis": 1788214533100,
+        "expires_at_millis": 0,
+        "related_album_hash": "",
+        "related_album_name": "",
+        "related_track_id": "nava-1787876156548"
+      },
+      {
+        "id": "auto-radio-nava-1787875880287-mthsrg2q",
+        "category": "radio_update",
+        "origin": "auto_radio",
+        "title": "نوای تازه در رادیو آل فاطمیون",
+        "summary": "نوای «یاحسین بوماه» با صدای حسین ستوده به رادیو آل فاطمیون افزوده شد.",
+        "body": "نوای «یاحسین بوماه» با صدای حسین ستوده به رادیو آل فاطمیون افزوده شد.",
+        "image_url": "",
+        "published": true,
+        "pinned": false,
+        "published_at_millis": 1788214532642,
+        "expires_at_millis": 0,
+        "related_album_hash": "",
+        "related_album_name": "",
+        "related_track_id": "nava-1787875880287"
+      },
+      {
+        "id": "auto-radio-nava-1787829323244-mthsrfmr",
+        "category": "radio_update",
+        "origin": "auto_radio",
+        "title": "نوای تازه در رادیو آل فاطمیون",
+        "summary": "نوای «کرببلا زائری ام» با صدای مهدی رسولی به رادیو آل فاطمیون افزوده شد.",
+        "body": "نوای «کرببلا زائری ام» با صدای مهدی رسولی به رادیو آل فاطمیون افزوده شد.",
+        "image_url": "",
+        "published": true,
+        "pinned": false,
+        "published_at_millis": 1788214532067,
+        "expires_at_millis": 0,
+        "related_album_hash": "",
+        "related_album_name": "",
+        "related_track_id": "nava-1787829323244"
+      },
+      {
+        "id": "auto-radio-nava-1787787139804-mthsrdje",
+        "category": "radio_update",
+        "origin": "auto_radio",
+        "title": "نوای تازه در رادیو آل فاطمیون",
+        "summary": "نوای «خاطره بازی» با صدای امین قدیم به رادیو آل فاطمیون افزوده شد.",
+        "body": "نوای «خاطره بازی» با صدای امین قدیم به رادیو آل فاطمیون افزوده شد.",
+        "image_url": "",
+        "published": true,
+        "pinned": false,
+        "published_at_millis": 1788214529354,
+        "expires_at_millis": 0,
+        "related_album_hash": "",
+        "related_album_name": "",
+        "related_track_id": "nava-1787787139804"
+      },
+      {
+        "id": "auto-radio-nava-1787769245927-mthsrd5v",
+        "category": "radio_update",
+        "origin": "auto_radio",
+        "title": "نوای تازه در رادیو آل فاطمیون",
+        "summary": "نوای «نوای حسین» با صدای محمدالجنامی به رادیو آل فاطمیون افزوده شد.",
+        "body": "نوای «نوای حسین» با صدای محمدالجنامی به رادیو آل فاطمیون افزوده شد.",
+        "image_url": "",
+        "published": true,
+        "pinned": false,
+        "published_at_millis": 1788214528867,
+        "expires_at_millis": 0,
+        "related_album_hash": "",
+        "related_album_name": "",
+        "related_track_id": "nava-1787769245927"
+      },
+      {
+        "id": "auto-album-1788213849689-0-96b92800eb41",
+        "category": "album_update",
+        "origin": "auto_album",
+        "title": "محتوای تازه در آلبوم عکس ها",
+        "summary": "36 تصویر به این آلبوم اضافه شد.",
+        "body": "36 تصویر به این آلبوم اضافه شد. برای مشاهده مستقیم، دکمه آلبوم را بزنید.",
+        "image_url": "",
+        "published": true,
+        "pinned": false,
+        "published_at_millis": 1788213849689,
+        "expires_at_millis": 0,
+        "related_album_hash": "LQv3QovtnmFdIBDGdbYtXQ",
+        "related_album_name": "عکس ها",
+        "related_track_id": ""
+      },
+      {
+        "id": "auto-radio-nava-1788127369730-mtgcv8qq",
+        "category": "radio_update",
+        "origin": "auto_radio",
+        "title": "نوای تازه در رادیو آل فاطمیون",
+        "summary": "نوای «شاد کن جان من که غمگین است» با صدای سید مهدی حسینی به رادیو آل فاطمیون افزوده شد.",
+        "body": "نوای «شاد کن جان من که غمگین است» با صدای سید مهدی حسینی به رادیو آل فاطمیون افزوده شد.",
+        "image_url": "",
+        "published": true,
+        "pinned": false,
+        "published_at_millis": 1788127369730,
+        "expires_at_millis": 0,
+        "related_album_hash": "",
+        "related_album_name": "",
+        "related_track_id": "nava-1788127369730"
+      },
+      {
+        "id": "auto-radio-nava-1788125834034-mtgbybsi",
+        "category": "radio_update",
+        "origin": "auto_radio",
+        "title": "نوای تازه در رادیو آل فاطمیون",
+        "summary": "نوای «گفتم که های گفت بگو سرالله» با صدای سید مهدی حسینی به رادیو آل فاطمیون افزوده شد.",
+        "body": "نوای «گفتم که علی گفت بگو سرالله» با صدای سید مهدی حسینی به رادیو آل فاطمیون افزوده شد.",
+        "image_url": "",
+        "published": true,
+        "pinned": false,
+        "published_at_millis": 1788125834034,
+        "expires_at_millis": 0,
+        "related_album_hash": "",
+        "related_album_name": "",
+        "related_track_id": "nava-1788125834034"
+      },
+      {
+        "id": "auto-radio-nava-1788125719455-mtgbvvdr",
+        "category": "radio_update",
+        "origin": "auto_radio",
+        "title": "نوای تازه در رادیو آل فاطمیون",
+        "summary": "نوای «جانم به آقای نجف» با صدای محمدحسین پویان فر به رادیو آل فاطمیون افزوده شد.",
+        "body": "نوای «جانم به آقای نجف» با صدای محمدحسین پویان فر به رادیو آل فاطمیون افزوده شد.",
+        "image_url": "",
+        "published": true,
+        "pinned": false,
+        "published_at_millis": 1788125719455,
+        "expires_at_millis": 0,
+        "related_album_hash": "",
+        "related_album_name": "",
+        "related_track_id": "nava-1788125719455"
+      },
+      {
+        "id": "auto-album-1788111996885-0-535e725340da",
+        "category": "album_update",
+        "origin": "auto_album",
+        "title": "محتوای تازه در آلبوم عکس ها",
+        "summary": "2 تصویر به این آلبوم اضافه شد.",
+        "body": "2 تصویر به این آلبوم اضافه شد. برای مشاهده مستقیم، دکمه آلبوم را بزنید.",
+        "image_url": "",
+        "published": true,
+        "pinned": false,
+        "published_at_millis": 1788111996885,
+        "expires_at_millis": 0,
+        "related_album_hash": "3nMOKI-Wlu6fHhvOTnq6XA",
+        "related_album_name": "عکس ها",
+        "related_track_id": ""
+      },
+      {
+        "id": "auto-album-1788111996885-1-e45e8ba89a2d",
+        "category": "album_update",
+        "origin": "auto_album",
+        "title": "محتوای تازه در آلبوم فیلم ها",
+        "summary": "6 فیلم به این آلبوم اضافه شد.",
+        "body": "6 فیلم به این آلبوم اضافه شد. برای مشاهده مستقیم، دکمه آلبوم را بزنید.",
+        "image_url": "",
+        "published": true,
+        "pinned": false,
+        "published_at_millis": 1788111996885,
+        "expires_at_millis": 0,
+        "related_album_hash": "RXJV-pDxRFwF076L4yZOTQ",
+        "related_album_name": "فیلم ها",
+        "related_track_id": ""
+      },
+      {
+        "id": "auto-album-1788111996885-2-ae4a851cf0dd",
+        "category": "album_update",
+        "origin": "auto_album",
+        "title": "محتوای تازه در آلبوم فیلم ها",
+        "summary": "1 فیلم به این آلبوم اضافه شد.",
+        "body": "1 فیلم به این آلبوم اضافه شد. برای مشاهده مستقیم، دکمه آلبوم را بزنید.",
+        "image_url": "",
+        "published": true,
+        "pinned": false,
+        "published_at_millis": 1788111996885,
+        "expires_at_millis": 0,
+        "related_album_hash": "bSGD9l8Sjva_eYdAH4mgUA",
+        "related_album_name": "فیلم ها",
+        "related_track_id": ""
+      },
+      {
+        "id": "auto-album-1788111996885-3-4bc89bc2f6b7",
+        "category": "album_update",
+        "origin": "auto_album",
+        "title": "محتوای تازه در آلبوم عکس ها",
+        "summary": "77 تصویر به این آلبوم اضافه شد.",
+        "body": "77 تصویر به این آلبوم اضافه شد. برای مشاهده مستقیم، دکمه آلبوم را بزنید.",
+        "image_url": "",
+        "published": true,
+        "pinned": false,
+        "published_at_millis": 1788111996885,
+        "expires_at_millis": 0,
+        "related_album_hash": "fzEfV6_xxmt9UQ1N4vd74Q",
+        "related_album_name": "عکس ها",
+        "related_track_id": ""
+      },
+      {
+        "id": "auto-album-1788061551700-0-6e236e1edc36",
+        "category": "album_update",
+        "origin": "auto_album",
+        "title": "محتوای تازه در آلبوم فیلم ها",
+        "summary": "1 فیلم به این آلبوم اضافه شد.",
+        "body": "1 فیلم به این آلبوم اضافه شد. برای مشاهده مستقیم، دکمه آلبوم را بزنید.",
+        "image_url": "",
+        "published": true,
+        "pinned": false,
+        "published_at_millis": 1788061551700,
+        "expires_at_millis": 0,
+        "related_album_hash": "u5fJVXW30dqL5T-I6sz3Uw",
+        "related_album_name": "فیلم ها",
+        "related_track_id": ""
+      },
+      {
+        "id": "auto-album-1788057370714-0-d8ab9b859542",
+        "category": "album_update",
+        "origin": "auto_album",
+        "title": "محتوای تازه در آلبوم عکس ها",
+        "summary": "2 تصویر به این آلبوم اضافه شد.",
+        "body": "2 تصویر به این آلبوم اضافه شد. برای مشاهده مستقیم، دکمه آلبوم را بزنید.",
+        "image_url": "",
+        "published": true,
+        "pinned": false,
+        "published_at_millis": 1788057370714,
+        "expires_at_millis": 0,
+        "related_album_hash": "GOoVARaRvdbqtu3KvbqWWQ",
+        "related_album_name": "عکس ها",
+        "related_track_id": ""
+      },
+      {
+        "id": "auto-album-1788049222478-0-551430710919",
+        "category": "album_update",
+        "origin": "auto_album",
+        "title": "محتوای تازه در آلبوم عکس ها",
+        "summary": "2 تصویر به این آلبوم اضافه شد.",
+        "body": "2 تصویر به این آلبوم اضافه شد. برای مشاهده مستقیم، دکمه آلبوم را بزنید.",
+        "image_url": "",
+        "published": true,
+        "pinned": false,
+        "published_at_millis": 1788049222478,
+        "expires_at_millis": 0,
+        "related_album_hash": "9Fe57Jm4NbhaKSQg2P3gKw",
+        "related_album_name": "عکس ها",
+        "related_track_id": ""
+      },
+      {
+        "id": "auto-album-1788039861195-0-6941b85ea98b",
+        "category": "album_update",
+        "origin": "auto_album",
+        "title": "محتوای تازه در آلبوم فیلم ها",
+        "summary": "15 فیلم به این آلبوم اضافه شد.",
+        "body": "15 فیلم به این آلبوم اضافه شد. برای مشاهده مستقیم، دکمه آلبوم را بزنید.",
+        "image_url": "",
+        "published": true,
+        "pinned": false,
+        "published_at_millis": 1788039861195,
+        "expires_at_millis": 0,
+        "related_album_hash": "0vHXXHni6U---sncIqrwOg",
+        "related_album_name": "فیلم ها",
+        "related_track_id": ""
+      },
+      {
+        "id": "auto-album-1788031314534-0-9c272a53cb3c",
+        "category": "album_update",
+        "origin": "auto_album",
+        "title": "محتوای تازه در آلبوم اربعین",
+        "summary": "4 فیلم به این آلبوم اضافه شد.",
+        "body": "4 فیلم به این آلبوم اضافه شد. برای مشاهده مستقیم، دکمه آلبوم را بزنید.",
+        "image_url": "",
+        "published": true,
+        "pinned": false,
+        "published_at_millis": 1788031314534,
+        "expires_at_millis": 0,
+        "related_album_hash": "R3d14FRQkXr2JIqaJKrG8w",
+        "related_album_name": "اربعین",
+        "related_track_id": ""
+      },
+      {
+        "id": "auto-album-1788031314534-1-485de7dfe9a7",
+        "category": "album_update",
+        "origin": "auto_album",
+        "title": "محتوای تازه در آلبوم عکس ها",
+        "summary": "73 تصویر به این آلبوم اضافه شد.",
+        "body": "73 تصویر به این آلبوم اضافه شد. برای مشاهده مستقیم، دکمه آلبوم را بزنید.",
+        "image_url": "",
+        "published": true,
+        "pinned": false,
+        "published_at_millis": 1788031314534,
+        "expires_at_millis": 0,
+        "related_album_hash": "hScaqtPDbfEd8vOfNj-oBA",
+        "related_album_name": "عکس ها",
+        "related_track_id": ""
+      },
+      {
+        "id": "auto-radio-nava-1788001600135-mte9zkav",
+        "category": "radio_update",
+        "origin": "auto_radio",
+        "title": "نوای تازه در رادیو آل فاطمیون",
+        "summary": "نوای «حبیبی» با صدای سجاد محمدی به رادیو آل فاطمیون افزوده شد.",
+        "body": "نوای «حبیبی» با صدای سجاد محمدی به رادیو آل فاطمیون افزوده شد.",
+        "image_url": "",
+        "published": true,
+        "pinned": false,
+        "published_at_millis": 1788001600135,
+        "expires_at_millis": 0,
+        "related_album_hash": "",
+        "related_album_name": "",
+        "related_track_id": "nava-1788001600135"
+      },
+      {
+        "id": "auto-radio-nava-1788001451571-mte9wdo3",
+        "category": "radio_update",
+        "origin": "auto_radio",
+        "title": "نوای تازه در رادیو آل فاطمیون",
+        "summary": "نوای «ما مجنون لیلامون محمده» با صدای ابوذر روحی به رادیو آل فاطمیون افزوده شد.",
+        "body": "نوای «ما مجنون لیلامون محمده» با صدای ابوذر روحی به رادیو آل فاطمیون افزوده شد.",
+        "image_url": "",
+        "published": true,
+        "pinned": false,
+        "published_at_millis": 1788001451571,
+        "expires_at_millis": 0,
+        "related_album_hash": "",
+        "related_album_name": "",
+        "related_track_id": "nava-1788001451571"
+      },
+      {
+        "id": "auto-radio-nava-1788001300700-mte9t598",
+        "category": "radio_update",
+        "origin": "auto_radio",
+        "title": "نوای تازه در رادیو آل فاطمیون",
+        "summary": "نوای «سید محمد رضا نوشه ور» با صدای جاریه رحمت خدا به رادیو آل فاطمیون افزوده شد.",
+        "body": "نوای «سید محمد رضا نوشه ور» با صدای جاریه رحمت خدا به رادیو آل فاطمیون افزوده شد.",
+        "image_url": "",
+        "published": true,
+        "pinned": false,
+        "published_at_millis": 1788001300700,
+        "expires_at_millis": 0,
+        "related_album_hash": "",
+        "related_album_name": "",
+        "related_track_id": "nava-1788001300700"
+      },
+      {
+        "id": "auto-radio-nava-1787993116947-mte4xqms",
+        "category": "radio_update",
+        "origin": "auto_radio",
+        "title": "نوای تازه در رادیو آل فاطمیون",
+        "summary": "نوای «طوفان الاربعین» با صدای ابوذر روحی به رادیو آل فاطمیون افزوده شد.",
+        "body": "نوای «طوفان الاربعین» با صدای ابوذر روحی به رادیو آل فاطمیون افزوده شد.",
+        "image_url": "",
+        "published": true,
+        "pinned": false,
+        "published_at_millis": 1787993116948,
+        "expires_at_millis": 0,
+        "related_album_hash": "",
+        "related_album_name": "",
+        "related_track_id": "nava-1787993116947"
+      }
+    ]
+  },
+  "management_contact": {
+    "enabled": true,
+    "methods": [
+      {
+        "id": "contact-d4a0db866cc9",
+        "type": "telegram",
+        "label": "آل فاطمیون",
+        "value": "https://t.me/alefatemion",
+        "enabled": true,
+        "quick_access": true
+      },
+      {
+        "id": "contact-ed59f1ab1d12",
+        "type": "email",
+        "label": "ایمیل آل فاطمیون",
+        "value": "alefatemion@gmail.com",
+        "enabled": true,
+        "quick_access": false
+      }
+    ]
+  },
+  "home": {
+    "enabled": true,
+    "banners": [
+      {
+        "id": "home-mti9nnll",
+        "title": "",
+        "description": "",
+        "image_url": "https://github.com/fixi82896-gif/Alefatemion_remote/releases/download/remote-assets-v1/intro-background-e0daceefe1c2ba6b3f0e.png",
+        "placement": "hero",
+        "destination_type": "album",
+        "destination_id": "hScaqtPDbfEd8vOfNj-oBA",
+        "destination_parent_id": "",
+        "external_url": "",
+        "enabled": true,
+        "sponsored": false,
+        "display_order": 0,
+        "starts_at_millis": 0,
+        "expires_at_millis": 0
+      }
+    ],
+    "sections": [
+      {
+        "id": "announcements",
+        "enabled": true,
+        "display_order": 1
+      },
+      {
+        "id": "albums",
+        "enabled": true,
+        "display_order": 2
+      },
+      {
+        "id": "media",
+        "enabled": true,
+        "display_order": 3
+      },
+      {
+        "id": "radio",
+        "enabled": true,
+        "display_order": 4
+      },
+      {
+        "id": "favorites",
+        "enabled": true,
+        "display_order": 5
+      }
+    ]
+  },
+  "intro": {
+    "enabled": true,
+    "content_revision": 10,
+    "display_mode": "daily",
+    "title": "آل فاطمیون",
+    "subtitle": "بسم الله الرحمن الرحیم",
+    "message": "با سلام، \nضمن عرض تشکر از حضور شما در موکب مجازی آل فاطمیون به استحضار میرساند\n این برنامه حاوی عکسهای اعضای گروه آل فاطمیون بوده و جهت استفاده داخلی گروه می‌باشد، لطفاً در اختیار افراد غیر قرار نگیرد.\nضمنأ از طریق دکمه ارتباط با مدیریت پذیرای نظرات و انتقادات شما عزیزان هستیم،\n\nبا تشکر",
+    "button_text": "با ذکر یک صلوات وارد شوید",
+    "text_effect": "typewriter",
+    "effect_speed_millis": 45,
+    "text_size_sp": 20,
+    "line_height_sp": 45,
+    "text_align": "center",
+    "text_color": "#FFFFFFFF",
+    "accent_color": "#FFD8C996",
+    "button_color": "#FF1D7047",
+    "background": {
+      "mode": "gradient",
+      "gradient_colors": [
+        "#FF020A06",
+        "#FF07170F",
+        "#FF0D2D1D",
+        "#FF05130C"
+      ],
+      "image_url": "",
+      "image_sha256": "",
+      "image_mime_type": "",
+      "image_size_bytes": 0,
+      "image_overlay_percent": 45,
+      "watermark_opacity_percent": 50
+    },
+    "audio": {
+      "enabled": true,
+      "asset_url": "",
+      "sha256": "",
+      "mime_type": "",
+      "size_bytes": 0,
+      "volume_percent": 100,
+      "allow_skip": false,
+      "button_mode": "after_audio"
+    }
+  },
+  "ota": {
+    "version_code": 0,
+    "min_supported_version_code": 0,
+    "version_name": "",
+    "apk_url": "",
+    "sha256": "",
+    "mandatory": false,
+    "published_at": "",
+    "message": ""
+  }
+}
