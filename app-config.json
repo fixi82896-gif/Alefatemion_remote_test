@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 1,
+  "revision": 2,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -21,7 +21,7 @@
         "title": "نوای حسین",
         "performer": "محمدالجنامی",
         "page_url": "",
-        "stream_url": "https://navaapp.com/nava/64ebf0a67509bc749a048607",
+        "stream_url": "https:\/\/navaapp.com\/nava\/64ebf0a67509bc749a048607",
         "category": "mourning",
         "enabled": true
       },
@@ -29,8 +29,8 @@
         "id": "nava-1787787139804",
         "title": "خاطره بازی",
         "performer": "امین قدیم",
-        "page_url": "https://navaapp.com/nava/67de22de2398427ee30510e3",
-        "stream_url": "https://navaapp.com/nava/67de22de2398427ee30510e3",
+        "page_url": "https:\/\/navaapp.com\/nava\/67de22de2398427ee30510e3",
+        "stream_url": "https:\/\/navaapp.com\/nava\/67de22de2398427ee30510e3",
         "category": "mourning",
         "enabled": true
       },
@@ -38,8 +38,8 @@
         "id": "nava-1787829323244",
         "title": "کرببلا زائری ام",
         "performer": "مهدی رسولی",
-        "page_url": "https://navaapp.com/nava/68870cbbd8e361f7c307fd1c",
-        "stream_url": "https://navaapp.com/nava/68870cbbd8e361f7c307fd1c",
+        "page_url": "https:\/\/navaapp.com\/nava\/68870cbbd8e361f7c307fd1c",
+        "stream_url": "https:\/\/navaapp.com\/nava\/68870cbbd8e361f7c307fd1c",
         "category": "mourning",
         "enabled": true
       },
@@ -47,8 +47,8 @@
         "id": "nava-1787875880287",
         "title": "یاحسین بوماه",
         "performer": "حسین ستوده",
-        "page_url": "https://navaapp.com/nava/6896ed81ca30ff90310704d7",
-        "stream_url": "https://navaapp.com/nava/6896ed81ca30ff90310704d7",
+        "page_url": "https:\/\/navaapp.com\/nava\/6896ed81ca30ff90310704d7",
+        "stream_url": "https:\/\/navaapp.com\/nava\/6896ed81ca30ff90310704d7",
         "category": "mourning",
         "enabled": true
       },
@@ -56,8 +56,8 @@
         "id": "nava-1787876156548",
         "title": "تموم زندگیم",
         "performer": "سید رضا نریمانی",
-        "page_url": "https://navaapp.com/nava/67f0be09828ac154b106e852",
-        "stream_url": "https://navaapp.com/nava/67f0be09828ac154b106e852",
+        "page_url": "https:\/\/navaapp.com\/nava\/67f0be09828ac154b106e852",
+        "stream_url": "https:\/\/navaapp.com\/nava\/67f0be09828ac154b106e852",
         "category": "mourning",
         "enabled": true
       },
@@ -65,8 +65,8 @@
         "id": "nava-1787876517287",
         "title": "سحرهای کربلا",
         "performer": "سید رضا نریمانی",
-        "page_url": "https://navaapp.com/nava/6494aee807baeca78e068718",
-        "stream_url": "https://navaapp.com/nava/6494aee807baeca78e068718",
+        "page_url": "https:\/\/navaapp.com\/nava\/6494aee807baeca78e068718",
+        "stream_url": "https:\/\/navaapp.com\/nava\/6494aee807baeca78e068718",
         "category": "mourning",
         "enabled": true
       },
@@ -74,8 +74,8 @@
         "id": "nava-1787944473611",
         "title": "دلشوره اربعین",
         "performer": "حسین ستوده",
-        "page_url": "https://kashoob.com/audio/yZAp8/",
-        "stream_url": "https://kashoob.com/audio/yZAp8/",
+        "page_url": "https:\/\/kashoob.com\/audio\/yZAp8\/",
+        "stream_url": "https:\/\/kashoob.com\/audio\/yZAp8\/",
         "category": "mourning",
         "enabled": true
       },
@@ -83,8 +83,8 @@
         "id": "nava-1787993116947",
         "title": "طوفان الاربعین",
         "performer": "ابوذر روحی",
-        "page_url": "https://navaapp.com/nava/66b71bec6cef60b94a014d47",
-        "stream_url": "https://navaapp.com/nava/66b71bec6cef60b94a014d47",
+        "page_url": "https:\/\/navaapp.com\/nava\/66b71bec6cef60b94a014d47",
+        "stream_url": "https:\/\/navaapp.com\/nava\/66b71bec6cef60b94a014d47",
         "category": "mourning",
         "enabled": true
       },
@@ -92,8 +92,8 @@
         "id": "nava-1788001300700",
         "title": "سید محمد رضا نوشه ور",
         "performer": "جاریه رحمت خدا",
-        "page_url": "https://navaapp.com/nava/68c6ac623288a0afc20b58d1",
-        "stream_url": "https://navaapp.com/nava/68c6ac623288a0afc20b58d1",
+        "page_url": "https:\/\/navaapp.com\/nava\/68c6ac623288a0afc20b58d1",
+        "stream_url": "https:\/\/navaapp.com\/nava\/68c6ac623288a0afc20b58d1",
         "category": "celebration",
         "enabled": true
       },
@@ -101,8 +101,8 @@
         "id": "nava-1788001451571",
         "title": "ما مجنون لیلامون محمده",
         "performer": "ابوذر روحی",
-        "page_url": "https://navaapp.com/nava/68c7b778025b735fd10ea732",
-        "stream_url": "https://navaapp.com/nava/68c7b778025b735fd10ea732",
+        "page_url": "https:\/\/navaapp.com\/nava\/68c7b778025b735fd10ea732",
+        "stream_url": "https:\/\/navaapp.com\/nava\/68c7b778025b735fd10ea732",
         "category": "celebration",
         "enabled": true
       },
@@ -110,8 +110,8 @@
         "id": "nava-1788001600135",
         "title": "حبیبی",
         "performer": "سجاد محمدی",
-        "page_url": "https://navaapp.com/nava/6a92815f0797d3085104d9dd",
-        "stream_url": "https://navaapp.com/nava/6a92815f0797d3085104d9dd",
+        "page_url": "https:\/\/navaapp.com\/nava\/6a92815f0797d3085104d9dd",
+        "stream_url": "https:\/\/navaapp.com\/nava\/6a92815f0797d3085104d9dd",
         "category": "celebration",
         "enabled": true
       },
@@ -119,8 +119,8 @@
         "id": "nava-1788125719455",
         "title": "جانم به آقای نجف",
         "performer": "محمدحسین پویان فر",
-        "page_url": "https://navaapp.com/nava/6896f11194d9bb3760003158",
-        "stream_url": "https://navaapp.com/nava/6896f11194d9bb3760003158",
+        "page_url": "https:\/\/navaapp.com\/nava\/6896f11194d9bb3760003158",
+        "stream_url": "https:\/\/navaapp.com\/nava\/6896f11194d9bb3760003158",
         "category": "celebration",
         "enabled": true
       },
@@ -128,8 +128,8 @@
         "id": "nava-1788125834034",
         "title": "گفتم که علی گفت بگو سرالله",
         "performer": "سید مهدی حسینی",
-        "page_url": "https://navaapp.com/nava/67e4077be405d596b5091f54",
-        "stream_url": "https://navaapp.com/nava/67e4077be405d596b5091f54",
+        "page_url": "https:\/\/navaapp.com\/nava\/67e4077be405d596b5091f54",
+        "stream_url": "https:\/\/navaapp.com\/nava\/67e4077be405d596b5091f54",
         "category": "mourning",
         "enabled": true
       },
@@ -137,8 +137,8 @@
         "id": "nava-1788127369730",
         "title": "شاد کن جان من که غمگین است",
         "performer": "سید مهدی حسینی",
-        "page_url": "https://navaapp.com/nava/67e4073da3fc119513060453",
-        "stream_url": "https://navaapp.com/nava/67e4073da3fc119513060453",
+        "page_url": "https:\/\/navaapp.com\/nava\/67e4073da3fc119513060453",
+        "stream_url": "https:\/\/navaapp.com\/nava\/67e4073da3fc119513060453",
         "category": "mourning",
         "enabled": true
       }
@@ -172,6 +172,22 @@
       "radio_updates_enabled": true
     },
     "items": [
+      {
+        "id": "manual-1788433397097",
+        "category": "news",
+        "origin": "manual",
+        "title": "تست",
+        "summary": "تست",
+        "body": "تست",
+        "image_url": "",
+        "published": true,
+        "pinned": true,
+        "published_at_millis": 1788433397097,
+        "expires_at_millis": 0,
+        "related_album_hash": "",
+        "related_album_name": "",
+        "related_track_id": ""
+      },
       {
         "id": "manual-1787925631048",
         "category": "notice",
@@ -613,7 +629,7 @@
         "id": "contact-d4a0db866cc9",
         "type": "telegram",
         "label": "آل فاطمیون",
-        "value": "https://t.me/alefatemion",
+        "value": "https:\/\/t.me\/alefatemion",
         "enabled": true,
         "quick_access": true
       },
@@ -634,7 +650,7 @@
         "id": "home-mti9nnll",
         "title": "",
         "description": "",
-        "image_url": "https://github.com/fixi82896-gif/Alefatemion_remote/releases/download/remote-assets-v1/intro-background-e0daceefe1c2ba6b3f0e.png",
+        "image_url": "https:\/\/github.com\/fixi82896-gif\/Alefatemion_remote\/releases\/download\/remote-assets-v1\/intro-background-e0daceefe1c2ba6b3f0e.png",
         "placement": "hero",
         "destination_type": "album",
         "destination_id": "hScaqtPDbfEd8vOfNj-oBA",
