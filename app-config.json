@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 3,
+  "revision": 4,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -693,7 +693,7 @@
   },
   "intro": {
     "enabled": true,
-    "content_revision": 10,
+    "content_revision": 11,
     "display_mode": "daily",
     "title": "آل فاطمیون",
     "subtitle": "بسم الله الرحمن الرحیم",
@@ -710,10 +710,9 @@
     "background": {
       "mode": "gradient",
       "gradient_colors": [
-        "#FF020A06",
-        "#FF07170F",
-        "#FF0D2D1D",
-        "#FF05130C"
+        "#FF120508",
+        "#FF40131D",
+        "#FF16070B"
       ],
       "image_url": "",
       "image_sha256": "",
