@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 2,
+  "revision": 3,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -121,7 +121,7 @@
         "performer": "محمدحسین پویان فر",
         "page_url": "https:\/\/navaapp.com\/nava\/6896f11194d9bb3760003158",
         "stream_url": "https:\/\/navaapp.com\/nava\/6896f11194d9bb3760003158",
-        "category": "celebration",
+        "category": "mourning",
         "enabled": true
       },
       {
