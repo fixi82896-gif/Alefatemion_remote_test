@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 6,
+  "revision": 7,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -693,7 +693,7 @@
   },
   "intro": {
     "enabled": true,
-    "content_revision": 13,
+    "content_revision": 14,
     "display_mode": "daily",
     "title": "آل فاطمیون",
     "subtitle": "بسم الله الرحمن الرحیم",
@@ -714,10 +714,10 @@
         "#FF40131D",
         "#FF16070B"
       ],
-      "image_url": "https:\/\/github.com\/fixi82896-gif\/Alefatemion_remote_test\/releases\/download\/remote-assets-v1\/intro-background-4f5eb20db90718805229.jpg",
-      "image_sha256": "4f5eb20db907188052290beb46e1e37d29389187a776fafd8abb49b6db032430",
+      "image_url": "https:\/\/github.com\/fixi82896-gif\/Alefatemion_remote_test\/releases\/download\/remote-assets-v1\/intro-background-d1adaa7646036937b720.jpg",
+      "image_sha256": "d1adaa7646036937b720c7c10550fb6436c9547f6870ea7446f159e1dba7c757",
       "image_mime_type": "image\/jpeg",
-      "image_size_bytes": 4412851,
+      "image_size_bytes": 2845820,
       "image_overlay_percent": 45,
       "watermark_opacity_percent": 50
     },
