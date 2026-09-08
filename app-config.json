@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 8,
+  "revision": 9,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -172,22 +172,6 @@
       "radio_updates_enabled": true
     },
     "items": [
-      {
-        "id": "manual-1788433397097",
-        "category": "news",
-        "origin": "manual",
-        "title": "تست",
-        "summary": "تست",
-        "body": "تست",
-        "image_url": "",
-        "published": true,
-        "pinned": true,
-        "published_at_millis": 1788433397097,
-        "expires_at_millis": 0,
-        "related_album_hash": "",
-        "related_album_name": "",
-        "related_track_id": ""
-      },
       {
         "id": "manual-1787925631048",
         "category": "notice",
