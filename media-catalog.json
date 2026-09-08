@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 3,
-  "generated_at_millis": 1788843800793,
+  "revision": 4,
+  "generated_at_millis": 1788856005285,
   "folders": [
     {
       "folder_hash": "0vHXXHni6U---sncIqrwOg",
@@ -9875,7 +9875,7 @@
       "event": "",
       "year": "",
       "location": "",
-      "hidden": false,
+      "hidden": true,
       "tags": []
     },
     {
