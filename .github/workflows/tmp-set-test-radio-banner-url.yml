@@ -21,18 +21,31 @@ jobs:
           ref: test-notifications-ready-20260910
           fetch-depth: 0
 
-      - name: Verify banner asset and configure URL
+      - name: Reassemble and verify approved banner
         shell: bash
         run: |
           set -euo pipefail
-          test -f assets/radio-banner-alfatemiun.jpg
+          cat .github/tmp/radio_banner.part01 \
+              .github/tmp/radio_banner.part02 \
+              .github/tmp/radio_banner.part03 \
+              .github/tmp/radio_banner.part04 \
+              .github/tmp/radio_banner.part05 \
+              .github/tmp/radio_banner.part06 > "$RUNNER_TEMP/radio-banner.b64"
+          test "$(wc -c < "$RUNNER_TEMP/radio-banner.b64" | tr -d ' ')" = "17972"
+          base64 --decode "$RUNNER_TEMP/radio-banner.b64" > assets/radio-banner-alfatemiun.jpg
           test "$(wc -c < assets/radio-banner-alfatemiun.jpg | tr -d ' ')" = "13478"
           test "$(sha256sum assets/radio-banner-alfatemiun.jpg | awk '{print $1}')" = "2c71087908fdcc33e92a0d38152189814550e9a9b9789757a4541f4a80bb1570"
+          file assets/radio-banner-alfatemiun.jpg | grep -qi 'JPEG image data'
+
+      - name: Configure Test radio banner URL
+        shell: bash
+        run: |
+          set -euo pipefail
           python3 - <<'PY'
           import json
           from pathlib import Path
           p = Path('app-config.json')
-          data = json.loads(p.read_text(encoding='utf-8'))
+          data = json.loads(p.read_text(encoding='utf-8-sig'))
           home = data.setdefault('home', {})
           target = 'https://raw.githubusercontent.com/fixi82896-gif/Alefatemion_remote_test/main/assets/radio-banner-alfatemiun.jpg'
           changed = home.get('radio_banner_image_url') != target
@@ -41,11 +54,14 @@ jobs:
               data['revision'] = int(data.get('revision', 0) or 0) + 1
           p.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
           PY
+          python3 -m json.tool app-config.json >/dev/null
+          grep -q 'radio-banner-alfatemiun.jpg' app-config.json
 
       - name: Commit clean Test remote state
         shell: bash
         run: |
           set -euo pipefail
+          rm -rf .github/tmp
           rm -f .github/workflows/tmp-set-test-radio-banner-url.yml
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
