@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 12,
+  "revision": 13,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -647,6 +647,7 @@
         "expires_at_millis": 0
       }
     ],
+    "radio_banner_image_url": "",
     "sections": [
       {
         "id": "announcements",
@@ -716,6 +717,31 @@
       "allow_skip": false,
       "button_mode": "after_audio"
     }
+  },
+  "urgent_message": {
+    "enabled": true,
+    "revision": 1,
+    "title": "پیام فوری",
+    "subtitle": "تست ",
+    "message": "این پیام تست است",
+    "button_text": "خوانده شد",
+    "text_effect": "fade",
+    "effect_speed_millis": 45,
+    "text_size_sp": 24,
+    "line_height_sp": 38,
+    "text_align": "center",
+    "text_color": "#FFFFFFFF",
+    "accent_color": "#FFD8C996",
+    "button_color": "#FF1D7047",
+    "gradient_colors": [
+      "#FF020A06",
+      "#FF07170F",
+      "#FF0D2D1D",
+      "#FF05130C"
+    ],
+    "background_image_url": "",
+    "image_overlay_percent": 45,
+    "watermark_opacity_percent": 14
   },
   "ota": {
     "version_code": 0,
