@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 13,
+  "revision": 14,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -719,11 +719,11 @@
     }
   },
   "urgent_message": {
-    "enabled": true,
-    "revision": 1,
-    "title": "پیام فوری",
-    "subtitle": "تست ",
-    "message": "این پیام تست است",
+    "enabled": false,
+    "revision": 2,
+    "title": "",
+    "subtitle": "",
+    "message": "",
     "button_text": "خوانده شد",
     "text_effect": "fade",
     "effect_speed_millis": 45,
