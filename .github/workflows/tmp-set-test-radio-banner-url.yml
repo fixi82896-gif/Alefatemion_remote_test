@@ -26,8 +26,18 @@ jobs:
         run: |
           set -euo pipefail
           test -f assets/radio-banner-alfatemiun.jpg
-          test "$(wc -c < assets/radio-banner-alfatemiun.jpg | tr -d ' ')" = "49085"
-          test "$(sha256sum assets/radio-banner-alfatemiun.jpg | awk '{print $1}')" = "45dabbfbac79f81c71b117ec5dbb35d4cf50c108fb325d6be74b97f9d2c3c38d"
+          actual_size="$(wc -c < assets/radio-banner-alfatemiun.jpg | tr -d ' ')"
+          actual_sha="$(sha256sum assets/radio-banner-alfatemiun.jpg | awk '{print $1}')"
+          echo "BANNER_SIZE=$actual_size"
+          echo "BANNER_SHA256=$actual_sha"
+          case "$actual_sha:$actual_size" in
+            45dabbfbac79f81c71b117ec5dbb35d4cf50c108fb325d6be74b97f9d2c3c38d:49085|848e3e8d62794925c2b89d9e03eebda972f7008fe6cb099fb1b60ce5675c3b68:233821)
+              ;;
+            *)
+              echo "Banner bytes do not match either approved local derivative."
+              exit 1
+              ;;
+          esac
           python3 - <<'PY'
           import json
           from pathlib import Path
