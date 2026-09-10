@@ -1,0 +1,54 @@
+name: ZZ - Configure approved Test radio banner
+
+on:
+  push:
+    branches:
+      - test-notifications-ready-20260910
+    paths:
+      - .github/workflows/tmp-set-test-radio-banner-url.yml
+
+permissions:
+  contents: write
+
+jobs:
+  configure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout Test remote ready branch
+        uses: actions/checkout@v7
+        with:
+          ref: test-notifications-ready-20260910
+          fetch-depth: 0
+
+      - name: Verify banner asset and configure URL
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f assets/radio-banner-alfatemiun.jpg
+          test "$(wc -c < assets/radio-banner-alfatemiun.jpg | tr -d ' ')" = "49085"
+          test "$(sha256sum assets/radio-banner-alfatemiun.jpg | awk '{print $1}')" = "45dabbfbac79f81c71b117ec5dbb35d4cf50c108fb325d6be74b97f9d2c3c38d"
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('app-config.json')
+          data = json.loads(p.read_text(encoding='utf-8'))
+          home = data.setdefault('home', {})
+          target = 'https://raw.githubusercontent.com/fixi82896-gif/Alefatemion_remote_test/main/assets/radio-banner-alfatemiun.jpg'
+          changed = home.get('radio_banner_image_url') != target
+          home['radio_banner_image_url'] = target
+          if changed:
+              data['revision'] = int(data.get('revision', 0) or 0) + 1
+          p.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+
+      - name: Commit clean Test remote state
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/tmp-set-test-radio-banner-url.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Configure approved Test radio banner'
+          git push origin HEAD:test-notifications-ready-20260910
