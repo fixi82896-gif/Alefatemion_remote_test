@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 11,
+  "revision": 12,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -643,22 +643,6 @@
         "enabled": true,
         "sponsored": false,
         "display_order": 0,
-        "starts_at_millis": 0,
-        "expires_at_millis": 0
-      },
-      {
-        "id": "home-mtvgqeaj",
-        "title": "تست",
-        "description": "این برای تست است",
-        "image_url": "",
-        "placement": "hero",
-        "destination_type": "none",
-        "destination_id": "",
-        "destination_parent_id": "",
-        "external_url": "",
-        "enabled": true,
-        "sponsored": true,
-        "display_order": 1,
         "starts_at_millis": 0,
         "expires_at_millis": 0
       }
