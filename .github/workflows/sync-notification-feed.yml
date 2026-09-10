@@ -1,0 +1,53 @@
+name: Sync notification feed
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - app-config.json
+      - media-catalog.json
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-notification-feed
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout source change
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 2
+
+      - name: Generate notification feed
+        env:
+          SOURCE_SHA: ${{ github.sha }}
+        run: python3 -B .github/scripts/sync_notification_feed.py
+
+      - name: Commit feed safely
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- notification-feed.json; then
+            echo "No user-facing notification event."
+            exit 0
+          fi
+
+          cp notification-feed.json "$RUNNER_TEMP/notification-feed.json"
+          source_sha="$(git rev-parse HEAD)"
+          git fetch origin main
+          git reset --hard origin/main
+          cp "$RUNNER_TEMP/notification-feed.json" notification-feed.json
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add notification-feed.json
+          git commit -m "Update notification feed for ${source_sha:0:12}"
+          git push origin HEAD:main
