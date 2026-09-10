@@ -1,0 +1,58 @@
+name: ZZ - Apply approved Test radio banner
+
+on:
+  push:
+    branches:
+      - test-notification-infrastructure-20260910
+    paths:
+      - .github/workflows/tmp-apply-approved-radio-banner.yml
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout Test remote feature branch
+        uses: actions/checkout@v7
+        with:
+          ref: test-notification-infrastructure-20260910
+          fetch-depth: 0
+
+      - name: Decode and verify approved banner
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p assets
+          base64 --decode .github/tmp/radio_banner_800x450_q80.b64 > assets/radio-banner-alfatemiun.jpg
+          test "$(wc -c < assets/radio-banner-alfatemiun.jpg | tr -d ' ')" = "78705"
+          test "$(sha256sum assets/radio-banner-alfatemiun.jpg | awk '{print $1}')" = "6027f9ced603e73613249b50f186f4aac3e010393ca4dbe157a0553c063809e4"
+
+      - name: Point Test radio banner to approved image
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('app-config.json')
+          data = json.loads(p.read_text(encoding='utf-8'))
+          home = data.setdefault('home', {})
+          home['radio_banner_image_url'] = 'https://raw.githubusercontent.com/fixi82896-gif/Alefatemion_remote_test/main/assets/radio-banner-alfatemiun.jpg'
+          p.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+
+      - name: Commit final Test remote changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/tmp/radio_banner_800x450_q80.b64
+          rm -f .github/workflows/tmp-apply-approved-radio-banner.yml
+          rmdir .github/tmp 2>/dev/null || true
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Set approved Test radio banner image'
+          git push origin HEAD:test-notification-infrastructure-20260910
