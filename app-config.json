@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 14,
+  "revision": 15,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -141,6 +141,15 @@
         "stream_url": "https:\/\/navaapp.com\/nava\/67e4073da3fc119513060453",
         "category": "mourning",
         "enabled": true
+      },
+      {
+        "id": "nava-1789121934014",
+        "title": "سلسله عشق",
+        "performer": "محمود کریمی _ حسین طاهری",
+        "page_url": "https:\/\/navaapp.com\/nava\/6aa2e3ce85bbbe78b2056690",
+        "stream_url": "https:\/\/navaapp.com\/nava\/6aa2e3ce85bbbe78b2056690",
+        "category": "mourning",
+        "enabled": true
       }
     ],
     "assignments": [
@@ -172,6 +181,22 @@
       "radio_updates_enabled": true
     },
     "items": [
+      {
+        "id": "auto-radio-nava-1789121934014-mtwt07ge",
+        "category": "radio_update",
+        "origin": "auto_radio",
+        "title": "نوای تازه در رادیو آل فاطمیون",
+        "summary": "نوای «سلسله عشق» با صدای محمود کریمی _ حسین طاهری به رادیو آل فاطمیون افزوده شد.",
+        "body": "نوای «سلسله عشق» با صدای محمود کریمی _ حسین طاهری به رادیو آل فاطمیون افزوده شد.",
+        "image_url": "",
+        "published": true,
+        "pinned": false,
+        "published_at_millis": 1789121934014,
+        "expires_at_millis": 1791713934014,
+        "related_album_hash": "",
+        "related_album_name": "",
+        "related_track_id": "nava-1789121934014"
+      },
       {
         "id": "manual-1787925631048",
         "category": "notice",
@@ -721,7 +746,7 @@
   "urgent_message": {
     "enabled": false,
     "revision": 2,
-    "title": "",
+    "title": "پیام فوری",
     "subtitle": "",
     "message": "",
     "button_text": "خوانده شد",
