@@ -1,0 +1,52 @@
+name: Prune seven-day active content
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 */6 * * *"
+  push:
+    branches: [main]
+    paths:
+      - .github/scripts/prune_active_content.py
+      - .github/workflows/prune-active-content.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: test-remote-active-content-prune
+  cancel-in-progress: false
+
+jobs:
+  prune:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 2
+
+      - name: Validate and prune active content
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m py_compile .github/scripts/prune_active_content.py
+          python3 .github/scripts/prune_active_content.py
+          python3 -m json.tool app-config.json >/dev/null
+          python3 -m json.tool notification-feed.json >/dev/null
+
+      - name: Commit cleanup only when needed
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- app-config.json notification-feed.json; then
+            echo "No expired active content."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add app-config.json notification-feed.json
+          git diff --cached --check
+          git commit -m "Prune Test active content older than seven days"
+          git push origin HEAD:main
