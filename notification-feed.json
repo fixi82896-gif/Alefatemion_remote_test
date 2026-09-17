@@ -1,17 +1,8 @@
 {
   "schema_version": 1,
-  "revision": 3,
-  "generated_at_millis": 1789122001525,
+  "revision": 4,
+  "generated_at_millis": 1789664880607,
   "events": [
-    {
-      "id": "manual-test-20260910-1822",
-      "type": "announcement",
-      "title": "آزمایش اعلان آل فاطمیون",
-      "body": "اگر این اعلان را می‌بینید، دریافت اعلان در نسخه آزمایشی فعال است.",
-      "created_at_millis": 1789050150000,
-      "destination": "announcements",
-      "destination_id": ""
-    },
     {
       "id": "radio-ed8978223a16",
       "type": "radio",
