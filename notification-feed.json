@@ -1,16 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 4,
-  "generated_at_millis": 1789664880607,
-  "events": [
-    {
-      "id": "radio-ed8978223a16",
-      "type": "radio",
-      "title": "نوای تازه در رادیو آل فاطمیون",
-      "body": "سلسله عشق",
-      "created_at_millis": 1789122001525,
-      "destination": "radio",
-      "destination_id": ""
-    }
-  ]
+  "revision": 5,
+  "generated_at_millis": 1789730825389,
+  "events": []
 }
