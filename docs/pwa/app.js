@@ -248,7 +248,17 @@ function goCarousel(index,animated=true){
   const slide=host?.children[index];
   if(!host||!slide)return;
   state.carouselIndex=index;
-  slide.scrollIntoView({behavior:animated?'smooth':'auto',inline:'start',block:'nearest'});
+
+  /*
+   * فقط خود نوار افقی بنر حرکت می‌کند.
+   * scrollIntoView می‌توانست همراه با جابه‌جایی افقی،
+   * اسکرول عمودی صفحه را هم تغییر دهد.
+   */
+  host.scrollTo({
+    left: slide.offsetLeft,
+    behavior: animated?'smooth':'auto'
+  });
+
   updateCarouselUI();
 }
 function updateCarouselUI(){
