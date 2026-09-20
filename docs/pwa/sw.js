@@ -1,4 +1,4 @@
-const CACHE='alfatemiun-pwa-test-v2-6';
+const CACHE='alfatemiun-pwa-test-v2-7';
 const CORE=['./','./index.html','./styles.css','./manifest.webmanifest','./assets/icon.svg','/assets/logo_alfatemiun.webp','/assets/home-banner-local.svg','/remote/app-config.json','/remote/media-catalog.json'];
 
 self.addEventListener('install',event=>{
