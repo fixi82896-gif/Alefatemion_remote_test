@@ -153,6 +153,24 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  /*
+   * داده‌ها و دارایی‌های مشترک از خود Liara سرو می‌شوند تا اجرای سایت/PWA
+   * به GitHub یا سرویس فونت خارجی وابسته نباشد.
+   */
+  if (pathname === '/remote' || pathname.startsWith('/remote/')) {
+    const remotePath = pathname === '/remote' ? '/' : pathname.slice('/remote'.length);
+    serveFile(req, res, path.join(SITE_ROOT, 'remote'), remotePath);
+    return;
+  }
+
+  if (
+    pathname === '/assets/logo_alfatemiun.webp' ||
+    pathname === '/assets/home-banner-local.svg'
+  ) {
+    serveFile(req, res, SITE_ROOT, pathname);
+    return;
+  }
+
   if (host === 'app.alefatemion.ir') {
     serveFile(req, res, PWA_ROOT, pathname);
     return;
