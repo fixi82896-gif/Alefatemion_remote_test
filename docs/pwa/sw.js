@@ -1,5 +1,5 @@
-const CACHE='alfatemiun-pwa-liara-v5-0';
-const CORE=['./','./index.html','./styles.css?v=0.5.0','./manifest.webmanifest','./assets/icon.svg','/assets/logo_alfatemiun.webp','/remote/app-config.json','/remote/media-catalog.json'];
+const CACHE='alfatemiun-pwa-liara-v5-1';
+const CORE=['./','./index.html','./styles.css?v=0.5.0','./manifest.webmanifest','./assets/icon.svg','/assets/logo_alfatemiun.webp'];
 
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)));
@@ -28,6 +28,21 @@ self.addEventListener('fetch',event=>{
           return response;
         })
         .catch(()=>caches.match('./index.html'))
+    );
+    return;
+  }
+
+  if(url.pathname.startsWith('/remote/')){
+    event.respondWith(
+      fetch(event.request)
+        .then(response=>{
+          if(response.ok){
+            const copy=response.clone();
+            caches.open(CACHE).then(cache=>cache.put(event.request,copy));
+          }
+          return response;
+        })
+        .catch(()=>caches.match(event.request))
     );
     return;
   }
