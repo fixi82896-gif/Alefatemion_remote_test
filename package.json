@@ -2,11 +2,13 @@
   "name": "alefatemion-web-liara",
   "version": "1.0.0",
   "private": true,
-  "description": "Official Al Fatemiun website and PWA host router for Liara",
+  "description": "Official Al Fatemiun website and PWA on Liara with deploy-time Remote snapshot",
   "engines": {
     "node": ">=20"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "sync:remote": "node scripts/sync-remote.mjs",
+    "postinstall": "node scripts/sync-remote.mjs"
   }
 }
