@@ -1,0 +1,12 @@
+{
+  "name": "alefatemion-web-liara",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Official Al Fatemiun website and PWA host router for Liara",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server.js"
+  }
+}
