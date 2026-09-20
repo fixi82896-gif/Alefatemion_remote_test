@@ -1,0 +1,13 @@
+{
+  "name":"آل فاطمیون (Test)",
+  "short_name":"آل فاطمیون Test",
+  "description":"نسخه آزمایشی وب اپلیکیشن آل فاطمیون",
+  "lang":"fa",
+  "dir":"rtl",
+  "start_url":"./",
+  "scope":"./",
+  "display":"standalone",
+  "background_color":"#f7f2e7",
+  "theme_color":"#f7f2e7",
+  "icons":[{"src":"./assets/icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}
