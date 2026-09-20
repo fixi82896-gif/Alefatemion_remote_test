@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#f7f2e7" />
+  <meta name="description" content="نسخه آزمایشی PWA آل فاطمیون" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>آل فاطمیون | PWA Test</title>
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" href="./assets/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div id="app" class="app-shell">
+    <div class="test-ribbon">نسخه آزمایشی PWA</div>
+
+    <header class="welcome-card" id="welcomeCard">
+      <div class="welcome-copy">
+        <strong id="welcomeName">خوش آمدید</strong>
+        <div>به موکب مجازی آل فاطمیون خوش آمدید</div>
+        <small>لطفاً نظرات خود را با بخش پشتیبانی درمیان بگذارید</small>
+        <button class="support-btn" id="quickSupportBtn" type="button">؟ ارتباط با پشتیبانی</button>
+      </div>
+      <div class="welcome-mark" aria-hidden="true">👋</div>
+    </header>
+
+    <main class="page-host" id="pageHost">
+      <section class="page active" data-page="home">
+        <div class="home-hero" id="homeHero">
+          <div class="home-hero-logo">آل</div>
+          <div>
+            <h1>آل فاطمیون</h1>
+            <p>روایت تصویری فعالیت‌های مذهبی و جهادی</p>
+            <small>با محوریت خدمت در مسیر اربعین حسینی</small>
+          </div>
+        </div>
+        <div class="pager-dots"><span></span><span class="active"></span><small>۱ از ۲</small></div>
+
+        <button class="radio-hero" type="button" id="openRadioHero">
+          <div class="radio-symbol">▣</div>
+          <div class="radio-copy">
+            <span class="live-pill">● در حال پخش</span>
+            <h2>رادیو آل فاطمیون</h2>
+            <p id="nowPlayingHome">صف پخش آماده است</p>
+          </div>
+          <div class="radio-arrow">‹</div>
+        </button>
+
+        <section class="home-section">
+          <div class="section-head"><h2>دسترسی سریع</h2><small>بخش‌های اصلی برنامه</small></div>
+          <div class="quick-grid">
+            <button data-go="albums" class="quick-card"><span>▧</span><strong>آلبوم‌ها</strong><small>آرشیو تصاویر و ویدئوها</small></button>
+            <button data-go="announcements" class="quick-card"><span>◖</span><strong>اطلاعیه‌ها</strong><small>اخبار و مطالب تازه</small></button>
+            <button data-go="favorites" class="quick-card"><span>♥</span><strong>برگزیده‌ها</strong><small>موارد ذخیره‌شده روی دستگاه</small></button>
+            <button data-go="settings" class="quick-card"><span>⚙</span><strong>تنظیمات</strong><small>پروفایل و پشتیبانی</small></button>
+          </div>
+        </section>
+
+        <section class="home-section">
+          <div class="section-head"><h2>خبرهای تازه</h2><button class="text-action" data-go="announcements">مشاهده همه</button></div>
+          <div id="homeAnnouncements" class="stack-list"></div>
+        </section>
+      </section>
+
+      <section class="page" data-page="albums">
+        <div class="page-title-row">
+          <h1>آلبوم‌ها</h1>
+          <div class="title-actions"><button id="albumRefresh" aria-label="تازه‌سازی">↻</button><button id="albumSort" aria-label="مرتب‌سازی">☷</button></div>
+        </div>
+        <label class="search-box"><span>⌕</span><input id="albumSearch" type="search" placeholder="نام، سال، مناسبت، شماره یا برچسب" /></label>
+        <div id="albumBreadcrumb" class="breadcrumb"></div>
+        <div id="albumGrid" class="album-grid"></div>
+      </section>
+
+      <section class="page" data-page="announcements">
+        <div class="page-title-row"><h1>اخبار و اطلاعیه‌ها</h1></div>
+        <div id="announcementList" class="stack-list"></div>
+      </section>
+
+      <section class="page" data-page="favorites">
+        <div class="page-title-row"><h1>برگزیده‌ها</h1></div>
+        <p class="muted">رسانه‌هایی که در این نسخه وب علامت می‌زنید فقط روی همین مرورگر نگهداری می‌شوند.</p>
+        <div id="favoriteGrid" class="media-grid"></div>
+      </section>
+
+      <section class="page" data-page="settings">
+        <div class="page-title-row"><h1>تنظیمات</h1></div>
+        <section class="settings-card">
+          <h2>اطلاعات کاربری</h2>
+          <div class="setting-row"><div><strong>نام نمایشی</strong><small id="settingsDisplayName">—</small></div><button id="editNameBtn">ویرایش</button></div>
+        </section>
+        <section class="settings-card">
+          <h2>حالت ظاهر</h2>
+          <div class="segmented" id="themeSelector">
+            <button data-theme="system" class="active">سیستم</button>
+            <button data-theme="light">روشن</button>
+            <button data-theme="dark">تیره</button>
+          </div>
+        </section>
+        <section class="settings-card">
+          <h2>تماس با پشتیبانی</h2>
+          <div id="supportList" class="support-list"></div>
+        </section>
+        <section class="settings-card">
+          <h2>نسخه وب</h2>
+          <p class="muted">PWA Test 0.1 — این نسخه برای تست ظاهر، ناوبری و اتصال خواندنی به Remote ساخته شده است.</p>
+          <button id="installBtn" class="primary-btn" type="button" hidden>نصب نسخه وب</button>
+        </section>
+      </section>
+    </main>
+
+    <button class="radio-fab" id="radioFab" type="button" aria-label="رادیو آل فاطمیون">♪</button>
+
+    <nav class="bottom-nav" id="bottomNav" aria-label="ناوبری پایین">
+      <button class="nav-item active" data-page-target="home"><span>⌂</span><small>خانه</small></button>
+      <button class="nav-item" data-page-target="albums"><span>▧</span><small>آلبوم‌ها</small></button>
+      <button class="nav-item" data-page-target="announcements"><span>◖</span><small>اطلاعیه‌ها</small></button>
+      <button class="nav-item" data-page-target="favorites"><span>♥</span><small>برگزیده‌ها</small></button>
+      <button class="nav-item" data-page-target="settings"><span>⚙</span><small>تنظیمات</small></button>
+    </nav>
+  </div>
+
+  <dialog id="nameDialog" class="sheet-dialog onboarding-dialog">
+    <form method="dialog" class="dialog-card" id="nameForm">
+      <div class="dialog-icon">♙</div>
+      <h2>نام نمایشی شما</h2>
+      <p>نامی را وارد کنید که اعضای گروه شما را با آن می‌شناسند. در نسخه آزمایشی این نام فقط روی همین دستگاه ذخیره می‌شود.</p>
+      <label>نام یا نام مستعار<input id="displayNameInput" maxlength="60" autocomplete="name" /></label>
+      <button class="primary-btn" id="continueBtn" value="default" disabled>ادامه و ورود به برنامه</button>
+    </form>
+  </dialog>
+
+  <dialog id="radioDialog" class="sheet-dialog bottom-sheet">
+    <div class="dialog-card radio-sheet-card">
+      <div class="sheet-handle"></div>
+      <div class="sheet-title-row"><h2>رادیو آل فاطمیون</h2><button class="close-btn" data-close-dialog="radioDialog">×</button></div>
+      <div class="now-card"><div><small>نوای جاری</small><strong id="radioNowTitle">صف پخش آماده است</strong><span id="radioNowPerformer">—</span></div><button id="radioMuteBtn">🔊</button></div>
+      <label class="search-box"><span>⌕</span><input id="radioSearch" type="search" placeholder="جستجوی نوا" /></label>
+      <div class="segmented" id="radioCategorySelector"><button data-radio-category="all" class="active">همه</button><button data-radio-category="mourning">نوحه و عزاداری</button><button data-radio-category="celebration">مولودی و سرود</button></div>
+      <div id="radioList" class="radio-list"></div>
+    </div>
+  </dialog>
+
+  <dialog id="announcementDialog" class="sheet-dialog bottom-sheet">
+    <article class="dialog-card detail-card">
+      <div class="sheet-handle"></div>
+      <div class="sheet-title-row"><h2 id="detailAnnouncementTitle">اطلاعیه</h2><button class="close-btn" data-close-dialog="announcementDialog">×</button></div>
+      <p id="detailAnnouncementBody"></p>
+    </article>
+  </dialog>
+
+  <dialog id="mediaDialog" class="sheet-dialog bottom-sheet">
+    <article class="dialog-card detail-card">
+      <div class="sheet-handle"></div>
+      <div class="sheet-title-row"><h2 id="mediaTitle">رسانه</h2><button class="close-btn" data-close-dialog="mediaDialog">×</button></div>
+      <div class="media-placeholder"><span id="mediaTypeIcon">▧</span><p>در این نسخه آزمایشی، ساختار و اطلاعات رسانه از شناسنامه واقعی نمایش داده می‌شود. اتصال پخش مستقیم فایل‌های ابر همراهی در مرحله بعدی وب انجام می‌شود.</p></div>
+      <button id="favoriteToggle" class="primary-btn">افزودن به برگزیده‌ها</button>
+    </article>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="./app.js" defer></script>
+</body>
+</html>
