@@ -105,12 +105,32 @@ async function main() {
   await fs.writeFile(path.join(stagedRemote, 'sync-meta.json'), JSON.stringify(meta, null, 2) + '\n');
 
   await fs.mkdir(path.dirname(ASSET_DIR), { recursive: true });
-  await fs.rm(ASSET_DIR, { recursive: true, force: true });
-  await fs.rename(stagedBanners, ASSET_DIR);
+  const oldAssets = ASSET_DIR + '.old';
+  await fs.rm(oldAssets, { recursive: true, force: true });
+  let hadAssets = false;
+  try {
+    await fs.rename(ASSET_DIR, oldAssets);
+    hadAssets = true;
+  } catch (error) {
+    if (error?.code !== 'ENOENT') throw error;
+  }
+  try {
+    await fs.rename(stagedBanners, ASSET_DIR);
+    await fs.rm(oldAssets, { recursive: true, force: true });
+  } catch (error) {
+    if (hadAssets) {
+      await fs.rm(ASSET_DIR, { recursive: true, force: true }).catch(() => {});
+      await fs.rename(oldAssets, ASSET_DIR).catch(() => {});
+    }
+    throw error;
+  }
 
   await fs.mkdir(REMOTE_DIR, { recursive: true });
-  for (const name of ['app-config.json', 'media-catalog.json', 'sync-meta.json']) {
-    await fs.rename(path.join(stagedRemote, name), path.join(REMOTE_DIR, name));
+  for (const name of ['media-catalog.json', 'sync-meta.json', 'app-config.json']) {
+    const target = path.join(REMOTE_DIR, name);
+    const tempTarget = target + '.new';
+    await fs.copyFile(path.join(stagedRemote, name), tempTarget);
+    await fs.rename(tempTarget, target);
   }
 
   await fs.rm(STAGE, { recursive: true, force: true });
