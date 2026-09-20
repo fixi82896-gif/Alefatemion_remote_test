@@ -158,6 +158,25 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  /*
+   * پیش‌نمایش PWA روی دامنه موقت Liara قبل از اتصال app.alefatemion.ir.
+   * پس از اتصال دامنه رسمی، کاربران مستقیماً app.alefatemion.ir را باز می‌کنند.
+   */
+  const isTemporaryHost =
+    host.endsWith('.liara.run') ||
+    host === 'localhost' ||
+    host === '127.0.0.1';
+
+  if (isTemporaryHost && (pathname === '/pwa' || pathname.startsWith('/pwa/'))) {
+    if (pathname === '/pwa') {
+      redirect(res, '/pwa/', 302);
+      return;
+    }
+    const pwaPath = pathname.slice('/pwa'.length) || '/';
+    serveFile(req, res, PWA_ROOT, pwaPath);
+    return;
+  }
+
   if (pathname === '/app' || pathname.startsWith('/app/')) {
     const suffix = pathname === '/app' ? '/' : pathname.slice(4);
     redirect(res, 'https://app.alefatemion.ir' + suffix + url.search, 302);
