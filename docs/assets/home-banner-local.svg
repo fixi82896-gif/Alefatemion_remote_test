@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" role="img" aria-label="آل فاطمیون">
+<defs>
+  <linearGradient id="g" x1="0" x2="1"><stop stop-color="#06110B"/><stop offset=".55" stop-color="#0B673D"/><stop offset="1" stop-color="#0FAD61"/></linearGradient>
+  <radialGradient id="r"><stop stop-color="#C6A15B" stop-opacity=".25"/><stop offset="1" stop-color="#C6A15B" stop-opacity="0"/></radialGradient>
+</defs>
+<rect width="1200" height="480" rx="40" fill="url(#g)"/>
+<circle cx="160" cy="110" r="230" fill="url(#r)"/><circle cx="1080" cy="400" r="260" fill="url(#r)"/>
+<g fill="none" stroke="#D3EFE0" stroke-opacity=".12" stroke-width="2">
+  <path d="M40 420C220 260 370 260 550 420S880 580 1160 350"/>
+  <path d="M40 380C220 220 370 220 550 380S880 540 1160 310"/>
+</g>
+<text x="1040" y="205" text-anchor="end" fill="#fff" font-family="Tahoma,Arial,sans-serif" font-size="88" font-weight="700">آل فاطمیون</text>
+<text x="1040" y="280" text-anchor="end" fill="#D3EFE0" font-family="Tahoma,Arial,sans-serif" font-size="34">موکب مجازی آل فاطمیون</text>
+<text x="1040" y="335" text-anchor="end" fill="#B6DCC8" font-family="Tahoma,Arial,sans-serif" font-size="26">روایت تصویری فعالیت‌های مذهبی و جهادی</text>
+<circle cx="175" cy="240" r="92" fill="#06110B" stroke="#C6A15B" stroke-width="5"/>
+<text x="175" y="275" text-anchor="middle" fill="#10AF60" font-family="Tahoma,Arial,sans-serif" font-size="92" font-weight="700">آل</text>
+</svg>
