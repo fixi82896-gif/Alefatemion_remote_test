@@ -1,9 +1,8 @@
 'use strict';
 
-const REMOTE_BASE='https://raw.githubusercontent.com/fixi82896-gif/Alefatemion_remote/main';
-const CONFIG_URL=REMOTE_BASE+'/app-config.json';
-const CATALOG_URL=REMOTE_BASE+'/media-catalog.json';
-const LOGO_URL='https://fixi82896-gif.github.io/Alefatemion_remote/assets/logo_alfatemiun.webp';
+const CONFIG_URL='/remote/app-config.json';
+const CATALOG_URL='/remote/media-catalog.json';
+const LOGO_URL='/assets/logo_alfatemiun.webp';
 
 const STORAGE={
   name:'alfatemiun_pwa_name_v1',
@@ -47,8 +46,10 @@ function norm(v){
 function fa(v){return String(v).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[Number(d)])}
 function esc(v){return String(v??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
 function safeHttps(v){
+  const value=String(v||'').trim();
+  if(value.startsWith('/'))return value;
   try{
-    const u=new URL(String(v||'').trim());
+    const u=new URL(value);
     return u.protocol==='https:'?u.href:'';
   }catch(_){return''}
 }
@@ -59,8 +60,38 @@ function toast(message){
   clearTimeout(toast.timer);
   toast.timer=setTimeout(()=>el.classList.remove('show'),2200);
 }
+const LOCAL_SYMBOLS={
+  waving_hand:'👋',
+  contact_support:'؟',
+  radio:'◉',
+  chevron_left:'‹',
+  refresh:'↻',
+  sort:'☷',
+  search:'⌕',
+  badge:'♙',
+  palette:'◐',
+  language:'◎',
+  home:'⌂',
+  photo_album:'▧',
+  campaign:'◖',
+  favorite:'♥',
+  settings:'⚙',
+  music_note:'♪',
+  close:'×',
+  volume_up:'🔊',
+  volume_off:'🔇',
+  image:'▧',
+  play_circle:'▶'
+};
+function localSymbol(name){return LOCAL_SYMBOLS[name]||'•'}
 function materialIcon(name,extra=''){
-  return '<span class="material-symbols-rounded '+extra+'">'+esc(name)+'</span>';
+  return '<span class="material-symbols-rounded '+extra+'">'+esc(localSymbol(name))+'</span>';
+}
+function localizeStaticIcons(){
+  $('.material-symbols-rounded').forEach(el=>{
+    const key=String(el.textContent||'').trim();
+    if(LOCAL_SYMBOLS[key])el.textContent=LOCAL_SYMBOLS[key];
+  });
 }
 
 function applyTheme(theme){
@@ -727,6 +758,7 @@ function wire(){
 }
 
 async function init(){
+  localizeStaticIcons();
   applyTheme(localStorage.getItem(STORAGE.theme)||'system');
   wire();
 
