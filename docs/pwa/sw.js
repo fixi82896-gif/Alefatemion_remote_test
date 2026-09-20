@@ -1,5 +1,5 @@
-const CACHE='alfatemiun-pwa-test-v2-7';
-const CORE=['./','./index.html','./styles.css','./manifest.webmanifest','./assets/icon.svg','/assets/logo_alfatemiun.webp','/assets/home-banner-local.svg','/remote/app-config.json','/remote/media-catalog.json'];
+const CACHE='alfatemiun-pwa-stable-v1-0-0';
+const CORE=['./','./index.html','./styles.css?v=1.0.0','./app.js?v=1.0.0','./manifest.webmanifest','./assets/icon.svg','/assets/logo_alfatemiun.webp'];
 
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)));
@@ -16,7 +16,6 @@ self.addEventListener('activate',event=>{
 self.addEventListener('fetch',event=>{
   if(event.request.method!=='GET')return;
   const url=new URL(event.request.url);
-
   if(url.origin!==self.location.origin)return;
 
   if(event.request.mode==='navigate'){
@@ -28,6 +27,21 @@ self.addEventListener('fetch',event=>{
           return response;
         })
         .catch(()=>caches.match('./index.html'))
+    );
+    return;
+  }
+
+  if(url.pathname.startsWith('/remote/')){
+    event.respondWith(
+      fetch(event.request)
+        .then(response=>{
+          if(response.ok){
+            const copy=response.clone();
+            caches.open(CACHE).then(cache=>cache.put(event.request,copy));
+          }
+          return response;
+        })
+        .catch(()=>caches.match(event.request))
     );
     return;
   }
