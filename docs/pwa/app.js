@@ -28,7 +28,6 @@ const state={
   currentTrackId:localStorage.getItem(STORAGE.currentTrack)||'',
   muted:localStorage.getItem(STORAGE.muted)==='1',
   radioCategory:'all',
-  deferredInstallPrompt:null,
   carouselItems:[],
   carouselIndex:0,
   carouselTimer:null,
@@ -847,19 +846,6 @@ function wire(){
   $$('[data-go]').forEach(btn=>btn.onclick=()=>showPage(btn.dataset.go));
   $$('[data-close-dialog]').forEach(btn=>{
     btn.onclick=()=>document.getElementById(btn.dataset.closeDialog)?.close();
-  });
-
-  $('#installBtn').onclick=async()=>{
-    if(!state.deferredInstallPrompt)return;
-    state.deferredInstallPrompt.prompt();
-    await state.deferredInstallPrompt.userChoice;
-    state.deferredInstallPrompt=null;
-    $('#installBtn').hidden=true;
-  };
-  window.addEventListener('beforeinstallprompt',event=>{
-    event.preventDefault();
-    state.deferredInstallPrompt=event;
-    $('#installBtn').hidden=false;
   });
 
   let lastCompact=false;
