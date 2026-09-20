@@ -252,7 +252,7 @@ const state={
 };
 
 const $=(s,r=document)=>r.querySelector(s);
-const $=(s,r=document)=>[...r.querySelectorAll(s)];
+const $$=(s,r=document)=>[...r.querySelectorAll(s)];
 
 function norm(v){
   return String(v||'')
@@ -318,7 +318,7 @@ function applyTheme(theme){
   const value=allowed.includes(theme)?theme:'system';
   document.documentElement.dataset.theme=value;
   localStorage.setItem(STORAGE.theme,value);
-  $('#themeSelector button').forEach(btn=>btn.classList.toggle('active',btn.dataset.theme===value));
+  $$('#themeSelector button').forEach(btn=>btn.classList.toggle('active',btn.dataset.theme===value));
 }
 
 function setName(value){
@@ -341,8 +341,8 @@ function openName(edit=false){
 function showPage(page){
   if(!['home','albums','announcements','favorites','settings'].includes(page))return;
   state.currentPage=page;
-  $('.page').forEach(el=>el.classList.toggle('active',el.dataset.page===page));
-  $('.nav-item').forEach(btn=>btn.classList.toggle('active',btn.dataset.pageTarget===page));
+  $$('.page').forEach(el=>el.classList.toggle('active',el.dataset.page===page));
+  $$('.nav-item').forEach(btn=>btn.classList.toggle('active',btn.dataset.pageTarget===page));
   if(page==='favorites')renderFavorites();
   if(page==='home')renderHomeSections();
   window.scrollTo({top:0,behavior:'smooth'});
@@ -515,7 +515,7 @@ function updateCarouselUI(){
   const total=state.carouselItems.length;
   const count=$('#heroPageCount');
   if(count)count.textContent=total?fa(state.carouselIndex+1)+' از '+fa(total):'';
-  $('#heroPagination .hero-dot').forEach((dot,index)=>dot.classList.toggle('active',index===state.carouselIndex));
+  $$('#heroPagination .hero-dot').forEach((dot,index)=>dot.classList.toggle('active',index===state.carouselIndex));
 }
 function restartCarouselTimer(){
   clearInterval(state.carouselTimer);
@@ -854,7 +854,7 @@ function renderRadio(){
     btn.type='button';
     btn.className='track-row'+(track.id===state.currentTrackId?' active':'');
     btn.innerHTML=
-      '<span class="note-icon material-symbols-rounded">music_note</span>'+
+      '<span class="note-icon material-symbols-rounded">'+esc(localSymbol('music_note'))+'</span>'+
       '<span class="track-copy"><strong>'+esc(track.title)+'</strong><small>'+esc(track.performer||'بدون نام خواننده')+'</small></span>'+
       materialIcon('chevron_left');
     btn.onclick=()=>chooseTrack(track);
@@ -936,7 +936,7 @@ function wire(){
     const btn=event.target.closest('button[data-radio-category]');
     if(!btn)return;
     state.radioCategory=btn.dataset.radioCategory;
-    $('#radioCategorySelector button').forEach(item=>item.classList.toggle('active',item===btn));
+    $$('#radioCategorySelector button').forEach(item=>item.classList.toggle('active',item===btn));
     renderRadio();
   };
 
@@ -944,8 +944,8 @@ function wire(){
     const btn=event.target.closest('[data-page-target]');
     if(btn)showPage(btn.dataset.pageTarget);
   };
-  $('[data-go]').forEach(btn=>btn.onclick=()=>showPage(btn.dataset.go));
-  $('[data-close-dialog]').forEach(btn=>{
+  $$('[data-go]').forEach(btn=>btn.onclick=()=>showPage(btn.dataset.go));
+  $$('[data-close-dialog]').forEach(btn=>{
     btn.onclick=()=>document.getElementById(btn.dataset.closeDialog)?.close();
   });
 
