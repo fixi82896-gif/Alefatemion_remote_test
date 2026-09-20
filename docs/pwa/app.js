@@ -134,7 +134,7 @@ function applyAlbumLayout(value){
   localStorage.setItem(STORAGE.albumLayout,layout);
   const grid=$('#albumGrid');
   if(grid)grid.dataset.layout=layout;
-  $('#albumLayoutSelector button').forEach(btn=>btn.classList.toggle('active',btn.dataset.albumLayout===layout));
+  $$('#albumLayoutSelector button').forEach(btn=>btn.classList.toggle('active',btn.dataset.albumLayout===layout));
 }
 
 function applySlideshowSettings(){
@@ -145,7 +145,7 @@ function applySlideshowSettings(){
   const label=$('#slideshowSecondsLabel');
   if(range)range.value=String(seconds);
   if(label)label.textContent=fa(seconds)+' ثانیه';
-  $('#slideEffectSelector button').forEach(btn=>btn.classList.toggle('active',btn.dataset.slideEffect===state.slideEffect));
+  $$('#slideEffectSelector button').forEach(btn=>btn.classList.toggle('active',btn.dataset.slideEffect===state.slideEffect));
 }
 
 async function clearPwaCache(){
