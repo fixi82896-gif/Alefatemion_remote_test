@@ -312,7 +312,7 @@
           <div class="feature"><strong>رادیو آل فاطمیون</strong><span>دسترسی به نوحه، عزاداری، مولودی و سرود در بخش صوتی برنامه.</span></div>
           <div class="feature"><strong>اخبار و اطلاعیه‌ها</strong><span>نمایش اطلاع‌رسانی‌های مرتبط با مجموعه و به‌روزرسانی‌های برنامه.</span></div>
           <div class="feature"><strong>جستجو و برگزیده‌ها</strong><span>یافتن سریع‌تر رسانه‌ها و نگهداری محتوای موردعلاقه.</span></div>
-          <div class="feature"><strong>پروفایل و تنظیمات</strong><span>دسترسی کاربر به اطلاعات شخصی و تنظیمات تجربه کاربری.</span></div>
+          <div class="feature"><strong>تنظیمات برنامه</strong><span>مدیریت ظاهر، چیدمان، راهنما و تنظیمات تجربه کاربری.</span></div>
         </div>
       </div>
     </section>
@@ -357,9 +357,9 @@
 
         <article class="access-card">
           <h3>نسخه وب آل فاطمیون</h3>
-          <p>نسخه وب قابل نصب آل فاطمیون از نشانی رسمی زیر در دسترس است. این نسخه در حال تکمیل و آزمون مرحله‌ای است.</p>
-          <div class="meta"><span class="pill">نسخه آزمایشی فعال</span><span class="pill">app.alefatemion.ir</span></div>
-          <a class="btn primary" href="https://app.alefatemion.ir/" rel="noopener">ورود به نسخه وب</a>
+          <p>نسخه وب آل فاطمیون در حال آماده‌سازی و انتقال نهایی است و پس از تکمیل بررسی‌ها از نشانی رسمی منتشر خواهد شد.</p>
+          <div class="meta"><span class="pill">در حال آماده‌سازی</span><span class="pill">app.alefatemion.ir</span></div>
+          <span class="btn primary" aria-disabled="true" style="opacity:.6;cursor:default">به‌زودی</span>
         </article>
       </div>
     </section>
@@ -407,115 +407,6 @@
     <div class="wrap tiny">پایگاه رسمی مجموعه آل فاطمیون</div>
   </footer>
 
-  <script>
-    (() => {
-      const CONFIG_URL = '/remote/app-config.json';
 
-      const validHttps = value => {
-        try {
-          const u = new URL(String(value || '').trim());
-          return u.protocol === 'https:' ? u.href : null;
-        } catch (_) {
-          return null;
-        }
-      };
-
-      const contactHref = method => {
-        const type = String(method.type || '').toLowerCase();
-        const value = String(method.value || '').trim();
-        if (!value) return null;
-
-        if (type === 'email') return 'mailto:' + value;
-        if (type === 'phone') return 'tel:' + value.replace(/[^+0-9]/g, '');
-        if (type === 'sms') return 'sms:' + value.replace(/[^+0-9]/g, '');
-
-        if (type === 'telegram') {
-          return validHttps(value) || validHttps('https://t.me/' + value.replace(/^@/, ''));
-        }
-        if (type === 'eitaa') {
-          return validHttps(value) || validHttps('https://eitaa.com/' + value.replace(/^@/, ''));
-        }
-        if (type === 'whatsapp') {
-          const digits = value.replace(/\D/g, '');
-          return validHttps(value) || (digits ? 'https://wa.me/' + digits : null);
-        }
-        if (type === 'web') return validHttps(value);
-        return validHttps(value);
-      };
-
-      const contactIcon = type => {
-        switch (String(type || '').toLowerCase()) {
-          case 'email': return '@';
-          case 'phone': return '☎';
-          case 'sms': return '✉';
-          case 'whatsapp': return '◉';
-          default: return '↗';
-        }
-      };
-
-      const displayValue = method => {
-        const value = String(method.value || '').trim();
-        return value.replace(/^https?:\/\//, '').replace(/\/$/, '');
-      };
-
-      const renderSupport = methods => {
-        const enabled = (Array.isArray(methods) ? methods : []).filter(item => item && item.enabled);
-        if (!enabled.length) return;
-
-        const grid = document.getElementById('supportGrid');
-        grid.textContent = '';
-
-        enabled.forEach(method => {
-          const href = contactHref(method);
-          if (!href) return;
-
-          const a = document.createElement('a');
-          a.className = 'support-link';
-          a.href = href;
-          if (href.startsWith('https://')) {
-            a.target = '_blank';
-            a.rel = 'noopener';
-          }
-
-          const icon = document.createElement('div');
-          icon.className = 'icon';
-          icon.textContent = contactIcon(method.type);
-
-          const body = document.createElement('div');
-          const title = document.createElement('strong');
-          title.textContent = String(method.label || 'ارتباط با پشتیبانی');
-          const value = document.createElement('span');
-          value.textContent = displayValue(method);
-
-          body.append(title, value);
-          a.append(icon, body);
-          grid.appendChild(a);
-        });
-      };
-
-      const controller = new AbortController();
-      const timer = setTimeout(() => controller.abort(), 6000);
-
-      fetch(CONFIG_URL, {cache:'no-store', signal:controller.signal})
-        .then(response => {
-          if (!response.ok) throw new Error('config');
-          return response.json();
-        })
-        .then(config => {
-          const ota = config && config.ota ? config.ota : {};
-          const apk = validHttps(ota.apk_url);
-          if (apk) document.getElementById('androidDownload').href = apk;
-          if (ota.version_name) document.getElementById('androidVersion').textContent = 'نسخه ' + ota.version_name;
-          if (Number.isFinite(Number(ota.version_code))) document.getElementById('androidCode').textContent = 'Code ' + ota.version_code;
-
-          const contacts = config && config.management_contact && config.management_contact.enabled
-            ? config.management_contact.methods
-            : [];
-          renderSupport(contacts);
-        })
-        .catch(() => {})
-        .finally(() => clearTimeout(timer));
-    })();
-  </script>
 </body>
 </html>
