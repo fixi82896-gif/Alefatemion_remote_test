@@ -209,14 +209,24 @@ function renderCarousel(){
       slide.type='button';
       slide.className='hero-slide remote';
       const image=safeHttps(banner.image_url);
-      if(image){
+      const isLocalFallback=image==='/assets/home-banner-local.svg';
+      if(isLocalFallback){
+        slide.classList.add('local-fallback');
+        slide.innerHTML=
+          '<div class="fallback-banner-logo"><img src="'+LOGO_URL+'" alt=""></div>'+
+          '<div class="fallback-banner-copy">'+
+            '<strong>آل فاطمیون</strong>'+
+            '<span>موکب مجازی آل فاطمیون</span>'+
+            '<small>روایت تصویری فعالیت‌های مذهبی و جهادی</small>'+
+          '</div>';
+      }else if(image){
         const img=document.createElement('img');
         img.src=image;
         img.alt=banner.title||'بنر آل فاطمیون';
         img.loading=index===0?'eager':'lazy';
         slide.append(img);
       }
-      if(banner.title||banner.description){
+      if(!isLocalFallback&&(banner.title||banner.description)){
         const overlay=document.createElement('span');
         overlay.className='hero-overlay';
         overlay.innerHTML=(banner.title?'<strong>'+esc(banner.title)+'</strong>':'')+(banner.description?'<small>'+esc(banner.description)+'</small>':'');
