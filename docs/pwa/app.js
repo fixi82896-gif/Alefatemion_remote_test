@@ -9,7 +9,11 @@ const STORAGE={
   favorites:'alfatemiun_pwa_favorites_v1',
   theme:'alfatemiun_pwa_theme_v1',
   currentTrack:'alfatemiun_pwa_track_v1',
-  muted:'alfatemiun_pwa_muted_v1'
+  muted:'alfatemiun_pwa_muted_v1',
+  albumLayout:'alfatemiun_pwa_album_layout_v1',
+  slideshowSeconds:'alfatemiun_pwa_slideshow_seconds_v1',
+  slideEffect:'alfatemiun_pwa_slide_effect_v1',
+  guideSeen:'alfatemiun_pwa_guide_seen_v1'
 };
 
 const state={
@@ -29,7 +33,12 @@ const state={
   carouselIndex:0,
   carouselTimer:null,
   carouselInteracting:false,
-  carouselStarted:false
+  carouselStarted:false,
+  albumLayout:localStorage.getItem(STORAGE.albumLayout)||'standard',
+  slideshowSeconds:Number(localStorage.getItem(STORAGE.slideshowSeconds)||5),
+  slideEffect:localStorage.getItem(STORAGE.slideEffect)||'random',
+  guideIndex:0,
+  lastRemoteLoad:0
 };
 
 const $=(s,r=document)=>r.querySelector(s);
@@ -117,6 +126,75 @@ function openName(edit=false){
   $('#continueBtn').disabled=!input.value.trim();
   if(!dialog.open)dialog.showModal();
   setTimeout(()=>input.focus(),70);
+}
+
+function applyAlbumLayout(value){
+  const allowed=['large','standard','compact'];
+  const layout=allowed.includes(value)?value:'standard';
+  state.albumLayout=layout;
+  localStorage.setItem(STORAGE.albumLayout,layout);
+  const grid=$('#albumGrid');
+  if(grid)grid.dataset.layout=layout;
+  $('#albumLayoutSelector button').forEach(btn=>btn.classList.toggle('active',btn.dataset.albumLayout===layout));
+}
+
+function applySlideshowSettings(){
+  const seconds=Math.max(2,Math.min(15,Number(localStorage.getItem(STORAGE.slideshowSeconds)||state.slideshowSeconds||5)));
+  state.slideshowSeconds=seconds;
+  state.slideEffect=localStorage.getItem(STORAGE.slideEffect)||state.slideEffect||'random';
+  const range=$('#slideshowSeconds');
+  const label=$('#slideshowSecondsLabel');
+  if(range)range.value=String(seconds);
+  if(label)label.textContent=fa(seconds)+' ثانیه';
+  $('#slideEffectSelector button').forEach(btn=>btn.classList.toggle('active',btn.dataset.slideEffect===state.slideEffect));
+}
+
+async function clearPwaCache(){
+  const button=$('#clearCacheBtn');
+  if(button){button.disabled=true;button.textContent='در حال پاک‌کردن…'}
+  try{
+    if('caches'in window){
+      const keys=await caches.keys();
+      await Promise.all(keys.map(key=>caches.delete(key)));
+    }
+    toast('حافظه موقت پاک شد.');
+  }catch(error){
+    console.error(error);
+    toast('پاک‌کردن حافظه موقت انجام نشد.');
+  }finally{
+    if(button){button.disabled=false;button.textContent='پاک‌کردن کش تصاویر بندانگشتی'}
+  }
+}
+
+const GUIDE_STEPS=[
+  ['خانه','در صفحه خانه بنرهای تصویری بخش‌های اصلی را می‌بینید و با لمس هرکدام وارد همان بخش می‌شوید.'],
+  ['آلبوم‌ها','در این صفحه آلبوم‌های مجموعه نمایش داده می‌شوند. از جستجو، مرتب‌سازی و تازه‌سازی هم می‌توانید استفاده کنید.'],
+  ['اخبار و اطلاعیه‌ها','خبرهای مجموعه و تغییرات تازه آلبوم‌ها و رادیو در این بخش نمایش داده می‌شوند.'],
+  ['برگزیده‌ها','عکس‌ها و کلیپ‌هایی که با علامت قلب انتخاب می‌کنید در این بخش جمع می‌شوند.'],
+  ['تنظیمات','ظاهر، چیدمان، پخش خودکار، مشخصات کاربر، راهنما و حافظه موقت از این بخش قابل تنظیم است.']
+];
+
+function renderGuide(){
+  const step=GUIDE_STEPS[state.guideIndex]||GUIDE_STEPS[0];
+  $('#guideTitle').textContent=step[0];
+  $('#guideText').textContent=step[1];
+  $('#guideProgress').innerHTML=GUIDE_STEPS.map((_,i)=>'<i class="'+(i===state.guideIndex?'active':'')+'"></i>').join('');
+  $('#guideNextBtn').textContent=state.guideIndex===GUIDE_STEPS.length-1?'پایان':'بعدی';
+}
+function openGuide(){
+  state.guideIndex=0;
+  renderGuide();
+  const dialog=$('#guideDialog');
+  if(dialog&&!dialog.open)dialog.showModal();
+}
+function nextGuide(){
+  if(state.guideIndex<GUIDE_STEPS.length-1){
+    state.guideIndex++;
+    renderGuide();
+  }else{
+    localStorage.setItem(STORAGE.guideSeen,'1');
+    $('#guideDialog')?.close();
+  }
 }
 
 function showPage(page){
@@ -495,6 +573,7 @@ function renderHomeSections(){
 function renderAlbums(){
   if(!state.catalog||!state.config)return;
   const grid=$('#albumGrid');
+  applyAlbumLayout(localStorage.getItem(STORAGE.albumLayout)||state.albumLayout);
   grid.replaceChildren();
   renderBreadcrumb();
 
@@ -673,6 +752,7 @@ async function loadRemote(){
     renderSupport();
     renderRadio();
     updateNow();
+    state.lastRemoteLoad=Date.now();
   }catch(error){
     console.error(error);
     $('#albumGrid').innerHTML='<div class="empty-state" style="grid-column:1/-1">دریافت اطلاعات Remote ناموفق بود. اتصال اینترنت را بررسی کنید.</div>';
@@ -723,6 +803,35 @@ function wire(){
     if(btn)applyTheme(btn.dataset.theme);
   };
 
+  $('#albumLayoutSelector').onclick=event=>{
+    const btn=event.target.closest('button[data-album-layout]');
+    if(btn)applyAlbumLayout(btn.dataset.albumLayout);
+  };
+
+  $('#slideshowSeconds').oninput=event=>{
+    const value=Math.max(2,Math.min(15,Number(event.target.value)||5));
+    state.slideshowSeconds=value;
+    localStorage.setItem(STORAGE.slideshowSeconds,String(value));
+    $('#slideshowSecondsLabel').textContent=fa(value)+' ثانیه';
+  };
+
+  $('#slideEffectSelector').onclick=event=>{
+    const btn=event.target.closest('button[data-slide-effect]');
+    if(!btn)return;
+    state.slideEffect=btn.dataset.slideEffect;
+    localStorage.setItem(STORAGE.slideEffect,state.slideEffect);
+    applySlideshowSettings();
+  };
+
+  $('#showGuideBtn').onclick=openGuide;
+  $('#clearCacheBtn').onclick=clearPwaCache;
+  $('#guideCloseBtn').onclick=()=>$('#guideDialog').close();
+  $('#guideSkipBtn').onclick=()=>{
+    localStorage.setItem(STORAGE.guideSeen,'1');
+    $('#guideDialog').close();
+  };
+  $('#guideNextBtn').onclick=nextGuide;
+
   $('#radioCategorySelector').onclick=event=>{
     const btn=event.target.closest('button[data-radio-category]');
     if(!btn)return;
@@ -763,13 +872,21 @@ function wire(){
   },{passive:true});
 
   document.addEventListener('visibilitychange',()=>{
-    if(!document.hidden)restartCarouselTimer();
+    if(!document.hidden){
+      restartCarouselTimer();
+      if(Date.now()-state.lastRemoteLoad>120000)loadRemote();
+    }
   });
+  setInterval(()=>{
+    if(!document.hidden&&Date.now()-state.lastRemoteLoad>300000)loadRemote();
+  },60000);
 }
 
 async function init(){
   localizeStaticIcons();
   applyTheme(localStorage.getItem(STORAGE.theme)||'system');
+  applyAlbumLayout(localStorage.getItem(STORAGE.albumLayout)||'standard');
+  applySlideshowSettings();
   wire();
 
   const savedName=localStorage.getItem(STORAGE.name);
