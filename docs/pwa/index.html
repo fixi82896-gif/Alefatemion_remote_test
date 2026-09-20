@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#FAF7EF" />
   <meta name="description" content="نسخه آزمایشی PWA آل فاطمیون" />
   <meta name="robots" content="noindex,nofollow" />
-  <title>آل فاطمیون | PWA Test 0.4.3</title>
+  <title>آل فاطمیون | PWA Test 0.5.0</title>
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="icon" href="./assets/icon.svg" type="image/svg+xml" />  <link rel="stylesheet" href="./styles.css" />
 </head>
@@ -16,7 +16,7 @@
       <img src="/assets/logo_alfatemiun.webp" alt="" />
     </div>
 
-    <div class="test-badge">TEST 0.4.3</div>
+    <div class="test-badge">TEST 0.5.0</div>
 
     <header class="welcome-card" id="welcomeCard">
       <div class="welcome-top">
@@ -123,38 +123,126 @@
         <div id="favoriteGrid" class="media-grid"></div>
       </section>
 
-      <section class="page" data-page="settings">
-        <div class="page-title-row android-title-row"><h1>تنظیمات</h1></div>
+      <section class="page profile-child-page" data-page="settings">
+        <div class="page-title-row android-title-row settings-title-row">
+          <button id="settingsBackBtn" class="round-action" type="button" aria-label="بازگشت">›</button>
+          <h1>تنظیمات</h1>
+        </div>
+
+        <section class="settings-card" id="cacheSettings">
+          <div class="settings-heading"><span class="setting-symbol">⌫</span><div><h2>حافظه موقت</h2><p>فایل‌های موقت نسخه وب را پاک می‌کند؛ نام، برگزیده‌ها و تنظیمات شخصی حذف نمی‌شوند.</p></div></div>
+          <button id="clearCacheBtn" class="setting-action" type="button">حذف حافظه موقت</button>
+        </section>
+
+        <section class="settings-card" id="supportSettings">
+          <div class="settings-heading"><span class="setting-symbol">؟</span><div><h2>پشتیبانی</h2><p>راه‌های رسمی ارتباط با مدیریت آل فاطمیون.</p></div></div>
+          <div id="supportList" class="support-list"></div>
+        </section>
+
+        <section class="settings-card" id="updateSettings">
+          <div class="settings-heading"><span class="setting-symbol">↻</span><div><h2>بروزرسانی نسخه وب</h2><p id="pwaVersionText">نسخه PWA در حال بررسی…</p></div></div>
+          <div class="settings-actions">
+            <button id="checkUpdateBtn" class="setting-action" type="button">بررسی بروزرسانی</button>
+            <button id="installBtn" class="setting-action primary" type="button" hidden>نصب نسخه وب</button>
+          </div>
+          <small id="remoteRevisionText" class="setting-note"></small>
+        </section>
 
         <section class="settings-card">
-          <div class="settings-heading"><span class="material-symbols-rounded">♙</span><h2>اطلاعات کاربری</h2></div>
-          <div class="setting-row">
-            <div><strong>نام نمایشی</strong><small id="settingsDisplayName">—</small></div>
-            <button id="editNameBtn">ویرایش</button>
+          <div class="settings-heading"><span class="setting-symbol">⇧</span><div><h2>ارسال برای دوستان</h2><p>پیوند رسمی نسخه وب را برای اعضای آل فاطمیون ارسال کنید.</p></div></div>
+          <button id="sharePwaBtn" class="setting-action" type="button">اشتراک‌گذاری نسخه وب</button>
+        </section>
+
+        <section class="settings-card">
+          <div class="settings-heading"><span class="setting-symbol">ⓘ</span><div><h2>راهنمای برنامه</h2><p>راهنمای مسیرهای اصلی نسخه وب را دوباره نمایش می‌دهد.</p></div></div>
+          <button id="showGuideBtn" class="setting-action" type="button">نمایش راهنمای برنامه</button>
+        </section>
+
+        <section class="settings-card">
+          <div class="settings-heading"><span class="setting-symbol">▧</span><div><h2>تنظیمات آلبوم</h2><p>چیدمان آلبوم‌ها و ترجیحات نمایش رسانه.</p></div></div>
+          <div class="setting-group">
+            <strong>تنظیمات چیدمان</strong>
+            <div class="segmented" id="albumLayoutSelector">
+              <button data-album-layout="large">درشت</button>
+              <button data-album-layout="standard" class="active">استاندارد</button>
+              <button data-album-layout="compact">فشرده</button>
+            </div>
+          </div>
+          <div class="setting-group">
+            <label for="slideDurationSelect"><strong>تنظیمات پخش خودکار</strong></label>
+            <select id="slideDurationSelect" class="setting-select">
+              <option value="3">۳ ثانیه</option>
+              <option value="5" selected>۵ ثانیه</option>
+              <option value="7">۷ ثانیه</option>
+              <option value="10">۱۰ ثانیه</option>
+            </select>
+          </div>
+          <div class="setting-group">
+            <strong>تنظیمات افکت اسلایدشو</strong>
+            <div class="segmented wrap-segmented" id="slideEffectSelector">
+              <button data-slide-effect="random" class="active">تصادفی</button>
+              <button data-slide-effect="fade">محو شدن</button>
+              <button data-slide-effect="move">حرکت</button>
+              <button data-slide-effect="zoom">بزرگ‌نمایی نرم</button>
+            </div>
           </div>
         </section>
 
         <section class="settings-card">
-          <div class="settings-heading"><span class="material-symbols-rounded">◐</span><h2>حالت ظاهر</h2></div>
-          <div class="segmented" id="themeSelector">
+          <div class="settings-heading"><span class="setting-symbol">آل</span><div><h2>درباره ما</h2><p>پایگاه رسمی مجموعه آل فاطمیون.</p></div></div>
+          <button id="aboutBtn" class="setting-action" type="button">بازکردن صفحه آل فاطمیون</button>
+        </section>
+      </section>
+    </main>
+
+    <div id="profileBackdrop" class="profile-backdrop" hidden></div>
+    <aside id="profileDrawer" class="profile-drawer" aria-hidden="true" aria-label="پروفایل">
+      <div class="profile-drawer-scroll">
+        <div class="profile-theme">
+          <span>حالت ظاهر</span>
+          <div class="segmented" id="profileThemeSelector">
             <button data-theme="system" class="active">سیستم</button>
             <button data-theme="light">روشن</button>
             <button data-theme="dark">تیره</button>
           </div>
-        </section>
+        </div>
 
-        <section class="settings-card">
-          <div class="settings-heading"><span class="material-symbols-rounded">؟</span><h2>تماس با پشتیبانی</h2></div>
-          <div id="supportList" class="support-list"></div>
-        </section>
+        <div class="profile-head">
+          <button id="profileAvatarBtn" class="profile-avatar" type="button" aria-label="اطلاعات کاربری">
+            <img src="/assets/logo_alfatemiun.webp" alt="" />
+          </button>
+          <strong id="profileDisplayName">دوست عزیز</strong>
+          <small>نسخه وب آل فاطمیون</small>
+        </div>
 
-        <section class="settings-card">
-          <div class="settings-heading"><span class="material-symbols-rounded">◎</span><h2>نسخه وب</h2></div>
-          <p class="muted">PWA Test 0.4.3 — بازطراحی بصری با هدف نزدیک‌شدن به نسخه Android.</p>
-          <button id="installBtn" class="primary-btn" type="button" hidden>نصب نسخه وب</button>
-        </section>
-      </section>
-    </main>
+        <button class="profile-menu-row" type="button" data-profile-action="account"><span>♙</span><b>اطلاعات کاربری</b><i>‹</i></button>
+        <div id="profileAccountPanel" class="profile-account-panel" hidden>
+          <label>نام نمایشی<input id="profileNameInput" maxlength="60" autocomplete="name" /></label>
+          <div class="profile-info-line"><span>تاریخ اولین ورود</span><strong id="profileFirstLogin">—</strong></div>
+          <div class="profile-info-line"><span>ورود پیامکی</span><strong>در حال آماده‌سازی</strong></div>
+          <button id="profileSaveNameBtn" class="setting-action primary" type="button">ذخیره نام</button>
+        </div>
+
+        <button class="profile-menu-row" type="button" data-profile-action="messages"><span>◖</span><b>پیام‌ها</b><i>‹</i></button>
+        <button class="profile-menu-row" type="button" data-profile-action="radio"><span>♪</span><b>رادیو</b><i>‹</i></button>
+        <button class="profile-menu-row" type="button" data-profile-action="support"><span>؟</span><b>پشتیبانی</b><i>‹</i></button>
+        <button class="profile-menu-row" type="button" data-profile-action="settings"><span>⚙</span><b>تنظیمات</b><i>‹</i></button>
+        <button class="profile-menu-row danger" type="button" data-profile-action="logout"><span>↪</span><b>خروج</b><i>‹</i></button>
+      </div>
+    </aside>
+
+    <dialog id="guideDialog" class="sheet-dialog bottom-sheet">
+      <article class="dialog-card detail-card guide-card">
+        <div class="sheet-handle"></div>
+        <div class="sheet-title-row"><h2 id="guideTitle">راهنمای برنامه</h2><button class="close-btn" id="guideCloseBtn" type="button"><span class="material-symbols-rounded">×</span></button></div>
+        <p id="guideText"></p>
+        <div class="guide-progress" id="guideProgress"></div>
+        <div class="guide-actions">
+          <button id="guideSkipBtn" class="setting-action" type="button">رد کردن راهنما</button>
+          <button id="guideNextBtn" class="setting-action primary" type="button">بعدی</button>
+        </div>
+      </article>
+    </dialog>
 
     <button class="radio-fab" id="radioFab" type="button" aria-label="رادیو آل فاطمیون">
       <span class="material-symbols-rounded">♪</span>
@@ -165,7 +253,7 @@
       <button class="nav-item" data-page-target="albums"><span class="nav-icon material-symbols-rounded">▧</span><small>آلبوم‌ها</small></button>
       <button class="nav-item" data-page-target="announcements"><span class="nav-icon material-symbols-rounded">◖</span><small>اطلاعیه‌ها</small></button>
       <button class="nav-item" data-page-target="favorites"><span class="nav-icon material-symbols-rounded">♥</span><small>برگزیده‌ها</small></button>
-      <button class="nav-item" data-page-target="settings"><span class="nav-icon material-symbols-rounded">⚙</span><small>تنظیمات</small></button>
+      <button class="nav-item profile-nav-item" id="profileNavBtn" type="button" data-open-profile="true"><span class="nav-profile-icon"><img src="/assets/logo_alfatemiun.webp" alt="" /></span><small>پروفایل</small></button>
     </nav>
   </div>
 
