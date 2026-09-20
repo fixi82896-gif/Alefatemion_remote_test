@@ -16,6 +16,7 @@ const [html,js,css,sw,configText,catalogText]=await Promise.all([
 ]);
 
 new Function(js);
+need(!/(?<!\\$)\\$\\('[^']+'\\)\\.forEach/g.test(js),'single-selector .forEach would crash PWA startup');
 const config=JSON.parse(configText);
 const catalog=JSON.parse(catalogText);
 
