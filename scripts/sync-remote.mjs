@@ -58,7 +58,9 @@ function isGitHubReleaseAsset(url) {
 async function downloadBanner(url, id, dir) {
   if (!isGitHubReleaseAsset(url)) return url;
   const safeId = String(id || 'banner').replace(/[^a-zA-Z0-9_-]/g, '-');
-  const filename = safeId + safeExt(url);
+  const sourceName = (new URL(url).pathname.split('/').pop() || 'image' + safeExt(url))
+    .replace(/[^a-zA-Z0-9._-]/g, '-');
+  const filename = safeId + '-' + sourceName;
   const response = await fetchOk(url, 'banner ' + safeId);
   const type = (response.headers.get('content-type') || '').toLowerCase();
   if (type && !type.startsWith('image/') && type !== 'application/octet-stream') {
