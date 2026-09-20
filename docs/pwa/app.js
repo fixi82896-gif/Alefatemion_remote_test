@@ -517,7 +517,7 @@ function openMedia(id){
   if(!media)return;
   state.currentMediaId=id;
   $('#mediaTitle').textContent=mediaLabel(media);
-  $('#mediaTypeIcon').textContent=media.media_type==='video'?'play_circle':'image';
+  $('#mediaTypeIcon').textContent=localSymbol(media.media_type==='video'?'play_circle':'image');
   updateFavoriteBtn();
   $('#mediaDialog').showModal();
 }
@@ -769,7 +769,7 @@ async function init(){
   await loadRemote();
 
   if('serviceWorker'in navigator){
-    window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(console.error));
+    navigator.serviceWorker.register('./sw.js').catch(console.error);
   }
 }
 
