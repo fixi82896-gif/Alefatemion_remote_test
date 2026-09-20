@@ -1,4 +1,4 @@
-const CACHE='alfatemiun-pwa-liara-v5-2';
+const CACHE='alfatemiun-pwa-liara-v5-3';
 const CORE=['./','./index.html','./styles.css?v=0.5.1','./manifest.webmanifest','./assets/icon.svg','/assets/logo_alfatemiun.webp'];
 
 self.addEventListener('install',event=>{
