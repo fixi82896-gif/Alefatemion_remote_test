@@ -173,20 +173,14 @@
       border:7px solid #17231d;border-radius:34px;padding:7px;
       background:#17231d;box-shadow:0 18px 35px rgba(0,0,0,.13);
     }
-    .phone-screen{
-      min-height:410px;border-radius:24px;overflow:hidden;
-      background:
-        radial-gradient(circle at 50% 14%,rgba(173,123,36,.12),transparent 110px),
-        linear-gradient(180deg,#f9f6ef,#ece7db);
-      display:flex;flex-direction:column;align-items:center;justify-content:center;
-      text-align:center;padding:22px;color:var(--muted);
+    .real-shot{
+      display:block;width:100%;height:auto;border-radius:24px;
+      background:#f5f0e4;
     }
-    .shot-logo{width:64px;height:64px;object-fit:contain;opacity:.68;margin-bottom:14px}
-    .phone-screen strong{color:var(--brand);font-size:16px}
-    .phone-screen small{margin-top:7px;line-height:1.9}
-    .shot-note{
-      margin-top:14px;padding:12px 14px;border-radius:14px;
-      border:1px dashed #ccb77f;background:#fffbef;color:#796431;font-size:13px;
+    .phone figcaption{
+      margin:0;padding:10px 8px 5px;
+      color:#f4ebd6;background:#17231d;
+      text-align:center;font-size:13px;font-weight:800;
     }
     .access-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
     .access-card{padding:24px;border-radius:22px;border:1px solid var(--line);background:var(--surface);position:relative;overflow:hidden}
@@ -327,14 +321,22 @@
       <div class="section-head">
         <span class="kicker">نمایی از داخل نرم‌افزار</span>
         <h2>تصاویر برنامه</h2>
-        <p>قاب‌های زیر برای بررسی چیدمان سایت هستند و در نسخه نهایی با اسکرین‌شات‌های واقعی نسخه عمومی جایگزین می‌شوند.</p>
+        <p>نمایی واقعی از بخش‌های اصلی نسخه عمومی نرم‌افزار آل فاطمیون.</p>
       </div>
       <div class="shot-grid">
-        <div class="phone"><div class="phone-screen"><img class="shot-logo" src="./assets/logo_alfatemiun.webp" alt="" /><strong>صفحه اصلی</strong><small>اسکرین‌شات واقعی نسخه عمومی در این قاب قرار می‌گیرد.</small></div></div>
-        <div class="phone"><div class="phone-screen"><img class="shot-logo" src="./assets/logo_alfatemiun.webp" alt="" /><strong>آلبوم‌ها و رسانه</strong><small>نمایش ساختار آرشیو تصاویر و ویدئوها.</small></div></div>
-        <div class="phone"><div class="phone-screen"><img class="shot-logo" src="./assets/logo_alfatemiun.webp" alt="" /><strong>رادیو آل فاطمیون</strong><small>نمایش بخش صوتی و دسته‌بندی‌های رادیو.</small></div></div>
+        <figure class="phone">
+          <img class="real-shot" src="./assets/screens/home.webp" alt="نمای صفحه اصلی نرم‌افزار آل فاطمیون" loading="lazy" />
+          <figcaption>صفحه اصلی</figcaption>
+        </figure>
+        <figure class="phone">
+          <img class="real-shot" src="./assets/screens/albums.webp" alt="نمای بخش آلبوم‌های نرم‌افزار آل فاطمیون" loading="lazy" />
+          <figcaption>آلبوم‌ها</figcaption>
+        </figure>
+        <figure class="phone">
+          <img class="real-shot" src="./assets/screens/radio.webp" alt="نمای بخش رادیو آل فاطمیون" loading="lazy" />
+          <figcaption>رادیو آل فاطمیون</figcaption>
+        </figure>
       </div>
-      <div class="shot-note">برای جلوگیری از نمایش اطلاعات آزمایشی، اسکرین‌شات‌های واقعی فقط از نسخه Production انتخاب خواهند شد.</div>
     </section>
 
     <section class="section" id="access">
