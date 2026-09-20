@@ -8,7 +8,7 @@
   <meta name="robots" content="noindex,nofollow" />
   <title>آل فاطمیون | PWA Test 0.5.0</title>
   <link rel="manifest" href="./manifest.webmanifest" />
-  <link rel="icon" href="./assets/icon.svg" type="image/svg+xml" />  <link rel="stylesheet" href="./styles.css" />
+  <link rel="icon" href="./assets/icon.svg" type="image/svg+xml" />\n  <link rel="stylesheet" href="./styles.css?v=0.5.0" />
 </head>
 <body>
   <div id="app" class="app-shell">
@@ -316,7 +316,12 @@ const STORAGE={
   favorites:'alfatemiun_pwa_favorites_v1',
   theme:'alfatemiun_pwa_theme_v1',
   currentTrack:'alfatemiun_pwa_track_v1',
-  muted:'alfatemiun_pwa_muted_v1'
+  muted:'alfatemiun_pwa_muted_v1',
+  firstLogin:'alfatemiun_pwa_first_login_v1',
+  albumLayout:'alfatemiun_pwa_album_layout_v1',
+  slideDuration:'alfatemiun_pwa_slide_duration_v1',
+  slideEffect:'alfatemiun_pwa_slide_effect_v1',
+  guideSeen:'alfatemiun_pwa_guide_seen_v1'
 };
 
 const state={
@@ -336,7 +341,11 @@ const state={
   carouselIndex:0,
   carouselTimer:null,
   carouselInteracting:false,
-  carouselStarted:false
+  carouselStarted:false,
+  albumLayout:localStorage.getItem(STORAGE.albumLayout)||'standard',
+  slideDuration:Number(localStorage.getItem(STORAGE.slideDuration)||5),
+  slideEffect:localStorage.getItem(STORAGE.slideEffect)||'random',
+  guideIndex:0
 };
 
 const $=(s,r=document)=>r.querySelector(s);
@@ -406,15 +415,21 @@ function applyTheme(theme){
   const value=allowed.includes(theme)?theme:'system';
   document.documentElement.dataset.theme=value;
   localStorage.setItem(STORAGE.theme,value);
-  $$('#themeSelector button').forEach(btn=>btn.classList.toggle('active',btn.dataset.theme===value));
+  $('#themeSelector button, #profileThemeSelector button').forEach(btn=>btn.classList.toggle('active',btn.dataset.theme===value));
 }
 
 function setName(value){
   const name=String(value||'').trim().replace(/\s+/g,' ').slice(0,60);
   if(!name)return false;
   localStorage.setItem(STORAGE.name,name);
-  $('#welcomeName').textContent=name+' عزیز';
-  $('#settingsDisplayName').textContent=name;
+  if(!localStorage.getItem(STORAGE.firstLogin))localStorage.setItem(STORAGE.firstLogin,String(Date.now()));
+  const welcome=$('#welcomeName');
+  const profile=$('#profileDisplayName');
+  const input=$('#profileNameInput');
+  if(welcome)welcome.textContent=name+' عزیز';
+  if(profile)profile.textContent=name;
+  if(input&&document.activeElement!==input)input.value=name;
+  renderProfileAccount();
   return true;
 }
 function openName(edit=false){
@@ -428,12 +443,175 @@ function openName(edit=false){
 
 function showPage(page){
   if(!['home','albums','announcements','favorites','settings'].includes(page))return;
+  closeProfile();
   state.currentPage=page;
-  $$('.page').forEach(el=>el.classList.toggle('active',el.dataset.page===page));
-  $$('.nav-item').forEach(btn=>btn.classList.toggle('active',btn.dataset.pageTarget===page));
+  $('.page').forEach(el=>el.classList.toggle('active',el.dataset.page===page));
+  $('.nav-item').forEach(btn=>{
+    const target=btn.dataset.pageTarget;
+    btn.classList.toggle('active',target===page||(page==='settings'&&btn.id==='profileNavBtn'));
+  });
   if(page==='favorites')renderFavorites();
   if(page==='home')renderHomeSections();
+  if(page==='settings')renderSettingsMeta();
   window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function formatPersianDate(ms){
+  const value=Number(ms);
+  if(!Number.isFinite(value)||value<=0)return'—';
+  try{
+    return new Intl.DateTimeFormat('fa-IR-u-ca-persian',{year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(value));
+  }catch(_){
+    return new Date(value).toLocaleDateString('fa-IR');
+  }
+}
+
+function renderProfileAccount(){
+  const name=localStorage.getItem(STORAGE.name)||'دوست عزیز';
+  const input=$('#profileNameInput');
+  const first=$('#profileFirstLogin');
+  if(input&&document.activeElement!==input)input.value=name;
+  if(first)first.textContent=formatPersianDate(localStorage.getItem(STORAGE.firstLogin));
+}
+
+function openProfile(){
+  const drawer=$('#profileDrawer');
+  const backdrop=$('#profileBackdrop');
+  if(!drawer||!backdrop)return;
+  renderProfileAccount();
+  $('#profileDisplayName').textContent=localStorage.getItem(STORAGE.name)||'دوست عزیز';
+  backdrop.hidden=false;
+  requestAnimationFrame(()=>drawer.classList.add('open'));
+  drawer.setAttribute('aria-hidden','false');
+  $('#profileNavBtn')?.classList.add('active');
+}
+
+function closeProfile(){
+  const drawer=$('#profileDrawer');
+  const backdrop=$('#profileBackdrop');
+  if(!drawer||!backdrop)return;
+  drawer.classList.remove('open');
+  drawer.setAttribute('aria-hidden','true');
+  setTimeout(()=>{if(!drawer.classList.contains('open'))backdrop.hidden=true},240);
+  if(state.currentPage!=='settings')$('#profileNavBtn')?.classList.remove('active');
+}
+
+function applyAlbumLayout(value){
+  const allowed=['large','standard','compact'];
+  const layout=allowed.includes(value)?value:'standard';
+  state.albumLayout=layout;
+  localStorage.setItem(STORAGE.albumLayout,layout);
+  const grid=$('#albumGrid');
+  if(grid)grid.dataset.layout=layout;
+  $('#albumLayoutSelector button').forEach(btn=>btn.classList.toggle('active',btn.dataset.albumLayout===layout));
+}
+
+function applyViewerPreferences(){
+  const duration=Number(localStorage.getItem(STORAGE.slideDuration)||state.slideDuration||5);
+  state.slideDuration=[3,5,7,10].includes(duration)?duration:5;
+  state.slideEffect=localStorage.getItem(STORAGE.slideEffect)||state.slideEffect||'random';
+  const select=$('#slideDurationSelect');
+  if(select)select.value=String(state.slideDuration);
+  $('#slideEffectSelector button').forEach(btn=>btn.classList.toggle('active',btn.dataset.slideEffect===state.slideEffect));
+}
+
+async function clearPwaCache(){
+  const button=$('#clearCacheBtn');
+  if(button){button.disabled=true;button.textContent='در حال پاک‌کردن…'}
+  try{
+    if('caches'in window){
+      const keys=await caches.keys();
+      await Promise.all(keys.map(key=>caches.delete(key)));
+    }
+    toast('حافظه موقت پاک شد.');
+  }catch(error){
+    console.error(error);
+    toast('پاک‌کردن حافظه موقت انجام نشد.');
+  }finally{
+    if(button){button.disabled=false;button.textContent='حذف حافظه موقت'}
+  }
+}
+
+async function checkPwaUpdate(){
+  const button=$('#checkUpdateBtn');
+  if(button){button.disabled=true;button.textContent='در حال بررسی…'}
+  try{
+    const reg=await navigator.serviceWorker?.getRegistration();
+    if(reg)await reg.update();
+    await loadRemote();
+    toast('آخرین نسخه و تنظیمات بررسی شد.');
+  }catch(error){
+    console.error(error);
+    toast('بررسی بروزرسانی انجام نشد.');
+  }finally{
+    if(button){button.disabled=false;button.textContent='بررسی بروزرسانی'}
+  }
+}
+
+async function sharePwa(){
+  const url=location.hostname==='app.alefatemion.ir'?'https://app.alefatemion.ir/':location.origin+'/pwa/';
+  const data={title:'آل فاطمیون',text:'نسخه وب آل فاطمیون',url};
+  try{
+    if(navigator.share)await navigator.share(data);
+    else{
+      await navigator.clipboard.writeText(url);
+      toast('پیوند نسخه وب کپی شد.');
+    }
+  }catch(error){
+    if(error?.name!=='AbortError')toast('اشتراک‌گذاری انجام نشد.');
+  }
+}
+
+function officialSiteUrl(){
+  return location.hostname==='app.alefatemion.ir'?'https://alefatemion.ir/':location.origin+'/';
+}
+
+function renderSettingsMeta(){
+  const version=$('#pwaVersionText');
+  const remote=$('#remoteRevisionText');
+  if(version)version.textContent='PWA Test 0.5.0 • استقرار روی Liara';
+  if(remote){
+    const cr=state.config?.revision??'—';
+    const mr=state.catalog?.revision??'—';
+    remote.textContent='تنظیمات Remote: '+fa(cr)+' • شناسنامه رسانه: '+fa(mr);
+  }
+  applyAlbumLayout(localStorage.getItem(STORAGE.albumLayout)||state.albumLayout);
+  applyViewerPreferences();
+}
+
+const GUIDE_STEPS=[
+  ['خانه','بنرهای خانه، رادیو و تازه‌ترین محتوای مجموعه از این صفحه در دسترس است.'],
+  ['آلبوم‌ها','برای مرور آرشیو، جستجو، مرتب‌سازی و تازه‌سازی از بخش آلبوم‌ها استفاده کنید.'],
+  ['اطلاعیه‌ها','اخبار و اطلاعیه‌های مجموعه در این بخش نمایش داده می‌شوند.'],
+  ['برگزیده‌ها','رسانه‌هایی که با علامت قلب انتخاب می‌کنید در برگزیده‌ها نگهداری می‌شوند.'],
+  ['پروفایل','حالت ظاهر، اطلاعات کاربری، پیام‌ها، رادیو، پشتیبانی و تنظیمات از منوی پروفایل در دسترس است.'],
+  ['تنظیمات','حافظه موقت، بروزرسانی، اشتراک‌گذاری، راهنما و تنظیمات آلبوم در این صفحه قرار دارند.']
+];
+
+function renderGuide(){
+  const step=GUIDE_STEPS[state.guideIndex]||GUIDE_STEPS[0];
+  $('#guideTitle').textContent=step[0];
+  $('#guideText').textContent=step[1];
+  const progress=$('#guideProgress');
+  progress.innerHTML=GUIDE_STEPS.map((_,i)=>'<i class="'+(i===state.guideIndex?'active':'')+'"></i>').join('');
+  $('#guideNextBtn').textContent=state.guideIndex===GUIDE_STEPS.length-1?'پایان':'بعدی';
+}
+
+function openGuide(){
+  state.guideIndex=0;
+  renderGuide();
+  const dialog=$('#guideDialog');
+  if(dialog&&!dialog.open)dialog.showModal();
+}
+
+function nextGuide(){
+  if(state.guideIndex<GUIDE_STEPS.length-1){
+    state.guideIndex++;
+    renderGuide();
+  }else{
+    localStorage.setItem(STORAGE.guideSeen,'1');
+    $('#guideDialog')?.close();
+  }
 }
 
 function visibleAnnouncements(){
@@ -802,6 +980,7 @@ function renderHomeSections(){
 function renderAlbums(){
   if(!state.catalog||!state.config)return;
   const grid=$('#albumGrid');
+  applyAlbumLayout(localStorage.getItem(STORAGE.albumLayout)||state.albumLayout);
   grid.replaceChildren();
   renderBreadcrumb();
 
@@ -999,14 +1178,16 @@ function wire(){
     event.preventDefault();
     if(setName($('#displayNameInput').value))$('#nameDialog').close();
   };
-  $('#editNameBtn').onclick=()=>openName(true);
   $('#favoriteToggle').onclick=toggleFavorite;
   $('#quickSupportBtn').onclick=quickSupport;
 
-  $('#radioFab').onclick=$('#openRadioHero').onclick=()=>{
+  const openRadio=()=>{
     renderRadio();
     $('#radioDialog').showModal();
   };
+  $('#radioFab').onclick=openRadio;
+  $('#openRadioHero').onclick=openRadio;
+
   $('#radioSearch').oninput=renderRadio;
   $('#radioMuteBtn').onclick=()=>{
     state.muted=!state.muted;
@@ -1025,10 +1206,11 @@ function wire(){
     loadRemote();
   };
 
-  $('#themeSelector').onclick=event=>{
+  const themeHandler=event=>{
     const btn=event.target.closest('button[data-theme]');
     if(btn)applyTheme(btn.dataset.theme);
   };
+  $('#profileThemeSelector').onclick=themeHandler;
 
   $('#radioCategorySelector').onclick=event=>{
     const btn=event.target.closest('button[data-radio-category]');
@@ -1039,6 +1221,8 @@ function wire(){
   };
 
   $('#bottomNav').onclick=event=>{
+    const profile=event.target.closest('[data-open-profile]');
+    if(profile){openProfile();return}
     const btn=event.target.closest('[data-page-target]');
     if(btn)showPage(btn.dataset.pageTarget);
   };
@@ -1046,6 +1230,74 @@ function wire(){
   $$('[data-close-dialog]').forEach(btn=>{
     btn.onclick=()=>document.getElementById(btn.dataset.closeDialog)?.close();
   });
+
+  $('#profileBackdrop').onclick=closeProfile;
+  $('#profileAvatarBtn').onclick=()=>{
+    const panel=$('#profileAccountPanel');
+    panel.hidden=!panel.hidden;
+  };
+  $('#profileSaveNameBtn').onclick=()=>{
+    const value=$('#profileNameInput').value;
+    if(setName(value))toast('نام نمایشی ذخیره شد.');
+  };
+  $('#profileDrawer').onclick=event=>{
+    const row=event.target.closest('[data-profile-action]');
+    if(!row)return;
+    const action=row.dataset.profileAction;
+    if(action==='account'){
+      const panel=$('#profileAccountPanel');
+      panel.hidden=!panel.hidden;
+      renderProfileAccount();
+      return;
+    }
+    if(action==='messages'){closeProfile();showPage('announcements');return}
+    if(action==='radio'){closeProfile();openRadio();return}
+    if(action==='support'){
+      closeProfile();
+      showPage('settings');
+      setTimeout(()=>$('#supportSettings')?.scrollIntoView({behavior:'smooth',block:'start'}),80);
+      return;
+    }
+    if(action==='settings'){closeProfile();showPage('settings');return}
+    if(action==='logout'){
+      closeProfile();
+      localStorage.removeItem(STORAGE.name);
+      openName(false);
+      toast('از حساب محلی نسخه وب خارج شدید.');
+    }
+  };
+
+  $('#settingsBackBtn').onclick=()=>showPage('home');
+  $('#clearCacheBtn').onclick=clearPwaCache;
+  $('#checkUpdateBtn').onclick=checkPwaUpdate;
+  $('#sharePwaBtn').onclick=sharePwa;
+  $('#showGuideBtn').onclick=openGuide;
+  $('#aboutBtn').onclick=()=>{location.href=officialSiteUrl()};
+
+  $('#albumLayoutSelector').onclick=event=>{
+    const btn=event.target.closest('[data-album-layout]');
+    if(btn)applyAlbumLayout(btn.dataset.albumLayout);
+  };
+  $('#slideDurationSelect').onchange=event=>{
+    state.slideDuration=Number(event.target.value)||5;
+    localStorage.setItem(STORAGE.slideDuration,String(state.slideDuration));
+    toast('مدت نمایش ذخیره شد.');
+  };
+  $('#slideEffectSelector').onclick=event=>{
+    const btn=event.target.closest('[data-slide-effect]');
+    if(!btn)return;
+    state.slideEffect=btn.dataset.slideEffect;
+    localStorage.setItem(STORAGE.slideEffect,state.slideEffect);
+    applyViewerPreferences();
+    toast('افکت اسلایدشو ذخیره شد.');
+  };
+
+  $('#guideCloseBtn').onclick=()=>$('#guideDialog').close();
+  $('#guideSkipBtn').onclick=()=>{
+    localStorage.setItem(STORAGE.guideSeen,'1');
+    $('#guideDialog').close();
+  };
+  $('#guideNextBtn').onclick=nextGuide;
 
   $('#installBtn').onclick=async()=>{
     if(!state.deferredInstallPrompt)return;
@@ -1077,6 +1329,9 @@ function wire(){
 async function init(){
   localizeStaticIcons();
   applyTheme(localStorage.getItem(STORAGE.theme)||'system');
+  if(!localStorage.getItem(STORAGE.firstLogin))localStorage.setItem(STORAGE.firstLogin,String(Date.now()));
+  applyAlbumLayout(localStorage.getItem(STORAGE.albumLayout)||'standard');
+  applyViewerPreferences();
   wire();
 
   const savedName=localStorage.getItem(STORAGE.name);
@@ -1084,9 +1339,14 @@ async function init(){
   else openName(false);
 
   await loadRemote();
+  renderSettingsMeta();
 
   if('serviceWorker'in navigator){
     navigator.serviceWorker.register('./sw.js').catch(console.error);
+  }
+
+  if(localStorage.getItem(STORAGE.guideSeen)!=='1'&&savedName){
+    setTimeout(openGuide,650);
   }
 }
 
