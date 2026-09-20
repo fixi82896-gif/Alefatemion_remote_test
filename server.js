@@ -3,12 +3,18 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const { spawn } = require('child_process');
 
 const PORT = Number(process.env.PORT || 3000);
 const HOST = '0.0.0.0';
 
 const SITE_ROOT = path.join(__dirname, 'docs');
 const PWA_ROOT = path.join(__dirname, 'docs', 'pwa');
+const SYNC_SCRIPT = path.join(__dirname, 'scripts', 'sync-remote.mjs');
+const REMOTE_SYNC_INTERVAL_MS = Math.max(60000, Number(process.env.REMOTE_SYNC_INTERVAL_MS || 300000));
+let remoteSyncRunning = false;
+let remoteSyncLastOk = 0;
+let remoteSyncLastError = '';
 
 const MIME = {
   '.html': 'text/html; charset=utf-8',
@@ -43,7 +49,13 @@ function cacheHeaders(res, filePath) {
   const name = path.basename(filePath).toLowerCase();
   const ext = path.extname(filePath).toLowerCase();
 
-  if (name === 'sw.js' || ext === '.html') {
+  if (
+    name === 'sw.js' ||
+    ext === '.html' ||
+    name === 'app-config.json' ||
+    name === 'media-catalog.json' ||
+    name === 'sync-meta.json'
+  ) {
     res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
     return;
   }
@@ -142,7 +154,16 @@ const server = http.createServer((req, res) => {
     sendText(
       res,
       200,
-      JSON.stringify({ ok: true, service: 'alefatemion-web', host }),
+      JSON.stringify({
+        ok: true,
+        service: 'alefatemion-web',
+        host,
+        remote_sync: {
+          running: remoteSyncRunning,
+          last_ok: remoteSyncLastOk || null,
+          last_error: remoteSyncLastError || null
+        }
+      }),
       'application/json; charset=utf-8'
     );
     return;
@@ -165,7 +186,8 @@ const server = http.createServer((req, res) => {
 
   if (
     pathname === '/assets/logo_alfatemiun.webp' ||
-    pathname === '/assets/home-banner-local.svg'
+    pathname === '/assets/home-banner-local.svg' ||
+    pathname.startsWith('/assets/remote/')
   ) {
     serveFile(req, res, SITE_ROOT, pathname);
     return;
@@ -208,6 +230,36 @@ const server = http.createServer((req, res) => {
   serveFile(req, res, SITE_ROOT, pathname);
 });
 
+function runRemoteSync() {
+  if (process.env.DISABLE_REMOTE_SYNC === '1' || remoteSyncRunning) return;
+  remoteSyncRunning = true;
+  const child = spawn(process.execPath, [SYNC_SCRIPT], {
+    cwd: __dirname,
+    stdio: ['ignore', 'pipe', 'pipe']
+  });
+  let stderr = '';
+  child.stdout.on('data', data => process.stdout.write('[remote-sync] ' + data));
+  child.stderr.on('data', data => {
+    stderr += String(data);
+    process.stderr.write('[remote-sync] ' + data);
+  });
+  child.on('error', error => {
+    remoteSyncRunning = false;
+    remoteSyncLastError = error.message || String(error);
+  });
+  child.on('exit', code => {
+    remoteSyncRunning = false;
+    if (code === 0) {
+      remoteSyncLastOk = Date.now();
+      remoteSyncLastError = '';
+    } else {
+      remoteSyncLastError = (stderr.trim() || ('sync exited with code ' + code)).slice(-1200);
+    }
+  });
+}
+
 server.listen(PORT, HOST, () => {
   console.log(`Al Fatemiun web service listening on ${HOST}:${PORT}`);
+  setTimeout(runRemoteSync, 10000);
+  setInterval(runRemoteSync, REMOTE_SYNC_INTERVAL_MS);
 });
