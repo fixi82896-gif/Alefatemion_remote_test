@@ -9,6 +9,7 @@
   "scripts": {
     "start": "node server.js",
     "sync:remote": "node scripts/sync-remote.mjs",
-    "postinstall": "node scripts/sync-remote.mjs --allow-stale"
+    "postinstall": "node scripts/sync-remote.mjs --allow-stale && node scripts/verify-pwa.mjs",
+    "verify:pwa": "node scripts/verify-pwa.mjs"
   }
 }
