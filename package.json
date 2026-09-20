@@ -1,15 +1,12 @@
 {
-  "name": "alefatemion-web-liara",
+  "name": "alefatemion-official-site",
   "version": "1.0.0",
   "private": true,
-  "description": "Official Al Fatemiun website and stable public PWA on Liara",
+  "description": "Official Al Fatemiun website on Liara",
   "engines": {
     "node": ">=20"
   },
   "scripts": {
-    "start": "node server.js",
-    "sync:remote": "node scripts/sync-remote.mjs",
-    "postinstall": "node scripts/sync-remote.mjs --allow-stale && node scripts/verify-pwa.mjs",
-    "verify:pwa": "node scripts/verify-pwa.mjs"
+    "start": "node server.js"
   }
 }
