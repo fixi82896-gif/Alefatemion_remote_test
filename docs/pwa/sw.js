@@ -1,5 +1,5 @@
-const CACHE='alfatemiun-pwa-test-v2-7';
-const CORE=['./','./index.html','./styles.css','./manifest.webmanifest','./assets/icon.svg','/assets/logo_alfatemiun.webp','/assets/home-banner-local.svg','/remote/app-config.json','/remote/media-catalog.json'];
+const CACHE='alfatemiun-pwa-liara-v5-0';
+const CORE=['./','./index.html','./styles.css?v=0.5.0','./manifest.webmanifest','./assets/icon.svg','/assets/logo_alfatemiun.webp','/remote/app-config.json','/remote/media-catalog.json'];
 
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)));
