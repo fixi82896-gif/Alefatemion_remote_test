@@ -38,7 +38,8 @@ const state={
   albumLayout:localStorage.getItem(STORAGE.albumLayout)||'standard',
   slideDuration:Number(localStorage.getItem(STORAGE.slideDuration)||5),
   slideEffect:localStorage.getItem(STORAGE.slideEffect)||'random',
-  guideIndex:0
+  guideIndex:0,
+  lastRemoteLoad:0
 };
 
 const $=(s,r=document)=>r.querySelector(s);
@@ -852,6 +853,8 @@ async function loadRemote(){
     renderSupport();
     renderRadio();
     updateNow();
+    state.lastRemoteLoad=Date.now();
+    renderSettingsMeta();
   }catch(error){
     console.error(error);
     $('#albumGrid').innerHTML='<div class="empty-state" style="grid-column:1/-1">دریافت اطلاعات Remote ناموفق بود. اتصال اینترنت را بررسی کنید.</div>';
@@ -1015,8 +1018,14 @@ function wire(){
   },{passive:true});
 
   document.addEventListener('visibilitychange',()=>{
-    if(!document.hidden)restartCarouselTimer();
+    if(!document.hidden){
+      restartCarouselTimer();
+      if(Date.now()-state.lastRemoteLoad>120000)loadRemote();
+    }
   });
+  setInterval(()=>{
+    if(!document.hidden&&Date.now()-state.lastRemoteLoad>300000)loadRemote();
+  },60000);
 }
 
 async function init(){
