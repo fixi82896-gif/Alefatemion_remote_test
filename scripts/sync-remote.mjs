@@ -139,8 +139,27 @@ async function main() {
   console.log('[liara-sync] OK', JSON.stringify(meta));
 }
 
+async function hasUsableSnapshot() {
+  try {
+    const [configText, catalogText] = await Promise.all([
+      fs.readFile(path.join(REMOTE_DIR, 'app-config.json'), 'utf8'),
+      fs.readFile(path.join(REMOTE_DIR, 'media-catalog.json'), 'utf8')
+    ]);
+    const config = JSON.parse(configText);
+    const catalog = JSON.parse(catalogText);
+    assertRemote(config, catalog);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 main().catch(async error => {
   console.error('[liara-sync] FAILED:', error?.stack || error);
   await fs.rm(STAGE, { recursive: true, force: true }).catch(() => {});
+  if (process.argv.includes('--allow-stale') && await hasUsableSnapshot()) {
+    console.warn('[liara-sync] Using bundled last-known-good snapshot.');
+    process.exit(0);
+  }
   process.exit(1);
 });
