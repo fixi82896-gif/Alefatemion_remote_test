@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#FAF7EF" />
   <meta name="description" content="نسخه آزمایشی PWA آل فاطمیون" />
   <meta name="robots" content="noindex,nofollow" />
-  <title>آل فاطمیون | PWA Test 0.4.2</title>
+  <title>آل فاطمیون | PWA Test 0.4.3</title>
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="icon" href="./assets/icon.svg" type="image/svg+xml" />  <link rel="stylesheet" href="./styles.css" />
 </head>
@@ -16,7 +16,7 @@
       <img src="/assets/logo_alfatemiun.webp" alt="" />
     </div>
 
-    <div class="test-badge">TEST 0.4.2</div>
+    <div class="test-badge">TEST 0.4.3</div>
 
     <header class="welcome-card" id="welcomeCard">
       <div class="welcome-top">
@@ -150,7 +150,7 @@
 
         <section class="settings-card">
           <div class="settings-heading"><span class="material-symbols-rounded">◎</span><h2>نسخه وب</h2></div>
-          <p class="muted">PWA Test 0.4.2 — بازطراحی بصری با هدف نزدیک‌شدن به نسخه Android.</p>
+          <p class="muted">PWA Test 0.4.3 — بازطراحی بصری با هدف نزدیک‌شدن به نسخه Android.</p>
           <button id="installBtn" class="primary-btn" type="button" hidden>نصب نسخه وب</button>
         </section>
       </section>
@@ -428,14 +428,24 @@ function renderCarousel(){
       slide.type='button';
       slide.className='hero-slide remote';
       const image=safeHttps(banner.image_url);
-      if(image){
+      const isLocalFallback=image==='/assets/home-banner-local.svg';
+      if(isLocalFallback){
+        slide.classList.add('local-fallback');
+        slide.innerHTML=
+          '<div class="fallback-banner-logo"><img src="'+LOGO_URL+'" alt=""></div>'+
+          '<div class="fallback-banner-copy">'+
+            '<strong>آل فاطمیون</strong>'+
+            '<span>موکب مجازی آل فاطمیون</span>'+
+            '<small>روایت تصویری فعالیت‌های مذهبی و جهادی</small>'+
+          '</div>';
+      }else if(image){
         const img=document.createElement('img');
         img.src=image;
         img.alt=banner.title||'بنر آل فاطمیون';
         img.loading=index===0?'eager':'lazy';
         slide.append(img);
       }
-      if(banner.title||banner.description){
+      if(!isLocalFallback&&(banner.title||banner.description)){
         const overlay=document.createElement('span');
         overlay.className='hero-overlay';
         overlay.innerHTML=(banner.title?'<strong>'+esc(banner.title)+'</strong>':'')+(banner.description?'<small>'+esc(banner.description)+'</small>':'');
