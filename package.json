@@ -9,6 +9,6 @@
   "scripts": {
     "start": "node server.js",
     "sync:remote": "node scripts/sync-remote.mjs",
-    "postinstall": "node scripts/sync-remote.mjs"
+    "postinstall": "node scripts/sync-remote.mjs --allow-stale"
   }
 }
