@@ -88,7 +88,7 @@ function materialIcon(name,extra=''){
   return '<span class="material-symbols-rounded '+extra+'">'+esc(localSymbol(name))+'</span>';
 }
 function localizeStaticIcons(){
-  $('.material-symbols-rounded').forEach(el=>{
+  $$('.material-symbols-rounded').forEach(el=>{
     const key=String(el.textContent||'').trim();
     if(LOCAL_SYMBOLS[key])el.textContent=LOCAL_SYMBOLS[key];
   });
