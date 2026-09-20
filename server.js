@@ -49,7 +49,13 @@ function cacheHeaders(res, filePath) {
   const name = path.basename(filePath).toLowerCase();
   const ext = path.extname(filePath).toLowerCase();
 
-  if (name === 'sw.js' || ext === '.html') {
+  if (
+    name === 'sw.js' ||
+    ext === '.html' ||
+    name === 'app-config.json' ||
+    name === 'media-catalog.json' ||
+    name === 'sync-meta.json'
+  ) {
     res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
     return;
   }
