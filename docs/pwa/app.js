@@ -635,7 +635,7 @@ function renderRadio(){
     btn.type='button';
     btn.className='track-row'+(track.id===state.currentTrackId?' active':'');
     btn.innerHTML=
-      '<span class="note-icon material-symbols-rounded">music_note</span>'+
+      '<span class="note-icon material-symbols-rounded">'+esc(localSymbol('music_note'))+'</span>'+
       '<span class="track-copy"><strong>'+esc(track.title)+'</strong><small>'+esc(track.performer||'بدون نام خواننده')+'</small></span>'+
       materialIcon('chevron_left');
     btn.onclick=()=>chooseTrack(track);
