@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 20,
+  "revision": 21,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -221,7 +221,7 @@
       {
         "id": "contact-886607e1b058",
         "type": "web",
-        "label": "",
+        "label": "سایت رسمی آل فاطمیون",
         "value": "Https:\/\/alefatemion.ir",
         "enabled": true,
         "quick_access": false
