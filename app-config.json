@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 19,
+  "revision": 20,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -215,6 +215,14 @@
         "type": "email",
         "label": "ایمیل آل فاطمیون",
         "value": "alefatemion@gmail.com",
+        "enabled": true,
+        "quick_access": false
+      },
+      {
+        "id": "contact-886607e1b058",
+        "type": "web",
+        "label": "",
+        "value": "Https:\/\/alefatemion.ir",
         "enabled": true,
         "quick_access": false
       }
