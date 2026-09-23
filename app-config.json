@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "revision": 21,
+  "revision": 22,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
   "permissions": {
-    "allow_screenshot": false,
+    "allow_screenshot": true,
     "allow_share": false,
     "allow_download": false
   },
