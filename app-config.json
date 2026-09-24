@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 23,
+  "revision": 24,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -95,7 +95,7 @@
         "page_url": "https:\/\/navaapp.com\/nava\/68c6ac623288a0afc20b58d1",
         "stream_url": "https:\/\/navaapp.com\/nava\/68c6ac623288a0afc20b58d1",
         "category": "celebration",
-        "enabled": true
+        "enabled": false
       },
       {
         "id": "nava-1788001451571",
@@ -150,6 +150,15 @@
         "stream_url": "https:\/\/navaapp.com\/nava\/6aa2e3ce85bbbe78b2056690",
         "category": "mourning",
         "enabled": true
+      },
+      {
+        "id": "nava-1790244607900",
+        "title": "ازم راضی شی یا نه",
+        "performer": "حسین ستوده",
+        "page_url": "https:\/\/navaapp.com\/nava\/6a869f149c10f9bb400335c5",
+        "stream_url": "https:\/\/navaapp.com\/nava\/6a869f149c10f9bb400335c5",
+        "category": "mourning",
+        "enabled": true
       }
     ],
     "assignments": [
@@ -181,6 +190,22 @@
       "radio_updates_enabled": true
     },
     "items": [
+      {
+        "id": "auto-radio-nava-1790244607900-mufdf064",
+        "category": "radio_update",
+        "origin": "auto_radio",
+        "title": "نوای تازه در رادیو آل فاطمیون",
+        "summary": "نوای «ازم راضی شی یا نه» با صدای حسین ستوده به رادیو آل فاطمیون افزوده شد.",
+        "body": "نوای «ازم راضی شی یا نه» با صدای حسین ستوده به رادیو آل فاطمیون افزوده شد.",
+        "image_url": "",
+        "published": true,
+        "pinned": false,
+        "published_at_millis": 1790244607900,
+        "expires_at_millis": 1790849407900,
+        "related_album_hash": "",
+        "related_album_name": "",
+        "related_track_id": "nava-1790244607900"
+      },
       {
         "id": "manual-1787925631048",
         "category": "notice",
