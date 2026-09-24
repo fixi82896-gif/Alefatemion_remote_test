@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 24,
+  "revision": 25,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -153,7 +153,7 @@
       },
       {
         "id": "nava-1790244607900",
-        "title": "ازم راضی شی یا نه",
+        "title": "ازم راضی شدی یا نه",
         "performer": "حسین ستوده",
         "page_url": "https:\/\/navaapp.com\/nava\/6a869f149c10f9bb400335c5",
         "stream_url": "https:\/\/navaapp.com\/nava\/6a869f149c10f9bb400335c5",
