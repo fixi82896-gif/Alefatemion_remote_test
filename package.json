@@ -1,8 +1,8 @@
 {
   "name": "alefatemion-official-site",
-  "version": "1.0.0",
+  "version": "2.2.0",
   "private": true,
-  "description": "Official Al Fatemiun website on Liara",
+  "description": "Official Al Fatemiun website with resilient verified Production OTA download",
   "engines": {
     "node": ">=20"
   },
