@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 26,
+  "revision": 27,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -287,6 +287,23 @@
         "enabled": true,
         "sponsored": false,
         "display_order": 1,
+        "starts_at_millis": 0,
+        "expires_at_millis": 0
+      },
+      {
+        "id": "home-mugp891f",
+        "title": "",
+        "description": "",
+        "image_url": "https:\/\/github.com\/fixi82896-gif\/Alefatemion_remote_test\/releases\/download\/remote-assets-v1\/intro-background-cf3a4e56384163f8645e.jpg",
+        "placement": "hero",
+        "fixed": false,
+        "destination_type": "radio",
+        "destination_id": "nava-1789121934014",
+        "destination_parent_id": "",
+        "external_url": "",
+        "enabled": true,
+        "sponsored": false,
+        "display_order": 2,
         "starts_at_millis": 0,
         "expires_at_millis": 0
       }
