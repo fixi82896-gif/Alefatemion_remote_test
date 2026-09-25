@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="آل فاطمیون">
-<defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#02281b"/><stop offset="1" stop-color="#00b963"/></linearGradient></defs>
-<rect width="512" height="512" rx="118" fill="url(#g)"/>
-<circle cx="256" cy="256" r="178" fill="none" stroke="#d8bd78" stroke-width="14" opacity=".85"/>
-<text x="256" y="312" text-anchor="middle" font-family="Tahoma,Arial,sans-serif" font-size="190" font-weight="700" fill="#fff">آل</text>
-<rect x="332" y="58" width="105" height="48" rx="24" fill="#8a671f"/><text x="384" y="91" text-anchor="middle" font-family="Arial" font-size="26" font-weight="700" fill="#fff">TEST</text>
-</svg>
