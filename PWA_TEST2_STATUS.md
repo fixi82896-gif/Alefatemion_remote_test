@@ -54,3 +54,7 @@
 ## سیاست استقرار
 
 این نسخه فقط روی برنامه آزمایشی `alefatemion-pwa-test` و همین شاخه مستقر می‌شود. شاخه سایت اصلی، Android `main`، Identity Production و OTA عمومی نباید برای تست PWA تغییر کنند.
+
+## Deployment trigger
+
+- 2026-09-27 22:52 +03:30 — harmless documentation-only push after toggling Liara Auto Deploy off/on, used only to verify GitHub → Liara deployment delivery.
