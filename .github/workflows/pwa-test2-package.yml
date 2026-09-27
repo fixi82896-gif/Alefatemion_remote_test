@@ -1,0 +1,58 @@
+name: PWA Test 2 - Package
+
+on:
+  push:
+    branches:
+      - pwa-test1-20260927
+    paths:
+      - '.github/workflows/pwa-test2-package.yml'
+  workflow_dispatch:
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact test branch
+        uses: actions/checkout@v4
+        with:
+          ref: pwa-test1-20260927
+
+      - name: Build clean Liara Drag and Drop package
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf deploy-package
+          mkdir -p deploy-package/pwa deploy-package/docs/assets
+          cp package.json deploy-package/
+          cp liara.json deploy-package/
+          cp pwa-server-test2.js deploy-package/
+          cp pwa-radio-resolver.js deploy-package/
+          cp pwa/app-account.js deploy-package/pwa/
+          cp pwa/app-auth.js deploy-package/pwa/
+          cp pwa/app-content.js deploy-package/pwa/
+          cp pwa/app-core.js deploy-package/pwa/
+          cp pwa/app-platform-parity.js deploy-package/pwa/
+          cp pwa/app-radio.js deploy-package/pwa/
+          cp pwa/app-test2.css deploy-package/pwa/
+          cp pwa/app.css deploy-package/pwa/
+          cp pwa/icon.svg deploy-package/pwa/
+          cp pwa/index.html deploy-package/pwa/
+          cp pwa/manifest.webmanifest deploy-package/pwa/
+          cp pwa/sw.js deploy-package/pwa/
+          cp docs/assets/logo_alfatemiun.webp deploy-package/docs/assets/
+          (cd deploy-package && zip -r ../Alefatemion-PWA-Test2-Liara.zip .)
+
+      - name: Verify package contents
+        shell: bash
+        run: |
+          set -euo pipefail
+          unzip -l Alefatemion-PWA-Test2-Liara.zip
+          test -s Alefatemion-PWA-Test2-Liara.zip
+
+      - name: Upload Liara package
+        uses: actions/upload-artifact@v4
+        with:
+          name: Alefatemion-PWA-Test2-Liara
+          path: Alefatemion-PWA-Test2-Liara.zip
+          if-no-files-found: error
+          retention-days: 1
