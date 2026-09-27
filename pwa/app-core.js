@@ -22,7 +22,7 @@ const state = {
   folderItems: [],
   folderQuery: '',
   favorites: loadJson(FAVORITES_KEY, []),
-  heroIndex: 0,
+  heroIndex: -1,
   heroTimer: null,
   deferredInstallPrompt: null,
   currentTrackId: null
