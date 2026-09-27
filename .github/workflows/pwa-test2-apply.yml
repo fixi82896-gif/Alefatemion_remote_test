@@ -1,0 +1,47 @@
+name: PWA Test 2 - Apply Android 21 Parity Bundle
+
+on:
+  push:
+    branches:
+      - pwa-test1-20260927
+    paths:
+      - '.github/workflows/pwa-test2-apply.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout test branch
+        uses: actions/checkout@v4
+        with:
+          ref: pwa-test1-20260927
+          fetch-depth: 0
+
+      - name: Restore reviewed Test 2 bundle
+        shell: bash
+        run: |
+          cat .github/pwa-test2-bundle.part1 \
+              .github/pwa-test2-bundle.part2 \
+              .github/pwa-test2-bundle.part3 \
+              .github/pwa-test2-bundle.part4 \
+            | base64 --decode > /tmp/pwa-test2.tgz
+          tar -xzf /tmp/pwa-test2.tgz
+
+      - name: Verify JavaScript syntax before commit
+        run: npm run check
+
+      - name: Commit coherent Test 2 source
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add pwa pwa-server.js package.json
+          if git diff --cached --quiet; then
+            echo 'No source changes to commit.'
+            exit 0
+          fi
+          git commit -m 'PWA Test 2: Android 21 parity pass'
+          git push origin HEAD:pwa-test1-20260927
