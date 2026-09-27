@@ -32,7 +32,7 @@ jobs:
               .github/pwa-test2-bundle.part2 \
               .github/pwa-test2-bundle.part3 \
               .github/pwa-test2-bundle.part4 \
-            | base64 --decode > /tmp/pwa-test2.tgz
+            | base64 --decode --ignore-garbage > /tmp/pwa-test2.tgz
           tar -xzf /tmp/pwa-test2.tgz
 
       - name: Syntax check before commit
