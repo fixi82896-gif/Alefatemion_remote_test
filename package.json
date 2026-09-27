@@ -8,6 +8,6 @@
   },
   "scripts": {
     "start": "node pwa-server.js",
-    "check": "node --check pwa-server.js && node --check pwa/app.js"
+    "check": "node --check pwa-server.js && node --check pwa/app-core.js && node --check pwa/app-content.js && node --check pwa/app-account.js"
   }
 }
