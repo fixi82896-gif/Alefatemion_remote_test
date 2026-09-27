@@ -1,0 +1,42 @@
+name: PWA Test 1 - Verify
+
+on:
+  push:
+    branches:
+      - pwa-test1-20260927
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  pwa-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Node 22
+        uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+
+      - name: Syntax check
+        run: npm run check
+
+      - name: Smoke test server
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm start > /tmp/pwa-test1.log 2>&1 &
+          pid=$!
+          trap 'kill "$pid" 2>/dev/null || true' EXIT
+          for i in {1..20}; do
+            if curl -fsS http://127.0.0.1:3000/api/health >/tmp/health.json; then
+              break
+            fi
+            sleep 0.5
+          done
+          grep -q '"status":"ok"' /tmp/health.json
+          curl -fsS http://127.0.0.1:3000/ >/tmp/index.html
+          grep -q 'PWA Test 1' /tmp/index.html
