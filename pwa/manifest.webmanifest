@@ -1,0 +1,21 @@
+{
+  "name": "آل فاطمیون (Test)",
+  "short_name": "آل فاطمیون",
+  "description": "نسخه آزمایشی PWA آل فاطمیون",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f4f7f5",
+  "theme_color": "#0e4d3d",
+  "lang": "fa",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
