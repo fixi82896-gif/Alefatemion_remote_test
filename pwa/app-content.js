@@ -1,6 +1,14 @@
+function fixedBanners() {
+  return (state.config?.home?.banners || [])
+    .filter((b) => b?.fixed === true && activeByTime(b) && safeHttps(b.image_url))
+    .sort((a,b) => Number(a.display_order || 0) - Number(b.display_order || 0))
+    .slice(0, 3);
+}
+
 function renderHome() {
   const view = $('view');
-  const banners = heroBanners();
+  const banners = heroBanners().filter((b) => b.fixed !== true);
+  const fixed = fixedBanners();
   if (banners.length && (state.heroIndex >= banners.length || state.heroIndex < 0)) state.heroIndex = Math.floor(Math.random() * banners.length);
   const sections = (state.config?.home?.sections || []).filter((s) => s.enabled !== false).sort((a,b)=>Number(a.display_order||0)-Number(b.display_order||0));
   const known = sections.map((s)=>s.id);
@@ -13,12 +21,15 @@ function renderHome() {
     <section class="section"><div class="section-title"><h2>دسترسی سریع</h2></div>
       <div class="cards quick">${quick.map(([id,title,sub])=>`<button class="card" data-quick="${id}"><strong>${escapeHtml(title)}</strong><small>${escapeHtml(sub)}</small></button>`).join('')}</div>
     </section>
+    ${fixed.length ? `<section class="section"><div class="section-title"><h2>پیشنهادهای ویژه</h2></div><div class="list">${fixed.map((b,i)=>`<button class="hero" style="border:0;width:100%;margin-top:${i?10:0}px" data-fixed-banner="${i}"><img src="${escapeHtml(safeHttps(b.image_url))}" alt="${escapeHtml(b.title || 'بنر آل فاطمیون')}"></button>`).join('')}</div></section>` : ''}
     ${renderPinnedNoticesHome()}
     <section class="section"><div class="section-title"><h2>وضعیت نسخه</h2></div><div class="card"><strong>${VERSION}</strong><small>نسخه آزمایشی وب — مدیریت فقط از Android</small></div></section>`;
   if (banners.length) {
     paintHero(banners);
     startHeroTimer(banners);
   } else stopHeroTimer();
+  view.querySelectorAll('[data-fixed-banner]').forEach((button) => button.addEventListener('click', () => handleBanner(fixed[Number(button.dataset.fixedBanner)])));
+  $('allNotices')?.addEventListener('click', () => setTab('notices'));
   view.querySelectorAll('[data-quick]').forEach((button) => button.addEventListener('click', () => {
     const id = button.dataset.quick;
     if (id === 'radio') return openRadio();
