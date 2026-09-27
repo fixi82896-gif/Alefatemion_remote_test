@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0e4d3d"/><stop offset="1" stop-color="#176b55"/></linearGradient></defs>
+  <rect width="512" height="512" rx="128" fill="url(#g)"/>
+  <circle cx="256" cy="256" r="178" fill="none" stroke="#c5a24b" stroke-width="14" opacity=".9"/>
+  <circle cx="256" cy="256" r="143" fill="none" stroke="#c5a24b" stroke-width="5" opacity=".55"/>
+  <text x="256" y="292" text-anchor="middle" font-family="Tahoma,Arial" font-size="142" font-weight="700" fill="#fff">آل</text>
+  <text x="256" y="360" text-anchor="middle" font-family="Tahoma,Arial" font-size="42" fill="#e6cf8a">فاطمیون</text>
+</svg>
