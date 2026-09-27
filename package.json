@@ -1,12 +1,13 @@
 {
-  "name": "alefatemion-official-site",
-  "version": "2.2.0",
+  "name": "alefatemion-pwa-test",
+  "version": "1.0.0-test.1",
   "private": true,
-  "description": "Official Al Fatemiun website with resilient verified Production OTA download",
+  "description": "Al Fatemiun PWA Test 1 - user client only",
   "engines": {
     "node": ">=20"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node pwa-server.js",
+    "check": "node --check pwa-server.js && node --check pwa/app.js"
   }
 }
