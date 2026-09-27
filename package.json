@@ -8,6 +8,6 @@
   },
   "scripts": {
     "start": "PWA_IDENTITY_BASE_URL=https://identity-test.alefatemion.ir node pwa-server-test2.js",
-    "check": "node --check pwa-server-test2.js && node --check pwa-radio-resolver.js && node --check pwa/app-core.js && node --check pwa/app-content.js && node --check pwa/app-account.js && node --check pwa/app-radio.js && node --check pwa/app-auth.js"
+    "check": "node --check pwa-server-test2.js && node --check pwa-radio-resolver.js && node --check pwa/app-core.js && node --check pwa/app-content.js && node --check pwa/app-account.js && node --check pwa/app-radio.js && node --check pwa/app-platform-parity.js && node --check pwa/app-auth.js"
   }
 }
