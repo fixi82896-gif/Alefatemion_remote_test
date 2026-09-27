@@ -6,60 +6,111 @@
   <meta name="theme-color" content="#0e4d3d">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>آل فاطمیون — PWA Test 1</title>
+  <title>آل فاطمیون — PWA Test 2</title>
   <link rel="manifest" href="/manifest.webmanifest">
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/app.css">
 </head>
 <body>
   <div id="offline" class="offline hidden">اتصال اینترنت برقرار نیست؛ اطلاعات آنلاین ممکن است تازه نباشد.</div>
-  <main id="auth" class="auth-shell">
+
+  <main id="splash" class="splash-shell">
+    <section class="splash-card">
+      <img src="/brand-logo.webp" alt="لوگوی آل فاطمیون" class="splash-logo">
+      <h1>آل فاطمیون</h1>
+      <p id="splashText">در حال بررسی وضعیت ورود…</p>
+      <button id="splashRetry" class="primary hidden" type="button">تلاش مجدد</button>
+      <small class="test-badge">PWA Test 2 — محیط آزمایشی</small>
+    </section>
+  </main>
+
+  <main id="auth" class="auth-shell hidden">
     <section class="auth-card">
-      <img src="/icon.svg" alt="آل فاطمیون" class="auth-logo">
+      <img src="/brand-logo.webp" alt="لوگوی آل فاطمیون" class="auth-logo">
       <h1>ورود به آل فاطمیون</h1>
-      <p id="authHint">شماره همراه خود را وارد کنید.</p>
+      <p id="authHint">شماره همراه خودتان را وارد کنید.</p>
+
       <form id="phoneForm" class="stack">
-        <input id="phone" inputmode="tel" autocomplete="tel" placeholder="۰۹۱۲۱۲۳۴۵۶۷" required>
-        <label class="check"><input id="privacy" type="checkbox" required> <span>قوانین حریم خصوصی و استفاده از حساب را می‌پذیرم.</span></label>
-        <button class="primary">ارسال کد</button>
+        <label class="field-label" for="phone">شماره همراه</label>
+        <input id="phone" inputmode="tel" autocomplete="tel" placeholder="مثلاً ۰۹۱۲۱۲۳۴۵۶۷" required>
+        <small class="helper">اعداد فارسی، انگلیسی و قالب +98 پذیرفته می‌شود.</small>
+
+        <section class="privacy-panel" aria-label="قوانین حساب">
+          <strong>قوانین حساب و دستگاه‌های متصل</strong>
+          <p>شماره همراه و دستگاه‌های متصل برای ورود و امنیت نشست ثبت می‌شوند. خروج از حساب همان دستگاه را غیرفعال می‌کند. سابقه فنی دستگاه غیرفعال تا ۹۰ روز نگهداری و سپس پاکسازی می‌شود. اگر حساب یا دستگاه بیش از ۹۰ روز فعالیت معتبر نداشته باشد، نشست آن غیرفعال می‌شود و برای بازگشت تأیید دوباره شماره همراه لازم است. دستگاه مسدودشده تا رفع مسدودی مدیر امکان ورود ندارد. مدیر می‌تواند نصب‌های فعال یا غیرفعالِ غیرمسدود را از فهرست مدیریت حذف کند.</p>
+        </section>
+        <label class="check"><input id="privacy" type="checkbox" required> <span>قوانین حساب را خواندم و می‌پذیرم.</span></label>
+        <button class="primary">ارسال کد تأیید</button>
       </form>
+
       <form id="otpForm" class="stack hidden">
+        <div class="otp-icon" aria-hidden="true">✉</div>
+        <h2>تأیید شماره همراه</h2>
+        <p id="otpDestination" class="muted">کد ۶ رقمی ارسال‌شده را وارد کنید.</p>
+        <label class="field-label" for="otp">کد ۶ رقمی</label>
         <input id="otp" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="کد ۶ رقمی" required>
-        <button class="primary">تأیید و ورود</button>
-        <button type="button" id="otpBack" class="ghost">اصلاح شماره</button>
+        <button class="primary">تأیید شماره</button>
+        <button type="button" id="resendOtp" class="ghost" disabled>ارسال مجدد کد</button>
+        <button type="button" id="otpBack" class="text-btn">اصلاح شماره همراه</button>
       </form>
+
       <form id="profileForm" class="stack hidden">
+        <p class="muted">برای تکمیل حساب، نام نمایشی و تاریخ تولد شمسی را ثبت کنید. عکس پروفایل اختیاری است.</p>
+        <div class="profile-photo-editor">
+          <div class="profile-photo-preview"><img id="profilePhotoPreview" class="hidden" alt="عکس پروفایل"><span id="profilePhotoFallback">آل</span></div>
+          <label class="ghost file-button">انتخاب عکس اختیاری<input id="profilePhoto" type="file" accept="image/*" hidden></label>
+        </div>
+        <label class="field-label" for="displayName">نام نمایشی</label>
         <input id="displayName" maxlength="60" placeholder="نام نمایشی" required>
+        <label class="field-label">تاریخ تولد شمسی</label>
         <div class="birth-grid"><input id="birthYear" inputmode="numeric" placeholder="سال" required><input id="birthMonth" inputmode="numeric" placeholder="ماه" required><input id="birthDay" inputmode="numeric" placeholder="روز" required></div>
         <button class="primary">ذخیره پروفایل</button>
       </form>
+
       <div id="authError" class="error hidden"></div>
-      <small class="test-badge">PWA Test 1 — محیط آزمایشی</small>
+      <small class="test-badge">PWA Test 2 — محیط آزمایشی</small>
     </section>
   </main>
 
   <div id="app" class="app hidden">
     <header class="topbar">
-      <div><small>آل فاطمیون</small><strong id="topTitle">خانه</strong></div>
-      <button id="profileButton" class="avatar-btn" aria-label="پروفایل"><span id="avatarText">آل</span></button>
+      <div class="brand-title">
+        <img src="/brand-logo.webp" alt="آل فاطمیون" class="top-logo">
+        <div><small>آل فاطمیون</small><strong id="topTitle">خانه</strong></div>
+      </div>
+      <button id="profileButton" class="avatar-btn" aria-label="پروفایل"><img id="avatarImage" class="hidden" alt="عکس پروفایل"><span id="avatarText">آل</span></button>
     </header>
+
     <section id="welcome" class="welcome">
       <div><strong id="welcomeName">خوش آمدید</strong><span>به نرم‌افزار آل فاطمیون</span></div>
       <button id="contactButton" class="mini">ارتباط با پشتیبانی</button>
     </section>
-    <div id="view" class="view"></div>
-    <nav class="bottom-nav">
+
+    <main id="view" class="view branded-page"></main>
+
+    <button id="radioFab" class="radio-fab" aria-label="رادیو آل فاطمیون" title="رادیو آل فاطمیون">♪</button>
+    <button id="radioNowPlaying" class="radio-now hidden" type="button"></button>
+
+    <nav class="bottom-nav" aria-label="نوار اصلی">
+      <button id="navProfile" aria-label="پروفایل"><span class="nav-avatar"><img id="navAvatarImage" class="hidden" alt=""><b id="navAvatarText">●</b></span><small>پروفایل</small></button>
       <button data-tab="home" class="active"><span>⌂</span><small>خانه</small></button>
       <button data-tab="albums"><span>▦</span><small>آلبوم‌ها</small></button>
       <button data-tab="notices"><span>◉</span><small>اطلاعیه‌ها</small></button>
-      <button data-tab="favorites"><span>♥</span><small>علاقه‌مندی‌ها</small></button>
-      <button id="navProfile"><span>●</span><small>پروفایل</small></button>
+      <button data-tab="favorites"><span>♥</span><small>برگزیده‌ها</small></button>
     </nav>
   </div>
 
   <div id="drawerBackdrop" class="backdrop hidden"></div>
-  <aside id="drawer" class="drawer hidden">
-    <div class="drawer-head"><button id="closeDrawer" class="icon-btn">×</button><div class="drawer-avatar"><span id="drawerAvatar">آل</span></div><strong id="drawerName">عضو آل فاطمیون</strong><small id="drawerPhone">—</small></div>
+  <aside id="drawer" class="drawer hidden" aria-label="منوی پروفایل">
+    <div class="drawer-head">
+      <button id="closeDrawer" class="icon-btn" aria-label="بستن">×</button>
+      <div class="drawer-avatar"><img id="drawerAvatarImage" class="hidden" alt="عکس پروفایل"><span id="drawerAvatar">آل</span></div>
+      <strong id="drawerName">عضو آل فاطمیون</strong>
+      <small id="drawerPhone">—</small>
+      <label class="drawer-theme">حالت ظاهر
+        <select id="drawerTheme"><option value="system">سیستم</option><option value="light">روشن</option><option value="dark">تیره</option></select>
+      </label>
+    </div>
     <div class="drawer-actions">
       <button data-action="profile-info">اطلاعات کاربری</button>
       <button data-action="messages">پیام‌ها <span id="messageCount"></span></button>
@@ -69,11 +120,15 @@
       <button data-action="settings">تنظیمات</button>
       <button data-action="logout" class="danger-text">خروج</button>
     </div>
-    <small class="drawer-note">مدیریت مجموعه فقط از اپ Android مدیر انجام می‌شود.</small>
+    <small class="drawer-note">پنل مدیریت و عملیات مدیریتی عمداً فقط در نرم‌افزار Android مدیر باقی می‌ماند.</small>
   </aside>
 
   <div id="modalBackdrop" class="modal-backdrop hidden"></div>
-  <section id="modal" class="modal hidden"><div class="modal-head"><strong id="modalTitle"></strong><button id="closeModal" class="icon-btn">×</button></div><div id="modalBody"></div></section>
+  <section id="modal" class="modal hidden" aria-modal="true" role="dialog">
+    <div class="modal-head"><strong id="modalTitle"></strong><button id="closeModal" class="icon-btn" aria-label="بستن">×</button></div>
+    <div id="modalBody"></div>
+  </section>
+
   <audio id="audio" preload="none"></audio>
   <div id="toast" class="toast hidden"></div>
   <script src="/app-core.js" defer></script>
