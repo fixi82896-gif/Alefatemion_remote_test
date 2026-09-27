@@ -1,64 +1,356 @@
+'use strict';
+
 function fixedBanners() {
   return (state.config?.home?.banners || [])
     .filter((b) => b?.fixed === true && activeByTime(b) && safeHttps(b.image_url))
-    .sort((a,b) => Number(a.display_order || 0) - Number(b.display_order || 0))
+    .sort((a, b) => Number(a.display_order || 0) - Number(b.display_order || 0))
     .slice(0, 3);
-}
-
-function renderHome() {
-  const view = $('view');
-  const banners = heroBanners().filter((b) => b.fixed !== true);
-  const fixed = fixedBanners();
-  if (banners.length && (state.heroIndex >= banners.length || state.heroIndex < 0)) state.heroIndex = Math.floor(Math.random() * banners.length);
-  const sections = (state.config?.home?.sections || []).filter((s) => s.enabled !== false).sort((a,b)=>Number(a.display_order||0)-Number(b.display_order||0));
-  const known = sections.map((s)=>s.id);
-  const quick = [
-    ['radio','رادیو','پخش نواهای فعال'],['albums','آلبوم‌ها','مرور عکس و فیلم'],['media','رسانه‌ها','تصاویر و ویدئوها'],
-    ['announcements','اطلاعیه‌ها','اخبار و پیام‌های عمومی'],['favorites','علاقه‌مندی‌ها','موارد ذخیره‌شده']
-  ].filter(([id]) => !known.length || known.includes(id) || (id==='announcements' && known.includes('notices')));
-  view.innerHTML = `
-    ${banners.length ? '<div id="heroArea" class="hero" role="button" tabindex="0"></div>' : ''}
-    <section class="section"><div class="section-title"><h2>دسترسی سریع</h2></div>
-      <div class="cards quick">${quick.map(([id,title,sub])=>`<button class="card" data-quick="${id}"><strong>${escapeHtml(title)}</strong><small>${escapeHtml(sub)}</small></button>`).join('')}</div>
-    </section>
-    ${fixed.length ? `<section class="section"><div class="section-title"><h2>پیشنهادهای ویژه</h2></div><div class="list">${fixed.map((b,i)=>`<button class="hero" style="border:0;width:100%;margin-top:${i?10:0}px" data-fixed-banner="${i}"><img src="${escapeHtml(safeHttps(b.image_url))}" alt="${escapeHtml(b.title || 'بنر آل فاطمیون')}"></button>`).join('')}</div></section>` : ''}
-    ${renderPinnedNoticesHome()}
-    <section class="section"><div class="section-title"><h2>وضعیت نسخه</h2></div><div class="card"><strong>${VERSION}</strong><small>نسخه آزمایشی وب — مدیریت فقط از Android</small></div></section>`;
-  if (banners.length) {
-    paintHero(banners);
-    startHeroTimer(banners);
-  } else stopHeroTimer();
-  view.querySelectorAll('[data-fixed-banner]').forEach((button) => button.addEventListener('click', () => handleBanner(fixed[Number(button.dataset.fixedBanner)])));
-  $('allNotices')?.addEventListener('click', () => setTab('notices'));
-  view.querySelectorAll('[data-quick]').forEach((button) => button.addEventListener('click', () => {
-    const id = button.dataset.quick;
-    if (id === 'radio') return openRadio();
-    if (id === 'albums' || id === 'media') return setTab('albums');
-    if (id === 'announcements') return setTab('notices');
-    if (id === 'favorites') return setTab('favorites');
-  }));
-}
-
-function renderPinnedNoticesHome() {
-  const items = activeNotices().filter((n) => n.pinned).slice(0,2);
-  if (!items.length) return '';
-  return `<section class="section"><div class="section-title"><h2>اطلاعیه‌های مهم</h2><button class="ghost" id="allNotices">همه</button></div><div class="list">${items.map(noticeHtml).join('')}</div></section>`;
 }
 
 function activeNotices() {
   if (state.config?.announcements?.enabled === false) return [];
   const now = Date.now();
-  return (state.config?.announcements?.items || []).filter((n) => n.published !== false && (!Number(n.expires_at_millis || 0) || Number(n.expires_at_millis) > now)).sort((a,b)=>Number(b.published_at_millis||0)-Number(a.published_at_millis||0));
+  const sevenDays = 7 * 24 * 60 * 60 * 1000;
+  const seenDay = 24 * 60 * 60 * 1000;
+  return (state.config?.announcements?.items || [])
+    .filter((n) => n?.published !== false)
+    .filter((n) => {
+      const expires = Number(n.expires_at_millis || 0);
+      if (expires && expires <= now) return false;
+      const published = Number(n.published_at_millis || 0);
+      if (!n.pinned && published > 0 && published < now - sevenDays) return false;
+      const seenAt = Number(state.seenNotices[n.id] || 0);
+      if (!n.pinned && seenAt > 0 && seenAt < now - seenDay) return false;
+      return true;
+    })
+    .sort((a, b) => Number(b.pinned === true) - Number(a.pinned === true) || Number(b.published_at_millis || 0) - Number(a.published_at_millis || 0));
 }
 
-function noticeHtml(n) {
-  return `<article class="list-item"><strong>${escapeHtml(n.title || 'اطلاعیه')}</strong>${n.summary?`<div class="muted">${escapeHtml(n.summary)}</div>`:''}<p>${escapeHtml(n.body || '')}</p></article>`;
+function noticeCategoryLabel(category) {
+  const map = { notice:'اطلاعیه', news:'خبر', album:'آلبوم', radio:'رادیو', update:'بروزرسانی' };
+  return map[String(category || '').toLowerCase()] || 'اطلاعیه';
 }
 
-function renderNotices() {
+function noticeCategoryIcon(category) {
+  const key = String(category || '').toLowerCase();
+  if (key === 'radio') return '♪';
+  if (key === 'album') return '▦';
+  if (key === 'news') return '●';
+  return '◉';
+}
+
+function homeSectionEnabled(id) {
+  const sections = state.config?.home?.sections || [];
+  if (!sections.length) return true;
+  return sections.some((s) => s?.id === id && s.enabled !== false);
+}
+
+function homeSectionsOrdered() {
+  return (state.config?.home?.sections || [])
+    .filter((s) => s?.enabled !== false && s.id !== 'quick_access')
+    .sort((a, b) => Number(a.display_order || 0) - Number(b.display_order || 0));
+}
+
+function homeBannerCardHtml({ id, title, subtitle, imageUrl = '', icon = '•', status = '', radio = false, loading = false }) {
+  const image = safeHttps(imageUrl);
+  return `<button class="home-content-banner ${radio ? 'radio-mode' : ''}" data-home-action="${escapeHtml(id)}" type="button">
+    ${image ? `<img class="home-content-image" src="${escapeHtml(image)}" alt="">` : ''}
+    <div class="home-content-shade"></div>
+    <img class="home-content-logo" src="/brand-logo.webp" alt="آل فاطمیون">
+    <span class="home-content-icon">${escapeHtml(icon)}</span>
+    ${status ? `<span class="home-content-status">${escapeHtml(status)}</span>` : ''}
+    <div class="home-content-copy">
+      <strong>${escapeHtml(title)}</strong>
+      <span>${escapeHtml(loading ? 'در حال آماده‌سازی…' : subtitle)}</span>
+    </div>
+  </button>`;
+}
+
+async function findFolderPreview(folder) {
+  if (!folder?.hash) return '';
+  try {
+    const children = await fetchFolder(folder.hash);
+    const media = children.find((x) => x.isImage && x.downloadUrl) || children.find((x) => x.isVideo && x.downloadUrl);
+    return media?.downloadUrl || '';
+  } catch {
+    return '';
+  }
+}
+
+async function loadAllMediaTree(rootHash = state.rootHash) {
+  const collected = [];
+  const queue = [{ hash:rootHash, path:'آلبوم‌ها' }];
+  const visited = new Set();
+  let folderCount = 0;
+  while (queue.length && folderCount < 250 && collected.length < 2500) {
+    const current = queue.shift();
+    if (!current?.hash || visited.has(current.hash)) continue;
+    visited.add(current.hash);
+    folderCount += 1;
+    let items = [];
+    try { items = await fetchFolder(current.hash); } catch { continue; }
+    for (const item of items) {
+      const enriched = { ...item, parentHash:current.hash, path:current.path };
+      collected.push(enriched);
+      if (item.isFolder && item.hash) {
+        queue.push({ hash:item.hash, path:`${current.path} / ${item.name}` });
+      }
+      if (collected.length >= 2500) break;
+    }
+  }
+  return collected;
+}
+
+async function loadHomePreview() {
+  if (state.homePreviewLoading) return;
+  state.homePreviewLoading = true;
+  try {
+    const rootItems = await fetchFolder(state.rootHash);
+    const albums = rootItems.filter((x) => x.isFolder).slice(0, 8);
+    const firstAlbum = albums[0] || null;
+    const firstAlbumCover = firstAlbum ? await findFolderPreview(firstAlbum) : '';
+    const all = await loadAllMediaTree(state.rootHash);
+    const media = all.filter((x) => x.isImage || x.isVideo)
+      .sort((a, b) => Math.max(b.lastModified, b.createdAt) - Math.max(a.lastModified, a.createdAt));
+    state.homePreview = {
+      albums,
+      firstAlbum,
+      firstAlbumCover,
+      recentImages: media.filter((x) => x.isImage).slice(0, 10),
+      recentVideos: media.filter((x) => x.isVideo).slice(0, 10)
+    };
+    state.albumGlobalItems = all;
+  } catch (error) {
+    console.warn('home-preview', error);
+    state.homePreview = { albums:[], firstAlbum:null, firstAlbumCover:'', recentImages:[], recentVideos:[] };
+  } finally {
+    state.homePreviewLoading = false;
+    if (state.tab === 'home' && state.me) renderHome();
+  }
+}
+
+function renderHome() {
   stopHeroTimer();
-  const items = activeNotices();
-  $('view').innerHTML = `<section class="section"><div class="section-title"><h2>اخبار و اطلاعیه‌ها</h2><span class="pill">${items.length}</span></div>${items.length?`<div class="list">${items.map(noticeHtml).join('')}</div>`:'<div class="empty">اطلاعیه‌ای برای نمایش وجود ندارد.</div>'}</section>`;
+  const view = $('view');
+  const items = heroItems();
+  const fixed = fixedBanners();
+  const preview = state.homePreview;
+  if (items.length && (state.heroIndex >= items.length || state.heroIndex < 0)) {
+    state.heroIndex = items.length <= 1 ? 0 : Math.floor(Math.random() * items.length);
+  }
+
+  const latestNotice = activeNotices()[0] || null;
+  const favorite = state.favorites[0] || null;
+  const currentTrack = enabledTracks().find((t) => t.id === state.currentTrackId) || null;
+  const radioSubtitle = currentTrack
+    ? [currentTrack.title, currentTrack.performer].filter(Boolean).join(' - ')
+    : 'انتخاب و پخش نواها';
+
+  const sectionHtml = [];
+  const sections = homeSectionsOrdered();
+  const sourceSections = sections.length ? sections : [
+    { id:'radio' }, { id:'albums' }, { id:'media' }, { id:'announcements' }, { id:'favorites' }
+  ];
+
+  for (const section of sourceSections) {
+    if (section.id === 'announcements') {
+      if (latestNotice) sectionHtml.push(homeBannerCardHtml({
+        id:'announcements', title:'آخرین اخبار و اطلاعیه‌ها', subtitle:latestNotice.title || 'مشاهده اطلاعیه‌ها',
+        imageUrl:latestNotice.image_url || '', icon:'◉'
+      }));
+    } else if (section.id === 'albums') {
+      sectionHtml.push(homeBannerCardHtml({
+        id:'albums', title:'آلبوم‌های تازه',
+        subtitle:preview?.firstAlbum?.name || 'مشاهده آلبوم‌ها',
+        imageUrl:preview?.firstAlbumCover || '', icon:'▦', loading:!preview
+      }));
+    } else if (section.id === 'media') {
+      const image = preview?.recentImages?.[0];
+      const video = preview?.recentVideos?.find((x) => x.downloadUrl) || preview?.recentVideos?.[0];
+      sectionHtml.push(homeBannerCardHtml({
+        id:'images', title:'تازه‌ترین تصاویر', subtitle:image?.name || 'مشاهده تصاویر',
+        imageUrl:image?.downloadUrl || '', icon:'▧', loading:!preview
+      }));
+      sectionHtml.push(homeBannerCardHtml({
+        id:'videos', title:'تازه‌ترین فیلم‌ها', subtitle:video?.name || 'مشاهده فیلم‌ها',
+        imageUrl:video?.downloadUrl || '', icon:'▶', loading:!preview
+      }));
+    } else if (section.id === 'radio') {
+      sectionHtml.push(homeBannerCardHtml({
+        id:'radio', title:'رادیو آل فاطمیون', subtitle:radioSubtitle,
+        imageUrl:state.config?.home?.radio_banner_image_url || '', icon:'♪',
+        status:currentTrack && !$('audio').paused ? 'در حال پخش' : '', radio:true
+      }));
+    } else if (section.id === 'favorites') {
+      sectionHtml.push(homeBannerCardHtml({
+        id:'favorites', title:'برگزیده‌های شما',
+        subtitle:favorite?.name || 'هنوز موردی به برگزیده‌ها اضافه نشده',
+        imageUrl:favorite?.downloadUrl || '', icon:'♥'
+      }));
+    }
+  }
+
+  view.innerHTML = `
+    ${items.length ? '<section class="home-block"><div id="heroArea" class="hero" role="button" tabindex="0"></div></section>' : ''}
+    ${fixed.map((b, i) => `<section class="home-block"><button class="fixed-banner" data-fixed-banner="${i}" type="button"><img src="${escapeHtml(safeHttps(b.image_url))}" alt="${escapeHtml(b.title || 'بنر آل فاطمیون')}"></button></section>`).join('')}
+    <section class="home-content-list">${sectionHtml.join('')}</section>`;
+
+  if (items.length) {
+    paintHero(items);
+    startHeroTimer(items);
+  }
+  view.querySelectorAll('[data-fixed-banner]').forEach((button) => button.addEventListener('click', () => {
+    handleBanner(fixed[Number(button.dataset.fixedBanner)]);
+  }));
+  view.querySelectorAll('[data-home-action]').forEach((button) => button.addEventListener('click', () => {
+    const id = button.dataset.homeAction;
+    if (id === 'radio') return openRadio();
+    if (id === 'albums') return openAlbumsRoot();
+    if (id === 'images') return openMediaCollection('image');
+    if (id === 'videos') return openMediaCollection('video');
+    if (id === 'announcements') { state.noticeSubtab = 'public'; return setTab('notices'); }
+    if (id === 'favorites') return setTab('favorites');
+  }));
+
+  if (!state.homePreview && !state.homePreviewLoading) loadHomePreview();
+}
+
+function openAlbumsRoot() {
+  state.folderStack = [{ hash:state.rootHash, name:'آلبوم‌ها' }];
+  state.folderHash = state.rootHash;
+  state.folderQuery = '';
+  setTab('albums', { forcePush:true });
+}
+
+async function openMediaCollection(kind) {
+  if (!state.albumGlobalItems && !state.albumGlobalLoading) {
+    state.albumGlobalLoading = true;
+    toast('در حال آماده‌سازی رسانه‌ها…');
+    try { state.albumGlobalItems = await loadAllMediaTree(state.rootHash); }
+    finally { state.albumGlobalLoading = false; }
+  }
+  const items = (state.albumGlobalItems || []).filter((x) => kind === 'video' ? x.isVideo : x.isImage);
+  if (!items.length) { toast(kind === 'video' ? 'فیلمی برای نمایش پیدا نشد.' : 'تصویری برای نمایش پیدا نشد.'); return; }
+  openViewer(items[0], items);
+}
+
+function noticeCardHtml(n) {
+  const isNew = !isNoticeSeen(n.id);
+  return `<button class="notice-card" type="button" data-notice="${escapeHtml(n.id)}">
+    ${safeHttps(n.image_url) ? `<img src="${escapeHtml(safeHttps(n.image_url))}" alt="">` : ''}
+    <div class="notice-copy">
+      <div class="notice-meta"><span>${noticeCategoryIcon(n.category)} ${escapeHtml(noticeCategoryLabel(n.category))}</span>${n.pinned ? '<span title="سنجاق‌شده">📌</span>' : ''}${isNew ? '<span class="badge">جدید</span>' : ''}</div>
+      <strong>${escapeHtml(n.title || 'اطلاعیه')}</strong>
+      <p>${escapeHtml(n.summary || n.body || '')}</p>
+      <small>${escapeHtml(formatPersianDate(n.published_at_millis))}</small>
+    </div>
+  </button>`;
+}
+
+function openNoticeDetail(id) {
+  const n = activeNotices().find((x) => String(x.id) === String(id));
+  if (!n) return;
+  markNoticeSeen(n.id);
+  const image = safeHttps(n.image_url);
+  openModal(noticeCategoryLabel(n.category), `<article class="notice-detail">
+    <small class="muted">${escapeHtml(formatPersianDate(n.published_at_millis))}</small>
+    <h2>${escapeHtml(n.title || 'اطلاعیه')}</h2>
+    ${image ? `<img src="${escapeHtml(image)}" alt="">` : ''}
+    <p>${escapeHtml(n.body || n.summary || '')}</p>
+    <div class="notice-detail-actions">
+      ${n.related_album_hash ? '<button id="noticeAlbum" class="primary" type="button">مشاهده آلبوم مرتبط</button>' : ''}
+      ${n.related_track_id ? '<button id="noticeRadio" class="primary" type="button">پخش نوای مرتبط</button>' : ''}
+    </div>
+  </article>`);
+  $('noticeAlbum')?.addEventListener('click', () => {
+    closeModal();
+    state.folderStack = [{ hash:state.rootHash, name:'آلبوم‌ها' }, { hash:String(n.related_album_hash), name:n.related_album_name || 'آلبوم مرتبط' }];
+    state.folderHash = String(n.related_album_hash);
+    state.folderQuery = '';
+    setTab('albums', { forcePush:true });
+  });
+  $('noticeRadio')?.addEventListener('click', () => { closeModal(); openRadio(String(n.related_track_id || '')); });
+  if (state.tab === 'notices') renderNotices();
+}
+
+async function loadPersonalMessages(force = false) {
+  if (state.personalMessages && !force) return state.personalMessages;
+  const data = await api('/api/account/messages');
+  state.personalMessages = Array.isArray(data.messages) ? data.messages : [];
+  updateMessageCount();
+  return state.personalMessages;
+}
+
+function messageReadAt(m) { return m.read_at_millis || m.read_at || null; }
+function messageCreatedAt(m) { return Number(m.created_at_millis || (m.created_at ? Date.parse(m.created_at) : 0) || 0); }
+
+function personalMessageHtml(m) {
+  const unread = !messageReadAt(m);
+  return `<article class="personal-message ${unread ? 'unread' : ''}" data-personal-message="${escapeHtml(m.message_id)}">
+    <button class="personal-message-toggle" type="button" data-message-toggle="${escapeHtml(m.message_id)}">
+      <span>${unread ? '<b class="unread-dot"></b>' : '✓'}</span>
+      <strong>${escapeHtml(m.title || 'پیام')}</strong>
+      <small>${escapeHtml(formatPersianDate(messageCreatedAt(m)))}</small>
+      <span class="chevron">⌄</span>
+    </button>
+    <div class="personal-message-body hidden" data-message-body="${escapeHtml(m.message_id)}">
+      <p>${escapeHtml(m.body || '')}</p>
+      ${m.origin && m.origin !== 'system' ? '<small class="muted">پشتیبانی</small>' : ''}
+      <button class="text-danger" type="button" data-message-delete="${escapeHtml(m.message_id)}">حذف</button>
+    </div>
+  </article>`;
+}
+
+async function renderNotices() {
+  stopHeroTimer();
+  const view = $('view');
+  const publicItems = activeNotices();
+  let personal = state.personalMessages;
+  if (state.noticeSubtab === 'personal' && !personal) {
+    view.innerHTML = '<div class="empty">در حال دریافت پیام‌های شخصی…</div>';
+    try { personal = await loadPersonalMessages(); }
+    catch (error) { view.innerHTML = `<div class="empty">${escapeHtml(error.message)}<br><button id="retryMessages" class="ghost">تلاش دوباره</button></div>`; $('retryMessages')?.addEventListener('click', () => renderNotices()); return; }
+  }
+  const publicUnread = publicItems.filter((x) => !isNoticeSeen(x.id)).length;
+  const personalUnread = (personal || []).filter((x) => !messageReadAt(x)).length;
+  view.innerHTML = `<section class="notice-shell">
+    <div class="primary-tabs">
+      <button type="button" data-notice-tab="public" class="${state.noticeSubtab === 'public' ? 'active' : ''}">اخبار و اطلاعیه‌ها${publicUnread ? ` (${toFaDigits(publicUnread)})` : ''}</button>
+      <button type="button" data-notice-tab="personal" class="${state.noticeSubtab === 'personal' ? 'active' : ''}">پیام‌های شخصی${personalUnread ? ` (${toFaDigits(personalUnread)})` : ''}</button>
+    </div>
+    <div class="notice-page-head"><span class="notice-page-icon">${state.noticeSubtab === 'public' ? '◉' : '●'}</span><div><h2>${state.noticeSubtab === 'public' ? 'اخبار و اطلاعیه‌ها' : 'پیام‌های شخصی'}</h2><small>${state.noticeSubtab === 'public' ? `${toFaDigits(publicUnread)} تازه • ${toFaDigits(publicItems.length)} قابل مشاهده` : 'پیام‌های مرتبط با حساب شما'}</small></div></div>
+    <div class="notice-list">${state.noticeSubtab === 'public'
+      ? (publicItems.length ? publicItems.map(noticeCardHtml).join('') : '<div class="empty">فعلاً خبری ثبت نشده است.</div>')
+      : ((personal || []).length ? (personal || []).map(personalMessageHtml).join('') : '<div class="empty">پیام شخصی ندارید.</div>')}
+    </div>
+  </section>`;
+  view.querySelectorAll('[data-notice-tab]').forEach((button) => button.addEventListener('click', () => {
+    state.noticeSubtab = button.dataset.noticeTab;
+    renderNotices();
+  }));
+  view.querySelectorAll('[data-notice]').forEach((button) => button.addEventListener('click', () => openNoticeDetail(button.dataset.notice)));
+  view.querySelectorAll('[data-message-toggle]').forEach((button) => button.addEventListener('click', async () => {
+    const id = button.dataset.messageToggle;
+    const body = view.querySelector(`[data-message-body="${CSS.escape(id)}"]`);
+    body?.classList.toggle('hidden');
+    const m = state.personalMessages?.find((x) => String(x.message_id) === String(id));
+    if (m && !messageReadAt(m)) {
+      m.read_at_millis = Date.now();
+      updateMessageCount();
+      api(`/api/account/messages/${encodeURIComponent(id)}/read`, { method:'POST', body:{} }).catch(() => {});
+      button.closest('.personal-message')?.classList.remove('unread');
+    }
+  }));
+  view.querySelectorAll('[data-message-delete]').forEach((button) => button.addEventListener('click', async () => {
+    const id = button.dataset.messageDelete;
+    if (!confirm('این پیام فقط از صندوق شما حذف می‌شود. ادامه می‌دهید؟')) return;
+    try {
+      await api(`/api/account/messages/${encodeURIComponent(id)}`, { method:'DELETE' });
+      state.personalMessages = (state.personalMessages || []).filter((x) => String(x.message_id) !== String(id));
+      updateMessageCount();
+      renderNotices();
+    } catch (error) { toast(error.message); }
+  }));
 }
 
 function parseCloudItems(payload) {
@@ -66,21 +358,23 @@ function parseCloudItems(payload) {
   return results.map((wrapper) => {
     const obj = wrapper?.obj || {};
     const type = String(obj.type || '');
+    const download = safeHttps(obj.download_url || obj.content_url || '');
+    const thumbnail = safeHttps(obj.thumbnail_url || obj.cover_url || '');
     return {
-      id: String(obj.id ?? wrapper?.id ?? ''),
+      id: String(obj.id ?? wrapper?.id ?? obj.obj_hash ?? ''),
       name: String(obj.name || 'بدون نام'),
       type,
       isFolder: type === 'folder',
       isImage: type.startsWith('image/'),
       isVideo: type.startsWith('video/'),
       hash: String(obj.obj_hash || ''),
-      downloadUrl: safeHttps(obj.download_url || ''),
+      downloadUrl: download,
+      thumbnailUrl: thumbnail,
       createdAt: Number(obj.created_at || 0),
       lastModified: Number(obj.last_modified || 0),
       hasCover: Boolean(obj.has_cover)
     };
-  }).filter((item) => item.isFolder || item.isImage || item.isVideo)
-    .sort((a,b) => Math.max(b.lastModified,b.createdAt)-Math.max(a.lastModified,a.createdAt) || a.name.localeCompare(b.name,'fa'));
+  }).filter((item) => item.isFolder || item.isImage || item.isVideo);
 }
 
 async function fetchFolder(hash) {
@@ -88,8 +382,32 @@ async function fetchFolder(hash) {
   return parseCloudItems(payload);
 }
 
+function ensureFolderTrail() {
+  if (!Array.isArray(state.folderStack) || !state.folderStack.length || state.folderStack[0]?.hash !== state.rootHash) {
+    state.folderStack = [{ hash:state.rootHash, name:'آلبوم‌ها' }];
+  }
+  const current = state.folderStack[state.folderStack.length - 1];
+  state.folderHash = current?.hash || state.rootHash;
+}
+
+function atAlbumsRoot() {
+  ensureFolderTrail();
+  return state.folderStack.length === 1 && state.folderHash === state.rootHash;
+}
+
+function sortAlbumItems(items) {
+  const direction = state.albumSort === 'oldest' ? 1 : -1;
+  return [...items].sort((a, b) => {
+    const aTime = Math.max(a.lastModified, a.createdAt);
+    const bTime = Math.max(b.lastModified, b.createdAt);
+    if (aTime !== bTime) return (aTime - bTime) * direction;
+    return a.name.localeCompare(b.name, 'fa');
+  });
+}
+
 async function renderAlbums() {
   stopHeroTimer();
+  ensureFolderTrail();
   const view = $('view');
   view.innerHTML = '<div class="empty">در حال دریافت آلبوم‌ها…</div>';
   try {
@@ -101,107 +419,259 @@ async function renderAlbums() {
   }
 }
 
+function breadcrumbHtml() {
+  return `<div class="breadcrumbs">${state.folderStack.map((entry, index) => `<button type="button" data-crumb="${index}">${escapeHtml(entry.name)}</button>${index < state.folderStack.length - 1 ? '<span>←</span>' : ''}`).join('')}</div>`;
+}
+
+async function loadGlobalSearchIfNeeded() {
+  if (state.albumGlobalItems || state.albumGlobalLoading) return;
+  state.albumGlobalLoading = true;
+  try {
+    state.albumGlobalItems = await loadAllMediaTree(state.rootHash);
+  } finally {
+    state.albumGlobalLoading = false;
+    if (state.tab === 'albums' && state.folderQuery) paintFolder();
+  }
+}
+
+function itemSearchText(item) {
+  return normalizeSearch([item.name, item.path || ''].join(' '));
+}
+
 function paintFolder() {
+  ensureFolderTrail();
   const query = normalizeSearch(state.folderQuery);
-  const items = state.folderItems.filter((item) => !query || normalizeSearch(item.name).includes(query));
-  const atRoot = state.folderHash === state.rootHash && !state.folderStack.length;
-  $('view').innerHTML = `
-    <div class="toolbar">${atRoot?'': '<button id="folderBack" class="ghost">بازگشت</button>'}<input id="albumSearch" value="${escapeHtml(state.folderQuery)}" placeholder="جستجو در این آلبوم"></div>
-    <div class="album-grid">${items.map(itemCardHtml).join('')}</div>
-    ${items.length?'':'<div class="empty">موردی پیدا نشد.</div>'}`;
-  $('folderBack')?.addEventListener('click', () => {
-    const previous = state.folderStack.pop();
-    state.folderHash = previous?.hash || state.rootHash;
-    state.folderQuery = '';
-    renderAlbums();
+  const atRoot = atAlbumsRoot();
+  let source = state.folderItems;
+  if (query && atRoot) {
+    if (!state.albumGlobalItems) {
+      loadGlobalSearchIfNeeded();
+      source = [];
+    } else source = state.albumGlobalItems;
+  }
+  let items = sortAlbumItems(source.filter((item) => !query || itemSearchText(item).includes(query)));
+  state.displayedAlbumItems = items;
+  const loadingGlobal = query && atRoot && state.albumGlobalLoading && !state.albumGlobalItems;
+  $('view').innerHTML = `<section class="albums-shell">
+    <div class="albums-top-row">${breadcrumbHtml()}<button id="albumSettings" class="icon-btn" type="button" title="تنظیمات آلبوم">⚙</button></div>
+    <div class="album-toolbar">
+      <input id="albumSearch" value="${escapeHtml(state.folderQuery)}" placeholder="جستجوی آلبوم، سال یا نام برنامه">
+      <button id="albumSort" class="ghost" type="button">${state.albumSort === 'newest' ? 'جدیدترین' : 'قدیمی‌ترین'}</button>
+      <button id="albumRefresh" class="ghost" type="button">↻</button>
+    </div>
+    ${loadingGlobal ? '<div class="empty">در حال جستجو در همه آلبوم‌ها و رسانه‌ها…</div>' : `<div class="album-grid layout-${escapeHtml(state.albumLayout)}">${items.map(itemCardHtml).join('')}</div>${items.length ? '' : '<div class="empty">موردی مطابق جستجو پیدا نشد.</div>'}`}
+  </section>`;
+
+  $('albumSearch')?.addEventListener('focus', () => {
+    if (!state.folderSearchHistory) { state.folderSearchHistory = true; pushHistory('album-search'); }
   });
-  $('albumSearch')?.addEventListener('input', (event) => { state.folderQuery = event.target.value; paintFolder(); });
+  $('albumSearch')?.addEventListener('input', (event) => {
+    state.folderQuery = event.target.value;
+    paintFolder();
+    queueMicrotask(() => { const input = $('albumSearch'); if (input) { input.focus(); input.setSelectionRange(input.value.length, input.value.length); } });
+  });
+  $('albumSort')?.addEventListener('click', () => {
+    state.albumSort = state.albumSort === 'newest' ? 'oldest' : 'newest';
+    localStorage.setItem(ALBUM_SORT_KEY, state.albumSort);
+    paintFolder();
+  });
+  $('albumRefresh')?.addEventListener('click', () => {
+    state.albumGlobalItems = null; state.homePreview = null; renderAlbums();
+  });
+  $('albumSettings')?.addEventListener('click', openAlbumSettings);
+  $('view').querySelectorAll('[data-crumb]').forEach((button) => button.addEventListener('click', () => {
+    const index = Number(button.dataset.crumb);
+    if (!Number.isInteger(index) || index < 0 || index >= state.folderStack.length) return;
+    state.folderStack = state.folderStack.slice(0, index + 1);
+    state.folderHash = state.folderStack[state.folderStack.length - 1].hash;
+    state.folderQuery = '';
+    pushHistory('folder');
+    renderAlbums();
+  }));
   $('view').querySelectorAll('[data-folder]').forEach((button) => button.addEventListener('click', () => {
-    const item = state.folderItems.find((x) => x.hash === button.dataset.folder);
+    const item = state.displayedAlbumItems.find((x) => x.isFolder && x.hash === button.dataset.folder);
     if (!item) return;
-    state.folderStack.push({ hash: state.folderHash, name: item.name });
+    state.folderStack.push({ hash:item.hash, name:item.name });
     state.folderHash = item.hash;
     state.folderQuery = '';
+    pushHistory('folder');
     renderAlbums();
   }));
   $('view').querySelectorAll('[data-media]').forEach((button) => button.addEventListener('click', () => {
-    const item = state.folderItems.find((x) => x.id === button.dataset.media);
-    if (item) openViewer(item);
+    const item = state.displayedAlbumItems.find((x) => String(x.id) === String(button.dataset.media));
+    if (!item) return;
+    const media = state.displayedAlbumItems.filter((x) => x.isImage || x.isVideo);
+    openViewer(item, media);
   }));
   $('view').querySelectorAll('[data-favorite]').forEach((button) => button.addEventListener('click', (event) => {
     event.stopPropagation();
-    const item = state.folderItems.find((x) => x.id === button.dataset.favorite);
+    const item = state.displayedAlbumItems.find((x) => String(x.id) === String(button.dataset.favorite));
     if (item) toggleFavorite(item);
   }));
 }
 
+function openAlbumSettings() {
+  openModal('تنظیمات آلبوم', `<div class="settings-list">
+    <label class="list-item settings-row"><div><strong>چیدمان</strong><small>اندازه کارت‌های آلبوم و رسانه</small></div><select id="albumLayoutSelect"><option value="compact">فشرده</option><option value="normal">معمولی</option><option value="large">بزرگ</option></select></label>
+    <label class="list-item settings-row"><div><strong>مدت اسلایدشو</strong><small>مدت نمایش هر تصویر</small></div><select id="slideInterval"><option value="3">۳ ثانیه</option><option value="5">۵ ثانیه</option><option value="8">۸ ثانیه</option><option value="12">۱۲ ثانیه</option></select></label>
+    <label class="list-item settings-row"><div><strong>افکت اسلایدشو</strong><small>نحوه تعویض تصاویر</small></div><select id="slideEffect"><option value="fade">محو</option><option value="slide">حرکت</option><option value="none">بدون افکت</option></select></label>
+  </div>`);
+  $('albumLayoutSelect').value = ['compact','normal','large'].includes(state.albumLayout) ? state.albumLayout : 'normal';
+  $('slideInterval').value = ['3','5','8','12'].includes(String(state.slideshowInterval)) ? String(state.slideshowInterval) : '5';
+  $('slideEffect').value = ['fade','slide','none'].includes(state.slideshowEffect) ? state.slideshowEffect : 'fade';
+  $('albumLayoutSelect').addEventListener('change', (e) => { state.albumLayout = e.target.value; localStorage.setItem(ALBUM_LAYOUT_KEY, state.albumLayout); });
+  $('slideInterval').addEventListener('change', (e) => { state.slideshowInterval = Number(e.target.value); localStorage.setItem(SLIDESHOW_INTERVAL_KEY, String(state.slideshowInterval)); });
+  $('slideEffect').addEventListener('change', (e) => { state.slideshowEffect = e.target.value; localStorage.setItem(SLIDESHOW_EFFECT_KEY, state.slideshowEffect); });
+  state.modalCleanup = () => { if (state.tab === 'albums') paintFolder(); };
+}
+
 function itemCardHtml(item) {
   if (item.isFolder) {
-    return `<button class="album-card folder-card" data-folder="${escapeHtml(item.hash)}"><span class="folder-icon">▰</span><span class="meta"><strong>${escapeHtml(item.name)}</strong><small class="muted">آلبوم</small></span></button>`;
+    const cover = item.thumbnailUrl || '';
+    return `<button class="album-card folder-card" data-folder="${escapeHtml(item.hash)}" type="button">
+      ${cover ? `<img src="${escapeHtml(cover)}" loading="lazy" alt="">` : '<span class="folder-icon">▰</span>'}
+      <span class="meta"><strong>${escapeHtml(item.name)}</strong><small class="muted">آلبوم</small></span>
+    </button>`;
   }
   const mediaIcon = item.isVideo ? '▶' : '▧';
-  const image = item.downloadUrl ? `<img src="${escapeHtml(thumbUrl(item.downloadUrl))}" loading="lazy" alt="${escapeHtml(item.name)}" onerror="this.style.display='none'">` : `<div class="folder-icon">${mediaIcon}</div>`;
+  const imageUrl = item.thumbnailUrl || item.downloadUrl;
+  const image = imageUrl ? `<img src="${escapeHtml(thumbUrl(imageUrl))}" loading="lazy" alt="${escapeHtml(item.name)}" onerror="this.style.display='none'">` : `<div class="folder-icon">${mediaIcon}</div>`;
   const fav = isFavorite(item.id);
-  return `<article class="album-card" data-media="${escapeHtml(item.id)}">${image}<button class="fav ${fav?'on':''}" data-favorite="${escapeHtml(item.id)}" aria-label="علاقه‌مندی">♥</button><div class="meta"><strong>${escapeHtml(item.name)}</strong><small>${item.isVideo?'ویدئو':'تصویر'}</small></div></article>`;
+  return `<article class="album-card media-card" data-media="${escapeHtml(item.id)}">${image}${item.isVideo ? '<span class="play-indicator">▶</span>' : ''}<button class="fav ${fav ? 'on' : ''}" data-favorite="${escapeHtml(item.id)}" aria-label="برگزیده">♥</button><div class="meta"><strong>${escapeHtml(item.name)}</strong><small>${item.isVideo ? 'ویدئو' : 'تصویر'}</small></div></article>`;
 }
 
 function favoriteSnapshot(item) {
-  return { id:item.id, name:item.name, type:item.type, downloadUrl:item.downloadUrl, addedAt:Date.now() };
+  return { id:item.id, name:item.name, type:item.type, downloadUrl:item.downloadUrl, thumbnailUrl:item.thumbnailUrl || '', addedAt:Date.now() };
 }
-function isFavorite(id) { return state.favorites.some((x)=>x.id===id); }
+function isFavorite(id) { return state.favorites.some((x) => String(x.id) === String(id)); }
 function toggleFavorite(item) {
-  const index = state.favorites.findIndex((x)=>x.id===item.id);
-  if (index >= 0) { state.favorites.splice(index,1); toast('از علاقه‌مندی‌ها حذف شد.'); }
-  else { state.favorites.unshift(favoriteSnapshot(item)); toast('به علاقه‌مندی‌ها افزوده شد.'); }
+  const index = state.favorites.findIndex((x) => String(x.id) === String(item.id));
+  if (index >= 0) { state.favorites.splice(index, 1); toast('از برگزیده‌ها حذف شد.'); }
+  else { state.favorites.unshift(favoriteSnapshot(item)); toast('به برگزیده‌ها افزوده شد.'); }
   saveFavorites();
-  if (state.tab === 'favorites') renderFavorites(); else if (state.tab === 'albums') paintFolder();
+  if (state.tab === 'favorites') renderFavorites();
+  else if (state.tab === 'albums') paintFolder();
 }
 
 function renderFavorites() {
   stopHeroTimer();
-  const items = state.favorites;
-  $('view').innerHTML = `<section class="section"><div class="section-title"><h2>علاقه‌مندی‌ها</h2><span class="pill">${items.length}</span></div>${items.length?`<div class="album-grid">${items.map(itemCardHtml).join('')}</div>`:'<div class="empty">هنوز رسانه‌ای به علاقه‌مندی‌ها اضافه نشده است.</div>'}</section>`;
-  $('view').querySelectorAll('[data-media]').forEach((button)=>button.addEventListener('click',()=>{
-    const item=state.favorites.find((x)=>x.id===button.dataset.media); if(item) openViewer({...item,isImage:String(item.type).startsWith('image/'),isVideo:String(item.type).startsWith('video/')});
+  const items = state.favorites.map((item) => ({ ...item, isImage:String(item.type).startsWith('image/'), isVideo:String(item.type).startsWith('video/') }));
+  state.displayedAlbumItems = items;
+  $('view').innerHTML = `<section class="section"><div class="section-title"><h2>برگزیده‌ها</h2><span class="pill">${toFaDigits(items.length)}</span></div>${items.length ? `<div class="album-grid layout-${escapeHtml(state.albumLayout)}">${items.map(itemCardHtml).join('')}</div>` : '<div class="empty">هنوز موردی به برگزیده‌ها اضافه نشده است.</div>'}</section>`;
+  $('view').querySelectorAll('[data-media]').forEach((button) => button.addEventListener('click', () => {
+    const item = items.find((x) => String(x.id) === String(button.dataset.media)); if (item) openViewer(item, items);
   }));
-  $('view').querySelectorAll('[data-favorite]').forEach((button)=>button.addEventListener('click',(event)=>{
-    event.stopPropagation(); const item=state.favorites.find((x)=>x.id===button.dataset.favorite); if(item) toggleFavorite(item);
+  $('view').querySelectorAll('[data-favorite]').forEach((button) => button.addEventListener('click', (event) => {
+    event.stopPropagation(); const item = items.find((x) => String(x.id) === String(button.dataset.favorite)); if (item) toggleFavorite(item);
   }));
 }
 
 function effectivePermission(name) {
   if (state.me?.is_admin === true) return true;
   const p = state.permissions || state.me?.permissions || {};
+  if (name === 'allow_photo_download' && p.allow_download === true) return true;
+  if (name === 'allow_video_download' && p.allow_download === true) return true;
   return p[name] === true;
 }
 
-function openViewer(item) {
+function viewerCurrent() {
+  if (!state.viewer?.items?.length) return null;
+  return state.viewer.items[state.viewer.index] || null;
+}
+
+function renderViewer() {
+  const item = viewerCurrent();
+  if (!item) { closeModal(); return; }
   const url = safeHttps(item.downloadUrl);
-  const media = item.isVideo
-    ? `<video src="${escapeHtml(url)}" controls playsinline></video>`
-    : `<img src="${escapeHtml(url)}" alt="${escapeHtml(item.name)}">`;
+  const isVideo = item.isVideo || String(item.type || '').startsWith('video/');
   const shareAllowed = effectivePermission('allow_share');
-  const downloadAllowed = item.isVideo ? effectivePermission('allow_video_download') : effectivePermission('allow_photo_download');
-  openModal(item.name || 'رسانه', `<div class="viewer">${media}<div class="viewer-actions"><button id="viewerFav">${isFavorite(item.id)?'حذف از علاقه‌مندی':'افزودن به علاقه‌مندی'}</button>${shareAllowed?'<button id="viewerShare">اشتراک</button>':''}${downloadAllowed?'<button id="viewerDownload">دانلود</button>':''}</div>${(!shareAllowed||!downloadAllowed)?'<small class="muted">گزینه‌های اشتراک و دانلود مطابق مجوز حساب نمایش داده می‌شوند.</small>':''}</div>`);
-  $('viewerFav')?.addEventListener('click',()=>{ toggleFavorite(item); closeModal(); });
-  $('viewerShare')?.addEventListener('click', async()=>{
+  const downloadAllowed = isVideo ? effectivePermission('allow_video_download') : effectivePermission('allow_photo_download');
+  $('modalTitle').textContent = item.name || 'رسانه';
+  $('modalBody').innerHTML = `<div class="viewer ${escapeHtml(state.slideshowEffect)}">
+    <div class="viewer-stage">
+      ${isVideo ? `<video id="viewerMedia" src="${escapeHtml(url)}" controls playsinline></video>` : `<img id="viewerMedia" class="viewer-image" src="${escapeHtml(url)}" alt="${escapeHtml(item.name)}">`}
+      <img class="viewer-watermark" src="/brand-logo.webp" alt="">
+      ${state.viewer.items.length > 1 ? '<button id="viewerPrev" class="viewer-nav viewer-prev" type="button">‹</button><button id="viewerNext" class="viewer-nav viewer-next" type="button">›</button>' : ''}
+    </div>
+    <div class="viewer-position">${toFaDigits(state.viewer.index + 1)} از ${toFaDigits(state.viewer.items.length)}</div>
+    <div class="viewer-actions">
+      <button id="viewerFav" type="button">${isFavorite(item.id) ? '♥ حذف از برگزیده‌ها' : '♡ افزودن به برگزیده‌ها'}</button>
+      ${!isVideo ? '<button id="viewerZoom" type="button">بزرگ‌نمایی</button>' : ''}
+      ${!isVideo && state.viewer.items.filter((x) => x.isImage || String(x.type || '').startsWith('image/')).length > 1 ? `<button id="viewerSlide" type="button">${state.slideshowTimer ? 'توقف اسلایدشو' : 'اسلایدشو'}</button>` : ''}
+      ${shareAllowed ? '<button id="viewerShare" type="button">اشتراک</button>' : ''}
+      ${downloadAllowed ? '<button id="viewerDownload" type="button">دانلود</button>' : ''}
+    </div>
+    ${(!shareAllowed || !downloadAllowed) ? '<small class="muted">اشتراک و دانلود مطابق مجوز حساب کنترل می‌شوند.</small>' : ''}
+  </div>`;
+  setRadioVideoGate(isVideo);
+  $('viewerPrev')?.addEventListener('click', () => moveViewer(-1));
+  $('viewerNext')?.addEventListener('click', () => moveViewer(1));
+  $('viewerFav')?.addEventListener('click', () => { toggleFavorite(item); renderViewer(); });
+  $('viewerZoom')?.addEventListener('click', () => $('viewerMedia')?.classList.toggle('zoomed'));
+  $('viewerSlide')?.addEventListener('click', toggleSlideshow);
+  $('viewerShare')?.addEventListener('click', async () => {
     try {
       if (navigator.share) await navigator.share({ title:item.name, url });
       else { await navigator.clipboard.writeText(url); toast('لینک کپی شد.'); }
-    } catch { /* user cancel */ }
+    } catch { /* cancel */ }
   });
-  $('viewerDownload')?.addEventListener('click',()=>{
-    const a=document.createElement('a'); a.href=url; a.download=item.name||'alefatemion-media'; a.rel='noopener'; a.click();
+  $('viewerDownload')?.addEventListener('click', () => {
+    const a = document.createElement('a'); a.href = url; a.download = item.name || 'alefatemion-media'; a.rel = 'noopener'; a.click();
   });
+  const stage = $('modalBody').querySelector('.viewer-stage');
+  let startX = null;
+  stage?.addEventListener('pointerdown', (e) => { startX = e.clientX; });
+  stage?.addEventListener('pointerup', (e) => {
+    if (startX == null) return; const delta = e.clientX - startX; startX = null;
+    if (Math.abs(delta) > 45) moveViewer(delta > 0 ? -1 : 1);
+  });
+}
+
+function openViewer(item, collection = [item]) {
+  const items = collection.filter((x) => (x.isImage || x.isVideo || /^image\//.test(x.type || '') || /^video\//.test(x.type || '')) && safeHttps(x.downloadUrl));
+  const index = Math.max(0, items.findIndex((x) => String(x.id) === String(item.id)));
+  state.viewer = { items:items.length ? items : [item], index, zoomed:false };
+  openModal(item.name || 'رسانه', '<div class="empty">در حال آماده‌سازی…</div>');
+  state.modalCleanup = () => { stopSlideshow(); state.viewer = null; setRadioVideoGate(false); };
+  renderViewer();
+}
+
+function moveViewer(delta) {
+  if (!state.viewer?.items?.length) return;
+  state.viewer.index = (state.viewer.index + delta + state.viewer.items.length) % state.viewer.items.length;
+  renderViewer();
+}
+
+function stopSlideshow() {
+  clearInterval(state.slideshowTimer);
+  state.slideshowTimer = null;
+}
+
+function toggleSlideshow() {
+  if (state.slideshowTimer) { stopSlideshow(); renderViewer(); return; }
+  const imageCount = state.viewer?.items?.filter((x) => x.isImage || String(x.type || '').startsWith('image/')).length || 0;
+  if (imageCount < 2) return;
+  state.slideshowTimer = setInterval(() => {
+    if (!state.viewer) return stopSlideshow();
+    let tries = 0;
+    do { state.viewer.index = (state.viewer.index + 1) % state.viewer.items.length; tries += 1; }
+    while (tries <= state.viewer.items.length && (state.viewer.items[state.viewer.index].isVideo || String(state.viewer.items[state.viewer.index].type || '').startsWith('video/')));
+    renderViewer();
+  }, state.slideshowInterval * 1000);
+  renderViewer();
 }
 
 function handleBanner(banner) {
   const type = String(banner?.destination_type || 'none');
   if (type === 'radio') return openRadio(banner.destination_id || '');
   if (type === 'album' && banner.destination_id) {
-    state.folderStack=[]; state.folderHash=String(banner.destination_id); state.folderQuery=''; setTab('albums'); return;
+    state.folderStack = [{ hash:state.rootHash, name:'آلبوم‌ها' }, { hash:String(banner.destination_id), name:banner.title || 'آلبوم منتخب' }];
+    state.folderHash = String(banner.destination_id);
+    state.folderQuery = '';
+    setTab('albums', { forcePush:true });
+    return;
   }
   if (type === 'external') {
-    const url=safeHttps(banner.external_url); if(url) window.open(url,'_blank','noopener,noreferrer');
+    const url = safeHttps(banner.external_url); if (url) window.open(url, '_blank', 'noopener,noreferrer');
   }
 }
