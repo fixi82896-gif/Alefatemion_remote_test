@@ -1,161 +1,100 @@
-/* PWA Step 1 — isolated home header + welcome parity only.
- * Step 1 fix: compact welcome keeps a stable outer slot so collapsing never changes
- * document height and therefore never makes the page jump.
- */
-
-/* Remove only the extra custom top header. The element remains in DOM because
- * the proven Test2 navigation code still updates #topTitle. */
+/* Matches Android 21 Test21Welcome. Scroll remains on body/window. */
 .topbar{display:none!important}
+.primary-tabs{top:var(--welcome-sticky-edge,202px)!important;transition:top .2s ease}
 
-/* Without the 66px topbar, notice tabs should stick to the actual viewport top. */
-.primary-tabs{top:0!important}
-
-/* The slot always keeps the expanded amount of space in the document.
- * The card may visually shrink, but content below it never moves. */
 .welcome-slot{
   box-sizing:border-box;
   width:min(100%,760px);
-  height:176px;
+  height:212px;
   margin:0 auto;
-  padding:14px 16px 0;
+  padding:10px 16px;
   overflow:visible;
-}
-
-/* Keep the existing document slot; only Home pins it to the viewport.
- * Empty space below the compact card must not intercept content taps. */
-.welcome-slot.step1-home{
   position:sticky;
   top:0;
   z-index:9;
   pointer-events:none;
 }
-.welcome-slot.step1-home > .welcome{pointer-events:auto}
-
-/* Opt-in test diagnostic control, away from navigation and radio buttons. */
-.step1-trace-export{
-  position:fixed;
-  z-index:55;
-  left:12px;
-  bottom:calc(168px + env(safe-area-inset-bottom));
-  max-width:170px;
-  padding:10px 12px;
-  border:1px solid var(--line);
-  border-radius:12px;
-  background:var(--surface);
-  color:var(--text);
-  font-size:12px;
-}
-
-.welcome{
+.welcome-slot > .welcome{pointer-events:auto}
+.welcome,.welcome.collapsed{
   box-sizing:border-box!important;
   width:100%!important;
-  height:154px!important;
-  min-height:154px!important;
-  max-height:154px!important;
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
   margin:0!important;
-  padding:16px 18px!important;
+  padding:0!important;
+  border:0!important;
   border-radius:24px!important;
   color:#fff!important;
-  background:linear-gradient(90deg,#06110b 0%,#0b673d 52%,#12b96a 100%)!important;
-  display:grid!important;
-  grid-template-columns:58px minmax(0,1fr)!important;
-  grid-template-areas:
-    "wave copy"
-    "support support"!important;
-  align-items:center!important;
-  gap:10px 14px!important;
+  background:linear-gradient(90deg,#06110b 0%,#0b673d 50%,#12b96a 100%)!important;
+  display:block!important;
   overflow:hidden!important;
   opacity:1!important;
-  box-shadow:0 8px 24px rgba(6,17,11,.16)!important;
   transform:none!important;
-  transition:height .20s ease,min-height .20s ease,max-height .20s ease,padding .20s ease,border-radius .20s ease,box-shadow .20s ease!important;
+  transition:none!important;
 }
-
-.welcome-wave{
-  grid-area:wave;
-  width:58px;
-  height:58px;
-  border-radius:20px;
-  display:grid;
+.welcome .welcome-header{
+  box-sizing:border-box;
+  min-height:104px;
+  padding:14px 20px;
+  display:flex!important;
+  align-items:center;
+  gap:16px;
+}
+.welcome .welcome-wave{
+  flex:0 0 56px;
+  width:56px;
+  height:56px;
+  border-radius:24px;
+  display:grid!important;
   place-items:center;
   background:rgba(255,255,255,.14);
-  font-size:31px;
-  line-height:1;
-  transition:width .20s ease,height .20s ease,border-radius .20s ease,font-size .20s ease;
 }
-
-.welcome-copy{
-  grid-area:copy;
+.welcome svg{width:24px;height:24px;fill:currentColor;flex:none}
+.welcome .welcome-copy{
   min-width:0;
+  flex:1;
   display:grid!important;
-  gap:3px;
+  gap:6px;
   text-align:right;
+  overflow-wrap:anywhere;
 }
-
-.welcome-copy strong{
-  display:block;
-  font-size:19px;
-  line-height:1.55;
-  color:#fff;
+.welcome-copy strong{display:block;font-size:22px;line-height:28px;font-weight:400;color:#fff}
+.welcome-copy .welcome-main{display:block;font-size:16px!important;line-height:24px;font-weight:500;color:#fff;opacity:1!important}
+.welcome .welcome-support{
+  box-sizing:border-box;
+  height:var(--welcome-support-height,88px);
+  overflow:hidden;
+  display:block!important;
+  transition:height .2s ease;
 }
-
-.welcome-copy .welcome-main{
-  display:block;
-  font-size:14px!important;
-  line-height:1.65;
-  color:#e8f7ef;
-  opacity:1!important;
+.welcome.collapsed .welcome-support{height:0}
+.welcome .welcome-support-inner{
+  box-sizing:border-box;
+  min-height:88px;
+  padding:4px 20px;
+  display:flex!important;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:8px;
 }
-
-.welcome-copy .welcome-sub{
-  display:block;
-  font-size:11.5px;
-  line-height:1.7;
-  color:rgba(255,255,255,.82);
-}
-
+.welcome .welcome-sub{display:block;font-size:14px;line-height:20px;color:rgba(255,255,255,.88)}
 .welcome .mini{
-  grid-area:support;
-  width:100%;
+  display:inline-flex!important;
+  flex-shrink:0;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  width:auto;
   min-height:40px;
-  border:1px solid rgba(255,255,255,.20)!important;
-  background:rgba(255,255,255,.12)!important;
+  padding:8px 16px!important;
+  border:0!important;
+  border-radius:24px!important;
+  background:rgba(255,255,255,.14)!important;
   color:#fff!important;
-  font-size:13px;
+  font-size:14px;
 }
-
-/* Compact state stays visible. It never becomes zero-height or transparent.
- * The fixed-height .welcome-slot above prevents scroll-position jumps. */
-.welcome.collapsed{
-  height:94px!important;
-  min-height:94px!important;
-  max-height:94px!important;
-  margin:0!important;
-  padding:10px 14px!important;
-  opacity:1!important;
-  border-width:initial!important;
-  border-radius:21px!important;
-  grid-template-columns:46px minmax(0,1fr)!important;
-  grid-template-areas:"wave copy"!important;
-  gap:10px!important;
-  box-shadow:0 5px 16px rgba(6,17,11,.13)!important;
-}
-
-.welcome.collapsed .welcome-wave{
-  width:46px;
-  height:46px;
-  border-radius:16px;
-  font-size:25px;
-}
-
-.welcome.collapsed .welcome-sub,
-.welcome.collapsed .mini{
-  display:none!important;
-}
-
-.welcome.collapsed .welcome-copy strong{font-size:17px}
-.welcome.collapsed .welcome-main{font-size:12.5px!important}
-
-@media(min-width:700px){
-  .welcome-slot{padding-left:16px;padding-right:16px}
+.welcome.collapsed .welcome-support{visibility:hidden;pointer-events:none}
+@media(prefers-reduced-motion:reduce){
+  .welcome .welcome-support,.primary-tabs{transition:none}
 }

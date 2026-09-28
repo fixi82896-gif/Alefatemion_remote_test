@@ -11,7 +11,7 @@
   <link rel="icon" href="/icon.svg?v=test2-3" type="image/svg+xml">
   <link rel="stylesheet" href="/app.css?v=test2-3">
   <link rel="stylesheet" href="/app-test2.css?v=test2-3">
-  <link rel="stylesheet" href="/app-step1-home-header.css?v=step1fix-2">
+  <link rel="stylesheet" href="/app-step1-home-header.css?v=step1fix-3">
 </head>
 <body>
   <div id="offline" class="offline hidden">اتصال اینترنت برقرار نیست؛ اطلاعات آنلاین ممکن است تازه نباشد.</div>
@@ -85,13 +85,19 @@
 
     <div class="welcome-slot">
     <section id="welcome" class="welcome">
-      <div class="welcome-wave" aria-hidden="true">👋</div>
-      <div class="welcome-copy">
-        <strong id="welcomeName">خوش آمدید</strong>
-        <span class="welcome-main">به موکب مجازی آل فاطمیون</span>
-        <small class="welcome-sub">لطفاً نظرات خود را با بخش پشتیبانی درمیان بگذارید</small>
+      <div class="welcome-header">
+        <div class="welcome-wave" aria-hidden="true"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24" viewBox="0 0 24 24" width="24"><rect fill="none" height="24" width="24"/><path d="M6.07,9.8c-0.2,0.2-0.2,0.51,0,0.71l0,0c1.07,1.07,1.16,2.75,0.28,3.92c-0.15,0.2-0.12,0.47,0.05,0.65 c0.22,0.22,0.57,0.19,0.76-0.05c1.07-1.43,1.06-3.43-0.04-4.85l7.62-7.62c0.49-0.49,1.28-0.49,1.77,0s0.49,1.28,0,1.77l-5.13,5.13 c-0.2,0.2-0.2,0.51,0,0.71s0.51,0.2,0.71,0l6.54-6.54c0.49-0.49,1.28-0.49,1.77,0s0.49,1.28,0,1.77l-6.54,6.54 c-0.2,0.2-0.2,0.51,0,0.71s0.51,0.2,0.71,0l5.48-5.48c0.49-0.49,1.28-0.49,1.77,0s0.49,1.28,0,1.77l-6.19,6.19 c-0.2,0.2-0.2,0.51,0,0.71c0.2,0.2,0.51,0.2,0.71,0l4.07-4.07c0.49-0.49,1.28-0.49,1.77,0c0.49,0.49,0.49,1.28,0,1.77l-7.07,7.07 c-3.22,3.22-8.45,3.22-11.67,0s-3.22-8.45,0-11.67l4.6-4.6c0.49-0.49,1.28-0.49,1.77,0c0.49,0.49,0.49,1.28,0,1.77L6.07,9.8z M7,1.8 c0-0.41-0.34-0.75-0.75-0.75c-0.04,0-0.07,0-0.11,0.01c-2.63,0.38-4.7,2.46-5.08,5.08c0,0.03-0.01,0.07-0.01,0.11 C1.05,6.66,1.39,7,1.8,7c0.38,0,0.69-0.28,0.74-0.64c0.28-1.97,1.84-3.53,3.81-3.81C6.72,2.49,7,2.18,7,1.8z M17,22.2 c0,0.41,0.34,0.75,0.75,0.75c0.04,0,0.07,0,0.11-0.01c2.63-0.38,4.7-2.46,5.08-5.08c0-0.03,0.01-0.07,0.01-0.11 c0-0.41-0.34-0.75-0.75-0.75c-0.38,0-0.69,0.28-0.74,0.64c-0.28,1.97-1.84,3.53-3.81,3.81C17.28,21.51,17,21.82,17,22.2z"/></svg></div>
+        <div class="welcome-copy">
+          <strong id="welcomeName">آل فاطمیون عزیز</strong>
+          <span class="welcome-main">به موکب مجازی آل فاطمیون خوش آمدید</span>
+        </div>
       </div>
-      <button id="contactButton" class="mini" type="button">ارتباط با پشتیبانی</button>
+      <div class="welcome-support">
+        <div class="welcome-support-inner">
+          <small class="welcome-sub">لطفاً نظرات خود را با بخش پشتیبانی درمیان بگذارید</small>
+          <button id="contactButton" class="mini" type="button"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-4h2v2h-2zm1.61-9.96c-2.06-.3-3.88.97-4.43 2.79-.18.58.26 1.17.87 1.17h.2c.41 0 .74-.29.88-.67.32-.89 1.27-1.5 2.3-1.28.95.2 1.65 1.13 1.57 2.1-.1 1.34-1.62 1.63-2.45 2.88 0 .01-.01.01-.01.02-.01.02-.02.03-.03.05-.09.15-.18.32-.25.5-.01.03-.03.05-.04.08-.01.02-.01.04-.02.07-.12.34-.2.75-.2 1.25h2c0-.42.11-.77.28-1.07.02-.03.03-.06.05-.09.08-.14.18-.27.28-.39.01-.01.02-.03.03-.04.1-.12.21-.23.33-.34.96-.91 2.26-1.65 1.99-3.56-.24-1.74-1.61-3.21-3.35-3.47z"/></svg>ارتباط با پشتیبانی</button>
+        </div>
+      </div>
     </section>
   </div>
 
@@ -145,7 +151,7 @@
   <script src="/app-account.js?v=test2-3" defer></script>
   <script src="/app-radio.js?v=test2-3" defer></script>
   <script src="/app-platform-parity.js?v=test2-3" defer></script>
-  <script src="/app-step1-fix.js?v=step1fix-2" defer></script>
+  <script src="/app-step1-fix.js?v=step1fix-3" defer></script>
   <script src="/app-auth.js?v=test2-3" defer></script>
 </body>
 </html>

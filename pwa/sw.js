@@ -1,6 +1,6 @@
-const CACHE='alefatemion-pwa-step1fix-v2';
+const CACHE='alefatemion-pwa-step1fix-v3';
 const V='test2-3';
-const STEP1='step1fix-2';
+const STEP1='step1fix-3';
 const SHELL=[
   '/',
   '/index.html',
