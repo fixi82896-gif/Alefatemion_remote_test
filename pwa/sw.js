@@ -1,6 +1,6 @@
-const CACHE='alefatemion-pwa-step1-v1';
+const CACHE='alefatemion-pwa-step1fix-v1';
 const V='test2-3';
-const STEP1='step1-1';
+const STEP1='step1fix-1';
 const SHELL=[
   '/',
   '/index.html',
@@ -12,6 +12,7 @@ const SHELL=[
   `/app-account.js?v=${V}`,
   `/app-radio.js?v=${V}`,
   `/app-platform-parity.js?v=${V}`,
+  `/app-step1-fix.js?v=${STEP1}`,
   `/app-auth.js?v=${V}`,
   `/brand-logo.webp?v=${V}`,
   `/icon.svg?v=${V}`,
