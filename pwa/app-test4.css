@@ -1,0 +1,115 @@
+/* PWA Test 4 — consolidated Android 21 parity styles */
+:root{--test4-green-dark:#06110b;--test4-green:#0b673d;--test4-green-bright:#12b96a;--test4-welcome-expanded:174px;--test4-welcome-compact:106px}
+
+/* Keep the proven Test 2 document scrolling. Never turn #app into a competing scroll viewport. */
+html,body{overflow-x:hidden;overflow-y:auto;touch-action:pan-y}
+.app{min-height:100dvh;overflow:visible!important;height:auto!important}
+.topbar{display:none!important}
+.view{padding-top:4px}
+
+/* Welcome: Android-like card with a fixed outer slot so collapse cannot shift scroll position. */
+.welcome-slot{height:194px;padding:10px 16px 0;position:relative}
+.welcome{margin:0!important;width:100%;height:var(--test4-welcome-expanded);min-height:0!important;max-height:none!important;padding:15px 18px!important;border-radius:25px!important;color:#fff;background:linear-gradient(90deg,var(--test4-green-dark),var(--test4-green),var(--test4-green-bright))!important;display:grid!important;grid-template-columns:auto 1fr;grid-template-areas:"hand copy" "button button";align-items:center;gap:10px 14px;overflow:hidden;opacity:1!important;position:sticky;top:0;z-index:9;transition:height .18s ease,padding .18s ease,box-shadow .18s ease;box-shadow:0 8px 24px rgba(6,17,11,.15)}
+.welcome.compact{height:var(--test4-welcome-compact);padding-top:10px!important;padding-bottom:10px!important;grid-template-areas:"hand copy";grid-template-columns:auto 1fr}
+.welcome-hand{grid-area:hand;width:58px;height:58px;border-radius:20px;background:rgba(255,255,255,.14);display:grid;place-items:center;font-size:31px}
+.welcome-copy{grid-area:copy;display:grid!important;gap:4px;text-align:right;min-width:0}
+.welcome-copy strong{font-size:20px;line-height:1.5}
+.welcome-main{font-size:15px!important;opacity:1!important;white-space:normal}
+.welcome-sub{font-size:12px;color:rgba(255,255,255,.86);line-height:1.7;transition:opacity .14s ease,max-height .14s ease;max-height:44px;overflow:hidden}
+.welcome .mini{grid-area:button;justify-self:stretch;min-height:42px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.12);font-size:14px}
+.welcome.compact .welcome-sub,.welcome.compact .mini{display:none!important}
+
+/* Home spacing and carousel */
+.home-block{padding:0 16px;margin-bottom:14px}
+.hero{height:auto!important;aspect-ratio:auto!important;overflow:visible!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}
+.hero-card{height:188px;border-radius:24px;overflow:hidden;background:linear-gradient(90deg,var(--test4-green-dark),var(--test4-green),var(--test4-green-bright));box-shadow:0 6px 18px rgba(6,17,11,.12)}
+.hero-card>img,.hero-card>.heritage-banner{width:100%;height:100%;object-fit:cover;display:block}
+.hero-pagination{display:flex;align-items:center;justify-content:center;gap:10px;padding:8px 0 0;color:var(--muted);font-size:11px;direction:ltr}
+.hero-pagination .dots{position:static!important;display:flex;gap:6px}
+.hero-pagination .dot{border:0;padding:0;width:7px;height:7px;border-radius:999px;background:var(--muted);opacity:.45}
+.hero-pagination .dot.active{width:9px;height:9px;opacity:1;background:var(--brand2)}
+.hero-arrow,.hero-indicators{display:none!important}
+
+.fixed-banner,.home-content-banner{border-radius:24px!important}
+.home-content-list{gap:14px!important}
+.home-content-banner{min-height:176px;height:176px!important}
+.home-content-logo{width:72px!important;height:52px!important;right:12px!important;top:10px!important}
+.home-content-icon{width:58px!important;height:58px!important;border-radius:19px!important;font-size:30px!important;left:14px!important;top:14px!important}
+.home-content-copy strong{font-size:19px!important}
+
+/* Bottom navigation */
+.bottom-nav{min-height:76px;padding-top:8px!important;background:color-mix(in srgb,var(--surface) 97%,transparent)!important;backdrop-filter:blur(12px);box-shadow:0 -5px 18px rgba(0,0,0,.08)!important}
+.bottom-nav button{gap:3px!important;border-radius:18px;padding:5px 2px!important}
+.bottom-nav button.active{background:color-mix(in srgb,var(--brand2) 11%,var(--surface));color:var(--brand2)}
+.bottom-nav button span{font-size:24px!important}
+.bottom-nav button small{font-size:11px!important}
+.nav-avatar img.brand-fallback,.avatar-btn img.brand-fallback,.drawer-avatar img.brand-fallback,.profile-photo-preview img.brand-fallback{object-fit:contain!important;padding:2px;background:#0e4d3d}
+
+/* Floating radio on the same side as Android. */
+.radio-fab{left:auto!important;right:16px!important;bottom:92px!important;width:54px!important;height:54px!important;border-radius:19px!important}
+.radio-now{left:84px!important;right:auto!important;bottom:98px!important;max-width:calc(100vw - 110px)!important}
+.radio-now.rolling{animation:test4Roll .55s ease both}
+@keyframes test4Roll{from{clip-path:inset(0 100% 0 0);opacity:.4}to{clip-path:inset(0 0 0 0);opacity:1}}
+
+/* Albums: Android-like root controls and media grid without raw filenames. */
+.albums-shell{padding:8px 12px 22px!important}
+.albums-top-row{margin-bottom:8px!important;padding:0 4px}
+.album-toolbar{position:sticky;top:0;z-index:6;background:color-mix(in srgb,var(--bg) 96%,transparent);backdrop-filter:blur(8px);padding:6px 0 8px;margin:0 0 8px!important}
+.album-toolbar input{border-radius:18px!important}
+.album-grid.layout-normal{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important}
+.album-grid.layout-compact{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:6px!important}
+.album-grid.layout-large{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+.album-card{min-height:0!important;border-radius:14px!important;background:var(--surface);overflow:hidden;position:relative;border:1px solid var(--line)}
+.folder-card{grid-column:span 2;display:grid!important;grid-template-columns:92px minmax(0,1fr);align-items:center;padding:0!important;min-height:94px!important}
+.folder-card .media-fallback,.folder-card>.media-thumb{grid-column:1;grid-row:1;width:92px!important;height:92px!important;aspect-ratio:1/1;object-fit:cover}
+.folder-card .meta{grid-column:2;padding:10px!important;display:grid;gap:4px}
+.media-card{aspect-ratio:1/1;display:block!important}
+.media-card .media-fallback,.media-card>.media-thumb{position:absolute;inset:0;width:100%!important;height:100%!important;aspect-ratio:1/1;object-fit:cover}
+.media-fallback{display:grid;place-items:center;background:var(--surface2)}
+.media-fallback img{width:54%!important;height:54%!important;object-fit:contain!important;opacity:.7}
+.media-brand-mark{position:absolute!important;z-index:3;top:6px!important;left:6px!important;width:28px!important;height:28px!important;object-fit:contain!important;filter:drop-shadow(0 2px 3px rgba(0,0,0,.35))}
+.media-card .meta{position:absolute;z-index:4;right:6px;bottom:5px;padding:3px 6px!important;border-radius:999px;background:rgba(0,0,0,.48);color:#fff}
+.media-card .meta strong{display:none!important}.media-card .meta small{color:#fff!important;font-size:9px}
+.play-indicator{z-index:4!important;font-size:28px!important}
+.fav{z-index:5!important;left:6px!important;top:auto!important;bottom:6px!important;width:30px!important;height:30px!important}
+
+/* Collection page */
+.collection-modal{height:min(92dvh,820px)!important;max-height:92dvh!important}
+.media-collection-page{display:grid;gap:12px;padding-bottom:22px}
+.media-collection-page>input{position:sticky;top:0;z-index:3;background:var(--surface)!important;border-radius:18px}
+.media-collection-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.media-collection-card{border:0;padding:0;aspect-ratio:1/1;border-radius:14px;overflow:hidden;position:relative;background:var(--surface2);color:#fff}
+.media-collection-card>.media-fallback,.media-collection-card>.media-thumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.media-collection-card>small{position:absolute;z-index:5;right:5px;bottom:5px;background:rgba(0,0,0,.5);padding:3px 6px;border-radius:999px;font-size:9px}
+
+/* Full-screen viewer */
+.modal.viewer-fullscreen{inset:0!important;left:0!important;bottom:0!important;transform:none!important;width:100vw!important;height:100dvh!important;max-height:none!important;border-radius:0!important;padding:0!important;background:#000!important;color:#fff!important;overflow:hidden!important}
+.viewer-fullscreen .modal-head{height:58px;margin:0!important;padding:8px 12px;background:rgba(0,0,0,.8);position:absolute;z-index:20;top:0;left:0;right:0;color:#fff}
+.viewer-fullscreen .modal-head .icon-btn{background:rgba(255,255,255,.14)!important;color:#fff!important}
+.viewer-fullscreen #modalBody{height:100%;overflow:hidden}
+.viewer-fullscreen .viewer{height:100%;display:grid!important;grid-template-rows:1fr auto auto;gap:0!important;background:#000;padding-top:58px;padding-bottom:max(10px,env(safe-area-inset-bottom))}
+.viewer-fullscreen .viewer-stage{position:relative;min-height:0;display:grid;place-items:center;overflow:hidden;background:#000}
+.viewer-fullscreen .viewer-stage>img:not(.test4-viewer-watermark),.viewer-fullscreen .viewer-stage>video,.viewer-fullscreen .viewer>img:not(.test4-viewer-watermark),.viewer-fullscreen .viewer>video{width:100%!important;height:100%!important;max-height:none!important;object-fit:contain!important;border-radius:0!important;background:#000}
+.test4-viewer-watermark{position:absolute!important;z-index:12!important;top:10px!important;left:10px!important;width:62px!important;height:62px!important;object-fit:contain!important;opacity:.82;pointer-events:none;filter:drop-shadow(0 2px 4px rgba(0,0,0,.5))}
+.viewer-fullscreen .viewer-position{color:#ddd;text-align:center;padding:6px;background:#000}
+.viewer-fullscreen .viewer-actions{padding:8px 10px;gap:6px!important;background:#000;overflow-x:auto}
+.viewer-fullscreen .viewer-actions button{flex:0 0 auto!important;white-space:nowrap;background:#1c2823!important;color:#fff!important}
+.viewer-fullscreen .muted{color:#bbb!important;padding:0 12px 6px}
+
+/* Profile drawer closer to the Android full-screen profile surface. */
+.drawer{width:min(100vw,520px)!important;right:0!important;border-radius:0!important;padding-top:calc(14px + env(safe-area-inset-top))!important}
+.drawer-head{padding-bottom:14px;border-bottom:1px solid var(--line)}
+.drawer-avatar{width:86px!important;height:86px!important}
+.drawer-actions{gap:0!important;margin-top:8px!important}
+.drawer-actions button{background:transparent!important;border-radius:0!important;border-bottom:1px solid var(--line)!important;min-height:54px!important;padding:14px 10px!important;font-weight:600}
+.drawer-theme{width:100%;margin-top:8px;padding:10px 0;border-top:1px solid var(--line);display:flex!important;justify-content:space-between;align-items:center}
+
+/* Settings / exit */
+.settings-list .list-item,.exit-choice .list-item{width:100%;text-align:right;color:var(--text);display:flex;flex-direction:column;gap:3px}
+.exit-choice{display:grid;gap:10px}
+
+@media(min-width:700px){
+  .welcome-slot{padding-left:20px;padding-right:20px}
+  .album-grid.layout-normal{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+  .media-collection-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
