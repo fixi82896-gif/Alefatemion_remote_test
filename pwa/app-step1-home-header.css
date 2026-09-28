@@ -21,6 +21,31 @@
   overflow:visible;
 }
 
+/* Keep the existing document slot; only Home pins it to the viewport.
+ * Empty space below the compact card must not intercept content taps. */
+.welcome-slot.step1-home{
+  position:sticky;
+  top:0;
+  z-index:9;
+  pointer-events:none;
+}
+.welcome-slot.step1-home > .welcome{pointer-events:auto}
+
+/* Opt-in test diagnostic control, away from navigation and radio buttons. */
+.step1-trace-export{
+  position:fixed;
+  z-index:55;
+  left:12px;
+  bottom:calc(168px + env(safe-area-inset-bottom));
+  max-width:170px;
+  padding:10px 12px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:var(--surface);
+  color:var(--text);
+  font-size:12px;
+}
+
 .welcome{
   box-sizing:border-box!important;
   width:100%!important;
