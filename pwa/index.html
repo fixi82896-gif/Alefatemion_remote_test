@@ -11,6 +11,7 @@
   <link rel="icon" href="/icon.svg?v=test2-3" type="image/svg+xml">
   <link rel="stylesheet" href="/app.css?v=test2-3">
   <link rel="stylesheet" href="/app-test2.css?v=test2-3">
+  <link rel="stylesheet" href="/app-step1-home-header.css?v=step1-1">
 </head>
 <body>
   <div id="offline" class="offline hidden">اتصال اینترنت برقرار نیست؛ اطلاعات آنلاین ممکن است تازه نباشد.</div>
@@ -83,8 +84,13 @@
     </header>
 
     <section id="welcome" class="welcome">
-      <div><strong id="welcomeName">خوش آمدید</strong><span>به نرم‌افزار آل فاطمیون</span></div>
-      <button id="contactButton" class="mini">ارتباط با پشتیبانی</button>
+      <div class="welcome-wave" aria-hidden="true">👋</div>
+      <div class="welcome-copy">
+        <strong id="welcomeName">خوش آمدید</strong>
+        <span class="welcome-main">به موکب مجازی آل فاطمیون</span>
+        <small class="welcome-sub">لطفاً نظرات خود را با بخش پشتیبانی درمیان بگذارید</small>
+      </div>
+      <button id="contactButton" class="mini" type="button">ارتباط با پشتیبانی</button>
     </section>
 
     <main id="view" class="view branded-page"></main>
