@@ -45,22 +45,41 @@ jobs:
           git pull --rebase origin main
           python3 - <<'PY'
           from pathlib import Path
-          import re
+          import json
 
           path = Path("app-config.json")
-          text = path.read_text(encoding="utf-8")
-          old = "https://github.com/fixi82896-gif/Alefatemion_remote/releases/download/remote-assets-v1/intro-background-e0daceefe1c2ba6b3f0e.png"
-          new = "https://github.com/fixi82896-gif/Alefatemion_remote_test/releases/download/remote-assets-v1/intro-background-e0daceefe1c2ba6b3f0e.png"
-          count = text.count(old)
-          if count != 1:
-              raise SystemExit(f"Expected exactly one Production asset reference, found {count}")
-          text = text.replace(old, new)
-          match = re.search(r'("revision"\s*:\s*)(\d+)', text)
-          if not match:
-              raise SystemExit("Top-level revision not found")
-          revision = int(match.group(2)) + 1
-          text = text[:match.start(2)] + str(revision) + text[match.end(2):]
-          path.write_text(text, encoding="utf-8")
+          data = json.loads(path.read_text(encoding="utf-8"))
+          filename = "intro-background-e0daceefe1c2ba6b3f0e.png"
+          target = (
+              "https://github.com/fixi82896-gif/Alefatemion_remote_test/"
+              "releases/download/remote-assets-v1/" + filename
+          )
+
+          matches = 0
+          for banner in data.get("home", {}).get("banners", []):
+              current = str(banner.get("image_url", ""))
+              if filename in current:
+                  if "fixi82896-gif/Alefatemion_remote/" not in current:
+                      raise SystemExit(
+                          "Target banner exists but no longer points to Production"
+                      )
+                  banner["image_url"] = target
+                  matches += 1
+
+          if matches != 1:
+              raise SystemExit(
+                  f"Expected exactly one target banner, found {matches}"
+              )
+
+          revision = int(data.get("revision", 0))
+          if revision < 0:
+              raise SystemExit("Invalid top-level revision")
+          data["revision"] = revision + 1
+
+          path.write_text(
+              json.dumps(data, ensure_ascii=False, indent=2) + "\n",
+              encoding="utf-8",
+          )
           PY
 
           git config user.name "github-actions[bot]"
