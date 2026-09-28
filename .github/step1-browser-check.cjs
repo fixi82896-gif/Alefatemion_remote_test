@@ -47,7 +47,7 @@ const server=spawn(process.execPath,['pwa-server-test2.js'],{cwd:root,env:{...pr
     await page.waitForTimeout(180);
     assert.equal(await page.locator('#drawer').isVisible(),true);
     assert.equal(await page.evaluate(()=>history.state.kind),'drawer');
-    await page.goBack();await page.locator('#drawer.hidden').waitFor();
+    await page.goBack();await page.locator('#drawer.hidden').waitFor({state:'attached'});
     assert.equal(await page.evaluate(()=>state.tab),tab);
     checks.push({tab,action,firstBack:'drawer',secondBack:tab});
    }
@@ -55,7 +55,7 @@ const server=spawn(process.execPath,['pwa-server-test2.js'],{cwd:root,env:{...pr
   await page.locator('[data-tab="albums"]').click();
   await page.locator('#navProfile').click();await page.locator('[data-action="settings"]').click();
   await page.locator('#closeModal').click();await page.locator('#drawer:not(.hidden)').waitFor();
-  await page.locator('#closeDrawer').click();await page.locator('#drawer.hidden').waitFor();
+  await page.locator('#closeDrawer').click();await page.locator('#drawer.hidden').waitFor({state:'attached'});
   assert.equal(await page.evaluate(()=>state.tab),'albums');
   for(const width of [320,393,768,1000]){
    await page.setViewportSize({width,height:800});await page.evaluate(()=>scrollTo(0,0));await page.waitForTimeout(300);
