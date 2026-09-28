@@ -1,0 +1,71 @@
+name: One-time localize Test banner asset
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - ".github/workflows/one-time-localize-production-asset.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  localize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Test remote
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Download and verify exact Production asset
+        shell: bash
+        run: |
+          set -euo pipefail
+          file="intro-background-e0daceefe1c2ba6b3f0e.png"
+          url="https://github.com/fixi82896-gif/Alefatemion_remote/releases/download/remote-assets-v1/${file}"
+          curl --fail --location --retry 3 --output "$file" "$url"
+          expected="e0daceefe1c2ba6b3f0ea9c7d51d0886aa277e9cc938627598343a9f67714110"
+          actual="$(sha256sum "$file" | awk '{print $1}')"
+          test "$actual" = "$expected"
+
+      - name: Upload exact asset to Test release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          file="intro-background-e0daceefe1c2ba6b3f0e.png"
+          gh release upload remote-assets-v1 "$file" --clobber --repo "$GITHUB_REPOSITORY"
+
+      - name: Point Test config to Test-owned asset without overwriting concurrent changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git pull --rebase origin main
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          path = Path("app-config.json")
+          text = path.read_text(encoding="utf-8")
+          old = "https://github.com/fixi82896-gif/Alefatemion_remote/releases/download/remote-assets-v1/intro-background-e0daceefe1c2ba6b3f0e.png"
+          new = "https://github.com/fixi82896-gif/Alefatemion_remote_test/releases/download/remote-assets-v1/intro-background-e0daceefe1c2ba6b3f0e.png"
+          count = text.count(old)
+          if count != 1:
+              raise SystemExit(f"Expected exactly one Production asset reference, found {count}")
+          text = text.replace(old, new)
+          match = re.search(r'("revision"\s*:\s*)(\d+)', text)
+          if not match:
+              raise SystemExit("Top-level revision not found")
+          revision = int(match.group(2)) + 1
+          text = text[:match.start(2)] + str(revision) + text[match.end(2):]
+          path.write_text(text, encoding="utf-8")
+          PY
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add app-config.json
+          git diff --cached --check
+          git commit -m "Keep Test banner assets independent from Production"
+          git push origin HEAD:main
