@@ -1,10 +1,12 @@
-const CACHE='alefatemion-pwa-test2-v3';
+const CACHE='alefatemion-pwa-step1-v1';
 const V='test2-3';
+const STEP1='step1-1';
 const SHELL=[
   '/',
   '/index.html',
   `/app.css?v=${V}`,
   `/app-test2.css?v=${V}`,
+  `/app-step1-home-header.css?v=${STEP1}`,
   `/app-core.js?v=${V}`,
   `/app-content.js?v=${V}`,
   `/app-account.js?v=${V}`,
