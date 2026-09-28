@@ -1,5 +1,8 @@
 'use strict';
 
+// Google Material icons; Apache 2.0 (see package license).
+const HOME_SECTION_ICONS = {"albums": "<svg aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" enable-background=\"new 0 0 24 24\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\"><rect fill=\"none\" height=\"24\" width=\"24\"/><g><path d=\"M18,2H6C4.9,2,4,2.9,4,4v16c0,1.1,0.9,2,2,2h12c1.1,0,2-0.9,2-2V4C20,2.9,19.1,2,18,2z M15.24,10.55L13.5,9.5l-1.74,1.05 c-0.33,0.2-0.76-0.04-0.76-0.43V4h5v6.12C16,10.51,15.58,10.75,15.24,10.55z M7.6,17.2l1.38-1.83c0.2-0.27,0.6-0.27,0.8,0L11,17 l2.23-2.97c0.2-0.27,0.6-0.27,0.8,0l2.38,3.17c0.25,0.33,0.01,0.8-0.4,0.8H8C7.59,18,7.35,17.53,7.6,17.2z\"/></g></svg>", "images": "<svg aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\"><path d=\"M0 0h24v24H0V0z\" fill=\"none\"/><path d=\"M22 16V4c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2zm-10.6-3.47l1.63 2.18 2.58-3.22c.2-.25.58-.25.78 0l2.96 3.7c.26.33.03.81-.39.81H9c-.41 0-.65-.47-.4-.8l2-2.67c.2-.26.6-.26.8 0zM2 7v13c0 1.1.9 2 2 2h13c.55 0 1-.45 1-1s-.45-1-1-1H5c-.55 0-1-.45-1-1V7c0-.55-.45-1-1-1s-1 .45-1 1z\"/></svg>", "videos": "<svg aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\"><path d=\"M3 6c-.55 0-1 .45-1 1v13c0 1.1.9 2 2 2h13c.55 0 1-.45 1-1s-.45-1-1-1H5c-.55 0-1-.45-1-1V7c0-.55-.45-1-1-1zm17-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8 12.5v-9l5.47 4.1c.27.2.27.6 0 .8L12 14.5z\"/></svg>", "radio": "<svg aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\"><path d=\"M3.24 6.15C2.51 6.43 2 7.17 2 8v12c0 1.1.9 2 2 2h16c1.11 0 2-.9 2-2V8c0-1.1-.9-2-2-2H8.3l7.43-3c.46-.19.68-.71.49-1.17-.19-.46-.71-.68-1.17-.49L3.24 6.15zM7 20c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm13-8h-2v-1c0-.55-.45-1-1-1s-1 .45-1 1v1H4V9c0-.55.45-1 1-1h14c.55 0 1 .45 1 1v3z\"/></svg>", "favorites": "<svg aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\"><path d=\"M0 0h24v24H0V0z\" fill=\"none\"/><path d=\"M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z\"/></svg>", "announcements": "<svg aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 -960 960 960\" width=\"24\"><path d=\"M840-440h-80q-17 0-28.5-11.5T720-480q0-17 11.5-28.5T760-520h80q17 0 28.5 11.5T880-480q0 17-11.5 28.5T840-440ZM664-288q10-14 26-16t30 8l64 48q14 10 16 26t-8 30q-10 14-26 16t-30-8l-64-48q-14-10-16-26t8-30Zm120-424-64 48q-14 10-30 8t-26-16q-10-14-8-30t16-26l64-48q14-10 30-8t26 16q10 14 8 30t-16 26ZM200-360h-40q-33 0-56.5-23.5T80-440v-80q0-33 23.5-56.5T160-600h160l139-84q20-12 40.5 0t20.5 35v338q0 23-20.5 35t-40.5 0l-139-84h-40v120q0 17-11.5 28.5T240-200q-17 0-28.5-11.5T200-240v-120Zm240-22v-196l-98 58H160v80h182l98 58Zm120 36v-268q27 24 43.5 58.5T620-480q0 41-16.5 75.5T560-346ZM300-480Z\"/></svg>"};
+
 function fixedBanners() {
   return (state.config?.home?.banners || [])
     .filter((b) => b?.fixed === true && activeByTime(b) && safeHttps(b.image_url))
@@ -51,17 +54,19 @@ function homeSectionsOrdered() {
     .sort((a, b) => Number(a.display_order || 0) - Number(b.display_order || 0));
 }
 
-function homeBannerCardHtml({ id, title, subtitle, imageUrl = '', icon = '•', status = '', radio = false, loading = false }) {
+function homeBannerCardHtml({ id, title, subtitle, imageUrl = '', icon = '•', status = '', radio = false, loading = false, video = false }) {
   const image = safeHttps(imageUrl);
   return `<button class="home-content-banner ${radio ? 'radio-mode' : ''}" data-home-action="${escapeHtml(id)}" type="button">
-    ${image ? `<img class="home-content-image" src="${escapeHtml(image)}" alt="">` : ''}
+    ${image ? `<img class="home-content-image" src="${escapeHtml(image)}" alt="" loading="lazy" decoding="async">` : ''}
     <div class="home-content-shade"></div>
     <img class="home-content-logo" src="/brand-logo.webp" alt="آل فاطمیون">
-    <span class="home-content-icon">${escapeHtml(icon)}</span>
+    <span class="home-content-icon">${HOME_SECTION_ICONS[id] || escapeHtml(icon)}</span>
+    ${video && image ? '<span class="home-play-preview" aria-hidden="true">▶</span>' : ''}
+    ${loading ? '<span class="home-card-loading" aria-hidden="true"></span>' : ''}
     ${status ? `<span class="home-content-status">${escapeHtml(status)}</span>` : ''}
     <div class="home-content-copy">
       <strong>${escapeHtml(title)}</strong>
-      <span>${escapeHtml(loading ? 'در حال آماده‌سازی…' : subtitle)}</span>
+      <span class="home-subtitle-row"><span>${escapeHtml(loading ? 'در حال آماده‌سازی…' : subtitle)}</span><b aria-hidden="true">‹</b></span>
     </div>
   </button>`;
 }
@@ -70,8 +75,8 @@ async function findFolderPreview(folder) {
   if (!folder?.hash) return '';
   try {
     const children = await fetchFolder(folder.hash);
-    const media = children.find((x) => x.isImage && x.downloadUrl) || children.find((x) => x.isVideo && x.downloadUrl);
-    return media?.downloadUrl || '';
+    const media = children.find((x) => x.isImage && (x.thumbnailUrl || x.downloadUrl)) || children.find((x) => x.isVideo && x.thumbnailUrl);
+    return media?.thumbnailUrl || (media?.isImage ? media.downloadUrl : '') || '';
   } catch {
     return '';
   }
@@ -166,14 +171,14 @@ function renderHome() {
       }));
     } else if (section.id === 'media') {
       const image = preview?.recentImages?.[0];
-      const video = preview?.recentVideos?.find((x) => x.downloadUrl) || preview?.recentVideos?.[0];
+      const video = preview?.recentVideos?.find((x) => x.thumbnailUrl) || preview?.recentVideos?.[0];
       sectionHtml.push(homeBannerCardHtml({
         id:'images', title:'تازه‌ترین تصاویر', subtitle:image?.name || 'مشاهده تصاویر',
-        imageUrl:image?.downloadUrl || '', icon:'▧', loading:!preview
+        imageUrl:image?.thumbnailUrl || image?.downloadUrl || '', icon:'▧', loading:!preview
       }));
       sectionHtml.push(homeBannerCardHtml({
         id:'videos', title:'تازه‌ترین فیلم‌ها', subtitle:video?.name || 'مشاهده فیلم‌ها',
-        imageUrl:video?.downloadUrl || '', icon:'▶', loading:!preview
+        imageUrl:video?.thumbnailUrl || '', icon:'▶', loading:!preview, video:true
       }));
     } else if (section.id === 'radio') {
       sectionHtml.push(homeBannerCardHtml({
@@ -185,20 +190,24 @@ function renderHome() {
       sectionHtml.push(homeBannerCardHtml({
         id:'favorites', title:'برگزیده‌های شما',
         subtitle:favorite?.name || 'هنوز موردی به برگزیده‌ها اضافه نشده',
-        imageUrl:favorite?.downloadUrl || '', icon:'♥'
+        imageUrl:favorite?.thumbnailUrl || (favorite?.isVideo || String(favorite?.type || '').startsWith('video/') ? '' : favorite?.downloadUrl) || '', icon:'♥',
+        video:favorite?.isVideo || String(favorite?.type || '').startsWith('video/')
       }));
     }
   }
 
   view.innerHTML = `
-    ${items.length ? '<section class="home-block"><div id="heroArea" class="hero" role="button" tabindex="0"></div></section>' : ''}
-    ${fixed.map((b, i) => `<section class="home-block"><button class="fixed-banner" data-fixed-banner="${i}" type="button"><img src="${escapeHtml(safeHttps(b.image_url))}" alt="${escapeHtml(b.title || 'بنر آل فاطمیون')}"></button></section>`).join('')}
+    ${items.length ? '<section class="home-block"><div id="heroArea" class="hero-carousel" role="region" aria-label="بنرهای آل فاطمیون" tabindex="0"></div></section>' : ''}
+    ${fixed.map((b, i) => `<section class="home-block"><button class="fixed-banner" data-fixed-banner="${i}" type="button">${homeRemoteBannerHtml(b)}</button></section>`).join('')}
     <section class="home-content-list">${sectionHtml.join('')}</section>`;
 
   if (items.length) {
     paintHero(items);
     startHeroTimer(items);
   }
+  view.querySelectorAll('.home-content-image, .fixed-banner > img').forEach((img) => {
+    img.addEventListener('error', () => { img.hidden = true; }, {once:true});
+  });
   view.querySelectorAll('[data-fixed-banner]').forEach((button) => button.addEventListener('click', () => {
     handleBanner(fixed[Number(button.dataset.fixedBanner)]);
   }));

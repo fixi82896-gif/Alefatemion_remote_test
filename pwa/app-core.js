@@ -479,21 +479,45 @@ function startHeroTimer(items) {
   stopHeroTimer();
   if (items.length < 2) return;
   state.heroTimer = setInterval(() => {
-    if (state.tab !== 'home' || document.hidden) return;
+    if (state.tab !== 'home' || document.hidden || state.heroPointerStartX != null) return;
     moveHero(1, items, false);
   }, 6000);
 }
 
 function wireHeroManual(hero, items) {
-  hero.onpointerdown = (event) => { state.heroPointerStartX = event.clientX; };
+  hero.onpointerdown = (event) => {
+    if (event.target.closest('.hero-arrow, [data-hero-dot]')) return;
+    state.heroPointerStartX = event.clientX;
+    state.heroPointerStartY = event.clientY;
+  };
   hero.onpointerup = (event) => {
     if (state.heroPointerStartX == null) return;
-    const delta = event.clientX - state.heroPointerStartX;
+    const dx = event.clientX - state.heroPointerStartX;
+    const dy = event.clientY - state.heroPointerStartY;
     state.heroPointerStartX = null;
-    if (Math.abs(delta) < 35) return;
-    moveHero(delta > 0 ? -1 : 1, items, true);
+    if (Math.abs(dx) < 35 || Math.abs(dx) <= Math.abs(dy)) return;
+    hero.suppressClickUntil = performance.now() + 500;
+    moveHero(dx > 0 ? -1 : 1, items, true);
   };
   hero.onpointercancel = () => { state.heroPointerStartX = null; };
+  hero.onpointerleave = () => { state.heroPointerStartX = null; };
+  hero.onkeydown = (event) => {
+    if (event.target !== hero || !['ArrowLeft','ArrowRight'].includes(event.key)) return;
+    event.preventDefault();
+    moveHero(event.key === 'ArrowRight' ? -1 : 1, items, true);
+  };
+}
+
+function homeRemoteBannerHtml(banner) {
+  const title = String(banner.title || '').trim();
+  const description = String(banner.description || '').trim();
+  const sponsored = banner.sponsored === true;
+  return `<img src="${escapeHtml(safeHttps(banner.image_url))}" alt="${escapeHtml(title || 'بنر آل فاطمیون')}" decoding="async">
+    ${title || description || sponsored ? `<span class="home-banner-overlay"><span class="home-banner-caption">
+      ${sponsored ? '<small class="home-sponsored">تبلیغ</small>' : ''}
+      ${title ? `<strong>${escapeHtml(title)}</strong>` : ''}
+      ${description ? `<span>${escapeHtml(description)}</span>` : ''}
+    </span></span>` : ''}`;
 }
 
 function paintHero(items) {
@@ -503,17 +527,19 @@ function paintHero(items) {
   const item = items[state.heroIndex];
   const body = item.local
     ? `<div class="heritage-banner"><img src="/brand-logo.webp" alt=""><div><strong>آل فاطمیون</strong><span>روایت تصویری فعالیت‌های مذهبی و جهادی</span><small>با محوریت خدمت در مسیر اربعین حسینی</small></div></div>`
-    : `<img src="${escapeHtml(safeHttps(item.image_url))}" alt="${escapeHtml(item.title || 'بنر آل فاطمیون')}">`;
-  hero.innerHTML = `${body}<button class="hero-arrow hero-prev" type="button" aria-label="بنر قبلی">‹</button><button class="hero-arrow hero-next" type="button" aria-label="بنر بعدی">›</button><div class="hero-indicators"><span class="hero-counter">${toFaDigits(state.heroIndex + 1)} از ${toFaDigits(items.length)}</span><div class="dots">${items.map((_,i)=>`<button type="button" class="dot ${i===state.heroIndex?'active':''}" data-hero-dot="${i}" aria-label="بنر ${i+1}"></button>`).join('')}</div></div>`;
+    : `<button type="button" class="hero-slide-button" data-hero-open>${homeRemoteBannerHtml(item)}</button>`;
+  hero.innerHTML = `<div class="hero-viewport"><div class="hero-visual">${body}</div>${items.length > 1 ? '<button class="hero-arrow hero-prev" type="button" aria-label="بنر قبلی">‹</button><button class="hero-arrow hero-next" type="button" aria-label="بنر بعدی">›</button>' : ''}</div>
+    ${items.length > 1 ? `<div class="hero-indicators"><span class="hero-counter">${toFaDigits(state.heroIndex + 1)} از ${toFaDigits(items.length)}</span><div class="dots">${items.map((_,i)=>`<button type="button" class="dot ${i===state.heroIndex?'active':''}" data-hero-dot="${i}" aria-label="بنر ${i+1}" aria-current="${i===state.heroIndex?'true':'false'}"></button>`).join('')}</div></div>` : ''}`;
   hero.onclick = (event) => {
-    if (event.target.closest('.hero-arrow') || event.target.closest('[data-hero-dot]')) return;
-    if (!item.local) handleBanner(item);
+    if (performance.now() < (hero.suppressClickUntil || 0)) return;
+    if (event.target.closest('[data-hero-open]') && !item.local) handleBanner(item);
   };
   hero.querySelector('.hero-prev')?.addEventListener('click', (event) => { event.stopPropagation(); moveHero(-1, items, true); });
   hero.querySelector('.hero-next')?.addEventListener('click', (event) => { event.stopPropagation(); moveHero(1, items, true); });
   hero.querySelectorAll('[data-hero-dot]').forEach((button) => button.addEventListener('click', (event) => {
     event.stopPropagation(); state.heroIndex = Number(button.dataset.heroDot); paintHero(items); startHeroTimer(items);
   }));
+  hero.querySelector('.hero-slide-button > img')?.addEventListener('error', (event) => { event.target.hidden = true; }, {once:true});
   wireHeroManual(hero, items);
 }
 
