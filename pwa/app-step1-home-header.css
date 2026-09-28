@@ -1,5 +1,6 @@
 /* PWA Step 1 — isolated home header + welcome parity only.
- * Deliberately does not change scrolling, navigation, albums, radio, profile, or business logic.
+ * Step 1 fix: compact welcome keeps a stable outer slot so collapsing never changes
+ * document height and therefore never makes the page jump.
  */
 
 /* Remove only the extra custom top header. The element remains in DOM because
@@ -9,12 +10,24 @@
 /* Without the 66px topbar, notice tabs should stick to the actual viewport top. */
 .primary-tabs{top:0!important}
 
-/* Android 21-inspired welcome card while preserving Test2's existing
- * window-scroll collapse behavior and thresholds. */
+/* The slot always keeps the expanded amount of space in the document.
+ * The card may visually shrink, but content below it never moves. */
+.welcome-slot{
+  box-sizing:border-box;
+  width:min(100%,760px);
+  height:176px;
+  margin:0 auto;
+  padding:14px 16px 0;
+  overflow:visible;
+}
+
 .welcome{
-  margin:14px 16px 0!important;
-  min-height:148px!important;
-  max-height:168px!important;
+  box-sizing:border-box!important;
+  width:100%!important;
+  height:154px!important;
+  min-height:154px!important;
+  max-height:154px!important;
+  margin:0!important;
   padding:16px 18px!important;
   border-radius:24px!important;
   color:#fff!important;
@@ -27,8 +40,10 @@
   align-items:center!important;
   gap:10px 14px!important;
   overflow:hidden!important;
+  opacity:1!important;
   box-shadow:0 8px 24px rgba(6,17,11,.16)!important;
-  transition:max-height .22s ease,padding .22s ease,margin .22s ease,opacity .2s ease!important;
+  transform:none!important;
+  transition:height .20s ease,min-height .20s ease,max-height .20s ease,padding .20s ease,border-radius .20s ease,box-shadow .20s ease!important;
 }
 
 .welcome-wave{
@@ -41,6 +56,7 @@
   background:rgba(255,255,255,.14);
   font-size:31px;
   line-height:1;
+  transition:width .20s ease,height .20s ease,border-radius .20s ease,font-size .20s ease;
 }
 
 .welcome-copy{
@@ -83,19 +99,38 @@
   font-size:13px;
 }
 
-/* Keep the exact Test2 collapse contract: when window.scrollY crosses its
- * existing threshold, the banner fully collapses without introducing a new
- * scroll container or sticky surface. */
+/* Compact state stays visible. It never becomes zero-height or transparent.
+ * The fixed-height .welcome-slot above prevents scroll-position jumps. */
 .welcome.collapsed{
-  max-height:0!important;
-  min-height:0!important;
-  padding-top:0!important;
-  padding-bottom:0!important;
-  margin-top:0!important;
-  opacity:0!important;
-  border-width:0!important;
+  height:94px!important;
+  min-height:94px!important;
+  max-height:94px!important;
+  margin:0!important;
+  padding:10px 14px!important;
+  opacity:1!important;
+  border-width:initial!important;
+  border-radius:21px!important;
+  grid-template-columns:46px minmax(0,1fr)!important;
+  grid-template-areas:"wave copy"!important;
+  gap:10px!important;
+  box-shadow:0 5px 16px rgba(6,17,11,.13)!important;
 }
 
+.welcome.collapsed .welcome-wave{
+  width:46px;
+  height:46px;
+  border-radius:16px;
+  font-size:25px;
+}
+
+.welcome.collapsed .welcome-sub,
+.welcome.collapsed .mini{
+  display:none!important;
+}
+
+.welcome.collapsed .welcome-copy strong{font-size:17px}
+.welcome.collapsed .welcome-main{font-size:12.5px!important}
+
 @media(min-width:700px){
-  .welcome{max-width:728px;margin-left:auto!important;margin-right:auto!important}
+  .welcome-slot{padding-left:16px;padding-right:16px}
 }
