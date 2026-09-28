@@ -23,7 +23,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
 
       - name: Apply narrow Step 1 fix wiring
         shell: bash
@@ -31,23 +31,13 @@ jobs:
           set -euo pipefail
           python3 - <<'PY'
           from pathlib import Path
+          import re
 
           index = Path('pwa/index.html')
           text = index.read_text()
           text = text.replace('/app-step1-home-header.css?v=step1-1', '/app-step1-home-header.css?v=step1fix-1')
 
-          old = '''    <section id="welcome" class="welcome">
-              <div class="welcome-wave" aria-hidden="true">👋</div>
-              <div class="welcome-copy">
-                <strong id="welcomeName">خوش آمدید</strong>
-                <span class="welcome-main">به موکب مجازی آل فاطمیون</span>
-                <small class="welcome-sub">لطفاً نظرات خود را با بخش پشتیبانی درمیان بگذارید</small>
-              </div>
-              <button id="contactButton" class="mini" type="button">ارتباط با پشتیبانی</button>
-            </section>'''
-          # The repository uses four-space indentation in this block; normalize only this exact block.
-          old = old.replace('              ', '      ').replace('            </section>', '    </section>')
-          new = '''    <div class="welcome-slot">
+          replacement = '''    <div class="welcome-slot">
               <section id="welcome" class="welcome">
                 <div class="welcome-wave" aria-hidden="true">👋</div>
                 <div class="welcome-copy">
@@ -58,16 +48,18 @@ jobs:
                 <button id="contactButton" class="mini" type="button">ارتباط با پشتیبانی</button>
               </section>
             </div>'''
-          new = new.replace('              ', '      ').replace('            </div>', '    </div>')
-          if old not in text:
-              raise SystemExit('welcome block not found exactly')
-          text = text.replace(old, new, 1)
+          replacement = replacement.replace('              ', '      ').replace('            </div>', '    </div>')
+
+          pattern = re.compile(r'    <section id="welcome" class="welcome">.*?    </section>', re.S)
+          text, count = pattern.subn(replacement, text, count=1)
+          if count != 1:
+              raise SystemExit(f'welcome block replacement count={count}')
 
           marker = '  <script src="/app-platform-parity.js?v=test2-3" defer></script>\n  <script src="/app-auth.js?v=test2-3" defer></script>'
-          replacement = '  <script src="/app-platform-parity.js?v=test2-3" defer></script>\n  <script src="/app-step1-fix.js?v=step1fix-1" defer></script>\n  <script src="/app-auth.js?v=test2-3" defer></script>'
+          replacement_script = '  <script src="/app-platform-parity.js?v=test2-3" defer></script>\n  <script src="/app-step1-fix.js?v=step1fix-1" defer></script>\n  <script src="/app-auth.js?v=test2-3" defer></script>'
           if marker not in text:
               raise SystemExit('script marker not found')
-          text = text.replace(marker, replacement, 1)
+          text = text.replace(marker, replacement_script, 1)
           index.write_text(text)
 
           sw = Path('pwa/sw.js')
@@ -75,10 +67,10 @@ jobs:
           text = text.replace("const CACHE='alefatemion-pwa-step1-v1';", "const CACHE='alefatemion-pwa-step1fix-v1';")
           text = text.replace("const STEP1='step1-1';", "const STEP1='step1fix-1';")
           marker = '  `/app-platform-parity.js?v=${V}`,\n  `/app-auth.js?v=${V}`,'
-          replacement = '  `/app-platform-parity.js?v=${V}`,\n  `/app-step1-fix.js?v=${STEP1}`,\n  `/app-auth.js?v=${V}`,'
+          replacement_sw = '  `/app-platform-parity.js?v=${V}`,\n  `/app-step1-fix.js?v=${STEP1}`,\n  `/app-auth.js?v=${V}`,'
           if marker not in text:
               raise SystemExit('service worker marker not found')
-          text = text.replace(marker, replacement, 1)
+          text = text.replace(marker, replacement_sw, 1)
           sw.write_text(text)
           PY
 
@@ -92,10 +84,10 @@ jobs:
           grep -q 'class="welcome-slot"' pwa/index.html
           grep -q 'app-step1-fix.js?v=step1fix-1' pwa/index.html
           grep -q 'alefatemion-pwa-step1fix-v1' pwa/sw.js
-          grep -q 'app-step1-fix.js?v=${STEP1}' pwa/sw.js
+          grep -Fq 'app-step1-fix.js?v=${STEP1}' pwa/sw.js
           grep -q 'height:176px' pwa/app-step1-home-header.css
           grep -q 'height:94px!important' pwa/app-step1-home-header.css
-          grep -q "snapshot?.kind === 'drawer'" pwa/app-step1-fix.js
+          grep -Fq "snapshot?.kind === 'drawer'" pwa/app-step1-fix.js
 
       - name: Commit generated wiring
         shell: bash
