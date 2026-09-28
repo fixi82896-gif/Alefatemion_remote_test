@@ -16,8 +16,8 @@ const ABR_BASE = 'https://abrehamrahi.ir';
 const BRAND_LOGO_URL = 'https://raw.githubusercontent.com/fixi82896-gif/Alefatemion_android/main/app/src/main/res/drawable-nodpi/logo_alfatemiun_transparent.webp';
 const BRAND_FALLBACK = path.resolve(__dirname, 'docs/assets/logo_alfatemiun.webp');
 const COOKIE_PREFIX = 'alef_pwa_';
-const VERSION_NAME = 'PWA Test 2';
-const VERSION_CODE = 2;
+const VERSION_NAME = 'PWA Test 4';
+const VERSION_CODE = 4;
 const MAX_BODY = 256 * 1024;
 let brandLogoCache = null;
 
@@ -174,7 +174,7 @@ function normalizePhone(raw) {
 
 function fetchTrustedBuffer(urlString, limit = 2 * 1024 * 1024, redirects = 0) {
   return new Promise((resolve, reject) => {
-    const request = https.get(urlString, { timeout:12000, headers:{ 'User-Agent':'Alefatemion-PWA-Test2' } }, (response) => {
+    const request = https.get(urlString, { timeout:12000, headers:{ 'User-Agent':'Alefatemion-PWA-Test4' } }, (response) => {
       const status = response.statusCode || 0;
       if ([301,302,303,307,308].includes(status) && response.headers.location) {
         response.resume();
@@ -338,7 +338,7 @@ const server = http.createServer(async (req, res) => {
     if (!['GET','HEAD'].includes(req.method)) return json(res, 405, { error:{ code:'METHOD_NOT_ALLOWED' } });
     return serveStatic(req, res, url);
   } catch (error) {
-    console.error('[pwa-test2]', error?.stack || error);
+    console.error('[pwa-test4]', error?.stack || error);
     if (!res.headersSent) return json(res, error.status || 500, { error:{ code:'SERVICE_UNAVAILABLE', message:'سرویس موقتاً در دسترس نیست.' } });
     res.end();
   }
