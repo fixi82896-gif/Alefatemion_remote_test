@@ -1,0 +1,163 @@
+name: PWA Step 1 Fix V2 - Banner and Back Package
+
+on:
+  push:
+    branches:
+      - pwa-step1-fix-banner-back-20260928
+    paths:
+      - '.github/workflows/pwa-step1-fix-package-v2.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact fix branch
+        uses: actions/checkout@v4
+        with:
+          ref: pwa-step1-fix-banner-back-20260928
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Apply narrow Step 1 fix wiring
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          index = Path('pwa/index.html')
+          text = index.read_text()
+          text = text.replace('/app-step1-home-header.css?v=step1-1', '/app-step1-home-header.css?v=step1fix-1')
+
+          replacement = '''    <div class="welcome-slot">
+              <section id="welcome" class="welcome">
+                <div class="welcome-wave" aria-hidden="true">👋</div>
+                <div class="welcome-copy">
+                  <strong id="welcomeName">خوش آمدید</strong>
+                  <span class="welcome-main">به موکب مجازی آل فاطمیون</span>
+                  <small class="welcome-sub">لطفاً نظرات خود را با بخش پشتیبانی درمیان بگذارید</small>
+                </div>
+                <button id="contactButton" class="mini" type="button">ارتباط با پشتیبانی</button>
+              </section>
+            </div>'''
+          replacement = replacement.replace('              ', '      ').replace('            </div>', '    </div>')
+          pattern = re.compile(r'    <section id="welcome" class="welcome">.*?    </section>', re.S)
+          text, count = pattern.subn(replacement, text, count=1)
+          if count != 1:
+              raise SystemExit(f'welcome block replacement count={count}')
+
+          marker = '  <script src="/app-platform-parity.js?v=test2-3" defer></script>\n  <script src="/app-auth.js?v=test2-3" defer></script>'
+          replacement_script = '  <script src="/app-platform-parity.js?v=test2-3" defer></script>\n  <script src="/app-step1-fix.js?v=step1fix-1" defer></script>\n  <script src="/app-auth.js?v=test2-3" defer></script>'
+          if marker not in text:
+              raise SystemExit('script marker not found')
+          text = text.replace(marker, replacement_script, 1)
+          index.write_text(text)
+
+          sw = Path('pwa/sw.js')
+          text = sw.read_text()
+          text = text.replace("const CACHE='alefatemion-pwa-step1-v1';", "const CACHE='alefatemion-pwa-step1fix-v1';")
+          text = text.replace("const STEP1='step1-1';", "const STEP1='step1fix-1';")
+          marker = '  `/app-platform-parity.js?v=${V}`,\n  `/app-auth.js?v=${V}`,'
+          replacement_sw = '  `/app-platform-parity.js?v=${V}`,\n  `/app-step1-fix.js?v=${STEP1}`,\n  `/app-auth.js?v=${V}`,'
+          if marker not in text:
+              raise SystemExit('service worker marker not found')
+          text = text.replace(marker, replacement_sw, 1)
+          sw.write_text(text)
+          PY
+
+      - name: Validate narrow scope and syntax
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run check
+          node --check pwa/app-step1-fix.js
+          git diff --quiet caa8fcbff8e46035e9dae28c19db3b1115ce4974 -- pwa/app-core.js pwa/app-account.js pwa/app-auth.js pwa/app-content.js pwa/app-radio.js pwa/app-platform-parity.js
+          grep -q 'class="welcome-slot"' pwa/index.html
+          grep -q 'app-step1-fix.js?v=step1fix-1' pwa/index.html
+          grep -q 'alefatemion-pwa-step1fix-v1' pwa/sw.js
+          grep -Fq 'app-step1-fix.js?v=${STEP1}' pwa/sw.js
+          grep -q 'height:176px' pwa/app-step1-home-header.css
+          grep -q 'height:94px!important' pwa/app-step1-home-header.css
+          grep -Fq "snapshot?.kind === 'drawer'" pwa/app-step1-fix.js
+
+      - name: Commit generated wiring
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'Fixit'
+          git config user.email 'fixi82896@gmail.com'
+          git add pwa/index.html pwa/sw.js
+          if ! git diff --cached --quiet; then
+            git commit -m 'PWA Step 1 fix: wire stable welcome slot and profile Back restoration'
+            git push origin HEAD:pwa-step1-fix-banner-back-20260928
+          fi
+
+      - name: Smoke server
+        shell: bash
+        run: |
+          set -euo pipefail
+          PWA_IDENTITY_BASE_URL=https://identity-test.alefatemion.ir node pwa-server-test2.js >/tmp/pwa-step1fix.log 2>&1 &
+          pid=$!
+          trap 'kill $pid || true' EXIT
+          for i in {1..20}; do
+            if curl -fsS http://127.0.0.1:3000/ >/tmp/index.html; then break; fi
+            sleep 0.5
+          done
+          curl -fsS http://127.0.0.1:3000/ | grep -q 'welcome-slot'
+          curl -fsS http://127.0.0.1:3000/ | grep -q 'app-step1-fix.js?v=step1fix-1'
+          curl -fsS http://127.0.0.1:3000/app-step1-fix.js | grep -q 'step1FixedHandlePopState'
+          curl -fsS http://127.0.0.1:3000/api/health | tee /tmp/health.json
+          grep -q 'identity-test.alefatemion.ir' /tmp/health.json
+
+      - name: Build clean Liara package
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf deploy-package
+          mkdir -p deploy-package/pwa deploy-package/docs/assets
+          cp package.json deploy-package/
+          cp liara.json deploy-package/
+          cp pwa-server-test2.js deploy-package/
+          cp pwa-radio-resolver.js deploy-package/
+          cp pwa/app-account.js deploy-package/pwa/
+          cp pwa/app-auth.js deploy-package/pwa/
+          cp pwa/app-content.js deploy-package/pwa/
+          cp pwa/app-core.js deploy-package/pwa/
+          cp pwa/app-platform-parity.js deploy-package/pwa/
+          cp pwa/app-radio.js deploy-package/pwa/
+          cp pwa/app-test2.css deploy-package/pwa/
+          cp pwa/app-step1-home-header.css deploy-package/pwa/
+          cp pwa/app-step1-fix.js deploy-package/pwa/
+          cp pwa/app.css deploy-package/pwa/
+          cp pwa/icon.svg deploy-package/pwa/
+          cp pwa/index.html deploy-package/pwa/
+          cp pwa/manifest.webmanifest deploy-package/pwa/
+          cp pwa/sw.js deploy-package/pwa/
+          cp docs/assets/logo_alfatemiun.webp deploy-package/docs/assets/
+          (cd deploy-package && zip -qr ../Alefatemion-PWA-Step1-Fix-Liara.zip .)
+
+      - name: Verify package contents
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s Alefatemion-PWA-Step1-Fix-Liara.zip
+          unzip -p Alefatemion-PWA-Step1-Fix-Liara.zip pwa/index.html | grep -q 'welcome-slot'
+          unzip -p Alefatemion-PWA-Step1-Fix-Liara.zip pwa/index.html | grep -q 'app-step1-fix.js?v=step1fix-1'
+          unzip -p Alefatemion-PWA-Step1-Fix-Liara.zip pwa/sw.js | grep -q 'alefatemion-pwa-step1fix-v1'
+          unzip -p Alefatemion-PWA-Step1-Fix-Liara.zip pwa/app-step1-fix.js | grep -q 'returningToDrawer'
+
+      - name: Upload Liara package
+        uses: actions/upload-artifact@v4
+        with:
+          name: Alefatemion-PWA-Step1-Fix-Liara
+          path: Alefatemion-PWA-Step1-Fix-Liara.zip
+          if-no-files-found: error
+          retention-days: 1
