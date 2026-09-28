@@ -18,7 +18,7 @@ const server=spawn(process.execPath,['pwa-server-test2.js'],{cwd:root,env:{...pr
    if(u.hostname!=='127.0.0.1')return route.abort();
    if(u.pathname==='/brand-logo.webp')return route.fulfill({contentType:'image/webp',body:fs.readFileSync(root+'/docs/assets/logo_alfatemiun.webp')});
    if(u.pathname.startsWith('/api/')){
-    const json=u.pathname==='/api/account/me'?{user_id:'fixture',display_name:'کاربر آزمایشی',birth_jalali:{year:1370,month:1,day:1}}:u.pathname==='/api/config'?{source:{root_hash:'fixture'},home:{},nava:{enabled:true,tracks:[]}}:{items:[],messages:[],installations:[]};
+    const json=u.pathname==='/api/account/me'?{user_id:'fixture',display_name:'کاربر آزمایشی',birth_jalali:{year:1370,month:1,day:1}}:u.pathname==='/api/config'?{source:{root_hash:'fixture'},home:{},announcements:{items:Array.from({length:20},(_,i)=>({id:'notice-'+i,title:'خبر آزمایشی',body:'متن آزمایشی',published:true}))},nava:{enabled:true,tracks:[]}}:{items:[],messages:[],installations:[]};
     return route.fulfill({json});
    }
    return route.continue();
@@ -28,13 +28,13 @@ const server=spawn(process.execPath,['pwa-server-test2.js'],{cwd:root,env:{...pr
   await page.addStyleTag({content:'#view{min-height:1800px}'});
   const measure=()=>page.evaluate(()=>{const w=$('welcome'),slot=w.parentElement,box=w.getBoundingClientRect(),inner=document.querySelector('.welcome-support-inner');return{y:scrollY,top:box.top,bottom:box.bottom,height:box.height,slot:slot.getBoundingClientRect().height,viewY:$('view').getBoundingClientRect().top+scrollY,compact:w.classList.contains('collapsed'),text:$('welcomeName').textContent,buttonBottom:$('contactButton').getBoundingClientRect().bottom,supportBottom:inner.getBoundingClientRect().bottom,root:document.scrollingElement.tagName};});
   for(const tab of ['home','albums','notices','favorites']){
-   await page.locator(`[data-tab="${tab}"]`).click();await page.evaluate(()=>scrollTo(0,0));await page.waitForTimeout(300);
+   await page.locator(`[data-tab="${tab}"]`).click();if(tab==='notices')await page.locator('[data-notice-tab="public"]').click();await page.evaluate(()=>scrollTo(0,0));await page.waitForTimeout(300);
    const expanded=await measure();assert.equal(expanded.compact,false);assert(expanded.buttonBottom<=expanded.bottom+1);
    assert.equal(expanded.text,'کاربر آزمایشی عزیز');
    await page.evaluate(()=>scrollTo(0,350));await page.waitForTimeout(300);
    const compact=await measure();assert.equal(compact.y,350);assert.equal(compact.compact,true);assert.equal(compact.top,10);assert.equal(compact.viewY,expanded.viewY);assert.equal(compact.slot,expanded.slot);assert(compact.height<expanded.height);
    if(tab==='notices'){
-    const tabs=await page.locator('.primary-tabs').boundingBox();assert(tabs.y>=compact.bottom-1,'Notice tabs overlap welcome');
+    const tabs=await page.locator('.primary-tabs').boundingBox();console.log('Notice geometry',JSON.stringify({tabs,compact}));assert(tabs.y>=compact.bottom-1,'Notice tabs overlap welcome');
    }
    if(tab==='home')await page.screenshot({path:path.join(out,'compact-365.png')});
    await page.evaluate(()=>scrollTo(0,0));await page.waitForTimeout(300);
