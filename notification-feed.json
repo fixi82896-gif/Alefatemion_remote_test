@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 7,
-  "generated_at_millis": 1790628575526,
+  "revision": 8,
+  "generated_at_millis": 1790720160000,
   "events": [
     {
       "id": "radio-9e5f509eaa0d",
@@ -19,6 +19,15 @@
       "body": "2 نوای تازه به رادیو اضافه شد.",
       "created_at_millis": 1790628575526,
       "destination": "radio",
+      "destination_id": ""
+    },
+    {
+      "id": "ota-test43-1790720160000",
+      "type": "ota",
+      "title": "تست اعلان بروزرسانی آل فاطمیون",
+      "body": "این فقط تست اعلان Test43 است؛ هیچ بروزرسانی یا نصبی انجام نمی‌شود.",
+      "created_at_millis": 1790720160000,
+      "destination": "settings",
       "destination_id": ""
     }
   ]
