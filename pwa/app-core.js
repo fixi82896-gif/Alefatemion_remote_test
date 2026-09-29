@@ -337,6 +337,7 @@ function setImageOrFallback(imageId, textId, url, text) {
   if (!image || !fallback) return;
   if (url) {
     image.src = url;
+    image.classList.toggle('default-logo', url === '/brand-logo.webp');
     image.classList.remove('hidden');
     fallback.classList.add('hidden');
   } else {
@@ -602,6 +603,7 @@ function syncProfilePreview() {
   if (!image || !fallback) return;
   if (url) {
     image.src = url;
+    image.classList.toggle('default-logo', url === '/brand-logo.webp');
     image.classList.remove('hidden');
     fallback.classList.add('hidden');
   } else {
