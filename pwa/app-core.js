@@ -362,6 +362,7 @@ function navSnapshot(kind = 'tab') {
     alef: true,
     kind,
     tab: state.tab,
+    collectionKind: state.collectionKind || null,
     folderHash: state.folderHash,
     folderStack: state.folderStack.map((x) => ({ hash: x.hash, name: x.name }))
   };
@@ -384,6 +385,7 @@ function restoreFromHistory(snapshot) {
   try {
     state.tab = ['home','albums','notices','favorites'].includes(snapshot.tab) ? snapshot.tab : 'home';
     if (state.tab === 'albums') {
+      state.collectionKind = ['image','video'].includes(snapshot.collectionKind) ? snapshot.collectionKind : null;
       state.folderHash = snapshot.folderHash || state.rootHash;
       state.folderStack = Array.isArray(snapshot.folderStack) ? snapshot.folderStack.map((x) => ({ hash:String(x.hash||''), name:String(x.name||'') })) : [];
       state.folderQuery = '';
@@ -424,8 +426,10 @@ function syncBottomNav() {
 
 function setTab(tab, options = {}) {
   if (!['home','albums','notices','favorites'].includes(tab)) return;
-  const changed = state.tab !== tab;
+  const nextCollection = tab === 'albums' && ['image','video'].includes(options.collection) ? options.collection : null;
+  const changed = state.tab !== tab || (state.collectionKind || null) !== nextCollection;
   state.tab = tab;
+  state.collectionKind = nextCollection;
   if (tab !== 'albums') {
     state.folderQuery = '';
     state.folderSearchHistory = false;

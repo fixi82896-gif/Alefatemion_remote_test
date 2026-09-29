@@ -1,0 +1,35 @@
+name: PWA Step3 browser verification
+on:
+  push:
+    branches: [pwa-step3-albums-20260929]
+    paths:
+      - '.github/workflows/pwa-step3-check.yml'
+      - '.github/step3-browser-check.cjs'
+      - 'pwa/**'
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Syntax
+        run: |
+          npm run check
+          node --check pwa/app-step1-fix.js
+      - name: Install isolated browser test dependencies
+        run: |
+          npm install --prefix "$RUNNER_TEMP/step3-deps" playwright@1.51.1
+          "$RUNNER_TEMP/step3-deps/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Browser regressions
+        run: NODE_PATH="$RUNNER_TEMP/step3-deps/node_modules" node .github/step3-browser-check.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: step3-browser-results
+          path: step3-results/
+          retention-days: 7

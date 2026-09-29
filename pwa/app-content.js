@@ -231,16 +231,15 @@ function openAlbumsRoot() {
   setTab('albums', { forcePush:true });
 }
 
-async function openMediaCollection(kind) {
-  if (!state.albumGlobalItems && !state.albumGlobalLoading) {
-    state.albumGlobalLoading = true;
-    toast('در حال آماده‌سازی رسانه‌ها…');
-    try { state.albumGlobalItems = await loadAllMediaTree(state.rootHash); }
-    finally { state.albumGlobalLoading = false; }
-  }
-  const items = (state.albumGlobalItems || []).filter((x) => kind === 'video' ? x.isVideo : x.isImage);
-  if (!items.length) { toast(kind === 'video' ? 'فیلمی برای نمایش پیدا نشد.' : 'تصویری برای نمایش پیدا نشد.'); return; }
-  openViewer(items[0], items);
+function openMediaCollection(kind) {
+  if (!['image','video'].includes(kind)) return;
+  state.folderQuery = '';
+  state.folderSearchHistory = false;
+  setTab('albums', { collection:kind, forcePush:true });
+}
+
+function collectionTitle() {
+  return state.collectionKind === 'video' ? 'تازه‌ترین فیلم‌ها' : 'تازه‌ترین تصاویر';
 }
 
 function noticeCardHtml(n) {
@@ -367,8 +366,10 @@ function parseCloudItems(payload) {
   return results.map((wrapper) => {
     const obj = wrapper?.obj || {};
     const type = String(obj.type || '');
-    const download = safeHttps(obj.download_url || obj.content_url || '');
-    const thumbnail = safeHttps(obj.thumbnail_url || obj.cover_url || '');
+    const rawDownload = String(obj.download_url || obj.content_url || '').trim();
+    const download = rawDownload ? safeHttps(rawDownload) : '';
+    const rawThumbnail = String(obj.thumbnail_url || obj.cover_url || '').trim();
+    const thumbnail = rawThumbnail ? safeHttps(rawThumbnail) : '';
     return {
       id: String(obj.id ?? wrapper?.id ?? obj.obj_hash ?? ''),
       name: String(obj.name || 'بدون نام'),
@@ -418,17 +419,29 @@ async function renderAlbums() {
   stopHeroTimer();
   ensureFolderTrail();
   const view = $('view');
+  const request = state.albumRenderRequest = (state.albumRenderRequest || 0) + 1;
+  const collection = state.collectionKind || null;
+  const hash = state.folderHash;
   view.innerHTML = '<div class="empty">در حال دریافت آلبوم‌ها…</div>';
   try {
-    state.folderItems = await fetchFolder(state.folderHash || state.rootHash);
+    let items;
+    if (collection) {
+      const all = state.albumGlobalItems || await loadAllMediaTree(state.rootHash);
+      items = all.filter(x => collection === 'video' ? x.isVideo : x.isImage);
+      state.albumGlobalItems = all;
+    } else items = await fetchFolder(hash || state.rootHash);
+    if (request !== state.albumRenderRequest || state.tab !== 'albums' || (state.collectionKind || null) !== collection) return;
+    state.folderItems = items;
     paintFolder();
   } catch (error) {
+    if (request !== state.albumRenderRequest || state.tab !== 'albums') return;
     view.innerHTML = `<div class="empty">${escapeHtml(error.message)}<br><br><button id="retryAlbums" class="primary">تلاش دوباره</button></div>`;
     $('retryAlbums')?.addEventListener('click', renderAlbums);
   }
 }
 
 function breadcrumbHtml() {
+  if (state.collectionKind) return `<div class="breadcrumbs"><strong>${collectionTitle()}</strong></div>`;
   return `<div class="breadcrumbs">${state.folderStack.map((entry, index) => `<button type="button" data-crumb="${index}">${escapeHtml(entry.name)}</button>${index < state.folderStack.length - 1 ? '<span>←</span>' : ''}`).join('')}</div>`;
 }
 
@@ -450,7 +463,7 @@ function itemSearchText(item) {
 function paintFolder() {
   ensureFolderTrail();
   const query = normalizeSearch(state.folderQuery);
-  const atRoot = atAlbumsRoot();
+  const atRoot = !state.collectionKind && atAlbumsRoot();
   let source = state.folderItems;
   if (query && atRoot) {
     if (!state.albumGlobalItems) {
@@ -458,7 +471,8 @@ function paintFolder() {
       source = [];
     } else source = state.albumGlobalItems;
   }
-  let items = sortAlbumItems(source.filter((item) => !query || itemSearchText(item).includes(query)));
+  const filtered = source.filter((item) => !query || itemSearchText(item).includes(query));
+  const items = [...sortAlbumItems(filtered.filter(x => x.isFolder)), ...sortAlbumItems(filtered.filter(x => !x.isFolder))];
   state.displayedAlbumItems = items;
   const loadingGlobal = query && atRoot && state.albumGlobalLoading && !state.albumGlobalItems;
   $('view').innerHTML = `<section class="albums-shell">
@@ -538,13 +552,13 @@ function itemCardHtml(item) {
   if (item.isFolder) {
     const cover = item.thumbnailUrl || '';
     return `<button class="album-card folder-card" data-folder="${escapeHtml(item.hash)}" type="button">
-      ${cover ? `<img src="${escapeHtml(cover)}" loading="lazy" alt="">` : '<span class="folder-icon">▰</span>'}
+      <span class="album-cover folder-cover"><span class="album-cover-fallback" aria-hidden="true">▰</span>${cover ? `<img src="${escapeHtml(cover)}" loading="lazy" alt="" onerror="this.hidden=true">` : ''}</span>
       <span class="meta"><strong>${escapeHtml(item.name)}</strong><small class="muted">آلبوم</small></span>
     </button>`;
   }
   const mediaIcon = item.isVideo ? '▶' : '▧';
-  const imageUrl = item.thumbnailUrl || item.downloadUrl;
-  const image = imageUrl ? `<img src="${escapeHtml(thumbUrl(imageUrl))}" loading="lazy" alt="${escapeHtml(item.name)}" onerror="this.style.display='none'">` : `<div class="folder-icon">${mediaIcon}</div>`;
+  const imageUrl = item.thumbnailUrl || (item.isImage ? item.downloadUrl : '');
+  const image = `<div class="album-cover"><span class="album-cover-fallback" aria-hidden="true">${mediaIcon}</span>${imageUrl ? `<img src="${escapeHtml(thumbUrl(imageUrl))}" loading="lazy" alt="${escapeHtml(item.name)}" onerror="this.hidden=true">` : ''}</div>`;
   const fav = isFavorite(item.id);
   return `<article class="album-card media-card" data-media="${escapeHtml(item.id)}">${image}${item.isVideo ? '<span class="play-indicator">▶</span>' : ''}<button class="fav ${fav ? 'on' : ''}" data-favorite="${escapeHtml(item.id)}" aria-label="برگزیده">♥</button><div class="meta"><strong>${escapeHtml(item.name)}</strong><small>${item.isVideo ? 'ویدئو' : 'تصویر'}</small></div></article>`;
 }

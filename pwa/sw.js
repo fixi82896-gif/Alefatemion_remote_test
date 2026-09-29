@@ -1,5 +1,5 @@
-const CACHE='alefatemion-pwa-step2home-v1';
-const HOME='step2home-1';
+const CACHE='alefatemion-pwa-step3albums-v1';
+const HOME='step3albums-1';
 const V='test2-3';
 const STEP1='step1fix-3';
 const SHELL=[

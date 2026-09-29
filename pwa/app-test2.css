@@ -83,3 +83,23 @@ html[data-theme="dark"] .branded-page:before{opacity:.045}
 @keyframes homeCardLoading{to{transform:translate(-50%,-50%) rotate(360deg)}}
 .home-content-image[hidden],.hero-slide-button>img[hidden],.fixed-banner>img[hidden]{display:none}
 @media(prefers-reduced-motion:reduce){.hero-visual,.home-card-loading{animation:none}}
+
+/* Android GalleryLayout: normal 2 folders / 3 media; compact 3 / 4; large 1 / 2. */
+.albums-shell .album-grid{grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+.albums-shell .album-grid .folder-card{grid-column:span 3}
+.albums-shell .album-grid .media-card{grid-column:span 2}
+.albums-shell .album-grid.layout-compact{grid-template-columns:repeat(12,minmax(0,1fr))}
+.albums-shell .layout-compact .folder-card{grid-column:span 4}
+.albums-shell .layout-compact .media-card{grid-column:span 3}
+.albums-shell .layout-large .folder-card{grid-column:span 6}
+.albums-shell .layout-large .media-card{grid-column:span 3}
+.album-card{min-width:0;overflow:hidden}
+.folder-card{display:block;padding:0}
+.album-cover{display:grid;place-items:center;position:relative;width:100%;aspect-ratio:1;background:var(--surface2);overflow:hidden}
+.folder-cover{aspect-ratio:16/9}
+.album-cover-fallback{font-size:30px;color:var(--brand2)}
+.album-card .album-cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;aspect-ratio:auto}
+.album-card .album-cover img[hidden]{display:none}
+.album-card .meta{display:block;padding:9px;overflow:hidden}
+.album-card .meta strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px}
+.album-card .meta small{font-size:11px}
