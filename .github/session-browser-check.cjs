@@ -13,7 +13,7 @@ const server=spawn(process.execPath,['pwa-server-test2.js'],{cwd:root,env:{...pr
  try{
   const context=await browser.newContext({viewport:{width:365,height:681},isMobile:true,hasTouch:true,serviceWorkers:'block'});
   const page=await context.newPage();
-  const waitFor=async predicate=>{const end=Date.now()+10000;while(Date.now()<end){if(await page.evaluate(predicate))return;await page.waitForTimeout(100);}throw Error('Condition timed out: '+predicate.toString());};page.on('pageerror',e=>errors.push(e.message));
+  const waitFor=async predicate=>{const end=Date.now()+10000;while(Date.now()<end){if(await page.evaluate(predicate))return;await page.waitForTimeout(100);}throw Error('Condition timed out: '+predicate.toString()+' '+JSON.stringify(await page.evaluate(()=>({error:$('audio').error?.message,src:$('audio').src,ready:$('audio').readyState,muted:state.radioMuted,gate:state.radioSuspendedForVideo,blocked:state.radioAutoplayBlocked,session:state.sessionStarted,diagnostics:window.radioDiagnostics}))));};page.on('pageerror',e=>errors.push(e.message));
   await page.route('**/*',async route=>{
    const u=new URL(route.request().url());
    if(u.hostname==='fixture.invalid')return route.fulfill({contentType:'image/svg+xml',body:'<svg xmlns="http://www.w3.org/2000/svg" width="400" height="188"><rect width="400" height="188" fill="#317653"/></svg>'});
@@ -288,13 +288,14 @@ const server=spawn(process.execPath,['pwa-server-test2.js'],{cwd:root,env:{...pr
   assert.equal(await page.locator('#auth').evaluate(e=>e.classList.contains('hidden')),true);
   checks.push({profile:'Default logo in all avatars, Persian membership and dates, unsaved edit cancellation, clean tab navigation and saved edit passed'});
   // Real media, explicit autoplay denial and user-gesture recovery.
-  await page.route('https://fixture.invalid/radio.m4a',r=>r.fulfill({contentType:'audio/mp4',body:fs.readFileSync(root+'/pwa/intro-salam.m4a')}));
+  const wav=path.join(out,'radio-fixture.wav');require('node:child_process').execFileSync(require('ffmpeg-static'),['-y','-i',root+'/pwa/intro-salam.m4a','-c:a','pcm_s16le',wav],{stdio:'ignore'});
+  await page.route('https://fixture.invalid/radio.m4a',r=>r.fulfill({contentType:'audio/wav',body:fs.readFileSync(wav)}));
   await page.route('**/api/radio/resolve?*',r=>r.fulfill({json:{media_url:'https://fixture.invalid/radio.m4a'}}));
   await page.evaluate(()=>{
     state.config.nava={enabled:true,tracks:[{id:'r1',title:'نوای آزمایشی',performer:'خواننده آزمایشی',stream_url:'https://fixture.invalid/source1',enabled:true},{id:'r2',title:'نوای دوم',performer:'خواننده دوم',stream_url:'https://fixture.invalid/source2',enabled:true}]};
     state.radioSelection=['r1'];state.radioMuted=false;stopAudioForLogout();state.sessionStarted=false;
-    const audio=$('audio'),nativePlay=audio.play.bind(audio);let denied=false;
-    audio.play=()=>{if(!denied){denied=true;return Promise.reject(new DOMException('blocked','NotAllowedError'));}return nativePlay();};
+    const audio=$('audio'),nativePlay=audio.play.bind(audio);let denied=false;window.radioDiagnostics=[];
+    audio.play=()=>{if(!denied){denied=true;return Promise.reject(new DOMException('blocked','NotAllowedError'));}return nativePlay().catch(e=>{window.radioDiagnostics.push(e.name+':'+e.message);throw e;});};
     showApp();
   });
   await waitFor(()=>state.radioAutoplayBlocked===true);
