@@ -55,7 +55,7 @@ function homeSectionsOrdered() {
 }
 
 function homeBannerCardHtml({ id, title, subtitle, imageUrl = '', icon = '•', status = '', radio = false, loading = false, video = false }) {
-  const image = safeHttps(imageUrl);
+  const image = String(imageUrl || '').trim() ? safeHttps(imageUrl) : '';
   return `<button class="home-content-banner ${radio ? 'radio-mode' : ''}" data-home-action="${escapeHtml(id)}" type="button">
     ${image ? `<img class="home-content-image" src="${escapeHtml(image)}" alt="" loading="lazy" decoding="async">` : ''}
     <div class="home-content-shade"></div>
