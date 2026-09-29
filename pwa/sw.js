@@ -1,4 +1,5 @@
-const CACHE='alefatemion-pwa-step5media-v1';
+const CACHE='alefatemion-pwa-step5settings-v1';
+const SETTINGS='step5settings-1';
 const VIEWER='step5media-1';
 const HOME='step5media-1';
 const V='test2-3';
@@ -7,15 +8,15 @@ const SHELL=[
   '/',
   '/index.html',
   `/app.css?v=${V}`,
-  `/app-test2.css?v=${VIEWER}`,
+  `/app-test2.css?v=${SETTINGS}`,
   `/app-step1-home-header.css?v=${STEP1}`,
   `/app-core.js?v=${HOME}`,
   `/app-content.js?v=${VIEWER}`,
-  `/app-account.js?v=${V}`,
+  `/app-account.js?v=${SETTINGS}`,
   `/app-radio.js?v=${V}`,
   `/app-platform-parity.js?v=${V}`,
   `/app-step1-fix.js?v=${STEP1}`,
-  `/app-auth.js?v=${V}`,
+  `/app-auth.js?v=${SETTINGS}`,
   `/brand-logo.webp?v=${V}`,
   `/icon.svg?v=${V}`,
   `/manifest.webmanifest?v=${V}`

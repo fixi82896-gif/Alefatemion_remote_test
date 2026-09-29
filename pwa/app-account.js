@@ -140,12 +140,11 @@ function openSupport() {
 function openSettings() {
   const selected = localStorage.getItem(THEME_KEY) || 'system';
   openModal('تنظیمات', `<div class="list settings-list">
-    <label class="list-item settings-row"><div><strong>حالت ظاهر</strong><small class="muted">روشن، تیره یا مطابق دستگاه</small></div><select id="themeSelect"><option value="system">سیستم</option><option value="light">روشن</option><option value="dark">تیره</option></select></label>
-    <div class="list-item"><strong>نسخه</strong><p>${VERSION}</p></div>
-    <button class="list-item" id="installPwa" type="button"><strong>نصب روی صفحه اصلی</strong><small class="muted">در صورت پشتیبانی مرورگر</small></button>
-    <button class="list-item" id="sharePwa" type="button"><strong>ارسال برنامه برای دوستان</strong><small class="muted">اشتراک لینک نسخه وب</small></button>
-    <button class="list-item" id="aboutPwa" type="button"><strong>درباره ما</strong></button>
-    <div class="list-item"><strong>مدیریت</strong><small class="muted">تمام عملیات مدیریتی فقط از نرم‌افزار Android مدیر انجام می‌شود.</small></div>
+    <label class="list-item settings-row" for="themeSelect"><strong>حالت ظاهر</strong><select id="themeSelect"><option value="system">مطابق دستگاه</option><option value="light">روشن</option><option value="dark">تیره</option></select></label>
+    <button class="list-item settings-action" id="installPwa" type="button">نصب روی صفحهٔ اصلی</button>
+    <button class="list-item settings-action" id="sharePwa" type="button">ارسال برای دوستان</button>
+    <button class="list-item settings-action" id="aboutPwa" type="button">درباره ما</button>
+    <div class="list-item settings-version"><span>نسخهٔ آزمایشی وب</span><bdi>۵.۱</bdi></div>
   </div>`);
   $('themeSelect').value = selected;
   $('themeSelect').addEventListener('change', (e) => applyTheme(e.target.value));
@@ -168,6 +167,35 @@ async function sharePwa() {
     if (navigator.share) await navigator.share({ title:'آل فاطمیون', text:'نسخه وب آل فاطمیون', url:location.origin });
     else { await navigator.clipboard.writeText(location.origin); toast('لینک برنامه کپی شد.'); }
   } catch { /* cancelled */ }
+}
+
+function openExitOptions() {
+  openModal('خروج', `<div class="list exit-options">
+    <button id="exitApp" class="list-item settings-action" type="button"><strong>خروج از برنامه</strong><small class="muted">حساب شما حفظ می‌شود.</small></button>
+    <button id="exitAccount" class="list-item settings-action danger-text" type="button"><strong>خروج از حساب کاربری</strong><small class="muted">ورود دوباره با شماره همراه و کد تأیید</small></button>
+    <button id="cancelExit" class="ghost" type="button">انصراف</button>
+  </div>`);
+  $('exitApp').addEventListener('click', exitApplication);
+  $('exitAccount').addEventListener('click', () => {
+    if (confirm('برای ورود دوباره، شماره همراه و کد تأیید لازم خواهد بود. ادامه می‌دهید؟')) logout();
+  });
+  $('cancelExit').addEventListener('click', closeModal);
+}
+
+function exitApplication() {
+  closeModalDirect();
+  closeDrawerDirect();
+  stopHeroTimer();
+  stopAudioForLogout();
+  document.querySelectorAll('video').forEach(video => video.pause());
+  $('app').classList.add('hidden');
+  $('auth').classList.add('hidden');
+  state.tab = 'home';
+  state.collectionKind = null;
+  openModal('خروج از برنامه', `<div class="exit-finished"><p>می‌توانید این تب یا پنجره را ببندید. حساب شما برای مراجعهٔ بعدی حفظ شده است.</p><button id="resumeApp" class="primary" type="button">بازگشت به برنامه</button></div>`);
+  state.modalCleanup = () => showApp();
+  $('resumeApp').addEventListener('click', closeModal);
+  try { window.close(); } catch { /* The browser may require manual closing. */ }
 }
 
 async function logout() {

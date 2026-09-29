@@ -1,0 +1,37 @@
+name: PWA settings verification
+on:
+  push:
+    branches: [pwa-step5-settings-20260929]
+    paths:
+      - '.github/workflows/pwa-settings-check.yml'
+      - '.github/settings-browser-check.cjs'
+      - 'pwa/**'
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install export dependencies
+        run: npm ci
+      - name: Syntax
+        run: |
+          npm run check
+          node --check pwa/app-step1-fix.js
+      - name: Install isolated browser test dependencies
+        run: |
+          npm install --prefix "$RUNNER_TEMP/step5-deps" playwright@1.51.1
+          "$RUNNER_TEMP/step5-deps/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Browser regressions
+        run: NODE_PATH="$RUNNER_TEMP/step5-deps/node_modules" node .github/settings-browser-check.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: step5-browser-results
+          path: step5-results/
+          retention-days: 7

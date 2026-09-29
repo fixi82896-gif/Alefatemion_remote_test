@@ -89,7 +89,7 @@ function handleDrawerAction(action) {
   if (action === 'devices') return openDevices();
   if (action === 'support') return openSupport();
   if (action === 'settings') return openSettings();
-  if (action === 'logout') return logout();
+  if (action === 'logout') return openExitOptions();
 }
 
 function bindEvents() {
