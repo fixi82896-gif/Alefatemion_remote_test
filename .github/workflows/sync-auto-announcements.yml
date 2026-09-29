@@ -1,0 +1,55 @@
+name: Sync automatic announcements
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17,47 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-automatic-announcements
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: Checkout remote config
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 2
+
+      - name: Test announcement rules
+        run: python3 -B .github/scripts/test_sync_announcements.py
+
+      - name: Synchronize album and radio announcements
+        run: python3 -B .github/scripts/sync_announcements.py
+
+      - name: Commit safely when state changed
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [[ -z "$(git status --porcelain -- app-config.json .automation/announcement-state.json)" ]]; then
+            echo "No announcement or state change."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          checkout_head="$(git rev-parse HEAD)"
+          git fetch origin main
+          remote_head="$(git rev-parse origin/main)"
+          if [[ "$checkout_head" != "$remote_head" ]]; then
+            echo "::warning title=Synchronization deferred::app-config.json changed while the scan was running; the manager's newer changes were preserved."
+            exit 0
+          fi
+
+          git add app-config.json .automation/announcement-state.json
+          git commit -m "Sync automatic announcements"
+          git push
