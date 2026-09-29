@@ -137,7 +137,7 @@ const server=spawn(process.execPath,['pwa-server-test2.js'],{cwd:root,env:{...pr
   assert.equal(await page.locator('[data-media="m2"] img').count(),0);
   for(const mode of ['normal','compact','large']){
     await page.evaluate(mode=>{state.albumLayout=mode;paintFolder()},mode);
-    const spans=await page.evaluate(()=>({folder:getComputedStyle(document.querySelector('.folder-card')).gridColumnEnd,media:getComputedStyle(document.querySelector('.media-card')).gridColumnEnd}));
+    const spans=await page.evaluate(()=>({folder:getComputedStyle(document.querySelector('.folder-card')).gridColumnStart,media:getComputedStyle(document.querySelector('.media-card')).gridColumnStart}));
     assert.equal(spans.folder,{normal:'span 3',compact:'span 4',large:'span 6'}[mode]);
     assert.equal(spans.media,{normal:'span 2',compact:'span 3',large:'span 3'}[mode]);
   }
