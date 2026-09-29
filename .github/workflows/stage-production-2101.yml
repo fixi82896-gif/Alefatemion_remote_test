@@ -1,0 +1,56 @@
+name: Stage Production 21.1 APK for website
+
+on:
+  push:
+    branches:
+      - liara-web
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  stage-apk:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout website branch
+        uses: actions/checkout@v7
+        with:
+          ref: liara-web
+
+      - name: Download verified Production 21.1 artifact
+        uses: actions/download-artifact@v6
+        with:
+          name: Al-Fatemiun-Production-Manager-21.1-code2101-1b525ab4.apk
+          path: candidate
+          repository: fixi82896-gif/Alefatemion_android
+          run-id: 36525655380
+          github-token: ${{ github.token }}
+
+      - name: Verify and stage APK
+        env:
+          EXPECTED_SHA256: b946306d511233a4fa63eac718fc922c0267cadc62c7c602ffc6488e61da7fa7
+        shell: bash
+        run: |
+          set -euo pipefail
+          apk_path="$(find candidate -type f -name '*.apk' -print -quit)"
+          test -n "$apk_path"
+          actual_sha="$(sha256sum "$apk_path" | awk '{print $1}')"
+          test "$actual_sha" = "$EXPECTED_SHA256"
+          mkdir -p release
+          cp "$apk_path" release/Alefatemion-2101.apk
+
+      - name: Commit staged APK only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add release/Alefatemion-2101.apk
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "Stage Production 21.1 APK without changing public release"
+          git push origin HEAD:liara-web
