@@ -353,9 +353,9 @@ function updateIdentityUi() {
   $('welcomeName').textContent = `${name} عزیز، خوش آمدید`;
   $('drawerName').textContent = name;
   $('drawerPhone').textContent = state.me?.phone_masked || state.me?.phone_e164 || '—';
-  setImageOrFallback('avatarImage', 'avatarText', state.profilePhotoDataUrl, initials);
-  setImageOrFallback('drawerAvatarImage', 'drawerAvatar', state.profilePhotoDataUrl, initials);
-  setImageOrFallback('navAvatarImage', 'navAvatarText', state.profilePhotoDataUrl, initials);
+  setImageOrFallback('avatarImage', 'avatarText', state.profilePhotoDataUrl || '/brand-logo.webp', initials);
+  setImageOrFallback('drawerAvatarImage', 'drawerAvatar', state.profilePhotoDataUrl || '/brand-logo.webp', initials);
+  setImageOrFallback('navAvatarImage', 'navAvatarText', state.profilePhotoDataUrl || '/brand-logo.webp', initials);
   if ($('drawerTheme')) $('drawerTheme').value = localStorage.getItem(THEME_KEY) || 'system';
 }
 
@@ -596,7 +596,7 @@ function startOtpCountdown(seconds) {
 }
 
 function syncProfilePreview() {
-  const url = state.profilePhotoPending || state.profilePhotoDataUrl;
+  const url = state.profilePhotoPending || state.profilePhotoDataUrl || '/brand-logo.webp';
   const image = $('profilePhotoPreview');
   const fallback = $('profilePhotoFallback');
   if (!image || !fallback) return;

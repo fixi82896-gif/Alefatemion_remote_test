@@ -53,17 +53,39 @@ function updateMessageCount() {
 
 function enterProfileEdit() {
   const p = state.me || {};
-  closeModalDirect();
-  $('app').classList.add('hidden');
-  $('splash').classList.add('hidden');
-  $('auth').classList.remove('hidden');
+  const form = $('profileForm');
+  const parent = form.parentElement;
+  const next = form.nextSibling;
+  openModal('ویرایش اطلاعات کاربری', '<div id="profileEditor"></div>');
+  state.profileEditing = true;
   $('displayName').value = p.display_name || '';
   $('birthYear').value = p.birth_jalali?.year || '';
   $('birthMonth').value = p.birth_jalali?.month || '';
   $('birthDay').value = p.birth_jalali?.day || '';
   state.profilePhotoPending = null;
+  $('profilePhoto').value = '';
+  clearError();
   syncProfilePreview();
-  showAuthStep('profile');
+  form.classList.remove('hidden');
+  $('profileEditor').appendChild(form);
+  state.modalCleanup = () => {
+    state.profileEditing = false;
+    state.profilePhotoPending = null;
+    $('profilePhoto').value = '';
+    form.classList.add('hidden');
+    parent.insertBefore(form, next);
+    clearError();
+  };
+}
+
+function joinedDateText(profile) {
+  for (const value of [profile.first_login_at, profile.joined_at, profile.created_at]) {
+    if (!value) continue;
+    const numeric = typeof value === 'number' || /^\d+(\.\d+)?$/.test(String(value));
+    const date = new Date(numeric ? (Number(value) < 1e12 ? Number(value) * 1000 : Number(value)) : value);
+    if (!Number.isNaN(date.getTime())) return new Intl.DateTimeFormat('fa-IR-u-ca-persian', {year:'numeric',month:'2-digit',day:'2-digit'}).format(date);
+  }
+  return 'ثبت نشده';
 }
 
 function openProfileInfo() {
@@ -75,8 +97,9 @@ function openProfileInfo() {
     ${photo}<strong>${escapeHtml(p.display_name || '—')}</strong><span class="muted">${escapeHtml(p.phone_masked || p.phone_e164 || '—')}</span>
     <div class="list">
       <div class="list-item"><small>شناسه کاربر</small><p>${escapeHtml(p.user_id || '—')}</p></div>
+      <div class="list-item"><small>تاریخ اولین ورود</small><p>${escapeHtml(joinedDateText(p))}</p></div>
       <div class="list-item"><small>تاریخ تولد شمسی</small><p>${escapeHtml(birthText(p.birth_jalali))}</p></div>
-      <div class="list-item"><small>وضعیت عضویت</small><p>${escapeHtml(p.membership_status || '—')}</p></div>
+      <div class="list-item"><small>وضعیت عضویت</small><p>${p.membership_status === 'blocked' ? 'مسدود' : 'فعال'}</p></div>
     </div>
     <button id="editProfile" class="primary" type="button">ویرایش اطلاعات کاربری</button>
   </div>`);
@@ -144,7 +167,7 @@ function openSettings() {
     <button class="list-item settings-action" id="installPwa" type="button">نصب روی صفحهٔ اصلی</button>
     <button class="list-item settings-action" id="sharePwa" type="button">ارسال برای دوستان</button>
     <button class="list-item settings-action" id="aboutPwa" type="button">درباره ما</button>
-    <div class="list-item settings-version"><span>نسخهٔ آزمایشی وب</span><bdi>۵.۱</bdi></div>
+    <div class="list-item settings-version"><span>نسخهٔ آزمایشی وب</span><bdi>۵.۲</bdi></div>
   </div>`);
   $('themeSelect').value = selected;
   $('themeSelect').addEventListener('change', (e) => applyTheme(e.target.value));
@@ -183,6 +206,9 @@ function openExitOptions() {
 }
 
 function exitApplication() {
+  // Attempt closure before adding any fallback history entry.
+  try { window.close(); } catch { /* Browser restrictions require manual closing. */ }
+  state.sessionStarted = false;
   closeModalDirect();
   closeDrawerDirect();
   stopHeroTimer();
@@ -195,10 +221,12 @@ function exitApplication() {
   openModal('خروج از برنامه', `<div class="exit-finished"><p>می‌توانید این تب یا پنجره را ببندید. حساب شما برای مراجعهٔ بعدی حفظ شده است.</p><button id="resumeApp" class="primary" type="button">بازگشت به برنامه</button></div>`);
   state.modalCleanup = () => showApp();
   $('resumeApp').addEventListener('click', closeModal);
-  try { window.close(); } catch { /* The browser may require manual closing. */ }
+
 }
 
 async function logout() {
+  state.sessionStarted = false;
+  stopAudioForLogout();
   try { await api('/api/auth/logout', { method:'POST', body:{} }); } catch { /* local reset */ }
   state.me = null;
   state.permissions = null;

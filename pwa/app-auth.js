@@ -9,7 +9,7 @@ async function saveProfile(event) {
   const month = Number(faToEn($('birthMonth').value));
   const day = Number(faToEn($('birthDay').value));
   if (!name || !Number.isInteger(year) || year < 1200 || year > 1600 || !Number.isInteger(month) || month < 1 || month > 12 || !Number.isInteger(day) || day < 1 || day > 31) {
-    showError('نام و تاریخ تولد شمسی را کامل و صحیح وارد کنید.');
+    (state.profileEditing ? toast : showError)('نام و تاریخ تولد شمسی را کامل و صحیح وارد کنید.');
     return;
   }
   setBusy(button, true, 'در حال ذخیره…');
@@ -20,9 +20,10 @@ async function saveProfile(event) {
     await api('/api/account/me', { method:'PATCH', body:payload });
     await loadAccount();
     state.profilePhotoPending = null;
-    showApp();
+    if (state.profileEditing) closeModal();
+    else showApp();
     toast('پروفایل ذخیره شد.');
-  } catch (error) { showError(error.message); }
+  } catch (error) { if (state.profileEditing) toast(error.message); else showError(error.message); }
   finally { setBusy(button, false); }
 }
 
@@ -117,7 +118,7 @@ function bindEvents() {
   $('drawerTheme').addEventListener('change', (e) => applyTheme(e.target.value));
   $('contactButton').addEventListener('click', openSupport);
   $('radioFab').addEventListener('click', () => openRadio());
-  $('radioNowPlaying').addEventListener('click', () => openRadio(state.currentTrackId || ''));
+  $('radioNowPlaying').addEventListener('click', () => { hideRadioNowPlaying(); openRadio(); });
   $('splashRetry').addEventListener('click', boot);
   addEventListener('online', updateOnlineState);
   addEventListener('offline', updateOnlineState);
@@ -131,16 +132,20 @@ function bindEvents() {
   audio.addEventListener('play', () => {
     updateRadioFab();
     const track = enabledTracks().find((t) => String(t.id) === String(state.currentTrackId));
-    if (track) showRadioNowPlaying(track);
+    if (track && state.radioAnnouncedId !== String(track.id)) { state.radioAnnouncedId = String(track.id); showRadioNowPlaying(track); }
   });
   audio.addEventListener('pause', updateRadioFab);
+  document.addEventListener('pointerup', retryRadioAfterGesture);
+  document.addEventListener('keydown', retryRadioAfterGesture);
   audio.addEventListener('error', () => {
-    if (state.currentTrackId && !state.radioResolving) {
-      const current = enabledTracks().find((t) => String(t.id) === String(state.currentTrackId));
-      if (current) resolveRadioTrack(current)
-        .then((src) => { if (audio.src !== src) { audio.src = src; audio.play().catch(() => {}); } })
-        .catch(() => toast('پخش این نوا موقتاً در دسترس نیست.'));
-    }
+    if (!state.currentTrackId || state.radioResolving || state.radioMuted || !state.sessionStarted) return;
+    const current = enabledTracks().find(t => String(t.id) === String(state.currentTrackId));
+    if (!current) return;
+    const epoch = state.radioEpoch || 0;
+    resolveRadioTrack(current).then(src => {
+      if ((state.radioEpoch || 0) !== epoch || state.radioMuted || !state.sessionStarted) return;
+      if (audio.src !== src) { audio.src = src; if (!state.radioSuspendedForVideo) audio.play().catch(() => {}); }
+    }).catch(() => toast('پخش این نوا موقتاً در دسترس نیست.'));
   });
 
   document.addEventListener('visibilitychange', () => {

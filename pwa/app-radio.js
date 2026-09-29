@@ -32,9 +32,12 @@ function updateRadioFab() {
   if (!fab) return;
   const tracks = enabledTracks();
   fab.disabled = !state.config?.nava?.enabled || !tracks.length;
-  fab.classList.toggle('muted', state.radioMuted || fab.disabled);
-  fab.textContent = state.radioMuted ? '♩' : '♪';
-  fab.title = state.radioMuted ? 'رادیو خاموش است' : 'رادیو آل فاطمیون';
+  const muted = state.radioMuted || fab.disabled;
+  fab.classList.toggle('muted', muted);
+  fab.classList.toggle('playing', !muted && !$('audio').paused);
+  fab.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${muted ? 'M16.5 12c0-1.77-1.02-3.29-2.5-4.03v3.01l2.45 2.45c.03-.14.05-.28.05-.43z M19 12c0 .94-.2 1.82-.54 2.64l1.51 1.51A8.9 8.9 0 0 0 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71z M4.27 3 3 4.27 7.73 9H3v6h4l5 5v-8.73l4.25 4.25A6.8 6.8 0 0 1 14 18.71v2.06a8.8 8.8 0 0 0 3.69-2.8L19.73 20 21 18.73 4.27 3z M12 4 9.91 6.09 12 8.18V4z' : 'M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z'}"/></svg>`;
+  fab.title = state.radioAutoplayBlocked ? 'برای شروع پخش لمس کنید' : muted ? 'رادیو خاموش است' : 'رادیو آل فاطمیون';
+  fab.setAttribute('aria-label', 'رادیو آل فاطمیون؛ ' + (state.radioAutoplayBlocked ? 'برای پخش لمس کنید' : $('audio').paused ? 'متوقف' : 'در حال پخش'));
 }
 
 function updateRadioVideoGate() {
@@ -59,14 +62,24 @@ function setRadioVideoGate(active) {
   updateRadioFab();
 }
 
+function hideRadioNowPlaying() {
+  clearTimeout(state.radioNowTimer);
+  $('radioNowPlaying')?.classList.remove('radio-visible');
+}
 function showRadioNowPlaying(track) {
   const banner = $('radioNowPlaying');
   if (!banner || !track) return;
   clearTimeout(state.radioNowTimer);
   banner.textContent = [track.title, track.performer].filter(Boolean).join(' - ') || 'رادیو آل فاطمیون';
   banner.classList.remove('hidden');
-  state.radioNowTimer = setTimeout(() => banner.classList.add('hidden'), 5000);
-  if (state.tab === 'home') renderHome();
+  requestAnimationFrame(() => banner.classList.add('radio-visible'));
+  state.radioNowTimer = setTimeout(hideRadioNowPlaying, 5000);
+}
+
+function retryRadioAfterGesture(event) {
+  if (!event.isTrusted || !state.radioAutoplayBlocked || state.radioMuted || state.radioSuspendedForVideo || state.introActive || !state.sessionStarted || !$('audio').getAttribute('src')) return;
+  state.radioAutoplayBlocked = false;
+  $('audio').play().catch(error => { if(error.name === 'NotAllowedError') state.radioAutoplayBlocked = true; }).finally(updateRadioFab);
 }
 
 async function resolveRadioTrack(track) {
@@ -84,10 +97,12 @@ async function playTrack(id, options = {}) {
   state.radioMuted = false;
   localStorage.setItem(RADIO_MUTED_KEY, '0');
   state.radioResolving = true;
+  const epoch = state.radioEpoch || 0;
   updateRadioFab();
   try {
     const audio = $('audio');
     const resolved = await resolveRadioTrack(track);
+    if ((state.radioEpoch || 0) !== epoch || state.radioMuted || !state.me) return;
     const same = String(state.currentTrackId || '') === String(track.id) && audio.src === resolved;
     state.currentTrackId = String(track.id);
     if (!same) {
@@ -95,13 +110,14 @@ async function playTrack(id, options = {}) {
       audio.load();
     }
     if (!state.radioSuspendedForVideo) await audio.play();
-    showRadioNowPlaying(track);
+    state.radioAutoplayBlocked = false;
     if (options.toast !== false) toast(`در حال پخش: ${track.title || 'نوا'}`);
   } catch (error) {
-    console.warn('radio-play', error);
-    toast(error.message || 'پخش این نوا انجام نشد.');
+    if ((state.radioEpoch || 0) !== epoch) return;
+    if (error.name === 'NotAllowedError') { state.radioAutoplayBlocked = true; }
+    else { console.warn('radio-play', error); toast('پخش این نوا انجام نشد. دوباره تلاش کنید.'); }
   } finally {
-    state.radioResolving = false;
+    if ((state.radioEpoch || 0) === epoch) state.radioResolving = false;
     updateRadioFab();
   }
 }
@@ -125,7 +141,7 @@ function startRadioFromRandomIfNeeded() {
   if (!playlist.length || state.radioMuted || state.radioSuspendedForVideo) return;
   const current = playlist.find((t) => String(t.id) === String(state.currentTrackId));
   if (current) {
-    $('audio').play().catch(() => playTrack(current.id, { toast:false }));
+    $('audio').play().catch(error => { if (error.name === 'NotAllowedError') {state.radioAutoplayBlocked = true; updateRadioFab();} else playTrack(current.id, { toast:false }); });
     return;
   }
   const index = playlist.length <= 1 ? 0 : Math.floor(Math.random() * playlist.length);
@@ -135,7 +151,7 @@ function startRadioFromRandomIfNeeded() {
 function setRadioMuted(muted) {
   state.radioMuted = Boolean(muted);
   localStorage.setItem(RADIO_MUTED_KEY, state.radioMuted ? '1' : '0');
-  if (state.radioMuted) $('audio').pause();
+  if (state.radioMuted) { state.radioEpoch = (state.radioEpoch || 0) + 1; state.radioResolving = false; state.radioAutoplayBlocked = false; $('audio').pause(); hideRadioNowPlaying(); }
   else startRadioFromRandomIfNeeded();
   updateRadioFab();
   if (!$('modal').classList.contains('hidden') && $('modalTitle').textContent === 'رادیو آل فاطمیون') openRadio();
@@ -159,7 +175,7 @@ function openRadio(preselect = '') {
   const radioHtml = `<section class="radio-sheet">
     <div class="radio-status-card">
       <span class="radio-status-icon">♪</span>
-      <div><strong>${escapeHtml(current?.title || 'صف پخش آماده است')}</strong><small>${escapeHtml(!state.config?.nava?.enabled ? 'رادیو از سوی مدیر غیرفعال است.' : !tracks.length ? 'هنوز نوایی ثبت نشده است.' : state.radioMuted ? 'رادیو خاموش است.' : state.radioSuspendedForVideo ? 'هنگام پخش ویدئو موقتاً متوقف است.' : current?.performer || (selected == null ? 'پخش همه نواها به ترتیب' : `${toFaDigits(selected.length)} نوا در صف پخش`))}</small></div>
+      <div><strong>${escapeHtml(current?.title || 'صف پخش آماده است')}</strong><small>${escapeHtml(!state.config?.nava?.enabled ? 'رادیو از سوی مدیر غیرفعال است.' : !tracks.length ? 'هنوز نوایی ثبت نشده است.' : state.radioMuted ? 'رادیو خاموش است.' : state.radioSuspendedForVideo ? 'هنگام پخش ویدئو موقتاً متوقف است.' : state.radioAutoplayBlocked ? 'برای شروع پخش، صفحه را لمس کنید.' : current?.performer || (selected == null ? 'پخش همه نواها به ترتیب' : `${toFaDigits(selected.length)} نوا در صف پخش`))}</small></div>
       <label class="switch"><input id="radioSwitch" type="checkbox" ${!state.radioMuted && tracks.length ? 'checked' : ''} ${tracks.length ? '' : 'disabled'}><span></span></label>
     </div>
     ${tracks.length ? `<input id="radioSearch" class="radio-search" placeholder="جست‌وجوی نوا">
@@ -179,7 +195,7 @@ function openRadio(preselect = '') {
     const filtered = tracks.filter((t) => !normalized || normalizeSearch(`${t.title || ''} ${t.performer || ''} ${t.category || ''}`).includes(normalized));
     const mourning = filtered.filter((t) => t.category !== 'celebration');
     const celebration = filtered.filter((t) => t.category === 'celebration');
-    root.innerHTML = `${mourning.length ? `<details class="radio-group" open><summary>نوحه و عزاداری <span>${toFaDigits(mourning.length)} نوا</span></summary>${mourning.map(radioTrackRow).join('')}</details>` : ''}${celebration.length ? `<details class="radio-group"><summary>مولودی و سرود <span>${toFaDigits(celebration.length)} نوا</span></summary>${celebration.map(radioTrackRow).join('')}</details>` : ''}${filtered.length ? '' : '<div class="empty">نوایی مطابق جست‌وجو پیدا نشد.</div>'}`;
+    root.innerHTML = `${mourning.length ? `<details class="radio-group"><summary>نوحه و عزاداری <span>${toFaDigits(mourning.length)} نوا</span></summary>${mourning.map(radioTrackRow).join('')}</details>` : ''}${celebration.length ? `<details class="radio-group"><summary>مولودی و سرود <span>${toFaDigits(celebration.length)} نوا</span></summary>${celebration.map(radioTrackRow).join('')}</details>` : ''}${filtered.length ? '' : '<div class="empty">نوایی مطابق جست‌وجو پیدا نشد.</div>'}`;
     root.querySelectorAll('[data-radio-track]').forEach((button) => button.addEventListener('click', () => toggleRadioTrack(button.dataset.radioTrack)));
   }
   paintGroups('');
@@ -216,6 +232,11 @@ function toggleRadioTrack(id) {
 }
 
 function stopAudioForLogout() {
+  state.radioEpoch = (state.radioEpoch || 0) + 1;
+  state.radioResolving = false;
+  state.radioAutoplayBlocked = false;
+  state.radioAnnouncedId = null;
+  hideRadioNowPlaying();
   clearTimeout(state.radioNowTimer);
   const audio = $('audio');
   if (audio) {

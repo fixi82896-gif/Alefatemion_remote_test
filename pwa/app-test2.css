@@ -127,3 +127,20 @@ html[data-theme="dark"] .branded-page:before{opacity:.045}
 .exit-options .settings-action{font:inherit;padding:14px 16px}
 .exit-finished{line-height:1.9;text-align:center}
 .exit-finished .primary{width:100%;margin-top:12px}
+/* Entry screen and global radio use the Android content and visual placement. */
+.radio-fab svg{width:25px;height:25px;fill:currentColor;display:block;margin:auto}
+.radio-now{left:76px;right:auto;animation:none;clip-path:inset(0 0 0 100%);transition:clip-path .95s cubic-bezier(.4,0,.2,1);pointer-events:none}
+.radio-now.radio-visible{clip-path:inset(0);transition-duration:1.1s;pointer-events:auto}
+.avatar-btn img,.drawer-avatar img,.nav-avatar img{object-fit:contain}
+#profileEditor .stack{margin-top:0}#profileEditor .profile-photo-editor{justify-content:center}
+.entry-intro{position:fixed;inset:0;z-index:80;overflow:auto;isolation:isolate}
+.intro-background,.intro-watermark,.intro-shade{position:fixed;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none;z-index:-1}
+.intro-watermark{opacity:var(--intro-watermark);padding:18px}.intro-shade{background:#000}
+.intro-content{max-width:700px;min-height:100dvh;margin:auto;padding:calc(24px + env(safe-area-inset-top)) 18px calc(24px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:18px}
+.intro-content header{display:flex;align-items:center;gap:16px}.intro-content header img{width:80px;height:80px;object-fit:contain}.intro-content h1{font-size:26px;margin:0 0 8px;color:var(--intro-accent)}.intro-content header p{margin:0}
+.intro-message{font-size:var(--intro-size);line-height:var(--intro-line);white-space:pre-wrap;margin:12px 0;overflow-wrap:anywhere}
+.intro-actions{margin-top:auto;display:grid;gap:10px}.intro-actions .primary{background:var(--intro-button);min-height:52px}
+.intro-fade{animation:introFade .8s ease both}.intro-slide_up{animation:introSlide .8s ease both}
+@keyframes introFade{from{opacity:0}to{opacity:1}}@keyframes introSlide{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@media(min-width:700px){.radio-now{left:calc(50% - 325px + 76px)}}
+@media(prefers-reduced-motion:reduce){.radio-now{transition:none}.intro-fade,.intro-slide_up{animation:none}}
