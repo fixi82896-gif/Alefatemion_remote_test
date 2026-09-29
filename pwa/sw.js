@@ -1,4 +1,5 @@
-const CACHE='alefatemion-pwa-step3albums-v1';
+const CACHE='alefatemion-pwa-step4viewer-v1';
+const VIEWER='step4viewer-1';
 const HOME='step3albums-1';
 const V='test2-3';
 const STEP1='step1fix-3';
@@ -6,10 +7,10 @@ const SHELL=[
   '/',
   '/index.html',
   `/app.css?v=${V}`,
-  `/app-test2.css?v=${HOME}`,
+  `/app-test2.css?v=${VIEWER}`,
   `/app-step1-home-header.css?v=${STEP1}`,
   `/app-core.js?v=${HOME}`,
-  `/app-content.js?v=${HOME}`,
+  `/app-content.js?v=${VIEWER}`,
   `/app-account.js?v=${V}`,
   `/app-radio.js?v=${V}`,
   `/app-platform-parity.js?v=${V}`,

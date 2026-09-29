@@ -103,3 +103,15 @@ html[data-theme="dark"] .branded-page:before{opacity:.045}
 .album-card .meta{display:block;padding:9px;overflow:hidden}
 .album-card .meta strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px}
 .album-card .meta small{font-size:11px}
+
+/* Viewer only: keep the page scroll root and gallery history unchanged. */
+.viewer-actions{flex-wrap:wrap}
+.viewer-actions button{flex:1 1 110px;min-height:42px}
+.viewer-stage{touch-action:pan-y pinch-zoom}
+.modal.viewer-expanded{inset:0;transform:none;width:100%;height:100dvh;max-height:100dvh;border-radius:0;padding: max(12px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));overflow:auto}
+.modal.viewer-expanded .modal-head{top:0}
+.modal.viewer-expanded .modal-head h2{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.modal.viewer-expanded #closeModal{flex-shrink:0}
+.modal.viewer-expanded .viewer-stage{height:calc(100dvh - 230px);min-height:120px}
+.modal.viewer-expanded .viewer-stage #viewerMedia{height:100%;max-height:100%;object-fit:contain}
+.modal.viewer-expanded::backdrop{background:#000}

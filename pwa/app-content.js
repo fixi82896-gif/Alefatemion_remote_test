@@ -602,6 +602,38 @@ function viewerCurrent() {
   return state.viewer.items[state.viewer.index] || null;
 }
 
+function syncViewerFullscreenButton() {
+  const button = $('viewerFullscreen');
+  if (!button) return;
+  const expanded = $('modal').classList.contains('viewer-expanded');
+  button.textContent = expanded ? 'خروج از تمام‌صفحه' : 'تمام‌صفحه';
+  button.setAttribute('aria-pressed', String(expanded));
+}
+
+async function toggleViewerFullscreen() {
+  const viewer = state.viewer;
+  if (!viewer) return;
+  const modal = $('modal');
+  if (modal.classList.contains('viewer-expanded')) {
+    modal.classList.remove('viewer-expanded');
+    syncViewerFullscreenButton();
+    if (document.fullscreenElement === modal) {
+      try { await document.exitFullscreen(); } catch { /* keep windowed fallback */ }
+    }
+    return;
+  }
+  modal.classList.add('viewer-expanded');
+  syncViewerFullscreenButton();
+  if (modal.requestFullscreen && document.fullscreenEnabled) {
+    try {
+      await modal.requestFullscreen();
+      if (state.viewer !== viewer) {
+        if (document.fullscreenElement === modal) await document.exitFullscreen();
+      } else viewer.nativeFullscreen = document.fullscreenElement === modal;
+    } catch { /* expanded viewport remains available when native fullscreen is denied */ }
+  }
+}
+
 function renderViewer() {
   const item = viewerCurrent();
   if (!item) { closeModal(); return; }
@@ -612,12 +644,13 @@ function renderViewer() {
   $('modalTitle').textContent = item.name || 'رسانه';
   $('modalBody').innerHTML = `<div class="viewer ${escapeHtml(state.slideshowEffect)}">
     <div class="viewer-stage">
-      ${isVideo ? `<video id="viewerMedia" src="${escapeHtml(url)}" controls playsinline></video>` : `<img id="viewerMedia" class="viewer-image" src="${escapeHtml(url)}" alt="${escapeHtml(item.name)}">`}
+      ${isVideo ? `<video id="viewerMedia" src="${escapeHtml(url)}" controls playsinline></video>` : `<img id="viewerMedia" draggable="false" class="viewer-image" src="${escapeHtml(url)}" alt="${escapeHtml(item.name)}">`}
       <img class="viewer-watermark" src="/brand-logo.webp" alt="">
       ${state.viewer.items.length > 1 ? '<button id="viewerPrev" class="viewer-nav viewer-prev" type="button">‹</button><button id="viewerNext" class="viewer-nav viewer-next" type="button">›</button>' : ''}
     </div>
     <div class="viewer-position">${toFaDigits(state.viewer.index + 1)} از ${toFaDigits(state.viewer.items.length)}</div>
     <div class="viewer-actions">
+      <button id="viewerFullscreen" type="button" aria-pressed="false">تمام‌صفحه</button>
       <button id="viewerFav" type="button">${isFavorite(item.id) ? '♥ حذف از برگزیده‌ها' : '♡ افزودن به برگزیده‌ها'}</button>
       ${!isVideo ? '<button id="viewerZoom" type="button">بزرگ‌نمایی</button>' : ''}
       ${!isVideo && state.viewer.items.filter((x) => x.isImage || String(x.type || '').startsWith('image/')).length > 1 ? `<button id="viewerSlide" type="button">${state.slideshowTimer ? 'توقف اسلایدشو' : 'اسلایدشو'}</button>` : ''}
@@ -629,7 +662,12 @@ function renderViewer() {
   setRadioVideoGate(isVideo);
   $('viewerPrev')?.addEventListener('click', () => moveViewer(-1));
   $('viewerNext')?.addEventListener('click', () => moveViewer(1));
-  $('viewerFav')?.addEventListener('click', () => { toggleFavorite(item); renderViewer(); });
+  $('viewerFav')?.addEventListener('click', () => {
+    toggleFavorite(item);
+    $('viewerFav').textContent = isFavorite(item.id) ? '♥ حذف از برگزیده‌ها' : '♡ افزودن به برگزیده‌ها';
+  });
+  $('viewerFullscreen')?.addEventListener('click', toggleViewerFullscreen);
+  syncViewerFullscreenButton();
   $('viewerZoom')?.addEventListener('click', () => $('viewerMedia')?.classList.toggle('zoomed'));
   $('viewerSlide')?.addEventListener('click', toggleSlideshow);
   $('viewerShare')?.addEventListener('click', async () => {
@@ -642,20 +680,49 @@ function renderViewer() {
     const a = document.createElement('a'); a.href = url; a.download = item.name || 'alefatemion-media'; a.rel = 'noopener'; a.click();
   });
   const stage = $('modalBody').querySelector('.viewer-stage');
-  let startX = null;
-  stage?.addEventListener('pointerdown', (e) => { startX = e.clientX; });
-  stage?.addEventListener('pointerup', (e) => {
-    if (startX == null) return; const delta = e.clientX - startX; startX = null;
-    if (Math.abs(delta) > 45) moveViewer(delta > 0 ? -1 : 1);
+  let gesture = null;
+  stage?.addEventListener('pointerdown', (event) => {
+    if (gesture || event.isPrimary === false || event.target.closest('button, video') || $('viewerMedia')?.classList.contains('zoomed')) {
+      gesture = null;
+      return;
+    }
+    gesture = { id:event.pointerId, x:event.clientX, y:event.clientY };
   });
+  stage?.addEventListener('pointerup', (event) => {
+    const start = gesture;
+    gesture = null;
+    if (!start || start.id !== event.pointerId) return;
+    const dx = event.clientX - start.x, dy = event.clientY - start.y;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.2) moveViewer(dx > 0 ? -1 : 1);
+  });
+  stage?.addEventListener('pointercancel', () => { gesture = null; });
+  stage?.addEventListener('pointerleave', () => { gesture = null; });
 }
 
 function openViewer(item, collection = [item]) {
   const items = collection.filter((x) => (x.isImage || x.isVideo || /^image\//.test(x.type || '') || /^video\//.test(x.type || '')) && safeHttps(x.downloadUrl));
   const index = Math.max(0, items.findIndex((x) => String(x.id) === String(item.id)));
-  state.viewer = { items:items.length ? items : [item], index, zoomed:false };
   openModal(item.name || 'رسانه', '<div class="empty">در حال آماده‌سازی…</div>');
-  state.modalCleanup = () => { stopSlideshow(); state.viewer = null; setRadioVideoGate(false); };
+  const viewer = state.viewer = { items:items.length ? items : [item], index, zoomed:false, nativeFullscreen:false };
+  const fullscreenChanged = () => {
+    if (document.fullscreenElement === $('modal')) viewer.nativeFullscreen = true;
+    else if (viewer.nativeFullscreen) {
+      viewer.nativeFullscreen = false;
+      $('modal').classList.remove('viewer-expanded');
+    }
+    syncViewerFullscreenButton();
+  };
+  document.addEventListener('fullscreenchange', fullscreenChanged);
+  state.modalCleanup = () => {
+    stopSlideshow();
+    const media = $('viewerMedia');
+    if (media?.tagName === 'VIDEO') media.pause();
+    document.removeEventListener('fullscreenchange', fullscreenChanged);
+    $('modal').classList.remove('viewer-expanded');
+    if (document.fullscreenElement === $('modal')) document.exitFullscreen().catch(() => {});
+    state.viewer = null;
+    setRadioVideoGate(false);
+  };
   renderViewer();
 }
 
