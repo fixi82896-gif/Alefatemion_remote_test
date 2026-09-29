@@ -556,7 +556,7 @@ function itemCardHtml(item) {
       <span class="meta"><strong>${escapeHtml(item.name)}</strong><small class="muted">آلبوم</small></span>
     </button>`;
   }
-  const mediaIcon = item.isVideo ? '▶' : '▧';
+  const mediaIcon = item.isVideo ? '' : '▧';
   const imageUrl = item.thumbnailUrl || (item.isImage ? item.downloadUrl : '');
   const image = `<div class="album-cover"><span class="album-cover-fallback" aria-hidden="true">${mediaIcon}</span>${imageUrl ? `<img src="${escapeHtml(thumbUrl(imageUrl))}" loading="lazy" alt="${escapeHtml(item.name)}" onerror="this.hidden=true">` : ''}</div>`;
   const fav = isFavorite(item.id);
