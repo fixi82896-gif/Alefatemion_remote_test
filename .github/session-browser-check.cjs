@@ -12,7 +12,8 @@ const server=spawn(process.execPath,['pwa-server-test2.js'],{cwd:root,env:{...pr
  const checks=[],errors=[];
  try{
   const context=await browser.newContext({viewport:{width:365,height:681},isMobile:true,hasTouch:true,serviceWorkers:'block'});
-  const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
+  const page=await context.newPage();
+  const waitFor=async predicate=>{const end=Date.now()+10000;while(Date.now()<end){if(await page.evaluate(predicate))return;await page.waitForTimeout(100);}throw Error('Condition timed out: '+predicate.toString());};page.on('pageerror',e=>errors.push(e.message));
   await page.route('**/*',async route=>{
    const u=new URL(route.request().url());
    if(u.hostname==='fixture.invalid')return route.fulfill({contentType:'image/svg+xml',body:'<svg xmlns="http://www.w3.org/2000/svg" width="400" height="188"><rect width="400" height="188" fill="#317653"/></svg>'});
@@ -135,7 +136,7 @@ const server=spawn(process.execPath,['pwa-server-test2.js'],{cwd:root,env:{...pr
   });
   await page.evaluate(()=>resetMediaCache());
   await page.locator('[data-tab="albums"]').click();await page.locator('[data-folder="child"]').waitFor();
-  await page.waitForFunction(()=>document.querySelector('.folder-card img')?.src.includes('thumb=true'));
+  await waitFor(()=>document.querySelector('.folder-card img')?.src.includes('thumb=true'));
   assert.equal(await page.locator('.folder-card img').count(),1);
   assert.equal(await page.locator('[data-media="m2"] img').count(),0);
   for(const mode of ['normal','compact','large']){
@@ -162,10 +163,10 @@ const server=spawn(process.execPath,['pwa-server-test2.js'],{cwd:root,env:{...pr
     openViewer(items[0],items);
   });
   await page.locator('#viewerFullscreen').click();
-  await page.waitForFunction(()=>document.fullscreenElement===document.getElementById('modal'));
+  await waitFor(()=>document.fullscreenElement===document.getElementById('modal'));
   assert.equal(await page.locator('.viewer-watermark').isVisible(),true);
   await page.locator('#viewerFullscreen').click();
-  await page.waitForFunction(()=>!document.fullscreenElement);
+  await waitFor(()=>!document.fullscreenElement);
   assert.equal(await page.locator('#modal.viewer-expanded').count(),0);
   await page.evaluate(()=>{window.testNativeRequest=$('modal').requestFullscreen;$('modal').requestFullscreen=()=>Promise.reject(new Error('fixture denied'));});
   await page.locator('#viewerFullscreen').click();
@@ -296,20 +297,20 @@ const server=spawn(process.execPath,['pwa-server-test2.js'],{cwd:root,env:{...pr
     audio.play=()=>{if(!denied){denied=true;return Promise.reject(new DOMException('blocked','NotAllowedError'));}return nativePlay();};
     showApp();
   });
-  await page.waitForFunction(()=>state.radioAutoplayBlocked===true);
-  await page.locator('#radioFab').click();await page.waitForFunction(()=>!$('audio').paused);
+  await waitFor(()=>state.radioAutoplayBlocked===true);
+  await page.locator('#radioFab').click();await waitFor(()=>!$('audio').paused);
   assert.equal(await page.locator('#modalTitle').innerText(),'رادیو آل فاطمیون');
   await page.locator('#closeModal').click();await page.locator('#modal.hidden').waitFor({state:'attached'});
-  await page.waitForFunction(()=>$('radioNowPlaying').classList.contains('radio-visible'));
+  await waitFor(()=>$('radioNowPlaying').classList.contains('radio-visible'));
   assert.match(await page.locator('#radioNowPlaying').innerText(),/نوای آزمایشی - خواننده آزمایشی/);
   await page.screenshot({path:path.join(out,'radio-playing-365.png')});
   await page.locator('#radioNowPlaying').click();
   assert.equal(await page.evaluate(()=>state.currentTrackId),'r1');
   await page.locator('#closeModal').click();await page.locator('#modal.hidden').waitFor({state:'attached'});
   await page.evaluate(()=>setRadioVideoGate(true));assert.equal(await page.evaluate(()=>$('audio').paused),true);
-  await page.evaluate(()=>setRadioVideoGate(false));await page.waitForFunction(()=>!$('audio').paused);
+  await page.evaluate(()=>setRadioVideoGate(false));await waitFor(()=>!$('audio').paused);
   await page.evaluate(()=>{state.radioSelection=null;playNextTrack();});
-  await page.waitForFunction(()=>state.currentTrackId==='r2'&&!state.radioResolving);
+  await waitFor(()=>state.currentTrackId==='r2'&&!state.radioResolving);
   await page.evaluate(()=>setRadioMuted(true));assert.equal(await page.evaluate(()=>$('audio').paused),true);
   // A resolver finishing after exit must not restart sound.
   await page.evaluate(async()=>{
