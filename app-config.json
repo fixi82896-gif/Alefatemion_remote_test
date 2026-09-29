@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 32,
+  "revision": 33,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -291,23 +291,6 @@
         "expires_at_millis": 0
       },
       {
-        "id": "home-mulpqr83",
-        "title": "",
-        "description": "",
-        "image_url": "https:\/\/github.com\/fixi82896-gif\/Alefatemion_remote_test\/releases\/download\/remote-assets-v1\/intro-background-e01109ff904e335f7fb7.jpg",
-        "placement": "hero",
-        "fixed": false,
-        "destination_type": "none",
-        "destination_id": "",
-        "destination_parent_id": "",
-        "external_url": "",
-        "enabled": true,
-        "sponsored": false,
-        "display_order": 2,
-        "starts_at_millis": 0,
-        "expires_at_millis": 0
-      },
-      {
         "id": "home-mun3vaq0",
         "title": "",
         "description": "",
@@ -320,9 +303,9 @@
         "external_url": "",
         "enabled": true,
         "sponsored": false,
-        "display_order": 3,
-        "starts_at_millis": 1790726400000,
-        "expires_at_millis": 1790812800000
+        "display_order": 2,
+        "starts_at_millis": 0,
+        "expires_at_millis": 0
       }
     ],
     "radio_banner_image_url": "",
