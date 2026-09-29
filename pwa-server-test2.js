@@ -106,6 +106,7 @@ function requestJson(urlString, options = {}, body = null) {
         if (total > 6 * 1024 * 1024) response.destroy(new Error('upstream_too_large'));
         else chunks.push(chunk);
       });
+      response.on('error', reject);
       response.on('end', () => {
         const raw = Buffer.concat(chunks).toString('utf8');
         let parsed = {};
@@ -246,7 +247,7 @@ const handleMediaExport=createExportService({
  authorize:async(req,res,video,action)=>{
   const me=await authenticatedRequest(req,res,'/v1/account/me');if(me.status!==200){json(res,me.status,me.body);return null;}
   const permission=await authenticatedRequest(req,res,'/v1/account/permissions');const p=permission.status===200?permission.body:(me.body.permissions||{});
-  const allowed=me.body.is_admin===true||(action==='share'?p.allow_share===true:p[video?'allow_video_download':'allow_photo_download']===true||p.allow_download===true);
+  const allowed=me.body.is_admin===true||(action==='share'?p.allow_share===true:(typeof p[video?'allow_video_download':'allow_photo_download']==='boolean'?p[video?'allow_video_download':'allow_photo_download']===true:p.allow_download===true));
   if(!allowed){json(res,403,{error:{message:'اجازه دریافت این رسانه برای حساب شما فعال نیست.'}});return null;}
   if(!me.body.user_id){json(res,401,{error:{message:'ورود مجدد لازم است.'}});return null;}return String(me.body.user_id);
  }

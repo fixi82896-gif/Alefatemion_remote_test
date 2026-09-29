@@ -34,7 +34,7 @@ function createExportService({resolveItem,authorize,logo,json}){
  async function pump(){if(running)return;running=true;try{while(queue.length){const job=queue.shift();job.status='processing';try{await download(job.source,path.join(job.dir,'source'));await transcode(path.join(job.dir,'source'),logo,job.file,job.video);job.status='ready';}catch{job.status='failed';job.message='ساخت فایل همراه لوگو انجام نشد؛ دوباره تلاش کنید.';}finally{await fsp.rm(path.join(job.dir,'source'),{force:true}).catch(()=>{});job.finished=Date.now();}}}finally{running=false;}}
  const sweep=setInterval(()=>{for(const [id,j]of jobs)if(j.finished&&Date.now()-j.finished>15*60*1000){jobs.delete(id);fsp.rm(j.dir,{recursive:true,force:true}).catch(()=>{});}},60000);sweep.unref();
  return async function handle(req,res,url,body){
-  const match=/^\/api\/media\/export(?:\/([0-9a-f-]{36})(\/file)?)?$/.exec(url.pathname);if(!match)return false;
+  const match=/^\/api\/media\/export(?:\/([0-9a-f-]{36})(\/file)?)?$/.exec(url.pathname);if(!match)return json(res,404,{error:{message:'مسیر نامعتبر است.'}});
   if(!match[1]&&req.method==='POST'){
    if(queue.length>=6||jobs.size>=24)return json(res,429,{error:{message:'صف آماده‌سازی پر است؛ کمی بعد تلاش کنید.'}});
    const action=body?.action==='share'?'share':'download';

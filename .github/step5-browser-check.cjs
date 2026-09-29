@@ -227,9 +227,9 @@ const server=spawn(process.execPath,['pwa-server-test2.js'],{cwd:root,env:{...pr
   const mark=await page.locator('.viewer-watermark').boundingBox(),stage=await page.locator('.viewer-stage').boundingBox();
   assert(mark.x>=stage.x&&mark.x<stage.x+stage.width/2);assert(mark.y>=stage.y&&mark.y<stage.y+stage.height/2);
   await page.locator('#viewerMedia').click();assert.equal(await page.locator('#viewerMedia.zoomed').count(),0);
-  await page.evaluate(()=>{state.permissions={allow_video_download:false,allow_photo_download:false,allow_share:false};openViewer({id:'native',name:'video',type:'video/mp4',isVideo:true,downloadUrl:'https://fixture.invalid/v.mp4'});});
+  await page.evaluate(()=>{state.permissions={allow_download:true,allow_video_download:false,allow_photo_download:false,allow_share:false};openViewer({id:'native',name:'video',type:'video/mp4',isVideo:true,downloadUrl:'https://fixture.invalid/v.mp4'});});
   assert.equal(await page.locator('#viewerDownload').count(),0);assert.equal(await page.locator('#viewerShare').count(),0);
-  assert.equal(await page.locator('video').evaluate(e=>e.controlsList.contains('nodownload')),true);
+  assert.equal(await page.locator('video').evaluate(e=>e.controlsList.contains('nodownload')&&e.controlsList.contains('nofullscreen')),true);
   await page.locator('#closeModal').click();await page.locator('#modal.hidden').waitFor({state:'attached'});
   checks.push({media:'Android catalog names, stable IDs, hidden media, Persian year order, recursive cover thumbnail, tap-point zoom, top-left watermark and download controls passed'});
   assert.equal(await page.locator('#step1TraceExport').count(),0);

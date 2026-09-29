@@ -644,6 +644,7 @@ function renderFavorites() {
 function effectivePermission(name) {
   if (state.me?.is_admin === true) return true;
   const p = state.permissions || state.me?.permissions || {};
+  if (typeof p[name] === 'boolean') return p[name];
   if (name === 'allow_photo_download' && p.allow_download === true) return true;
   if (name === 'allow_video_download' && p.allow_download === true) return true;
   return p[name] === true;
@@ -735,7 +736,7 @@ function renderViewer() {
   $('modalTitle').textContent = item.name || 'رسانه';
   $('modalBody').innerHTML = `<div class="viewer ${escapeHtml(state.slideshowEffect)}">
     <div class="viewer-stage">
-      ${isVideo ? `<video id="viewerMedia" src="${escapeHtml(url)}" poster="${escapeHtml(item.thumbnailUrl || '')}" preload="metadata" controls controlslist="nodownload" playsinline></video>` : `<img id="viewerMedia" draggable="false" class="viewer-image" src="${escapeHtml(item.thumbnailUrl || url)}" alt="${escapeHtml(item.name)}">`}
+      ${isVideo ? `<video id="viewerMedia" src="${escapeHtml(url)}" poster="${escapeHtml(item.thumbnailUrl || '')}" preload="metadata" controls controlslist="nodownload nofullscreen noremoteplayback" disablepictureinpicture playsinline></video>` : `<img id="viewerMedia" draggable="false" class="viewer-image" src="${escapeHtml(item.thumbnailUrl || url)}" alt="${escapeHtml(item.name)}">`}
       <img class="viewer-watermark" src="/brand-logo.webp" alt="">
       ${state.viewer.items.length > 1 ? '<button id="viewerPrev" class="viewer-nav viewer-prev" type="button">‹</button><button id="viewerNext" class="viewer-nav viewer-next" type="button">›</button>' : ''}
     </div>
