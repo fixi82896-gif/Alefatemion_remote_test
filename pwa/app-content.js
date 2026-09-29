@@ -71,39 +71,83 @@ function homeBannerCardHtml({ id, title, subtitle, imageUrl = '', icon = '•', 
   </button>`;
 }
 
-async function findFolderPreview(folder) {
-  if (!folder?.hash) return '';
-  try {
-    const children = await fetchFolder(folder.hash);
-    const media = children.find((x) => x.isImage && (x.thumbnailUrl || x.downloadUrl)) || children.find((x) => x.isVideo && x.thumbnailUrl);
-    return media?.thumbnailUrl || (media?.isImage ? media.downloadUrl : '') || '';
-  } catch {
-    return '';
-  }
+const folderCache = new Map();
+const coverCache = new Map();
+let catalogPending = null;
+let mediaTreePending = null;
+async function ensureMediaCatalog() {
+  if (state.mediaCatalog?.revision > 0) return state.mediaCatalog;
+  if (!catalogPending) catalogPending = api('/api/media/catalog').then(c => {
+    if (c.schema_version !== 1 || !(c.revision > 0)) throw new Error('شناسنامه رسانه در دسترس نیست؛ دوباره تلاش کنید.');
+    state.mediaCatalog = c;
+    state.catalogFolders = new Map((c.folders || []).map(f=>[String(f.folder_hash),f]));
+    state.catalogMedia = new Map((c.media || []).map(m=>[String(m.stable_id),m]));
+    return c;
+  }).finally(()=>{catalogPending=null;});
+  return catalogPending;
 }
-
-async function loadAllMediaTree(rootHash = state.rootHash) {
-  const collected = [];
-  const queue = [{ hash:rootHash, path:'آلبوم‌ها' }];
-  const visited = new Set();
-  let folderCount = 0;
-  while (queue.length && folderCount < 250 && collected.length < 2500) {
-    const current = queue.shift();
-    if (!current?.hash || visited.has(current.hash)) continue;
-    visited.add(current.hash);
-    folderCount += 1;
-    let items = [];
-    try { items = await fetchFolder(current.hash); } catch { continue; }
-    for (const item of items) {
-      const enriched = { ...item, parentHash:current.hash, path:current.path };
-      collected.push(enriched);
-      if (item.isFolder && item.hash) {
-        queue.push({ hash:item.hash, path:`${current.path} / ${item.name}` });
-      }
-      if (collected.length >= 2500) break;
-    }
+function catalogPath(hash, fallback='') {
+  const names=[],seen=new Set();
+  while(hash && !seen.has(hash) && seen.size<128){
+    seen.add(hash);const f=state.catalogFolders?.get(String(hash));if(!f)break;
+    const name=String(f.display_name || f.real_name || '').trim();if(name)names.unshift(name);
+    hash=f.parent_folder_hash;
   }
-  return collected;
+  return names.join(' ← ') || fallback;
+}
+function decorateMedia(item) {
+  if(item.isFolder){const f=state.catalogFolders?.get(item.hash);return {...item,name:f?.display_name?.trim() || f?.real_name?.trim() || item.name,path:catalogPath(item.hash,item.path)};}
+  const e=state.catalogMedia?.get(String(item.id));
+  if(!e)return item;
+  const path=catalogPath(e.folder_hash,e.folder_path || '');
+  const subject=[...new Set([e.event,e.year,e.location].map(x=>String(x || '').trim()).filter(Boolean))].join(' – ') || path.split(' ← ').pop() || '';
+  const numbered=(item.isVideo?'فیلم':'عکس')+' شماره '+toFaDigits(e.sequence_number);
+  return {...item,name:e.display_name?.trim() || (e.sequence_number>0 ? (subject?subject+' – ':'')+numbered : item.name),path,parentHash:e.folder_hash,hidden:e.hidden===true,sequenceNumber:e.sequence_number,tags:e.tags||[]};
+}
+function resetMediaCache() {
+  folderCache.clear();coverCache.clear();state.albumGlobalItems=null;state.homePreview=null;
+  state.mediaCatalog=null;state.catalogFolders=null;state.catalogMedia=null;
+}
+async function findFolderPreview(folder, depth=2, visited=new Set()) {
+  if(!folder?.hash || depth<0 || visited.has(folder.hash))return '';
+  if(coverCache.has(folder.hash))return coverCache.get(folder.hash);
+  visited.add(folder.hash);
+  try {
+    const children=await fetchFolder(folder.hash);
+    const media=children.find(x=>x.isImage&&x.thumbnailUrl)||children.find(x=>x.isVideo&&x.hasCover&&x.thumbnailUrl);
+    if(media){coverCache.set(folder.hash,media.thumbnailUrl);return media.thumbnailUrl;}
+    for(const child of children.filter(x=>x.isFolder)){
+      const cover=await findFolderPreview(child,depth-1,visited);if(cover){coverCache.set(folder.hash,cover);return cover;}
+    }
+  }catch { /* keep placeholder; refresh retries */ }
+  return '';
+}
+async function loadAllMediaTree(rootHash=state.rootHash) {
+  if(state.albumGlobalItems)return state.albumGlobalItems;
+  if(mediaTreePending)return mediaTreePending;
+  mediaTreePending=(async()=>{
+    await ensureMediaCatalog();
+    const collected=[],queue=[{hash:rootHash,path:'آلبوم‌ها'}],seen=new Set();
+    while(queue.length){
+      const batch=queue.splice(0,4).filter(x=>!seen.has(x.hash));batch.forEach(x=>seen.add(x.hash));
+      const pages=await Promise.all(batch.map(async current=>({current,items:await fetchFolder(current.hash)})));
+      for(const {current,items} of pages)for(const item of items){
+        const enriched={...item,parentHash:item.parentHash||current.hash,path:item.path||current.path};collected.push(enriched);
+        if(item.isFolder&&item.hash&&!seen.has(item.hash))queue.push({hash:item.hash,path:current.path+' ← '+item.name});
+      }
+    }
+    state.albumGlobalItems=collected;return collected;
+  })().finally(()=>{mediaTreePending=null;});
+  return mediaTreePending;
+}
+function hydrateFolderCovers() {
+  const nodes=[...$('view').querySelectorAll('[data-folder]')];let next=0;
+  const worker=async()=>{while(next<nodes.length){const node=nodes[next++];if(!node.isConnected)continue;
+    const item=state.displayedAlbumItems.find(x=>x.hash===node.dataset.folder);if(!item||item.thumbnailUrl)continue;
+    const cover=await findFolderPreview(item);if(!cover||!node.isConnected)continue;
+    const img=document.createElement('img');img.alt='';img.loading='lazy';img.decoding='async';img.src=cover;img.onerror=()=>{img.hidden=true;};node.querySelector('.album-cover')?.append(img);
+  }};
+  Promise.all([worker(),worker(),worker()]).catch(()=>{});
 }
 
 async function loadHomePreview() {
@@ -111,16 +155,16 @@ async function loadHomePreview() {
   state.homePreviewLoading = true;
   try {
     const rootItems = await fetchFolder(state.rootHash);
-    const albums = rootItems.filter((x) => x.isFolder).slice(0, 8);
+    const albums = sortAlbumItems(rootItems.filter((x) => x.isFolder)).slice(0, 8);
     const firstAlbum = albums[0] || null;
-    const firstAlbumCover = firstAlbum ? await findFolderPreview(firstAlbum) : '';
+    const coverPromise = firstAlbum ? findFolderPreview(firstAlbum) : Promise.resolve('');
     const all = await loadAllMediaTree(state.rootHash);
     const media = all.filter((x) => x.isImage || x.isVideo)
       .sort((a, b) => Math.max(b.lastModified, b.createdAt) - Math.max(a.lastModified, a.createdAt));
     state.homePreview = {
       albums,
       firstAlbum,
-      firstAlbumCover,
+      firstAlbumCover:await coverPromise,
       recentImages: media.filter((x) => x.isImage).slice(0, 10),
       recentVideos: media.filter((x) => x.isVideo).slice(0, 10)
     };
@@ -369,7 +413,7 @@ function parseCloudItems(payload) {
     const rawDownload = String(obj.download_url || obj.content_url || '').trim();
     const download = rawDownload ? safeHttps(rawDownload) : '';
     const rawThumbnail = String(obj.thumbnail_url || obj.cover_url || '').trim();
-    const thumbnail = rawThumbnail ? safeHttps(rawThumbnail) : '';
+    const thumbnail = rawThumbnail ? safeHttps(rawThumbnail) : (download && (type.startsWith('image/') || obj.has_cover === true) ? thumbUrl(download) : '');
     return {
       id: String(obj.id ?? wrapper?.id ?? obj.obj_hash ?? ''),
       name: String(obj.name || 'بدون نام'),
@@ -384,12 +428,14 @@ function parseCloudItems(payload) {
       lastModified: Number(obj.last_modified || 0),
       hasCover: Boolean(obj.has_cover)
     };
-  }).filter((item) => item.isFolder || item.isImage || item.isVideo);
+  }).filter(item=>item.isFolder||item.isImage||item.isVideo).map(decorateMedia).filter(item=>!item.hidden);
 }
 
 async function fetchFolder(hash) {
-  const payload = await api(`/api/media/list?hash=${encodeURIComponent(hash)}`);
-  return parseCloudItems(payload);
+  await ensureMediaCatalog();
+  const key=String(hash);
+  if(!folderCache.has(key))folderCache.set(key,api(`/api/media/list?hash=${encodeURIComponent(hash)}`).then(parseCloudItems).catch(e=>{folderCache.delete(key);throw e;}));
+  return folderCache.get(key);
 }
 
 function ensureFolderTrail() {
@@ -408,6 +454,10 @@ function atAlbumsRoot() {
 function sortAlbumItems(items) {
   const direction = state.albumSort === 'oldest' ? 1 : -1;
   return [...items].sort((a, b) => {
+    if(a.isFolder && b.isFolder){
+      const year=x=>Number(String(x.name).replace(/[۰-۹٠-٩]/g,c=>'۰۱۲۳۴۵۶۷۸۹'.includes(c)?'۰۱۲۳۴۵۶۷۸۹'.indexOf(c):'٠١٢٣٤٥٦٧٨٩'.indexOf(c)).match(/(?<!\d)(13\d{2}|14\d{2})(?!\d)/)?.[0] || 0);
+      const ay=year(a),by=year(b);if(ay||by)return (ay-by)*direction;
+    }
     const aTime = Math.max(a.lastModified, a.createdAt);
     const bTime = Math.max(b.lastModified, b.createdAt);
     if (aTime !== bTime) return (aTime - bTime) * direction;
@@ -457,7 +507,7 @@ async function loadGlobalSearchIfNeeded() {
 }
 
 function itemSearchText(item) {
-  return normalizeSearch([item.name, item.path || ''].join(' '));
+  return normalizeSearch([item.name, item.path || '', ...(item.tags||[])].join(' '));
 }
 
 function paintFolder() {
@@ -499,7 +549,7 @@ function paintFolder() {
     paintFolder();
   });
   $('albumRefresh')?.addEventListener('click', () => {
-    state.albumGlobalItems = null; state.homePreview = null; renderAlbums();
+    resetMediaCache(); renderAlbums();
   });
   $('albumSettings')?.addEventListener('click', openAlbumSettings);
   $('view').querySelectorAll('[data-crumb]').forEach((button) => button.addEventListener('click', () => {
@@ -531,6 +581,7 @@ function paintFolder() {
     const item = state.displayedAlbumItems.find((x) => String(x.id) === String(button.dataset.favorite));
     if (item) toggleFavorite(item);
   }));
+  hydrateFolderCovers();
 }
 
 function openAlbumSettings() {
@@ -558,13 +609,13 @@ function itemCardHtml(item) {
   }
   const mediaIcon = item.isVideo ? '' : '▧';
   const imageUrl = item.thumbnailUrl || (item.isImage ? item.downloadUrl : '');
-  const image = `<div class="album-cover"><span class="album-cover-fallback" aria-hidden="true">${mediaIcon}</span>${imageUrl ? `<img src="${escapeHtml(thumbUrl(imageUrl))}" loading="lazy" alt="${escapeHtml(item.name)}" onerror="this.hidden=true">` : ''}</div>`;
+  const image = `<div class="album-cover"><span class="album-cover-fallback" aria-hidden="true">${mediaIcon}</span>${imageUrl ? `<img src="${escapeHtml(imageUrl)}" loading="lazy" alt="${escapeHtml(item.name)}" onerror="this.hidden=true">` : ''}</div>`;
   const fav = isFavorite(item.id);
   return `<article class="album-card media-card" data-media="${escapeHtml(item.id)}">${image}${item.isVideo ? '<span class="play-indicator">▶</span>' : ''}<button class="fav ${fav ? 'on' : ''}" data-favorite="${escapeHtml(item.id)}" aria-label="برگزیده">♥</button><div class="meta"><strong>${escapeHtml(item.name)}</strong><small>${item.isVideo ? 'ویدئو' : 'تصویر'}</small></div></article>`;
 }
 
 function favoriteSnapshot(item) {
-  return { id:item.id, name:item.name, type:item.type, downloadUrl:item.downloadUrl, thumbnailUrl:item.thumbnailUrl || '', addedAt:Date.now() };
+  return { id:item.id, name:item.name, type:item.type, downloadUrl:item.downloadUrl, thumbnailUrl:item.thumbnailUrl || '', parentHash:item.parentHash || state.catalogMedia?.get(String(item.id))?.folder_hash || state.folderHash, addedAt:Date.now() };
 }
 function isFavorite(id) { return state.favorites.some((x) => String(x.id) === String(id)); }
 function toggleFavorite(item) {
@@ -578,7 +629,8 @@ function toggleFavorite(item) {
 
 function renderFavorites() {
   stopHeroTimer();
-  const items = state.favorites.map((item) => ({ ...item, isImage:String(item.type).startsWith('image/'), isVideo:String(item.type).startsWith('video/') }));
+  if(!state.mediaCatalog){$('view').innerHTML='<div class="empty">در حال دریافت شناسنامه رسانه…</div>';ensureMediaCatalog().then(()=>{if(state.tab==='favorites')renderFavorites();}).catch(e=>{if(state.tab==='favorites')$('view').textContent=e.message;});return;}
+  const items = state.favorites.map(item=>decorateMedia({...item,isImage:String(item.type).startsWith('image/'),isVideo:String(item.type).startsWith('video/')})).filter(item=>!item.hidden);
   state.displayedAlbumItems = items;
   $('view').innerHTML = `<section class="section"><div class="section-title"><h2>برگزیده‌ها</h2><span class="pill">${toFaDigits(items.length)}</span></div>${items.length ? `<div class="album-grid layout-${escapeHtml(state.albumLayout)}">${items.map(itemCardHtml).join('')}</div>` : '<div class="empty">هنوز موردی به برگزیده‌ها اضافه نشده است.</div>'}</section>`;
   $('view').querySelectorAll('[data-media]').forEach((button) => button.addEventListener('click', () => {
@@ -600,6 +652,45 @@ function effectivePermission(name) {
 function viewerCurrent() {
   if (!state.viewer?.items?.length) return null;
   return state.viewer.items[state.viewer.index] || null;
+}
+
+function zoomViewerAt(event) {
+  const media=$('viewerMedia');if(!media||media.tagName!=='IMG')return;
+  const box=media.getBoundingClientRect();
+  media.style.transformOrigin=event ? `${Math.max(0,Math.min(100,(event.clientX-box.left)/box.width*100))}% ${Math.max(0,Math.min(100,(event.clientY-box.top)/box.height*100))}%` : '50% 50%';
+  media.classList.toggle('zoomed');requestAnimationFrame(positionViewerWatermark);
+}
+function positionViewerWatermark() {
+  const media=$('viewerMedia'),mark=document.querySelector('.viewer-watermark'),stage=document.querySelector('.viewer-stage');if(!media||!mark||!stage)return;
+  const naturalW=media.naturalWidth||media.videoWidth,naturalH=media.naturalHeight||media.videoHeight;if(!naturalW||!naturalH){mark.style.visibility='hidden';return;}
+  const m=media.getBoundingClientRect(),s=stage.getBoundingClientRect();
+  const scale=Math.min(m.width/naturalW,m.height/naturalH),w=naturalW*scale,h=naturalH*scale;
+  const left=Math.max(s.left,m.left+(m.width-w)/2),top=Math.max(s.top,m.top+(m.height-h)/2);
+  const right=Math.min(s.right,m.left+(m.width+w)/2),bottom=Math.min(s.bottom,m.top+(m.height+h)/2);
+  const short=Math.min(right-left,bottom-top),margin=Math.max(5,short*.025),size=Math.max(18,short*.16);
+  mark.style.cssText=`visibility:visible;left:${left-s.left+margin}px!important;top:${top-s.top+margin}px!important;right:auto!important;bottom:auto!important;width:${size}px!important;height:${size}px!important;opacity:.30!important`;
+}
+async function exportViewerMedia(item, action) {
+  if(state.exportBusy)return;
+  state.exportBusy=true;toast('در حال آماده‌سازی فایل همراه لوگو…');
+  try {
+    const job=await api('/api/media/export',{method:'POST',body:{id:String(item.id),folder_hash:item.parentHash||state.catalogMedia?.get(String(item.id))?.folder_hash,action}});
+    let result;
+    for(let i=0;i<450;i++){
+      result=await api(`/api/media/export/${job.id}`);
+      if(result.status==='ready')break;
+      if(result.status==='failed')throw new Error(result.message||'آماده‌سازی فایل انجام نشد.');
+      await new Promise(resolve=>setTimeout(resolve,2000));
+    }
+    if(result?.status!=='ready')throw new Error('آماده‌سازی طول کشید؛ کمی بعد دوباره تلاش کنید.');
+    if(action==='download'){const a=document.createElement('a');a.href=`/api/media/export/${job.id}/file`;a.download=result.name;a.click();return;}
+    const response=await fetch(`/api/media/export/${job.id}/file`,{credentials:'same-origin'});if(!response.ok)throw new Error('دریافت فایل آماده‌شده انجام نشد.');
+    const blob=await response.blob(),file=new File([blob],result.name,{type:result.mime});
+    if(action==='share'&&navigator.canShare?.({files:[file]})){
+      try{await navigator.share({files:[file],title:item.name});return;}catch(e){if(e.name==='AbortError')return;}
+    }
+    const href=URL.createObjectURL(blob),a=document.createElement('a');a.href=href;a.download=result.name;a.click();setTimeout(()=>URL.revokeObjectURL(href),60000);
+  }catch(e){toast(e.message||'آماده‌سازی فایل انجام نشد.');}finally{state.exportBusy=false;}
 }
 
 function syncViewerFullscreenButton() {
@@ -644,7 +735,7 @@ function renderViewer() {
   $('modalTitle').textContent = item.name || 'رسانه';
   $('modalBody').innerHTML = `<div class="viewer ${escapeHtml(state.slideshowEffect)}">
     <div class="viewer-stage">
-      ${isVideo ? `<video id="viewerMedia" src="${escapeHtml(url)}" controls playsinline></video>` : `<img id="viewerMedia" draggable="false" class="viewer-image" src="${escapeHtml(url)}" alt="${escapeHtml(item.name)}">`}
+      ${isVideo ? `<video id="viewerMedia" src="${escapeHtml(url)}" poster="${escapeHtml(item.thumbnailUrl || '')}" preload="metadata" controls controlslist="nodownload" playsinline></video>` : `<img id="viewerMedia" draggable="false" class="viewer-image" src="${escapeHtml(item.thumbnailUrl || url)}" alt="${escapeHtml(item.name)}">`}
       <img class="viewer-watermark" src="/brand-logo.webp" alt="">
       ${state.viewer.items.length > 1 ? '<button id="viewerPrev" class="viewer-nav viewer-prev" type="button">‹</button><button id="viewerNext" class="viewer-nav viewer-next" type="button">›</button>' : ''}
     </div>
@@ -668,17 +759,20 @@ function renderViewer() {
   });
   $('viewerFullscreen')?.addEventListener('click', toggleViewerFullscreen);
   syncViewerFullscreenButton();
-  $('viewerZoom')?.addEventListener('click', () => $('viewerMedia')?.classList.toggle('zoomed'));
+  $('viewerZoom')?.addEventListener('click', () => zoomViewerAt());
+  const media=$('viewerMedia');
+  media?.addEventListener('click',e=>{if(!isVideo && performance.now()>(media.ignoreTapUntil||0))zoomViewerAt(e);});
+  media?.addEventListener('load',positionViewerWatermark);
+  if(!isVideo && item.thumbnailUrl && item.thumbnailUrl!==url){
+    const full=new Image();full.decoding='async';full.onload=()=>{if($('viewerMedia')===media)media.src=url;};full.src=url;
+  }
+  media?.addEventListener('loadedmetadata',positionViewerWatermark);
+  media?.addEventListener('transitionend',positionViewerWatermark);
+  media?.addEventListener('contextmenu',e=>e.preventDefault());
+  requestAnimationFrame(positionViewerWatermark);
   $('viewerSlide')?.addEventListener('click', toggleSlideshow);
-  $('viewerShare')?.addEventListener('click', async () => {
-    try {
-      if (navigator.share) await navigator.share({ title:item.name, url });
-      else { await navigator.clipboard.writeText(url); toast('لینک کپی شد.'); }
-    } catch { /* cancel */ }
-  });
-  $('viewerDownload')?.addEventListener('click', () => {
-    const a = document.createElement('a'); a.href = url; a.download = item.name || 'alefatemion-media'; a.rel = 'noopener'; a.click();
-  });
+  $('viewerShare')?.addEventListener('click',()=>exportViewerMedia(item,'share'));
+  $('viewerDownload')?.addEventListener('click',()=>exportViewerMedia(item,'download'));
   const stage = $('modalBody').querySelector('.viewer-stage');
   let gesture = null;
   stage?.addEventListener('pointerdown', (event) => {
@@ -693,6 +787,7 @@ function renderViewer() {
     gesture = null;
     if (!start || start.id !== event.pointerId) return;
     const dx = event.clientX - start.x, dy = event.clientY - start.y;
+    if(Math.abs(dx)>8||Math.abs(dy)>8){if($('viewerMedia'))$('viewerMedia').ignoreTapUntil=performance.now()+500;}
     if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.2) moveViewer(dx > 0 ? -1 : 1);
   });
   stage?.addEventListener('pointercancel', () => { gesture = null; });
@@ -705,6 +800,7 @@ function openViewer(item, collection = [item]) {
   openModal(item.name || 'رسانه', '<div class="empty">در حال آماده‌سازی…</div>');
   const viewer = state.viewer = { items:items.length ? items : [item], index, zoomed:false, nativeFullscreen:false };
   const fullscreenChanged = () => {
+    requestAnimationFrame(positionViewerWatermark);
     if (document.fullscreenElement === $('modal')) viewer.nativeFullscreen = true;
     else if (viewer.nativeFullscreen) {
       viewer.nativeFullscreen = false;
@@ -713,8 +809,11 @@ function openViewer(item, collection = [item]) {
     syncViewerFullscreenButton();
   };
   document.addEventListener('fullscreenchange', fullscreenChanged);
+  const viewerResize=new ResizeObserver(positionViewerWatermark);viewerResize.observe($('modal'));
+  window.addEventListener('resize',positionViewerWatermark);
   state.modalCleanup = () => {
     stopSlideshow();
+    viewerResize.disconnect();window.removeEventListener('resize',positionViewerWatermark);
     const media = $('viewerMedia');
     if (media?.tagName === 'VIDEO') media.pause();
     document.removeEventListener('fullscreenchange', fullscreenChanged);

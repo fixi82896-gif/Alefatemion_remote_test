@@ -132,6 +132,7 @@ function escapeHtml(value) {
 }
 
 function safeHttps(url) {
+  if (!String(url || '').trim()) return '';
   try {
     const parsed = new URL(String(url || ''), location.origin);
     return parsed.protocol === 'https:' || (parsed.origin === location.origin && ['http:','https:'].includes(parsed.protocol)) ? parsed.href : '';
@@ -143,7 +144,8 @@ function safeHttps(url) {
 function thumbUrl(url) {
   const safe = safeHttps(url);
   if (!safe) return '';
-  return `${safe}${safe.includes('?') ? '&' : '?'}thumb=true`;
+  const parsed = new URL(safe); parsed.searchParams.set('thumb','true');
+  return parsed.href;
 }
 
 function apiErrorMessage(data, fallback = 'عملیات انجام نشد.') {

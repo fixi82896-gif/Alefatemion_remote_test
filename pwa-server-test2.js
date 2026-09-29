@@ -7,6 +7,7 @@ const path = require('path');
 const crypto = require('crypto');
 const { resolvePublicMediaUrl } = require('./pwa-radio-resolver');
 
+const { createExportService } = require('./pwa-media-export');
 const PORT = Number(process.env.PORT || 3000);
 const HOST = '0.0.0.0';
 const ROOT = path.resolve(__dirname, 'pwa');
@@ -204,23 +205,70 @@ async function serveBrandLogo(req, res) {
   res.end(brandLogoCache);
 }
 
+const upstreamCache=new Map();
+async function cachedJson(key,loader,ttl=60000){
+ const found=upstreamCache.get(key);if(found&&found.until>Date.now())return found.promise;
+ if(upstreamCache.size>500)upstreamCache.clear();
+ const promise=loader().catch(e=>{upstreamCache.delete(key);throw e;});upstreamCache.set(key,{promise,until:Date.now()+ttl});return promise;
+}
+async function mediaCatalog(){
+ return cachedJson('catalog',async()=>{
+  const result=await requestJson(new URL('media-catalog.json',CONFIG_URL).href);
+  const c=result.body;if(result.status!==200||c.schema_version!==1||!(c.revision>0)||!Array.isArray(c.media)||!Array.isArray(c.folders))throw Error('catalog_unavailable');return c;
+ });
+}
+async function cloudFolder(hash){
+ if(!/^[A-Za-z0-9_-]{8,128}$/.test(hash))throw Error('invalid_folder');
+ return cachedJson('folder:'+hash,async()=>{
+  const results=[];let offset=0,total=0;
+  do{
+   const target=`${ABR_BASE}/api/v4/sharing/list-shared-objects/?obj_hash=${encodeURIComponent(hash)}&recursive=false&limit=1000&offset=${offset}`;
+   const page=await requestJson(target,{headers:{'Accept-Language':'fa','user-device':'web-mobile'}});
+   if(page.status!==200||!Array.isArray(page.body.results))throw Error('media_unavailable');
+   results.push(...page.body.results);total=Number(page.body.count||results.length);offset=results.length;
+   if(!page.body.next||!page.body.results.length)break;
+   if(offset>50000)throw Error('folder_too_large');
+  }while(offset<total);
+  return {count:results.length,results,next:null,previous:null};
+ });
+}
+const handleMediaExport=createExportService({
+ logo:BRAND_FALLBACK,json,
+ resolveItem:async(id,hash)=>{
+  const catalog=await mediaCatalog();const entry=catalog.media.find(x=>String(x.stable_id)===id);
+  if(entry?.hidden===true)throw Object.assign(Error('hidden_media'),{status:403});
+  const folder=entry?.folder_hash||hash;
+  if(!catalog.folders.some(x=>x.folder_hash===folder))throw Object.assign(Error('unknown_folder'),{status:400});
+  const page=await cloudFolder(folder);const item=page.results.map(x=>x.obj).find(x=>String(x?.id)===id);
+  if(!item||!/^image\/|^video\//.test(item.type)||!item.download_url)throw Object.assign(Error('media_not_found'),{status:404});
+  return {url:item.download_url,video:item.type.startsWith('video/'),name:entry?.display_name||item.name};
+ },
+ authorize:async(req,res,video,action)=>{
+  const me=await authenticatedRequest(req,res,'/v1/account/me');if(me.status!==200){json(res,me.status,me.body);return null;}
+  const permission=await authenticatedRequest(req,res,'/v1/account/permissions');const p=permission.status===200?permission.body:(me.body.permissions||{});
+  const allowed=me.body.is_admin===true||(action==='share'?p.allow_share===true:p[video?'allow_video_download':'allow_photo_download']===true||p.allow_download===true);
+  if(!allowed){json(res,403,{error:{message:'اجازه دریافت این رسانه برای حساب شما فعال نیست.'}});return null;}
+  if(!me.body.user_id){json(res,401,{error:{message:'ورود مجدد لازم است.'}});return null;}return String(me.body.user_id);
+ }
+});
+
 async function handleApi(req, res, url) {
   if (!sameOriginRequest(req)) return json(res, 403, { error:{ code:'ORIGIN_REJECTED', message:'درخواست نامعتبر است.' } });
   if (url.pathname === '/api/health') return json(res, 200, { status:'ok', version:VERSION_NAME, version_code:VERSION_CODE, identity:IDENTITY_BASE });
 
   if (url.pathname === '/api/config') {
-    try { const result = await requestJson(CONFIG_URL); return json(res, result.status, result.body); }
+    try { const result = await cachedJson('config',()=>requestJson(CONFIG_URL)); return json(res, result.status, result.body); }
     catch { return json(res, 502, { error:{ code:'CONFIG_UNAVAILABLE', message:'تنظیمات برنامه در دسترس نیست.' } }); }
   }
 
+  if(url.pathname==='/api/media/catalog'){
+    try{return json(res,200,await mediaCatalog());}catch{return json(res,503,{error:{message:'شناسنامه رسانه در دسترس نیست؛ دوباره تلاش کنید.'}});}
+  }
+  if(url.pathname.startsWith('/api/media/export'))return handleMediaExport(req,res,url,req.method==='POST'?await readBody(req):null);
   if (url.pathname === '/api/media/list') {
-    const hash = String(url.searchParams.get('hash') || '');
-    if (!/^[A-Za-z0-9_-]{8,128}$/.test(hash)) return json(res, 400, { error:{ code:'INVALID_HASH', message:'شناسه آلبوم نامعتبر است.' } });
-    try {
-      const target = `${ABR_BASE}/api/v4/sharing/list-shared-objects/?obj_hash=${encodeURIComponent(hash)}&recursive=false&limit=1000`;
-      const result = await requestJson(target, { headers:{ 'Accept-Language':'fa', 'user-device':'web-mobile' } });
-      return json(res, result.status, result.body);
-    } catch { return json(res, 502, { error:{ code:'MEDIA_UNAVAILABLE', message:'دریافت آلبوم انجام نشد.' } }); }
+    const hash=String(url.searchParams.get('hash')||'');
+    if(!/^[A-Za-z0-9_-]{8,128}$/.test(hash))return json(res,400,{error:{message:'شناسه آلبوم نامعتبر است.'}});
+    try{return json(res,200,await cloudFolder(hash));}catch{return json(res,502,{error:{message:'دریافت آلبوم انجام نشد.'}});}
   }
 
   if (url.pathname === '/api/radio/resolve') {

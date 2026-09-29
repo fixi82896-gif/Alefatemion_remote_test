@@ -1,6 +1,6 @@
-const CACHE='alefatemion-pwa-step4viewer-v1';
-const VIEWER='step4viewer-1';
-const HOME='step3albums-1';
+const CACHE='alefatemion-pwa-step5media-v1';
+const VIEWER='step5media-1';
+const HOME='step5media-1';
 const V='test2-3';
 const STEP1='step1fix-3';
 const SHELL=[
