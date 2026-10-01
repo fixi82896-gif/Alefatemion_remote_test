@@ -1,17 +1,8 @@
 {
   "schema_version": 1,
-  "revision": 9,
-  "generated_at_millis": 1790720413177,
+  "revision": 10,
+  "generated_at_millis": 1790861437414,
   "events": [
-    {
-      "id": "radio-9e5f509eaa0d",
-      "type": "radio",
-      "title": "نوای تازه در رادیو آل فاطمیون",
-      "body": "ازم راضی شی یا نه",
-      "created_at_millis": 1790244631167,
-      "destination": "radio",
-      "destination_id": ""
-    },
     {
       "id": "radio-46cbc42b770d",
       "type": "radio",
