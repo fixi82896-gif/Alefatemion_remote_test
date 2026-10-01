@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 44,
+  "revision": 45,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -315,7 +315,7 @@
         {
           "id": "video-story",
           "title": "ویدیو استوری",
-          "subtitle": "روایت‌های تصویری در قالب استوری",
+          "subtitle": "",
           "source_url": "https:\/\/navaapp.com\/nava\/videostory",
           "image_url": "https:\/\/github.com\/fixi82896-gif\/Alefatemion_remote_test\/releases\/download\/remote-assets-v1\/intro-background-8d025445ec1353547783.jpg",
           "enabled": true,
