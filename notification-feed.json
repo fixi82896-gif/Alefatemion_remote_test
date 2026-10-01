@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 10,
-  "generated_at_millis": 1790861437414,
+  "revision": 11,
+  "generated_at_millis": 1790883392438,
   "events": [
     {
       "id": "radio-46cbc42b770d",
@@ -28,6 +28,15 @@
       "body": "تست دوم Test43؛ فقط مسیر Notification بررسی می‌شود و هیچ بروزرسانی یا نصبی انجام نمی‌شود.",
       "created_at_millis": 1790720413177,
       "destination": "settings",
+      "destination_id": ""
+    },
+    {
+      "id": "radio-51824937820f",
+      "type": "radio",
+      "title": "نوای تازه در رادیو آل فاطمیون",
+      "body": "15 نوای تازه به رادیو اضافه شد.",
+      "created_at_millis": 1790883392438,
+      "destination": "radio",
       "destination_id": ""
     }
   ]
