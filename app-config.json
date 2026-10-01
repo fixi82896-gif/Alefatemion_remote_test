@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 41,
+  "revision": 42,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -310,7 +310,7 @@
     "radio_banner_image_url": "",
     "hosseiniyeh": {
       "enabled": true,
-      "banner_image_url": "",
+      "banner_image_url": "https:\/\/github.com\/fixi82896-gif\/Alefatemion_remote_test\/releases\/download\/remote-assets-v1\/intro-background-1608bce6895802ed8ed8.jpg",
       "sections": [
         {
           "id": "video-story",
