@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 35,
+  "revision": 36,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -294,29 +294,29 @@
     "radio_banner_image_url": "",
     "sections": [
       {
-        "id": "announcements",
+        "id": "radio",
         "enabled": true,
-        "display_order": 1
+        "display_order": 0
       },
       {
         "id": "albums",
         "enabled": true,
-        "display_order": 2
+        "display_order": 1
       },
       {
         "id": "media",
         "enabled": true,
-        "display_order": 3
-      },
-      {
-        "id": "radio",
-        "enabled": true,
-        "display_order": 4
+        "display_order": 2
       },
       {
         "id": "favorites",
         "enabled": true,
-        "display_order": 5
+        "display_order": 3
+      },
+      {
+        "id": "announcements",
+        "enabled": true,
+        "display_order": 4
       }
     ]
   },
