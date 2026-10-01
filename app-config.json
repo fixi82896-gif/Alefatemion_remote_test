@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 46,
+  "revision": 47,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -320,6 +320,17 @@
           "image_url": "https:\/\/github.com\/fixi82896-gif\/Alefatemion_remote_test\/releases\/download\/remote-assets-v1\/intro-background-8d025445ec1353547783.jpg",
           "enabled": true,
           "display_order": 0,
+          "resolver_mode": "auto",
+          "resolver_url": ""
+        },
+        {
+          "id": "hos-muq1mnow",
+          "title": "جمعه های انتظار",
+          "subtitle": "",
+          "source_url": "https:\/\/navaapp.com\/row\/playlistemonajatbaemamzaman",
+          "image_url": "https:\/\/navaapp.com\/row\/playlistemonajatbaemamzaman",
+          "enabled": true,
+          "display_order": 1,
           "resolver_mode": "auto",
           "resolver_url": ""
         }
