@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 51,
+  "revision": 52,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -335,7 +335,7 @@
           "source_url": "https:\/\/navaapp.com\/nava\/studio",
           "image_url": "https:\/\/github.com\/fixi82896-gif\/Alefatemion_remote_test\/releases\/download\/remote-assets-v1\/intro-background-a5eca51e7c865c8f9dfa.jpg",
           "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": true,
+          "show_logo_on_custom_banner": false,
           "enabled": true,
           "display_order": 1,
           "resolver_mode": "auto",
