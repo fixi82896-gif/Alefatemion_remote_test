@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 64,
+  "revision": 65,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -491,11 +491,11 @@
           "id": "madahi-reciters",
           "title": "ذاکرین",
           "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/persons\/madah",
+          "source_url": "",
           "image_url": "",
           "show_title_on_custom_banner": false,
           "show_logo_on_custom_banner": false,
-          "enabled": true,
+          "enabled": false,
           "display_order": 10,
           "resolver_mode": "auto",
           "resolver_url": "",
