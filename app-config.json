@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 66,
+  "revision": 67,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -576,16 +576,16 @@
           "id": "hos-mustvrbu",
           "title": "ویدیو استوری",
           "subtitle": "",
-          "source_url": "https:\/\/navaapp.com\/menbar\/videostory",
+          "source_url": "",
           "image_url": "",
           "show_title_on_custom_banner": false,
           "show_logo_on_custom_banner": false,
-          "enabled": true,
+          "enabled": false,
           "display_order": 15,
           "resolver_mode": "auto",
           "resolver_url": "",
           "parent_id": "menbar",
-          "catalog_root_id": "",
+          "catalog_root_id": "menbar",
           "source_parent_url": "",
           "entry_type": "collection"
         },
