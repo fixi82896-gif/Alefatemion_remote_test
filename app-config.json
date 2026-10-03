@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 67,
+  "revision": 68,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -580,7 +580,7 @@
           "image_url": "",
           "show_title_on_custom_banner": false,
           "show_logo_on_custom_banner": false,
-          "enabled": false,
+          "enabled": true,
           "display_order": 15,
           "resolver_mode": "auto",
           "resolver_url": "",
