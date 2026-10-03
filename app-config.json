@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 74,
+  "revision": 75,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -631,12 +631,12 @@
           "image_url": "https:\/\/github.com\/fixi82896-gif\/Alefatemion_remote_test\/releases\/download\/remote-assets-v1\/intro-background-d5c86e73d5c12f609608.jpg",
           "show_title_on_custom_banner": false,
           "show_logo_on_custom_banner": false,
-          "enabled": true,
+          "enabled": false,
           "display_order": 18,
           "resolver_mode": "auto",
           "resolver_url": "",
           "parent_id": "madahi-video",
-          "catalog_root_id": "",
+          "catalog_root_id": "madahi",
           "source_parent_url": "",
           "entry_type": "collection"
         },
