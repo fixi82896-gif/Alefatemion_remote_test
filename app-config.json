@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 58,
+  "revision": 59,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -316,10 +316,74 @@
       "banner_show_logo": false,
       "sections": [
         {
+          "id": "catalog-fc8de26597c03fc0b2a32c25",
+          "title": "جزءخوانی استاد پرهیزکار",
+          "subtitle": "",
+          "source_url": "https:\/\/navaapp.com\/row\/parhizkarjoz",
+          "image_url": "https:\/\/dl.navaapp.com\/api\/6423067d9c3b99c5370269ee_500.webp",
+          "show_title_on_custom_banner": false,
+          "show_logo_on_custom_banner": false,
+          "enabled": true,
+          "display_order": 0,
+          "resolver_mode": "auto",
+          "resolver_url": "",
+          "parent_id": "quran",
+          "catalog_root_id": "quran",
+          "source_parent_url": "https:\/\/navaapp.com\/qari\/playlist"
+        },
+        {
+          "id": "hos-muryetmf",
+          "title": "ویدیو",
+          "subtitle": "",
+          "source_url": "https:\/\/navaapp.com\/nava\/video",
+          "image_url": "",
+          "show_title_on_custom_banner": false,
+          "show_logo_on_custom_banner": false,
+          "enabled": true,
+          "display_order": 0,
+          "resolver_mode": "auto",
+          "resolver_url": "",
+          "parent_id": "madahi",
+          "catalog_root_id": "madahi",
+          "source_parent_url": ""
+        },
+        {
           "id": "madahi",
           "title": "مداحی",
           "subtitle": "مداحی‌های صوتی و تصویری",
           "source_url": "https:\/\/navaapp.com\/nava\/playlist",
+          "image_url": "",
+          "show_title_on_custom_banner": false,
+          "show_logo_on_custom_banner": false,
+          "enabled": true,
+          "display_order": 1,
+          "resolver_mode": "auto",
+          "resolver_url": "",
+          "parent_id": "",
+          "catalog_root_id": "",
+          "source_parent_url": ""
+        },
+        {
+          "id": "catalog-550d99b51ee0d0d1b40c6203",
+          "title": "قرائت مجلسی",
+          "subtitle": "",
+          "source_url": "https:\/\/navaapp.com\/row\/majlesi",
+          "image_url": "https:\/\/dl.navaapp.com\/api\/6423098027ae146a8307d7e2_500.webp",
+          "show_title_on_custom_banner": false,
+          "show_logo_on_custom_banner": false,
+          "enabled": true,
+          "display_order": 1,
+          "resolver_mode": "auto",
+          "resolver_url": "",
+          "parent_id": "quran",
+          "catalog_root_id": "quran",
+          "source_parent_url": "https:\/\/navaapp.com\/qari\/playlist"
+        },
+        {
+          "id": "quran",
+          "title": "قرآن",
+          "subtitle": "تلاوت‌ها و مجموعه‌های قرآنی",
+          "source_url": "https:\/\/navaapp.com\/qari\/playlist",
           "image_url": "",
           "show_title_on_custom_banner": false,
           "show_logo_on_custom_banner": false,
@@ -348,20 +412,20 @@
           "source_parent_url": ""
         },
         {
-          "id": "hos-muryetmf",
-          "title": "ویدیو",
+          "id": "catalog-4e1130738b98f4de3ea0e247",
+          "title": "جزء خوانی شاکرنژاد",
           "subtitle": "",
-          "source_url": "https:\/\/navaapp.com\/nava\/video",
-          "image_url": "",
+          "source_url": "https:\/\/navaapp.com\/row\/jozquran",
+          "image_url": "https:\/\/dl.navaapp.com\/api\/642306a03b8f839bf706f449_500.webp",
           "show_title_on_custom_banner": false,
           "show_logo_on_custom_banner": false,
           "enabled": true,
-          "display_order": 0,
+          "display_order": 2,
           "resolver_mode": "auto",
           "resolver_url": "",
-          "parent_id": "madahi",
-          "catalog_root_id": "madahi",
-          "source_parent_url": ""
+          "parent_id": "quran",
+          "catalog_root_id": "quran",
+          "source_parent_url": "https:\/\/navaapp.com\/qari\/playlist"
         },
         {
           "id": "hos-muqr5637",
@@ -388,12 +452,28 @@
           "show_title_on_custom_banner": false,
           "show_logo_on_custom_banner": false,
           "enabled": true,
-          "display_order": 3,
+          "display_order": 2,
           "resolver_mode": "auto",
           "resolver_url": "",
           "parent_id": "",
           "catalog_root_id": "",
           "source_parent_url": ""
+        },
+        {
+          "id": "catalog-b8dde644298c14b8a4ca9874",
+          "title": "معتز آقایی تندخوانی (تحدیر) جزء به جزء",
+          "subtitle": "",
+          "source_url": "https:\/\/navaapp.com\/row\/Motaz-tondkhani",
+          "image_url": "https:\/\/dl.navaapp.com\/api\/642306dbce64d45a3407bd5f_500.webp",
+          "show_title_on_custom_banner": false,
+          "show_logo_on_custom_banner": false,
+          "enabled": true,
+          "display_order": 3,
+          "resolver_mode": "auto",
+          "resolver_url": "",
+          "parent_id": "quran",
+          "catalog_root_id": "quran",
+          "source_parent_url": "https:\/\/navaapp.com\/qari\/playlist"
         },
         {
           "id": "nava-playlist-2-n855466458",
@@ -412,6 +492,22 @@
           "source_parent_url": ""
         },
         {
+          "id": "catalog-191901f5c333202e59c2a7b5",
+          "title": "مصطفی اسماعیل - ترتیل سوره به سوره",
+          "subtitle": "",
+          "source_url": "https:\/\/navaapp.com\/row\/mostafa-esmaiel",
+          "image_url": "https:\/\/dl.navaapp.com\/api\/642307333b8f839bf706f44a_500.webp",
+          "show_title_on_custom_banner": false,
+          "show_logo_on_custom_banner": false,
+          "enabled": true,
+          "display_order": 4,
+          "resolver_mode": "auto",
+          "resolver_url": "",
+          "parent_id": "quran",
+          "catalog_root_id": "quran",
+          "source_parent_url": "https:\/\/navaapp.com\/qari\/playlist"
+        },
+        {
           "id": "nava-playlist-playlistemonajatbaemamzaman-n1581828370",
           "title": "حجت ابن الحسن",
           "subtitle": "همگام‌شده از لیست پخش نوا",
@@ -426,6 +522,22 @@
           "parent_id": "madahi",
           "catalog_root_id": "madahi",
           "source_parent_url": ""
+        },
+        {
+          "id": "catalog-40a0b1e197eccfa5fd35d143",
+          "title": "عبدالباسط عبدالصمد - ترتیل سوره به سوره",
+          "subtitle": "",
+          "source_url": "https:\/\/navaapp.com\/row\/abdolbaset-tartil-soreh",
+          "image_url": "https:\/\/dl.navaapp.com\/api\/6423076b6d0e19ef16042548_500.webp",
+          "show_title_on_custom_banner": false,
+          "show_logo_on_custom_banner": false,
+          "enabled": true,
+          "display_order": 5,
+          "resolver_mode": "auto",
+          "resolver_url": "",
+          "parent_id": "quran",
+          "catalog_root_id": "quran",
+          "source_parent_url": "https:\/\/navaapp.com\/qari\/playlist"
         },
         {
           "id": "nava-playlist-section-n1505894338",
@@ -444,20 +556,20 @@
           "source_parent_url": ""
         },
         {
-          "id": "quran",
-          "title": "قرآن",
-          "subtitle": "تلاوت‌ها و مجموعه‌های قرآنی",
-          "source_url": "https:\/\/navaapp.com\/qari\/playlist",
-          "image_url": "",
+          "id": "catalog-516c98ad8c897cb0e3ddade6",
+          "title": "احمد دباغ - ترتیل حزب به حزب",
+          "subtitle": "",
+          "source_url": "https:\/\/navaapp.com\/row\/-tatil-hezb-dabagh1",
+          "image_url": "https:\/\/dl.navaapp.com\/api\/642307ae6b1a595d6a0b4995_500.webp",
           "show_title_on_custom_banner": false,
           "show_logo_on_custom_banner": false,
           "enabled": true,
-          "display_order": 5,
+          "display_order": 6,
           "resolver_mode": "auto",
           "resolver_url": "",
-          "parent_id": "",
-          "catalog_root_id": "",
-          "source_parent_url": ""
+          "parent_id": "quran",
+          "catalog_root_id": "quran",
+          "source_parent_url": "https:\/\/navaapp.com\/qari\/playlist"
         },
         {
           "id": "nava-playlist-2-444309011",
@@ -476,6 +588,22 @@
           "source_parent_url": ""
         },
         {
+          "id": "catalog-0592ce4e966a051c4df83aa5",
+          "title": "شاطری- ترتیل سوره به سوره",
+          "subtitle": "",
+          "source_url": "https:\/\/navaapp.com\/row\/SHATERI",
+          "image_url": "https:\/\/dl.navaapp.com\/api\/6423081dcbe5c300ce0425fb_500.webp",
+          "show_title_on_custom_banner": false,
+          "show_logo_on_custom_banner": false,
+          "enabled": true,
+          "display_order": 7,
+          "resolver_mode": "auto",
+          "resolver_url": "",
+          "parent_id": "quran",
+          "catalog_root_id": "quran",
+          "source_parent_url": "https:\/\/navaapp.com\/qari\/playlist"
+        },
+        {
           "id": "nava-playlist-playlistedamamzani-n963178968",
           "title": "پلی لیست دمام زنی",
           "subtitle": "همگام‌شده از لیست پخش نوا",
@@ -490,6 +618,22 @@
           "parent_id": "madahi",
           "catalog_root_id": "madahi",
           "source_parent_url": ""
+        },
+        {
+          "id": "catalog-eb03516329fe74ebebff45b4",
+          "title": "محمد صدیق منشاوی - ترتیل سوره به سوره",
+          "subtitle": "",
+          "source_url": "https:\/\/navaapp.com\/row\/MsMtsbs",
+          "image_url": "https:\/\/dl.navaapp.com\/api\/642308783b8f839bf706f44b_500.webp",
+          "show_title_on_custom_banner": false,
+          "show_logo_on_custom_banner": false,
+          "enabled": true,
+          "display_order": 8,
+          "resolver_mode": "auto",
+          "resolver_url": "",
+          "parent_id": "quran",
+          "catalog_root_id": "quran",
+          "source_parent_url": "https:\/\/navaapp.com\/qari\/playlist"
         },
         {
           "id": "nava-playlist-section-1379286456",
@@ -508,6 +652,22 @@
           "source_parent_url": ""
         },
         {
+          "id": "catalog-854437254d8e8a78020abdd0",
+          "title": "گلچین تلاوت",
+          "subtitle": "",
+          "source_url": "https:\/\/navaapp.com\/row\/golchintelavatt",
+          "image_url": "https:\/\/dl.navaapp.com\/api\/6a0319da47ba15596a084075_500.webp",
+          "show_title_on_custom_banner": false,
+          "show_logo_on_custom_banner": false,
+          "enabled": true,
+          "display_order": 9,
+          "resolver_mode": "auto",
+          "resolver_url": "",
+          "parent_id": "quran",
+          "catalog_root_id": "quran",
+          "source_parent_url": "https:\/\/navaapp.com\/qari\/playlist"
+        },
+        {
           "id": "nava-playlist-section-n1470983474",
           "title": "زنجیززنی",
           "subtitle": "همگام‌شده از لیست پخش نوا",
@@ -524,6 +684,22 @@
           "source_parent_url": ""
         },
         {
+          "id": "catalog-af00529ec50df6d2e0a315d6",
+          "title": "تلاوت مجلسی 2",
+          "subtitle": "",
+          "source_url": "https:\/\/navaapp.com\/row\/golchintelavattt",
+          "image_url": "https:\/\/dl.navaapp.com\/api\/6a046b548e3b39beb102303a_500.webp",
+          "show_title_on_custom_banner": false,
+          "show_logo_on_custom_banner": false,
+          "enabled": true,
+          "display_order": 10,
+          "resolver_mode": "auto",
+          "resolver_url": "",
+          "parent_id": "quran",
+          "catalog_root_id": "quran",
+          "source_parent_url": "https:\/\/navaapp.com\/qari\/playlist"
+        },
+        {
           "id": "nava-playlist-playlistemoharram-n327385987",
           "title": "نوای محرّم",
           "subtitle": "همگام‌شده از لیست پخش نوا",
@@ -538,6 +714,22 @@
           "parent_id": "madahi",
           "catalog_root_id": "madahi",
           "source_parent_url": ""
+        },
+        {
+          "id": "catalog-ae6cdbbe14f9ee1141164c29",
+          "title": "گلچین تلاوت 3",
+          "subtitle": "",
+          "source_url": "https:\/\/navaapp.com\/row\/golchintelavat3",
+          "image_url": "https:\/\/dl.navaapp.com\/api\/6a09a16581a3313b640c3048_500.webp",
+          "show_title_on_custom_banner": false,
+          "show_logo_on_custom_banner": false,
+          "enabled": true,
+          "display_order": 11,
+          "resolver_mode": "auto",
+          "resolver_url": "",
+          "parent_id": "quran",
+          "catalog_root_id": "quran",
+          "source_parent_url": "https:\/\/navaapp.com\/qari\/playlist"
         },
         {
           "id": "nava-playlist-playlisteshohada-n1529558342",
