@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 69,
+  "revision": 70,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -305,6 +305,24 @@
         "enabled": true,
         "sponsored": false,
         "display_order": 1,
+        "starts_at_millis": 0,
+        "expires_at_millis": 0
+      },
+      {
+        "id": "home-musuelof",
+        "title": "",
+        "description": "",
+        "image_url": "https:\/\/github.com\/fixi82896-gif\/Alefatemion_remote_test\/releases\/download\/remote-assets-v1\/intro-background-d5c86e73d5c12f609608.jpg",
+        "placement": "hero",
+        "fixed": true,
+        "destination_type": "hosseiniyeh",
+        "destination_id": "madahi",
+        "destination_parent_id": "",
+        "external_url": "https:\/\/navaapp.com\/nava\/%D8%B1%D9%81%DB%8C%D9%82-%D8%B4%D9%87%DB%8C%D8%AF%D9%85-2",
+        "hosseiniyeh_path": "{\"steps\":[{\"id\":\"madahi-audio\",\"url\":\"https:\\\/\\\/navaapp.com\\\/nava\\\/playlist\",\"title\":\"صوتی\"},{\"id\":\"hos-muqr5637\",\"url\":\"https:\\\/\\\/navaapp.com\\\/nava\\\/studio\",\"title\":\"استودیویی\"},{\"id\":\"destination-db739e9958bff85456ed7afc\",\"url\":\"https:\\\/\\\/navaapp.com\\\/studio-banner\\\/%D8%B4%D9%87%D8%AF%D8%A7-%D9%88-%D8%AF%D9%81%D8%A7%D8%B9-%D9%85%D9%82%D8%AF%D8%B3\",\"title\":\"شهدا و دفاع مقدس\"}],\"leaf\":true}",
+        "enabled": true,
+        "sponsored": false,
+        "display_order": 2,
         "starts_at_millis": 0,
         "expires_at_millis": 0
       }
