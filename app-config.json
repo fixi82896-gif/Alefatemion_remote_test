@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 62,
+  "revision": 63,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -491,7 +491,7 @@
           "id": "madahi-reciters",
           "title": "ذاکرین",
           "subtitle": "",
-          "source_url": "https:\/\/navaapp.com\/nava\/persons",
+          "source_url": "",
           "image_url": "",
           "show_title_on_custom_banner": false,
           "show_logo_on_custom_banner": false,
