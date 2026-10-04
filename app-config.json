@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 82,
+  "revision": 83,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -318,42 +318,6 @@
       "banner_show_logo": false,
       "sections": [
         {
-          "id": "catalog-3cb5b594c610e46c1b2e8ecd",
-          "title": "توحید",
-          "subtitle": "",
-          "source_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/67ff8d9a548ce92a740aa6a8_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 0,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-mutb7fv1",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
-          "entry_type": "collection",
-          "source_item_id": "5c23c51bb005affb1afa1ab2"
-        },
-        {
-          "id": "catalog-4683422dc1fd0b4641eea23d",
-          "title": "ولایت ذیل ربوبیت است",
-          "subtitle": "",
-          "source_url": "https:\/\/dl.navaapp.com\/api\/69f9c6f2399e713a8b02e06d.mp4",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/6aba4c42e90b5389410ca45d_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 1,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "catalog-3cb5b594c610e46c1b2e8ecd",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
-          "entry_type": "video",
-          "source_item_id": "69f9c71f18b03c27ec0bd939"
-        },
-        {
           "id": "catalog-894c77e0a7e01c12be6194ec",
           "title": "حکیمانه",
           "subtitle": "",
@@ -370,42 +334,6 @@
           "source_parent_url": "https:\/\/navaapp.com\/menbar\/playlist",
           "entry_type": "collection",
           "source_item_id": ""
-        },
-        {
-          "id": "catalog-52627267ea194f8183f7da3f",
-          "title": "امامت",
-          "subtitle": "",
-          "source_url": "https:\/\/navaapp.com\/menbar\/videostory?category=imamat",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/67ff8dd69cd13020de084a66_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 3,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-mutb7fv1",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
-          "entry_type": "collection",
-          "source_item_id": "deee85d0fee8e64662f1434b"
-        },
-        {
-          "id": "catalog-d637fcc02bf3696d5d64d3c7",
-          "title": "آیا می‌توان خدای نادیده را عبادت کرد؟",
-          "subtitle": "",
-          "source_url": "https:\/\/dl.navaapp.com\/api\/69f6cccb914a3c5b4201e2ac.mp4",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/6aba4c64e90b5389410ca466_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 4,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "catalog-3cb5b594c610e46c1b2e8ecd",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
-          "entry_type": "video",
-          "source_item_id": "69f6cce60270db3554016c34"
         },
         {
           "id": "catalog-fc8de26597c03fc0b2a32c25",
@@ -426,42 +354,6 @@
           "source_item_id": ""
         },
         {
-          "id": "catalog-297fc878c2f046b2239e997e",
-          "title": "جوشش توحید",
-          "subtitle": "",
-          "source_url": "https:\/\/dl.navaapp.com\/api\/6937a3d14d464d36eb07e15d.mp4",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/6937a3d34d464d36eb07e15e_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 6,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "catalog-3cb5b594c610e46c1b2e8ecd",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
-          "entry_type": "video",
-          "source_item_id": "6937a3eed704890b7d0ef417"
-        },
-        {
-          "id": "catalog-3c730a4763c1894a9f613914",
-          "title": "امیرالمؤمنین (ع)",
-          "subtitle": "",
-          "source_url": "https:\/\/navaapp.com\/menbar\/videostory?category=amiralmomenin",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/67ff8ea6d6c4d59264093ebe_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 7,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-mutb7fv1",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
-          "entry_type": "collection",
-          "source_item_id": "e8ab93363c2dc74d42e6a75c"
-        },
-        {
           "id": "madahi-audio",
           "title": "صوتی",
           "subtitle": "",
@@ -478,42 +370,6 @@
           "source_parent_url": "",
           "entry_type": "collection",
           "source_item_id": ""
-        },
-        {
-          "id": "catalog-0f159ee3e2cfcc5cfe9cc894",
-          "title": "حضرت زهرا (س)",
-          "subtitle": "",
-          "source_url": "https:\/\/navaapp.com\/menbar\/videostory?category=hzahras",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/67ff916b6e8bedc857099c5f_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 9,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-mutb7fv1",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
-          "entry_type": "collection",
-          "source_item_id": "989d549a8239863a1eac28bb"
-        },
-        {
-          "id": "catalog-90feee7a12126b1d4847d747",
-          "title": "اراده ربوبی خداوند",
-          "subtitle": "",
-          "source_url": "https:\/\/dl.navaapp.com\/api\/692166f59c8b4f565400ff03.mp4",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/6aba73bddf09df202a07497a_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 10,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "catalog-3cb5b594c610e46c1b2e8ecd",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
-          "entry_type": "video",
-          "source_item_id": "6921670f7ee035762800634a"
         },
         {
           "id": "quran",
@@ -552,78 +408,6 @@
           "source_item_id": ""
         },
         {
-          "id": "catalog-917b4f493b535767ca99cc19",
-          "title": "یاری کردن خدا",
-          "subtitle": "",
-          "source_url": "https:\/\/dl.navaapp.com\/api\/68ea4ae3540453e2950305ca.mp4",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/68ea4ae5540453e2950305cb_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 13,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "catalog-3cb5b594c610e46c1b2e8ecd",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
-          "entry_type": "video",
-          "source_item_id": "68ea4aef30f01cfa6e0dfba8"
-        },
-        {
-          "id": "catalog-f901f601ed6fc50f5cb9d469",
-          "title": "امام حسن (ع)",
-          "subtitle": "",
-          "source_url": "https:\/\/navaapp.com\/menbar\/videostory?category=imamhassans",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/67ff911c6fcb36670804aced_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 14,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-mutb7fv1",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
-          "entry_type": "collection",
-          "source_item_id": "e80c9e0b4eebdadc01278ba9"
-        },
-        {
-          "id": "catalog-05691cf91660d6eafe40fa70",
-          "title": "امام حسین(ع)",
-          "subtitle": "",
-          "source_url": "https:\/\/navaapp.com\/menbar\/videostory?category=imamhussains",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/67ff5aa52f0a2c06fb0228e4_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 15,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-mutb7fv1",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
-          "entry_type": "collection",
-          "source_item_id": "75fd6591dac5d19f45b81154"
-        },
-        {
-          "id": "catalog-aae4a50b18cf82d9734842ae",
-          "title": "تاکنون دو رکعت نماز برای خدا نخواندم",
-          "subtitle": "",
-          "source_url": "https:\/\/dl.navaapp.com\/api\/68e257d54a5ce803680cdaaf.mp4",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/68e257d84a5ce803680cdab0_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 16,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "catalog-3cb5b594c610e46c1b2e8ecd",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
-          "entry_type": "video",
-          "source_item_id": "68e257e4baca5289750b84e6"
-        },
-        {
           "id": "hos-muryetmf",
           "title": "ویدیو",
           "subtitle": "",
@@ -640,42 +424,6 @@
           "source_parent_url": "",
           "entry_type": "collection",
           "source_item_id": ""
-        },
-        {
-          "id": "catalog-45cf89677eaae6bf73dc33e0",
-          "title": "ایمان به غیب",
-          "subtitle": "",
-          "source_url": "https:\/\/dl.navaapp.com\/api\/68dd0b75aa628ab2e6042f81.mp4",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/68dd0b77aa628ab2e6042f82_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 18,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "catalog-3cb5b594c610e46c1b2e8ecd",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
-          "entry_type": "video",
-          "source_item_id": "68dd0b9a75c61cca820d6729"
-        },
-        {
-          "id": "catalog-c9b7a970d16da17160bba480",
-          "title": "امام کاظم (ع)",
-          "subtitle": "",
-          "source_url": "https:\/\/navaapp.com\/menbar\/videostory?category=imamkazems",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/67ff98d6718264a8d103c241_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 19,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-mutb7fv1",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
-          "entry_type": "collection",
-          "source_item_id": "c741f2ca7b22a1e5bba68804"
         },
         {
           "id": "madahi-video",
@@ -696,42 +444,6 @@
           "source_item_id": ""
         },
         {
-          "id": "catalog-26c4294cf84fc008a13db8c5",
-          "title": "امام رضا (ع)",
-          "subtitle": "",
-          "source_url": "https:\/\/navaapp.com\/menbar\/videostory?category=imamrezas",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/67ff98fb162b4f3b470d00f3_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 21,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-mutb7fv1",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
-          "entry_type": "collection",
-          "source_item_id": "fd3506133c56f9c675cde3c7"
-        },
-        {
-          "id": "catalog-ebb6804d112901305f923b31",
-          "title": "اعتماد داری یا نه؟",
-          "subtitle": "",
-          "source_url": "https:\/\/dl.navaapp.com\/api\/68da2d2e5f152d45510da490.mp4",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/68da2d325f152d45510da491_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 22,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "catalog-3cb5b594c610e46c1b2e8ecd",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
-          "entry_type": "video",
-          "source_item_id": "68da2d4a589c553f12094da2"
-        },
-        {
           "id": "menbar",
           "title": "منبر",
           "subtitle": "سخنرانی‌ها و مجموعه‌های منبر",
@@ -748,24 +460,6 @@
           "source_parent_url": "",
           "entry_type": "collection",
           "source_item_id": ""
-        },
-        {
-          "id": "catalog-1f9fa505166559ed7e818077",
-          "title": "امام هادی (ع)",
-          "subtitle": "",
-          "source_url": "https:\/\/navaapp.com\/menbar\/videostory?category=imamhadis",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/67ff993bf5ab9b67cc07f632_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 24,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-mutb7fv1",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
-          "entry_type": "collection",
-          "source_item_id": "c9483c23e37d194ce4d1e94d"
         },
         {
           "id": "catalog-20b57e6a7f6ed33b54eb5a9d",
@@ -786,60 +480,6 @@
           "source_item_id": ""
         },
         {
-          "id": "catalog-7f8f36254fca112d12d1c028",
-          "title": "خدای مهربان یا خدای قدرتمند",
-          "subtitle": "",
-          "source_url": "https:\/\/dl.navaapp.com\/api\/68c7f1b479e69dc6090d47ba.mp4",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/68c7f1b579e69dc6090d47bb_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 26,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "catalog-3cb5b594c610e46c1b2e8ecd",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
-          "entry_type": "video",
-          "source_item_id": "68c7f1cf9853abfb6f02a815"
-        },
-        {
-          "id": "catalog-2027d8a317141421cc7bede1",
-          "title": "امام زمان (عج)",
-          "subtitle": "",
-          "source_url": "https:\/\/navaapp.com\/menbar\/videostory?category=imamzamans",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/67ff9a6244e0f6ac370ba64f_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 27,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-mutb7fv1",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
-          "entry_type": "collection",
-          "source_item_id": "936bcdf049de81ef38e49142"
-        },
-        {
-          "id": "catalog-f96d53271c197bd3e5c8d02c",
-          "title": "تسلیم یعنی همه امور در ربط با الله تعالی",
-          "subtitle": "",
-          "source_url": "https:\/\/dl.navaapp.com\/api\/68b6936960d836e2aa010ae5.mp4",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/68b6936a60d836e2aa010ae6_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 28,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "catalog-3cb5b594c610e46c1b2e8ecd",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
-          "entry_type": "video",
-          "source_item_id": "68b693a0ec9e53c36b0aaa27"
-        },
-        {
           "id": "madahi",
           "title": "مداحی",
           "subtitle": "مداحی‌های صوتی و تصویری",
@@ -856,42 +496,6 @@
           "source_parent_url": "",
           "entry_type": "collection",
           "source_item_id": ""
-        },
-        {
-          "id": "catalog-50c5ee77ed5bc0eb006e34ac",
-          "title": "اثبات توحید در کربلا",
-          "subtitle": "",
-          "source_url": "https:\/\/dl.navaapp.com\/api\/6889f0d7404222e5d50b7e26.mp4",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/6889f0d9404222e5d50b7e27_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 30,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "catalog-3cb5b594c610e46c1b2e8ecd",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
-          "entry_type": "video",
-          "source_item_id": "6889f126faa5fade3b0b441d"
-        },
-        {
-          "id": "catalog-9379384ac184c76bcdb6cfbf",
-          "title": "عید غدیر",
-          "subtitle": "",
-          "source_url": "https:\/\/navaapp.com\/menbar\/videostory?category=eydeghadir",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/67ff9d121d49e997c301c564_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 31,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-mutb7fv1",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
-          "entry_type": "collection",
-          "source_item_id": "096f83a27e0c72d22ded0096"
         },
         {
           "id": "madahi-reciters",
@@ -930,60 +534,6 @@
           "source_item_id": ""
         },
         {
-          "id": "catalog-9719c22746f5ee1b4dd40bda",
-          "title": "حضرت خدیجه (س)",
-          "subtitle": "",
-          "source_url": "https:\/\/navaapp.com\/menbar\/videostory?category=hkhadijes",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/67ff9a8be56c01d099051392_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 34,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-mutb7fv1",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
-          "entry_type": "collection",
-          "source_item_id": "8f07dc40f488f2694f35a218"
-        },
-        {
-          "id": "catalog-d31b88768831995320d36b0b",
-          "title": "نصرت خدا",
-          "subtitle": "",
-          "source_url": "https:\/\/dl.navaapp.com\/api\/6767ce607d5f4a7ba003e643.mp4",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/6767ce617d5f4a7ba003e644_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 35,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "catalog-3cb5b594c610e46c1b2e8ecd",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
-          "entry_type": "video",
-          "source_item_id": "6767d2622c7033618903c832"
-        },
-        {
-          "id": "catalog-115ff7722f5a7c7a4dd0c30e",
-          "title": "حضرت ام البنین",
-          "subtitle": "",
-          "source_url": "https:\/\/navaapp.com\/menbar\/videostory?category=omolbanins",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/67ff9aafe33bdb44aa03fb2c_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 36,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-mutb7fv1",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
-          "entry_type": "collection",
-          "source_item_id": "2252ba9b1f8daeca37ba256d"
-        },
-        {
           "id": "catalog-550d99b51ee0d0d1b40c6203",
           "title": "قرائت مجلسی",
           "subtitle": "",
@@ -1000,60 +550,6 @@
           "source_parent_url": "https:\/\/navaapp.com\/qari\/playlist",
           "entry_type": "collection",
           "source_item_id": ""
-        },
-        {
-          "id": "catalog-cac499f0023e2371f1bdd11a",
-          "title": "لا اله الا الله 1",
-          "subtitle": "",
-          "source_url": "https:\/\/dl.navaapp.com\/api\/675e70fa66f509770f044aa1.mp4",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/675e70fb66f509770f044aa2_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 38,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "catalog-3cb5b594c610e46c1b2e8ecd",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
-          "entry_type": "video",
-          "source_item_id": "675e7120513d0ba7570fefb2"
-        },
-        {
-          "id": "catalog-3d32c6685f45a627550037f4",
-          "title": "حضرت حمزه (ع)",
-          "subtitle": "",
-          "source_url": "https:\/\/navaapp.com\/menbar\/videostory?category=hhamze",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/67ff9ad075a86a6f8d03a3e1_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 39,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-mutb7fv1",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
-          "entry_type": "collection",
-          "source_item_id": "020281bb9c9d22c95127bdc2"
-        },
-        {
-          "id": "catalog-7191407aca197ed92eadf6dc",
-          "title": "مایوس نشویم",
-          "subtitle": "",
-          "source_url": "https:\/\/dl.navaapp.com\/api\/6731cf4efac888ad6b07203a.mp4",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/6731cf4ffac888ad6b07203b_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 40,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "catalog-3cb5b594c610e46c1b2e8ecd",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
-          "entry_type": "video",
-          "source_item_id": "6731cf633f18b4262f097284"
         },
         {
           "id": "catalog-7fd1d5a32d192ea84b2080e0",
@@ -1074,42 +570,6 @@
           "source_item_id": ""
         },
         {
-          "id": "catalog-8054aa8d8b5b705530c809dd",
-          "title": "منطق ما منطق قرآن",
-          "subtitle": "",
-          "source_url": "https:\/\/dl.navaapp.com\/api\/67189bf7fb6f27a80904c489.mp4",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/67189bf8fb6f27a80904c48a_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 42,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "catalog-3cb5b594c610e46c1b2e8ecd",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
-          "entry_type": "video",
-          "source_item_id": "67189c111532cfd7ee062a14"
-        },
-        {
-          "id": "catalog-c6f565431e593e080317b31f",
-          "title": "حضرت ام کلثوم (س)",
-          "subtitle": "",
-          "source_url": "https:\/\/navaapp.com\/menbar\/videostory?category=homekolsoom",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/67ff9af508b2e58533012d5f_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 43,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-mutb7fv1",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
-          "entry_type": "collection",
-          "source_item_id": "6db761364e11a4eb55dc86cc"
-        },
-        {
           "id": "catalog-ea540a17bf8ae9804564109c",
           "title": "همسرداری و خانواده",
           "subtitle": "",
@@ -1126,96 +586,6 @@
           "source_parent_url": "https:\/\/navaapp.com\/menbar\/playlist",
           "entry_type": "collection",
           "source_item_id": ""
-        },
-        {
-          "id": "catalog-71bd4e782a98873d869c9d8f",
-          "title": "قرآن",
-          "subtitle": "",
-          "source_url": "https:\/\/navaapp.com\/menbar\/videostory?category=quran",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/67ff9c73ae534b5bbd088f82_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 45,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-mutb7fv1",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
-          "entry_type": "collection",
-          "source_item_id": "5b00050d6a9e2ee3d41f7403"
-        },
-        {
-          "id": "catalog-c5dab3a35f32fdba3e277c19",
-          "title": "در رحمت خدا",
-          "subtitle": "",
-          "source_url": "https:\/\/dl.navaapp.com\/api\/671745e2cf579c8f140d6bb8.mp4",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/671745e4cf579c8f140d6bb9_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 46,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "catalog-3cb5b594c610e46c1b2e8ecd",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
-          "entry_type": "video",
-          "source_item_id": "67174626bc3c9055a1052588"
-        },
-        {
-          "id": "hos-mutb7fv1",
-          "title": "ویدیو استوری",
-          "subtitle": "",
-          "source_url": "https:\/\/navaapp.com\/menbar\/videostory",
-          "image_url": "https:\/\/github.com\/fixi82896-gif\/Alefatemion_remote_test\/releases\/download\/remote-assets-v1\/intro-background-d5c86e73d5c12f609608.jpg",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 47,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "menbar",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "",
-          "entry_type": "collection",
-          "source_item_id": ""
-        },
-        {
-          "id": "catalog-895d88ce7913d85537eb6c20",
-          "title": "نماز",
-          "subtitle": "",
-          "source_url": "https:\/\/navaapp.com\/menbar\/videostory?category=namazs",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/67ff9b2302b7f15a0b03a2bd_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 48,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-mutb7fv1",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
-          "entry_type": "collection",
-          "source_item_id": "eaf362de539895ce5a2f8505"
-        },
-        {
-          "id": "catalog-d0dda982f401aa0e6411298a",
-          "title": "یاد خدا 1",
-          "subtitle": "",
-          "source_url": "https:\/\/dl.navaapp.com\/api\/6713759bcf889168a102b0c6.mp4",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/6713759dcf889168a102b0c7_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 49,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "catalog-3cb5b594c610e46c1b2e8ecd",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
-          "entry_type": "video",
-          "source_item_id": "671375beb1bcfca94d0f0e4b"
         },
         {
           "id": "video-story",
@@ -1236,24 +606,6 @@
           "source_item_id": ""
         },
         {
-          "id": "catalog-22989a599fbec81d79445d33",
-          "title": "خیر انسان در کجاست؟",
-          "subtitle": "",
-          "source_url": "https:\/\/dl.navaapp.com\/api\/670dff901f31dcbeb40015a6.mp4",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/670dff911f31dcbeb40015a7_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 51,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "catalog-3cb5b594c610e46c1b2e8ecd",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
-          "entry_type": "video",
-          "source_item_id": "670dffe258afb3186a095424"
-        },
-        {
           "id": "catalog-4e1130738b98f4de3ea0e247",
           "title": "جزء خوانی شاکرنژاد",
           "subtitle": "",
@@ -1270,60 +622,6 @@
           "source_parent_url": "https:\/\/navaapp.com\/qari\/playlist",
           "entry_type": "collection",
           "source_item_id": ""
-        },
-        {
-          "id": "catalog-bb7f65e6820540f894e88cb9",
-          "title": "ماه مبارک رمضان",
-          "subtitle": "",
-          "source_url": "https:\/\/navaapp.com\/menbar\/videostory?category=ramezans",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/67ff9b54d2bdc30c5f0c1175_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 53,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-mutb7fv1",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
-          "entry_type": "collection",
-          "source_item_id": "b09a602f666df2d03b53d74f"
-        },
-        {
-          "id": "catalog-5a49c2b24fc328e93b0c92d2",
-          "title": "خانواده",
-          "subtitle": "",
-          "source_url": "https:\/\/navaapp.com\/menbar\/videostory?category=khanevade",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/67ffa9b2dc15366e57034e4e_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 54,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-mutb7fv1",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
-          "entry_type": "collection",
-          "source_item_id": "000c264914e4ac149dbcbf00"
-        },
-        {
-          "id": "catalog-d8a9dc42a6f0daa7c8f0605d",
-          "title": "آرزوی مرگ نکنید",
-          "subtitle": "",
-          "source_url": "https:\/\/dl.navaapp.com\/api\/6702565c8ed26fbda0052760.mp4",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/6702565c8ed26fbda0052761_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 55,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "catalog-3cb5b594c610e46c1b2e8ecd",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
-          "entry_type": "video",
-          "source_item_id": "67025676a47fd7aa3c0e2263"
         },
         {
           "id": "hos-mutaqeg4",
@@ -1344,42 +642,6 @@
           "source_item_id": ""
         },
         {
-          "id": "catalog-04a56f815ae2ef8ddbba1097",
-          "title": "سه جایی که شیطان حضور پیدا میکند",
-          "subtitle": "",
-          "source_url": "https:\/\/dl.navaapp.com\/api\/66dd445a89ea02993a09ec9d.mp4",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/66dd445a89ea02993a09ec9e_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 57,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "catalog-3cb5b594c610e46c1b2e8ecd",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
-          "entry_type": "video",
-          "source_item_id": "66dd4435c5f0abd36b0f9239"
-        },
-        {
-          "id": "catalog-0d748501b2c6b71d8b627f7d",
-          "title": "اخلاقیات",
-          "subtitle": "",
-          "source_url": "https:\/\/navaapp.com\/menbar\/videostory?category=akhlagh",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/67ff7b95a9ec08153007c0df_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 58,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-mutb7fv1",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
-          "entry_type": "collection",
-          "source_item_id": "3464e4d7b33b81505bb99ea0"
-        },
-        {
           "id": "hos-muqr5637",
           "title": "استودیویی",
           "subtitle": "",
@@ -1396,42 +658,6 @@
           "source_parent_url": "",
           "entry_type": "collection",
           "source_item_id": ""
-        },
-        {
-          "id": "catalog-2caa2db42e660f02887edccd",
-          "title": "بصیرت",
-          "subtitle": "",
-          "source_url": "https:\/\/navaapp.com\/menbar\/videostory?category=basirat",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/67ff9cd907e80236ef05738d_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 60,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-mutb7fv1",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
-          "entry_type": "collection",
-          "source_item_id": "efe1890333315c7612844698"
-        },
-        {
-          "id": "catalog-812e9550195f8ab113011cf6",
-          "title": "توکل",
-          "subtitle": "",
-          "source_url": "https:\/\/dl.navaapp.com\/api\/6677da4857a3f8dd260e536e.mp4",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/6677da4857a3f8dd260e536f_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 61,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "catalog-3cb5b594c610e46c1b2e8ecd",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
-          "entry_type": "video",
-          "source_item_id": "6677dac45181fdb63c0d6262"
         },
         {
           "id": "catalog-b8dde644298c14b8a4ca9874",
@@ -1452,42 +678,6 @@
           "source_item_id": ""
         },
         {
-          "id": "catalog-0533dac369e62b00c943ab5a",
-          "title": "محبت خدا",
-          "subtitle": "",
-          "source_url": "https:\/\/dl.navaapp.com\/api\/6656df268882517a300709b0.mp4",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/6656df268882517a300709b1_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 63,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "catalog-3cb5b594c610e46c1b2e8ecd",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
-          "entry_type": "video",
-          "source_item_id": "6656df6fa041e2b41c095b17"
-        },
-        {
-          "id": "catalog-e7615ae3f6badaa1f8405abe",
-          "title": "دفاع مقدس",
-          "subtitle": "",
-          "source_url": "https:\/\/navaapp.com\/menbar\/videostory?category=defamoghadas",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/67ff9cef57a5da5b770cb011_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 64,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-mutb7fv1",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
-          "entry_type": "collection",
-          "source_item_id": "1b4dec9b0a62b7ff4d3636c7"
-        },
-        {
           "id": "nava-playlist-2-n855466458",
           "title": "ادعیه و زیارات",
           "subtitle": "همگام‌شده از لیست پخش نوا",
@@ -1506,24 +696,6 @@
           "source_item_id": ""
         },
         {
-          "id": "catalog-190dd932e6dd72806871f253",
-          "title": "از جایی که فکرش را هم نمیکنیم",
-          "subtitle": "",
-          "source_url": "https:\/\/dl.navaapp.com\/api\/663f044756f2afe9500365c1.mp4",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/663f044756f2afe9500365c2_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 66,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "catalog-3cb5b594c610e46c1b2e8ecd",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
-          "entry_type": "video",
-          "source_item_id": "663f046fab32308553018f75"
-        },
-        {
           "id": "catalog-191901f5c333202e59c2a7b5",
           "title": "مصطفی اسماعیل - ترتیل سوره به سوره",
           "subtitle": "",
@@ -1540,24 +712,6 @@
           "source_parent_url": "https:\/\/navaapp.com\/qari\/playlist",
           "entry_type": "collection",
           "source_item_id": ""
-        },
-        {
-          "id": "catalog-086c0c0eb646da18692ae3f2",
-          "title": "لذت ذکر",
-          "subtitle": "",
-          "source_url": "https:\/\/dl.navaapp.com\/api\/663b2285f441a961e30bc470.mp4",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/663b2286f441a961e30bc471_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 68,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "catalog-3cb5b594c610e46c1b2e8ecd",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
-          "entry_type": "video",
-          "source_item_id": "663b22c1648ac722930edc63"
         },
         {
           "id": "nava-playlist-playlistemonajatbaemamzaman-n1581828370",
@@ -1594,24 +748,6 @@
           "source_parent_url": "https:\/\/navaapp.com\/qari\/playlist",
           "entry_type": "collection",
           "source_item_id": ""
-        },
-        {
-          "id": "catalog-746033a44533242d9e6077e8",
-          "title": "تمسک به قدرت لا یزال",
-          "subtitle": "",
-          "source_url": "https:\/\/dl.navaapp.com\/api\/663b1e8856f2afe9500365bd.mp4",
-          "image_url": "https:\/\/dl.navaapp.com\/api\/663b1e8956f2afe9500365be_400.webp",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 71,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "catalog-3cb5b594c610e46c1b2e8ecd",
-          "catalog_root_id": "menbar",
-          "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
-          "entry_type": "video",
-          "source_item_id": "663b226fc37e448c7505bad3"
         },
         {
           "id": "nava-playlist-section-n1505894338",
@@ -2121,7 +1257,55 @@
         "catalog-7086e6ed4d3073f58a3b3819",
         "catalog-5ce18521c3bb144938f8a6eb",
         "catalog-033d71a183c4bc57c1d7e3c7",
-        "hos-mustvrbu"
+        "hos-mustvrbu",
+        "hos-mutb7fv1",
+        "catalog-3cb5b594c610e46c1b2e8ecd",
+        "catalog-52627267ea194f8183f7da3f",
+        "catalog-3c730a4763c1894a9f613914",
+        "catalog-0f159ee3e2cfcc5cfe9cc894",
+        "catalog-f901f601ed6fc50f5cb9d469",
+        "catalog-05691cf91660d6eafe40fa70",
+        "catalog-c9b7a970d16da17160bba480",
+        "catalog-26c4294cf84fc008a13db8c5",
+        "catalog-1f9fa505166559ed7e818077",
+        "catalog-2027d8a317141421cc7bede1",
+        "catalog-9379384ac184c76bcdb6cfbf",
+        "catalog-9719c22746f5ee1b4dd40bda",
+        "catalog-115ff7722f5a7c7a4dd0c30e",
+        "catalog-3d32c6685f45a627550037f4",
+        "catalog-c6f565431e593e080317b31f",
+        "catalog-71bd4e782a98873d869c9d8f",
+        "catalog-895d88ce7913d85537eb6c20",
+        "catalog-bb7f65e6820540f894e88cb9",
+        "catalog-5a49c2b24fc328e93b0c92d2",
+        "catalog-0d748501b2c6b71d8b627f7d",
+        "catalog-2caa2db42e660f02887edccd",
+        "catalog-e7615ae3f6badaa1f8405abe",
+        "catalog-4683422dc1fd0b4641eea23d",
+        "catalog-d637fcc02bf3696d5d64d3c7",
+        "catalog-297fc878c2f046b2239e997e",
+        "catalog-90feee7a12126b1d4847d747",
+        "catalog-917b4f493b535767ca99cc19",
+        "catalog-aae4a50b18cf82d9734842ae",
+        "catalog-45cf89677eaae6bf73dc33e0",
+        "catalog-ebb6804d112901305f923b31",
+        "catalog-7f8f36254fca112d12d1c028",
+        "catalog-f96d53271c197bd3e5c8d02c",
+        "catalog-50c5ee77ed5bc0eb006e34ac",
+        "catalog-d31b88768831995320d36b0b",
+        "catalog-cac499f0023e2371f1bdd11a",
+        "catalog-7191407aca197ed92eadf6dc",
+        "catalog-8054aa8d8b5b705530c809dd",
+        "catalog-c5dab3a35f32fdba3e277c19",
+        "catalog-d0dda982f401aa0e6411298a",
+        "catalog-22989a599fbec81d79445d33",
+        "catalog-d8a9dc42a6f0daa7c8f0605d",
+        "catalog-04a56f815ae2ef8ddbba1097",
+        "catalog-812e9550195f8ab113011cf6",
+        "catalog-0533dac369e62b00c943ab5a",
+        "catalog-190dd932e6dd72806871f253",
+        "catalog-086c0c0eb646da18692ae3f2",
+        "catalog-746033a44533242d9e6077e8"
       ],
       "hidden_sources": [
         {
@@ -2199,6 +1383,198 @@
         {
           "parent_url": "https:\/\/navaapp.com\/row-video\/videohemasi",
           "target_url": "https:\/\/navaapp.com\/video\/%D8%B3%DB%8C%D8%AF%D9%85%D8%AC%DB%8C%D8%AF-%D8%A8%D9%86%DB%8C-%D9%81%D8%A7%D8%B7%D9%85%D9%87-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86-%D8%AD%D8%B3%DB%8C%D9%86"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
+          "target_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
+          "target_url": "https:\/\/dl.navaapp.com\/api\/69f9c6f2399e713a8b02e06d.mp4"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
+          "target_url": "https:\/\/navaapp.com\/menbar\/videostory?category=imamat"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
+          "target_url": "https:\/\/dl.navaapp.com\/api\/69f6cccb914a3c5b4201e2ac.mp4"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
+          "target_url": "https:\/\/dl.navaapp.com\/api\/6937a3d14d464d36eb07e15d.mp4"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
+          "target_url": "https:\/\/navaapp.com\/menbar\/videostory?category=amiralmomenin"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
+          "target_url": "https:\/\/navaapp.com\/menbar\/videostory?category=hzahras"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
+          "target_url": "https:\/\/dl.navaapp.com\/api\/692166f59c8b4f565400ff03.mp4"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
+          "target_url": "https:\/\/dl.navaapp.com\/api\/68ea4ae3540453e2950305ca.mp4"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
+          "target_url": "https:\/\/navaapp.com\/menbar\/videostory?category=imamhassans"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
+          "target_url": "https:\/\/navaapp.com\/menbar\/videostory?category=imamhussains"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
+          "target_url": "https:\/\/dl.navaapp.com\/api\/68e257d54a5ce803680cdaaf.mp4"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
+          "target_url": "https:\/\/dl.navaapp.com\/api\/68dd0b75aa628ab2e6042f81.mp4"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
+          "target_url": "https:\/\/navaapp.com\/menbar\/videostory?category=imamkazems"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
+          "target_url": "https:\/\/navaapp.com\/menbar\/videostory?category=imamrezas"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
+          "target_url": "https:\/\/dl.navaapp.com\/api\/68da2d2e5f152d45510da490.mp4"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
+          "target_url": "https:\/\/navaapp.com\/menbar\/videostory?category=imamhadis"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
+          "target_url": "https:\/\/dl.navaapp.com\/api\/68c7f1b479e69dc6090d47ba.mp4"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
+          "target_url": "https:\/\/navaapp.com\/menbar\/videostory?category=imamzamans"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
+          "target_url": "https:\/\/dl.navaapp.com\/api\/68b6936960d836e2aa010ae5.mp4"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
+          "target_url": "https:\/\/dl.navaapp.com\/api\/6889f0d7404222e5d50b7e26.mp4"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
+          "target_url": "https:\/\/navaapp.com\/menbar\/videostory?category=eydeghadir"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
+          "target_url": "https:\/\/navaapp.com\/menbar\/videostory?category=hkhadijes"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
+          "target_url": "https:\/\/dl.navaapp.com\/api\/6767ce607d5f4a7ba003e643.mp4"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
+          "target_url": "https:\/\/navaapp.com\/menbar\/videostory?category=omolbanins"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
+          "target_url": "https:\/\/dl.navaapp.com\/api\/675e70fa66f509770f044aa1.mp4"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
+          "target_url": "https:\/\/navaapp.com\/menbar\/videostory?category=hhamze"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
+          "target_url": "https:\/\/dl.navaapp.com\/api\/6731cf4efac888ad6b07203a.mp4"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
+          "target_url": "https:\/\/dl.navaapp.com\/api\/67189bf7fb6f27a80904c489.mp4"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
+          "target_url": "https:\/\/navaapp.com\/menbar\/videostory?category=homekolsoom"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
+          "target_url": "https:\/\/navaapp.com\/menbar\/videostory?category=quran"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
+          "target_url": "https:\/\/dl.navaapp.com\/api\/671745e2cf579c8f140d6bb8.mp4"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/playlist",
+          "target_url": "https:\/\/navaapp.com\/menbar\/videostory"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
+          "target_url": "https:\/\/navaapp.com\/menbar\/videostory?category=namazs"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
+          "target_url": "https:\/\/dl.navaapp.com\/api\/6713759bcf889168a102b0c6.mp4"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
+          "target_url": "https:\/\/dl.navaapp.com\/api\/670dff901f31dcbeb40015a6.mp4"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
+          "target_url": "https:\/\/navaapp.com\/menbar\/videostory?category=ramezans"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
+          "target_url": "https:\/\/navaapp.com\/menbar\/videostory?category=khanevade"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
+          "target_url": "https:\/\/dl.navaapp.com\/api\/6702565c8ed26fbda0052760.mp4"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
+          "target_url": "https:\/\/dl.navaapp.com\/api\/66dd445a89ea02993a09ec9d.mp4"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
+          "target_url": "https:\/\/navaapp.com\/menbar\/videostory?category=akhlagh"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
+          "target_url": "https:\/\/navaapp.com\/menbar\/videostory?category=basirat"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
+          "target_url": "https:\/\/dl.navaapp.com\/api\/6677da4857a3f8dd260e536e.mp4"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
+          "target_url": "https:\/\/dl.navaapp.com\/api\/6656df268882517a300709b0.mp4"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
+          "target_url": "https:\/\/navaapp.com\/menbar\/videostory?category=defamoghadas"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
+          "target_url": "https:\/\/dl.navaapp.com\/api\/663f044756f2afe9500365c1.mp4"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
+          "target_url": "https:\/\/dl.navaapp.com\/api\/663b2285f441a961e30bc470.mp4"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/videostory?category=towhid",
+          "target_url": "https:\/\/dl.navaapp.com\/api\/663b1e8856f2afe9500365bd.mp4"
         }
       ]
     },
