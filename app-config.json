@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 99,
+  "revision": 100,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -2096,24 +2096,6 @@
           "source_parent_url": "https:\/\/navaapp.com\/nava\/persons",
           "entry_type": "collection",
           "source_item_id": "c1eed312aad737e0f65f3c5e"
-        },
-        {
-          "id": "hos-mutfiiel",
-          "title": "موضوعات",
-          "subtitle": "",
-          "source_url": "https:\/\/navaapp.com\/nava\/subjects",
-          "image_url": "",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 49,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "madahi-audio",
-          "catalog_root_id": "madahi",
-          "source_parent_url": "",
-          "entry_type": "collection",
-          "source_item_id": ""
         },
         {
           "id": "catalog-ca33829a19b0ef10390468f0",
@@ -11815,7 +11797,8 @@
         "hos-mutfduf1",
         "hos-mutffu39",
         "hos-mutfhqcu",
-        "hos-mutfjds0"
+        "hos-mutfjds0",
+        "hos-mutfiiel"
       ],
       "hidden_sources": [
         {
