@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 108,
+  "revision": 109,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -1214,24 +1214,6 @@
           "source_parent_url": "https:\/\/navaapp.com\/row-video\/videohemasi",
           "entry_type": "video",
           "source_item_id": "3ea02dd7dad1ec0c7ca62bc2"
-        },
-        {
-          "id": "hos-mutmhdxo",
-          "title": "ویدیو استوری",
-          "subtitle": "",
-          "source_url": "https:\/\/navaapp.com\/menbar\/videostory",
-          "image_url": "",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 49,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "menbar",
-          "catalog_root_id": "",
-          "source_parent_url": "",
-          "entry_type": "collection",
-          "source_item_id": ""
         },
         {
           "id": "catalog-ab3b1d5b40b047bb61fbbac1",
@@ -12808,7 +12790,8 @@
         "hos-mutfjds0",
         "hos-mutfiiel",
         "hos-mutk1qe2",
-        "hos-mutk4kmg"
+        "hos-mutk4kmg",
+        "hos-mutmhdxo"
       ],
       "hidden_sources": [
         {
@@ -13486,6 +13469,10 @@
         {
           "parent_url": "https:\/\/navaapp.com\/nava\/playlist",
           "target_url": "https:\/\/navaapp.com\/nava\/subjects"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/playlist",
+          "target_url": "https:\/\/navaapp.com\/menbar\/videostory"
         }
       ],
       "media_links": []
