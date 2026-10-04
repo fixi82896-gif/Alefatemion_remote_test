@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 78,
+  "revision": 79,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -501,11 +501,11 @@
           "id": "madahi-reciters",
           "title": "ذاکرین",
           "subtitle": "",
-          "source_url": "",
+          "source_url": "https:\/\/navaapp.com\/nava\/persons",
           "image_url": "",
           "show_title_on_custom_banner": false,
           "show_logo_on_custom_banner": false,
-          "enabled": false,
+          "enabled": true,
           "display_order": 10,
           "resolver_mode": "auto",
           "resolver_url": "",
@@ -636,7 +636,7 @@
           "resolver_mode": "auto",
           "resolver_url": "",
           "parent_id": "madahi-video",
-          "catalog_root_id": "",
+          "catalog_root_id": "madahi",
           "source_parent_url": "",
           "entry_type": "collection",
           "source_item_id": ""
