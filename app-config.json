@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 89,
+  "revision": 90,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -95,7 +95,7 @@
         "page_url": "https:\/\/navaapp.com\/nava\/68c6ac623288a0afc20b58d1",
         "stream_url": "https:\/\/navaapp.com\/nava\/68c6ac623288a0afc20b58d1",
         "category": "celebration",
-        "enabled": false
+        "enabled": true
       },
       {
         "id": "nava-1788001451571",
@@ -190,6 +190,22 @@
       "radio_updates_enabled": true
     },
     "items": [
+      {
+        "id": "auto-radio-nava-1788001300700-mutcmhif",
+        "category": "radio_update",
+        "origin": "auto_radio",
+        "title": "نوای تازه در رادیو آل فاطمیون",
+        "summary": "نوای «سید محمد رضا نوشه ور» با صدای جاریه رحمت خدا به رادیو آل فاطمیون افزوده شد.",
+        "body": "نوای «سید محمد رضا نوشه ور» با صدای جاریه رحمت خدا به رادیو آل فاطمیون افزوده شد.",
+        "image_url": "",
+        "published": true,
+        "pinned": false,
+        "published_at_millis": 1791089803815,
+        "expires_at_millis": 1791694603815,
+        "related_album_hash": "",
+        "related_album_name": "",
+        "related_track_id": "nava-1788001300700"
+      },
       {
         "id": "manual-1787925631048",
         "category": "notice",
