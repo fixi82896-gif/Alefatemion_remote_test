@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 103,
+  "revision": 104,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -1911,8 +1911,8 @@
           "display_order": 87,
           "resolver_mode": "auto",
           "resolver_url": "",
-          "parent_id": "",
-          "catalog_root_id": "",
+          "parent_id": "madahi",
+          "catalog_root_id": "madahi",
           "source_parent_url": "",
           "entry_type": "collection",
           "source_item_id": ""
@@ -12495,10 +12495,6 @@
         {
           "parent_url": "https:\/\/navaapp.com\/nava\/subjects",
           "target_url": "https:\/\/navaapp.com\/list\/nava\/subject\/%D9%85%D9%82%D8%A7%D9%88%D9%85%D8%AA"
-        },
-        {
-          "parent_url": "https:\/\/navaapp.com\/nava\/playlist",
-          "target_url": "https:\/\/navaapp.com\/nava\/subjects"
         }
       ]
     },
