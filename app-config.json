@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 84,
+  "revision": 85,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -297,11 +297,11 @@
         "image_url": "https:\/\/github.com\/fixi82896-gif\/Alefatemion_remote_test\/releases\/download\/remote-assets-v1\/intro-background-cf3a4e56384163f8645e.jpg",
         "placement": "hero",
         "fixed": false,
-        "destination_type": "radio",
-        "destination_id": "nava-1789121934014",
+        "destination_type": "hosseiniyeh",
+        "destination_id": "madahi",
         "destination_parent_id": "",
-        "external_url": "",
-        "hosseiniyeh_path": "",
+        "external_url": "https:\/\/navaapp.com\/nava\/%D8%B3%D9%84%D8%B3%D9%84%D9%87-%D8%B9%D8%B4%D9%82-2",
+        "hosseiniyeh_path": "{\"steps\":[{\"id\":\"madahi-audio\",\"url\":\"https:\\\/\\\/navaapp.com\\\/nava\\\/playlist\",\"title\":\"صوتی\"},{\"id\":\"hos-muqr5637\",\"url\":\"https:\\\/\\\/navaapp.com\\\/nava\\\/studio\",\"title\":\"استودیویی\"},{\"id\":\"destination-57f6b33342c138968eb8fb00\",\"url\":\"https:\\\/\\\/navaapp.com\\\/studio-banner\\\/%D8%A7%D9%85%D8%A7%D9%85-%D8%AD%D8%B3%DB%8C%D9%86-%D8%B9\",\"title\":\"امام حسین (ع)\"}],\"leaf\":true,\"target\":{\"id\":\"75953421246eb3003cc5c97b\",\"title\":\"سلسله عشق\",\"type\":\"link\"}}",
         "enabled": true,
         "sponsored": false,
         "display_order": 1,
