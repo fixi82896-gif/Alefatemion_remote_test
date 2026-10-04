@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 102,
+  "revision": 103,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -1900,6 +1900,24 @@
           "source_item_id": "23c64b3d7e7eda9d19ce78ac"
         },
         {
+          "id": "hos-mutk4kmg",
+          "title": "موضوعات",
+          "subtitle": "",
+          "source_url": "https:\/\/navaapp.com\/nava\/subjects",
+          "image_url": "",
+          "show_title_on_custom_banner": false,
+          "show_logo_on_custom_banner": false,
+          "enabled": true,
+          "display_order": 87,
+          "resolver_mode": "auto",
+          "resolver_url": "",
+          "parent_id": "",
+          "catalog_root_id": "",
+          "source_parent_url": "",
+          "entry_type": "collection",
+          "source_item_id": ""
+        },
+        {
           "id": "catalog-1240001ceb002142dca41272",
           "title": "حامد جلیلی - پیروز میدان",
           "subtitle": "",
@@ -1908,7 +1926,7 @@
           "show_title_on_custom_banner": false,
           "show_logo_on_custom_banner": false,
           "enabled": true,
-          "display_order": 87,
+          "display_order": 88,
           "resolver_mode": "auto",
           "resolver_url": "",
           "parent_id": "hos-muryetmf",
