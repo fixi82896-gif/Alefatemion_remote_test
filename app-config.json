@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 113,
+  "revision": 114,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -4568,25 +4568,6 @@
           "source_parent_url": "https:\/\/navaapp.com\/row-video\/videohemasi",
           "entry_type": "video",
           "source_item_id": "3ea02dd7dad1ec0c7ca62bc2",
-          "source_edited": false
-        },
-        {
-          "id": "hos-muucdlt7",
-          "title": "ویدیو استوری",
-          "subtitle": "",
-          "source_url": "https:\/\/navaapp.com\/menbar\/videostory",
-          "image_url": "",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 223,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "menbar",
-          "catalog_root_id": "",
-          "source_parent_url": "",
-          "entry_type": "collection",
-          "source_item_id": "",
           "source_edited": false
         },
         {
@@ -11302,7 +11283,8 @@
         "catalog-b92efb7685cc4def2772eadd",
         "catalog-f1cb77cb7fa4549c8958c940",
         "catalog-4a8cdb00af9eadd00c840fea",
-        "catalog-ccbe59f1c90074a236bd5179"
+        "catalog-ccbe59f1c90074a236bd5179",
+        "hos-muucdlt7"
       ],
       "hidden_sources": [
         {
@@ -12036,6 +12018,10 @@
         {
           "parent_url": "https:\/\/navaapp.com\/nava\/persons",
           "target_url": "https:\/\/navaapp.com\/"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/menbar\/playlist",
+          "target_url": "https:\/\/navaapp.com\/menbar\/videostory"
         }
       ],
       "media_links": []
