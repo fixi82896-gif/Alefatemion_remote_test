@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 104,
+  "revision": 105,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -1898,24 +1898,6 @@
           "source_parent_url": "https:\/\/navaapp.com\/nava\/persons",
           "entry_type": "collection",
           "source_item_id": "23c64b3d7e7eda9d19ce78ac"
-        },
-        {
-          "id": "hos-mutk4kmg",
-          "title": "موضوعات",
-          "subtitle": "",
-          "source_url": "https:\/\/navaapp.com\/nava\/subjects",
-          "image_url": "",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 87,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "madahi",
-          "catalog_root_id": "madahi",
-          "source_parent_url": "",
-          "entry_type": "collection",
-          "source_item_id": ""
         },
         {
           "id": "catalog-1240001ceb002142dca41272",
@@ -11817,7 +11799,8 @@
         "hos-mutfhqcu",
         "hos-mutfjds0",
         "hos-mutfiiel",
-        "hos-mutk1qe2"
+        "hos-mutk1qe2",
+        "hos-mutk4kmg"
       ],
       "hidden_sources": [
         {
@@ -12495,6 +12478,10 @@
         {
           "parent_url": "https:\/\/navaapp.com\/nava\/subjects",
           "target_url": "https:\/\/navaapp.com\/list\/nava\/subject\/%D9%85%D9%82%D8%A7%D9%88%D9%85%D8%AA"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/nava\/playlist",
+          "target_url": "https:\/\/navaapp.com\/nava\/subjects"
         }
       ]
     },
