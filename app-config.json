@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 83,
+  "revision": 84,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -279,11 +279,11 @@
         "image_url": "https:\/\/github.com\/fixi82896-gif\/Alefatemion_remote_test\/releases\/download\/remote-assets-v1\/intro-background-4ab5aadaa955bab9f019.jpg",
         "placement": "hero",
         "fixed": true,
-        "destination_type": "none",
-        "destination_id": "",
+        "destination_type": "hosseiniyeh",
+        "destination_id": "madahi",
         "destination_parent_id": "",
-        "external_url": "",
-        "hosseiniyeh_path": "",
+        "external_url": "https:\/\/navaapp.com\/nava\/%D9%85%D8%A7%D8%AF%D8%B1-%D8%AE%D9%88%D8%A8%DB%8C-%D9%87%D8%A7",
+        "hosseiniyeh_path": "{\"steps\":[{\"id\":\"madahi-audio\",\"url\":\"https:\\\/\\\/navaapp.com\\\/nava\\\/playlist\",\"title\":\"صوتی\"},{\"id\":\"hos-muqr5637\",\"url\":\"https:\\\/\\\/navaapp.com\\\/nava\\\/studio\",\"title\":\"استودیویی\"},{\"id\":\"destination-b462d716258720e6404d211a\",\"url\":\"https:\\\/\\\/navaapp.com\\\/studio-banner\\\/%D8%AD%D8%B6%D8%B1%D8%AA-%D8%B2%D9%87%D8%B1%D8%A7-%D8%B3%D9%84%D8%A7%D9%85-%D8%A7%D9%84%D9%84%D9%87-%D8%B9%D9%84%DB%8C%D9%87%D8%A7\",\"title\":\"حضرت زهرا سلام الله علیها\"}],\"leaf\":true,\"target\":{\"id\":\"d607a792cc49c8c07329e22f\",\"title\":\"مادر خوبی ها\",\"type\":\"link\"}}",
         "enabled": true,
         "sponsored": false,
         "display_order": 0,
