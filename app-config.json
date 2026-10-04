@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 86,
+  "revision": 87,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -301,8 +301,8 @@
         "destination_id": "madahi",
         "destination_parent_id": "",
         "external_url": "https:\/\/navaapp.com\/video\/%D8%AD%D8%B3%DB%8C%D9%86-%D8%B3%D8%AA%D9%88%D8%AF%D9%87-%D8%AE%D8%A7%D8%B7%D8%B1%D8%A7%D8%AA-%D8%AD%D8%B1%D9%85",
-        "hosseiniyeh_path": "{\"steps\":[{\"id\":\"madahi-video\",\"url\":\"\",\"title\":\"تصویری\"},{\"id\":\"hos-muryetmf\",\"url\":\"https:\\\/\\\/navaapp.com\\\/nava\\\/video\",\"title\":\"ویدیو\"}],\"leaf\":true,\"target\":{\"id\":\"9e56ebb98b4b9d2166e5edba\",\"title\":\"حسین ستوده - خاطرات حرم\",\"type\":\"video\"}}",
-        "enabled": true,
+        "hosseiniyeh_path": "{\"steps\":[{\"id\":\"madahi-video\",\"title\":\"تصویری\",\"url\":\"\"},{\"id\":\"hos-muryetmf\",\"title\":\"ویدیو\",\"url\":\"https:\\\/\\\/navaapp.com\\\/nava\\\/video\"}],\"leaf\":true,\"target\":{\"id\":\"9e56ebb98b4b9d2166e5edba\",\"title\":\"حسین ستوده - خاطرات حرم\",\"type\":\"video\"}}",
+        "enabled": false,
         "sponsored": false,
         "display_order": 1,
         "starts_at_millis": 0,
