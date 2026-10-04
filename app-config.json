@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 97,
+  "revision": 98,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -1126,6 +1126,24 @@
           "source_item_id": "fb386cf5e15de84a9b33cf87"
         },
         {
+          "id": "hos-mutffu39",
+          "title": "موضوعات",
+          "subtitle": "",
+          "source_url": "https:\/\/navaapp.com\/nava\/subjects",
+          "image_url": "",
+          "show_title_on_custom_banner": false,
+          "show_logo_on_custom_banner": false,
+          "enabled": true,
+          "display_order": 44,
+          "resolver_mode": "auto",
+          "resolver_url": "",
+          "parent_id": "",
+          "catalog_root_id": "",
+          "source_parent_url": "",
+          "entry_type": "collection",
+          "source_item_id": ""
+        },
+        {
           "id": "catalog-4ba301f454f3385cf14365a0",
           "title": "گروه سرود نور المبین - ایران سید علی",
           "subtitle": "",
@@ -1134,7 +1152,7 @@
           "show_title_on_custom_banner": false,
           "show_logo_on_custom_banner": false,
           "enabled": true,
-          "display_order": 44,
+          "display_order": 45,
           "resolver_mode": "auto",
           "resolver_url": "",
           "parent_id": "hos-muryetmf",
@@ -1152,7 +1170,7 @@
           "show_title_on_custom_banner": false,
           "show_logo_on_custom_banner": false,
           "enabled": true,
-          "display_order": 45,
+          "display_order": 46,
           "resolver_mode": "auto",
           "resolver_url": "",
           "parent_id": "hos-muryetmf",
@@ -1170,29 +1188,11 @@
           "show_title_on_custom_banner": false,
           "show_logo_on_custom_banner": false,
           "enabled": true,
-          "display_order": 46,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "madahi",
-          "catalog_root_id": "madahi",
-          "source_parent_url": "",
-          "entry_type": "collection",
-          "source_item_id": ""
-        },
-        {
-          "id": "hos-mutfduf1",
-          "title": "موضوعات",
-          "subtitle": "",
-          "source_url": "https:\/\/navaapp.com\/nava\/subjects",
-          "image_url": "",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
           "display_order": 47,
           "resolver_mode": "auto",
           "resolver_url": "",
           "parent_id": "madahi",
-          "catalog_root_id": "",
+          "catalog_root_id": "madahi",
           "source_parent_url": "",
           "entry_type": "collection",
           "source_item_id": ""
@@ -7023,7 +7023,8 @@
         "catalog-7e9e265c81fb3b89682b94f4",
         "catalog-dd770f2bc4c79831cf418f2a",
         "catalog-b39610501f3f0cba3008cd71",
-        "catalog-3492015fba9807a64ffd09fb"
+        "catalog-3492015fba9807a64ffd09fb",
+        "hos-mutfduf1"
       ],
       "hidden_sources": [
         {
@@ -7701,6 +7702,10 @@
         {
           "parent_url": "https:\/\/navaapp.com\/nava\/subjects",
           "target_url": "https:\/\/navaapp.com\/list\/nava\/subject\/%D9%85%D9%82%D8%A7%D9%88%D9%85%D8%AA"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/nava\/playlist",
+          "target_url": "https:\/\/navaapp.com\/nava\/subjects"
         }
       ]
     },
