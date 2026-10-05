@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 12,
-  "generated_at_millis": 1791089774243,
+  "revision": 13,
+  "generated_at_millis": 1791176409186,
   "events": [
     {
       "id": "radio-46cbc42b770d",
@@ -47,6 +47,15 @@
       "created_at_millis": 1791089774243,
       "destination": "radio",
       "destination_id": ""
+    },
+    {
+      "id": "announcement-manual-1787925631048",
+      "type": "announcement",
+      "title": "بسم الله الرحمن الرحیم",
+      "body": "معرفی نرم‌افزار",
+      "created_at_millis": 1791176409186,
+      "destination": "announcements",
+      "destination_id": "manual-1787925631048"
     }
   ]
 }
