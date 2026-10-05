@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 124,
+  "revision": 125,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -334,25 +334,6 @@
       "banner_show_logo": false,
       "sections": [
         {
-          "id": "catalog-09e4e535ef27fd327ab7b895",
-          "title": "شهادت حضرت رقیه (س)",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/monasebat\/%d8%b4%d9%87%d8%a7%d8%af%d8%aa-%d8%ad%d8%b6%d8%b1%d8%aa-%d8%b1%d9%82%db%8c%d9%87",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 0,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "0f8aa6567ac9bef0855dd83a",
-          "source_edited": false
-        },
-        {
           "id": "catalog-380509d375dac7ca32de84ba",
           "title": "توحید",
           "subtitle": "",
@@ -391,25 +372,6 @@
           "source_edited": false
         },
         {
-          "id": "catalog-5ac31c87ca3d3621ed352b58",
-          "title": "وفات حضرت ام البنین (س)",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/monasebat\/%d9%88%d9%81%d8%a7%d8%aa-%d8%ad%d8%b6%d8%b1%d8%aa-%d8%a7%d9%85-%d8%a7%d9%84%d8%a8%d9%86%db%8c%d9%86",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 3,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "6ad519e81548c03d74caaba6",
-          "source_edited": false
-        },
-        {
           "id": "catalog-3ca884b39fc402f622a085a3",
           "title": "حسین طاهری - مجتبی علی",
           "subtitle": "",
@@ -426,44 +388,6 @@
           "source_parent_url": "https:\/\/navaapp.com\/nava\/video",
           "entry_type": "video",
           "source_item_id": "22bf10a55da830077d8c69e9",
-          "source_edited": false
-        },
-        {
-          "id": "catalog-b0760bbcf8bf810d224c2fd8",
-          "title": "مناجات با امام زمان (عج)",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/monasebat\/%d9%85%d9%86%d8%a7%d8%ac%d8%a7%d8%aa-%d8%a7%d9%85%d8%a7%d9%85-%d8%b2%d9%85%d8%a7%d9%86",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 5,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "4f90f9d115b009ac73fc86d7",
-          "source_edited": false
-        },
-        {
-          "id": "catalog-2dc8bc6b907cca9e49fc4c10",
-          "title": "مناجات با امام حسین (ع)",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/monasebat\/%d9%85%d9%86%d8%a7%d8%ac%d8%a7%d8%aa-%d8%a8%d8%a7-%d8%a7%d9%85%d8%a7%d9%85-%d8%ad%d8%b3%db%8c%d9%86",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 6,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "a03dedcd66c879c612662351",
           "source_edited": false
         },
         {
@@ -486,25 +410,6 @@
           "source_edited": false
         },
         {
-          "id": "catalog-2d15c00c24668f4eed29efab",
-          "title": "مناجات با حضرت ابالفضل (ع)",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/monasebat\/%d9%85%d9%86%d8%a7%d8%ac%d8%a7%d8%aa-%d8%a8%d8%a7-%d8%ad%d8%b6%d8%b1%d8%aa-%d8%a7%d8%a8%d8%a7%d9%84%d9%81%d8%b6%d9%84",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 8,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "b8abf6156a51a06d601ad381",
-          "source_edited": false
-        },
-        {
           "id": "catalog-4d1bb588a890e820c791ae05",
           "title": "امامت",
           "subtitle": "",
@@ -521,25 +426,6 @@
           "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
           "entry_type": "collection",
           "source_item_id": "deee85d0fee8e64662f1434b",
-          "source_edited": false
-        },
-        {
-          "id": "catalog-280795c2cbde9b8fc74a351c",
-          "title": "مدح امیرالمومنین حضرت علی (ع)",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/monasebat\/%d9%85%d8%af%d8%ad-%d8%a7%d9%85%db%8c%d8%b1%d8%a7%d9%84%d9%85%d9%88%d9%85%d9%86%db%8c%d9%86",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 10,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "9dd5ee4e427c4366b982574f",
           "source_edited": false
         },
         {
@@ -581,44 +467,6 @@
           "source_edited": false
         },
         {
-          "id": "catalog-2878d4825be4f46e0d67242f",
-          "title": "مناجات با حضرت فاطمه (س)",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/monasebat\/%d9%85%d9%86%d8%a7%d8%ac%d8%a7%d8%aa-%d8%a8%d8%a7-%d8%ad%d8%b6%d8%b1%d8%aa-%d9%81%d8%a7%d8%b7%d9%85%d9%87",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 13,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "cf87493cb658f6f83287c2c7",
-          "source_edited": false
-        },
-        {
-          "id": "catalog-04b5edec21770edadb96b1f6",
-          "title": "فاطمیه",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/monasebat\/%d9%81%d8%a7%d8%b7%d9%85%db%8c%d9%87",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 14,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "3a06167e00a0af494a4d99d2",
-          "source_edited": false
-        },
-        {
           "id": "catalog-98e9866eb704d4f77a1268eb",
           "title": "کاروان سلاله‌های خدا",
           "subtitle": "",
@@ -657,25 +505,6 @@
           "source_edited": false
         },
         {
-          "id": "catalog-2d436581f06beb1cc11d6624",
-          "title": "مقاومت و جهاد اسلامی",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/monasebat\/%d9%85%d9%82%d8%a7%d9%88%d9%85%d8%aa-%d9%88-%d8%ac%d9%87%d8%a7%d8%af-%d8%a7%d8%b3%d9%84%d8%a7%d9%85%db%8c",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 17,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "9d9275659ddf1e6b599113e5",
-          "source_edited": false
-        },
-        {
           "id": "catalog-5adca7ac91eb6d3cd6381738",
           "title": "جدیدترین نواها",
           "subtitle": "",
@@ -695,44 +524,6 @@
           "source_edited": false
         },
         {
-          "id": "catalog-c450ad0a6c035ba6142789b0",
-          "title": "ایران",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/monasebat\/%d8%a7%db%8c%d8%b1%d8%a7%d9%86",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 19,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "7d5a4449f7a223c8404bf10a",
-          "source_edited": false
-        },
-        {
-          "id": "catalog-84bc650009953e585a272697",
-          "title": "نماهنگ بزن که خوب میزنی",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/yJnrD\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%a8%d8%b2%d9%86-%da%a9%d9%87-%d8%ae%d9%88%d8%a8-%d9%85%db%8c%d8%b2%d9%86%db%8c",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 20,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "29862695b3ff762ff692bff5",
-          "source_edited": false
-        },
-        {
           "id": "catalog-a204f9d5eef68f9fbfaaead0",
           "title": "گروه سرود ری نوا - مادر برام قصه بگو",
           "subtitle": "",
@@ -749,25 +540,6 @@
           "source_parent_url": "https:\/\/navaapp.com\/row-video\/videonojavanan",
           "entry_type": "video",
           "source_item_id": "6e2081e83d8fe290393d3eb8",
-          "source_edited": false
-        },
-        {
-          "id": "catalog-f7e36e5fab7d2f70fe94140f",
-          "title": "نماهنگ باید برخاست",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/yZbMq\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%a8%d8%a7%db%8c%d8%af-%d8%a8%d8%b1%d8%ae%d8%a7%d8%b3%d8%aa",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 22,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "5cbac5924ccc8ca9e3679b82",
           "source_edited": false
         },
         {
@@ -809,25 +581,6 @@
           "source_edited": false
         },
         {
-          "id": "catalog-704737205cdadfb90919f997",
-          "title": "نماهنگ الله اکبر",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/yDWVn\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%a7%d9%84%d9%84%d9%87-%d8%a7%da%a9%d8%a8%d8%b1",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 25,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "fe845f618736ec1aa5f2c9a8",
-          "source_edited": false
-        },
-        {
           "id": "catalog-9a8b61d100e19df1f74029eb",
           "title": "ای همه نیروی لشکرم، برادرم برادرم",
           "subtitle": "",
@@ -847,25 +600,6 @@
           "source_edited": false
         },
         {
-          "id": "catalog-b0d65fcab270dbca24450cbe",
-          "title": "نماهنگ لعنت",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/y9BQ1\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d9%84%d8%b9%d9%86%d8%aa",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 27,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "2d0907ecfee89ab7f9981aed",
-          "source_edited": false
-        },
-        {
           "id": "catalog-438b1707dee96812971cb802",
           "title": "گروه سرود خدام الزهرا - عهد خون",
           "subtitle": "",
@@ -882,44 +616,6 @@
           "source_parent_url": "https:\/\/navaapp.com\/row-video\/videonojavanan",
           "entry_type": "video",
           "source_item_id": "88e8547c501d2c67852a30b8",
-          "source_edited": false
-        },
-        {
-          "id": "catalog-81f7dfa49112e03b2d6fe504",
-          "title": "نماهنگ میدان با تو خیابان با ما",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/EB4wW\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d9%85%db%8c%d8%af%d8%a7%d9%86-%d8%a8%d8%a7-%d8%aa%d9%88-%d8%ae%db%8c%d8%a7%d8%a8%d8%a7%d9%86-%d8%a8%d8%a7-%d9%85%d8%a7",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 29,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "c3e3b2cc02e9d91969453b35",
-          "source_edited": false
-        },
-        {
-          "id": "catalog-008018034b92bc61ab95ff9f",
-          "title": "نماهنگ برخیزید",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/EeqML\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%a8%d8%b1%d8%ae%db%8c%d8%b2%db%8c%d8%af",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 30,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "d84fe6e55243e73b10090762",
           "source_edited": false
         },
         {
@@ -961,44 +657,6 @@
           "source_edited": false
         },
         {
-          "id": "catalog-aa29b3d3bd52292c765aff74",
-          "title": "نماهنگ فرمانده کل قوا",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/yYpMZ\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d9%81%d8%b1%d9%85%d8%a7%d9%86%d8%af%d9%87-%da%a9%d9%84-%d9%82%d9%88%d8%a7",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 33,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "cbdfe2314394939c09c2f8ee",
-          "source_edited": false
-        },
-        {
-          "id": "catalog-0cb1b0847c651f848b1ae37e",
-          "title": "نماهنگ وقت قیام آمده",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/y2vkL\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d9%88%d9%82%d8%aa-%d9%82%db%8c%d8%a7%d9%85-%d8%a2%d9%85%d8%af%d9%87",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 34,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "90da6f5725d77a0d52c1a09a",
-          "source_edited": false
-        },
-        {
           "id": "catalog-22334d4043a96c005cfa5f2f",
           "title": "امام حسن (ع)",
           "subtitle": "",
@@ -1015,25 +673,6 @@
           "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
           "entry_type": "collection",
           "source_item_id": "e80c9e0b4eebdadc01278ba9",
-          "source_edited": false
-        },
-        {
-          "id": "catalog-4a45903bb1a3eb70b2c35167",
-          "title": "نماهنگ کف خیابون",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/yDW1L\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%da%a9%d9%81-%d8%ae%db%8c%d8%a7%d8%a8%d9%88%d9%86",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 36,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "3b92448be18da60983713251",
           "source_edited": false
         },
         {
@@ -1056,25 +695,6 @@
           "source_edited": false
         },
         {
-          "id": "catalog-64f41beab27b604c2226f8da",
-          "title": "جون ایرونه جنوب ایرونه",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/mAYr7\/%d8%ac%d9%88%d9%86-%d8%a7%db%8c%d8%b1%d9%88%d9%86%d9%87-%d8%ac%d9%86%d9%88%d8%a8-%d8%a7%db%8c%d8%b1%d9%88%d9%86%d9%87",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 38,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "0c18ce85d9e5a44a11fae529",
-          "source_edited": false
-        },
-        {
           "id": "catalog-ab1f9ba38e6152fc7db4c77c",
           "title": "گروه سرود نور المبین - ایران سید علی",
           "subtitle": "",
@@ -1091,25 +711,6 @@
           "source_parent_url": "https:\/\/navaapp.com\/row-video\/videonojavanan",
           "entry_type": "video",
           "source_item_id": "25843ef2157d06195eb049cd",
-          "source_edited": false
-        },
-        {
-          "id": "catalog-513e1b89b3e7061be2732c53",
-          "title": "نماهنگ مرد جنگ",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/E37nx\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d9%85%d8%b1%d8%af-%d8%ac%d9%86%da%af",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 40,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "5ad2006f72fad8b991be4411",
           "source_edited": false
         },
         {
@@ -1151,44 +752,6 @@
           "source_edited": false
         },
         {
-          "id": "catalog-edcbb1888301fbfa592c33d1",
-          "title": "نماهنگ حکم آنچه تو فرمایی",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/mAYMz\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%ad%da%a9%d9%85-%d8%a2%d9%86%da%86%d9%87-%d8%aa%d9%88-%d9%81%d8%b1%d9%85%d8%a7%db%8c%db%8c",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 43,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "9568a16f46b36745b75378b9",
-          "source_edited": false
-        },
-        {
-          "id": "catalog-98f42294f32efe28a2c0e4c3",
-          "title": "نماهنگ نسل قدیم نسل جدید",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/ELqRv\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d9%86%d8%b3%d9%84-%d9%82%d8%af%db%8c%d9%85-%d9%86%d8%b3%d9%84-%d8%ac%d8%af%db%8c%d8%af",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 44,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "15c28bdc9327a1aeaf2cceff",
-          "source_edited": false
-        },
-        {
           "id": "catalog-c2d8a062f3a864e67064c98c",
           "title": "سقای کودکانم بر لب رسیده جانم",
           "subtitle": "",
@@ -1205,25 +768,6 @@
           "source_parent_url": "https:\/\/navaapp.com\/row\/navakhatereh",
           "entry_type": "audio",
           "source_item_id": "a998e63128ac92bd7b88e399",
-          "source_edited": false
-        },
-        {
-          "id": "catalog-0f057b522b52bb08299c3330",
-          "title": "نماهنگ رعد",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/GkgPZ\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%b1%d8%b9%d8%af",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 46,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "11a00fe57ca649ee5a9fee30",
           "source_edited": false
         },
         {
@@ -1265,44 +809,6 @@
           "source_edited": false
         },
         {
-          "id": "catalog-9ab8bcd7cbf247d245ed3fba",
-          "title": "نماهنگ ایران حسین",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/y6wnr\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%a7%db%8c%d8%b1%d8%a7%d9%86-%d8%ad%d8%b3%db%8c%d9%86",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 49,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "03cef8d85c24d10a36e4dedd",
-          "source_edited": false
-        },
-        {
-          "id": "catalog-1e9532a65e821a6ff2f37065",
-          "title": "نماهنگ کوتاه نمی آییم",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/ypXlY\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%da%a9%d9%88%d8%aa%d8%a7%d9%87-%d9%86%d9%85%db%8c-%d8%a2%db%8c%db%8c%d9%85",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 50,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "9e0a079a58d4db4c2f011921",
-          "source_edited": false
-        },
-        {
           "id": "catalog-5e9166a608459e2faba9ef6f",
           "title": "امام کاظم (ع)",
           "subtitle": "",
@@ -1319,25 +825,6 @@
           "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
           "entry_type": "collection",
           "source_item_id": "c741f2ca7b22a1e5bba68804",
-          "source_edited": false
-        },
-        {
-          "id": "catalog-0ac479290d7a1d1f4315379c",
-          "title": "نماهنگ ایران",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/GOD4R\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%a7%db%8c%d8%b1%d8%a7%d9%86",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 52,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "9c2344981cce95d8f2b9caf8",
           "source_edited": false
         },
         {
@@ -1360,25 +847,6 @@
           "source_edited": false
         },
         {
-          "id": "catalog-349c1d3c2e110445962bc31f",
-          "title": "نماهنگ بسوز که خوب میسوزی",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/EqkVY\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%a8%d8%b3%d9%88%d8%b2-%da%a9%d9%87-%d8%ae%d9%88%d8%a8-%d9%85%db%8c%d8%b3%d9%88%d8%b2%db%8c",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 54,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "b7bab2307f41dbd8e1172df9",
-          "source_edited": false
-        },
-        {
           "id": "catalog-decf32cb6ed7ef967d9d5131",
           "title": "مجموعه شهرود - بچه هاتو ببین",
           "subtitle": "",
@@ -1395,25 +863,6 @@
           "source_parent_url": "https:\/\/navaapp.com\/row-video\/videonojavanan",
           "entry_type": "video",
           "source_item_id": "f1fff9e219d19ec07dacd725",
-          "source_edited": false
-        },
-        {
-          "id": "catalog-14e11b9d62997356267ce9ab",
-          "title": "نماهنگ نصر من الله",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/EQDo8\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d9%86%d8%b5%d8%b1-%d9%85%d9%86-%d8%a7%d9%84%d9%84%d9%87",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 56,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "a905170f554f01ef3c0a7d6c",
           "source_edited": false
         },
         {
@@ -1436,25 +885,6 @@
           "source_edited": false
         },
         {
-          "id": "catalog-aedf30e9b8163b42fd3fadc0",
-          "title": "نماهنگ ایرانی جزاک الله",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/EB4YP\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%a7%db%8c%d8%b1%d8%a7%d9%86%db%8c-%d8%ac%d8%b2%d8%a7%da%a9-%d8%a7%d9%84%d9%84%d9%87",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 58,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "d6e4d9ef9cf5565b1784695e",
-          "source_edited": false
-        },
-        {
           "id": "catalog-c678ec9c8498e75b7fdbae82",
           "title": "گروه سرود صبح ظهور - دختراتو ببین",
           "subtitle": "",
@@ -1474,25 +904,6 @@
           "source_edited": false
         },
         {
-          "id": "catalog-226cbf2d8b562d109e09e35d",
-          "title": "رهبرمون هر چی بگه همونه",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/EB4JP\/%d8%b1%d9%87%d8%a8%d8%b1%d9%85%d9%88%d9%86-%d9%87%d8%b1-%da%86%db%8c-%d8%a8%da%af%d9%87-%d9%87%d9%85%d9%88%d9%86%d9%87",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 60,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "1db5cda5690701bdcff285f7",
-          "source_edited": false
-        },
-        {
           "id": "catalog-35a7bdfe221ee89af63f91b9",
           "title": "گروه سرود لبنانی - بچه هاتو ببین",
           "subtitle": "",
@@ -1509,25 +920,6 @@
           "source_parent_url": "https:\/\/navaapp.com\/row-video\/videonojavanan",
           "entry_type": "video",
           "source_item_id": "cd009665bad1d98f27a1aade",
-          "source_edited": false
-        },
-        {
-          "id": "catalog-aefd506c592ccb6c53be735b",
-          "title": "نماهنگ لبیک",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/y1pLj\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d9%84%d8%a8%db%8c%da%a9",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 62,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "7f93a4807be85a91710bc4a9",
           "source_edited": false
         },
         {
@@ -1569,44 +961,6 @@
           "source_edited": false
         },
         {
-          "id": "catalog-3c5a791168fd253719040531",
-          "title": "نماهنگ انتقام",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/GMqwD\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%a7%d9%86%d8%aa%d9%82%d8%a7%d9%85",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 65,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "62c4189d4db6f71565931d24",
-          "source_edited": false
-        },
-        {
-          "id": "catalog-2415df213519ac36a0244692",
-          "title": "نماهنگ هیهات منا الذله",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/mzx0z\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d9%87%db%8c%d9%87%d8%a7%d8%aa-%d9%85%d9%86%d8%a7-%d8%a7%d9%84%d8%b0%d9%84%d9%87",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 66,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "cb49e73d905202c907c7f1ef",
-          "source_edited": false
-        },
-        {
           "id": "catalog-891b9569f4429f44c882e25d",
           "title": "گروه سرود میعاد - دختراتو ببین",
           "subtitle": "",
@@ -1642,44 +996,6 @@
           "source_parent_url": "https:\/\/navaapp.com\/row-video\/videonojavanan",
           "entry_type": "video",
           "source_item_id": "2a71a738134a011f35e13323",
-          "source_edited": false
-        },
-        {
-          "id": "catalog-aea2c86c5d61d13a543eca80",
-          "title": "نماهنگ مردم شگفت انگیز",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/mv8V8\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d9%85%d8%b1%d8%af%d9%85-%d8%b4%da%af%d9%81%d8%aa-%d8%a7%d9%86%da%af%db%8c%d8%b2",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 69,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "2de879f5ba77b258b11e999d",
-          "source_edited": false
-        },
-        {
-          "id": "catalog-41caadce5c48085cdf887ee8",
-          "title": "نماهنگ ایران امام رضا",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/ypXbY\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%a7%db%8c%d8%b1%d8%a7%d9%86-%d8%a7%d9%85%d8%a7%d9%85-%d8%b1%d8%b6%d8%a7",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 70,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "daa108ccd81ffd39148c8cd8",
           "source_edited": false
         },
         {
@@ -1721,25 +1037,6 @@
           "source_edited": false
         },
         {
-          "id": "catalog-eee1c9b11a77bf245f4fca4c",
-          "title": "نماهنگ حی علی القصاص",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/ydMrX\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%ad%db%8c-%d8%b9%d9%84%db%8c-%d8%a7%d9%84%d9%82%d8%b5%d8%a7%d8%b5",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 73,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "7d945629873c1d294a5cd5c0",
-          "source_edited": false
-        },
-        {
           "id": "catalog-7784a2acc836915dda855f24",
           "title": "امام زمان (عج)",
           "subtitle": "",
@@ -1759,44 +1056,6 @@
           "source_edited": false
         },
         {
-          "id": "catalog-f692643b835bdbd1bde4f1cb",
-          "title": "نماهنگ تا پای جان برای ایران",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/EjgOY\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%aa%d8%a7-%d9%be%d8%a7%db%8c-%d8%ac%d8%a7%d9%86-%d8%a8%d8%b1%d8%a7%db%8c-%d8%a7%db%8c%d8%b1%d8%a7%d9%86",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 75,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "7ec81cf134b840c27b0645ae",
-          "source_edited": false
-        },
-        {
-          "id": "catalog-1e9baea62ea232cc4c090e67",
-          "title": "نماهنگ ابرقدرت ایرانه",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/mrgpJ\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%a7%d8%a8%d8%b1%d9%82%d8%af%d8%b1%d8%aa-%d8%a7%db%8c%d8%b1%d8%a7%d9%86%d9%87",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 76,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "648887ff75c89474f770c24c",
-          "source_edited": false
-        },
-        {
           "id": "catalog-bafff9316864602f615e54d1",
           "title": "امین شادکام - مشق خون",
           "subtitle": "",
@@ -1813,25 +1072,6 @@
           "source_parent_url": "https:\/\/navaapp.com\/row-video\/videonojavanan",
           "entry_type": "video",
           "source_item_id": "9bda1fc6e22bce36b48d775b",
-          "source_edited": false
-        },
-        {
-          "id": "catalog-2df5668dea29bd28339233e3",
-          "title": "نماهنگ به سوی خیابان",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/mb7kN\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%a8%d9%87-%d8%b3%d9%88%db%8c-%d8%ae%db%8c%d8%a7%d8%a8%d8%a7%d9%86",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 78,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "3a8c3fab6155fbaa0c446e90",
           "source_edited": false
         },
         {
@@ -1873,25 +1113,6 @@
           "source_edited": false
         },
         {
-          "id": "catalog-92f1982117ea1b3a8d77dc86",
-          "title": "نماهنگ قوموا لله",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/GXBOv\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d9%82%d9%88%d9%85%d9%88%d8%a7-%d9%84%d9%84%d9%87",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 81,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "674a656c73feb62288043791",
-          "source_edited": false
-        },
-        {
           "id": "catalog-1c33172ea3f78359f6d67da0",
           "title": "محمدحسین حدادیان - نیمکت خالی",
           "subtitle": "",
@@ -1908,25 +1129,6 @@
           "source_parent_url": "https:\/\/navaapp.com\/row-video\/videonojavanan",
           "entry_type": "video",
           "source_item_id": "5170b6d36d7552dbdf6098e7",
-          "source_edited": false
-        },
-        {
-          "id": "catalog-e1ba2fe5bd6b546010828434",
-          "title": "نماهنگ بعثت خون",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/EKD55\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%a8%d8%b9%d8%ab%d8%aa-%d8%ae%d9%88%d9%86",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 83,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "c36423d970fb240854169256",
           "source_edited": false
         },
         {
@@ -1949,25 +1151,6 @@
           "source_edited": false
         },
         {
-          "id": "catalog-7268bc7a9fe29d05078c7409",
-          "title": "تو غلط میکنی",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/ENqpx\/%d8%aa%d9%88-%d8%ba%d9%84%d8%b7-%d9%85%db%8c%da%a9%d9%86%db%8c",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 85,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "aa2a32d87c452a6e468a46c4",
-          "source_edited": false
-        },
-        {
           "id": "catalog-834148afb50f519053669e42",
           "title": "عید غدیر",
           "subtitle": "",
@@ -1987,25 +1170,6 @@
           "source_edited": false
         },
         {
-          "id": "catalog-e4314cb2777b856c3fbd2294",
-          "title": "نماهنگ پرچم من",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/E5xz6\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d9%be%d8%b1%da%86%d9%85-%d9%85%d9%86",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 87,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "b9fc5433f76a73d92cc00070",
-          "source_edited": false
-        },
-        {
           "id": "catalog-0b44f5560a8cc639be525ad0",
           "title": "حضرت خدیجه (س)",
           "subtitle": "",
@@ -2022,44 +1186,6 @@
           "source_parent_url": "https:\/\/navaapp.com\/menbar\/videostory",
           "entry_type": "collection",
           "source_item_id": "8f07dc40f488f2694f35a218",
-          "source_edited": false
-        },
-        {
-          "id": "catalog-6b18febe32cf449dc25e00da",
-          "title": "نماهنگ دست الهی",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/GXBN4\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%af%d8%b3%d8%aa-%d8%a7%d9%84%d9%87%db%8c",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 89,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "562b8bde7dc4a72207b57054",
-          "source_edited": false
-        },
-        {
-          "id": "catalog-1c6884f4f8f7542a1a2ac9e6",
-          "title": "نماهنگ شیپور جنگ",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/y9BYq\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%b4%db%8c%d9%be%d9%88%d8%b1-%d8%ac%d9%86%da%af",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 90,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "a5fed5bece9a3e4af57ee009",
           "source_edited": false
         },
         {
@@ -2101,44 +1227,6 @@
           "source_edited": false
         },
         {
-          "id": "catalog-c5dab9c10bda478bbec0af4c",
-          "title": "نماهنگ وطن",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/EjgMN\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d9%88%d8%b7%d9%86",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 93,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "4cc8fedb05638472d549223b",
-          "source_edited": false
-        },
-        {
-          "id": "catalog-422823ebd2b81f155145ea86",
-          "title": "نماهنگ پرچم بالا",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/E5x7p\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d9%be%d8%b1%da%86%d9%85-%d8%a8%d8%a7%d9%84%d8%a7",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 94,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "98a3a75a0fa6ac704831e1f9",
-          "source_edited": false
-        },
-        {
           "id": "catalog-9dcfdef3453784cb25add38e",
           "title": "زنجیر زنی حضرت مسلم",
           "subtitle": "",
@@ -2174,44 +1262,6 @@
           "source_parent_url": "https:\/\/navaapp.com\/row-video\/videonojavanan",
           "entry_type": "video",
           "source_item_id": "5d70253fb77c22979ecabd69",
-          "source_edited": false
-        },
-        {
-          "id": "catalog-8dfa575dae52f52b8804073a",
-          "title": "نماهنگ بشمار یک",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/mb747\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%a8%d8%b4%d9%85%d8%a7%d8%b1-%db%8c%da%a9",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 97,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "2fcd3ab85f2b98ce6a077e67",
-          "source_edited": false
-        },
-        {
-          "id": "catalog-221310d2280e2fee7999ccd0",
-          "title": "نماهنگ ما مسلح به الله اکبریم",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/G7kYN\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d9%85%d8%a7-%d9%85%d8%b3%d9%84%d8%ad-%d8%a8%d9%87-%d8%a7%d9%84%d9%84%d9%87-%d8%a7%da%a9%d8%a8%d8%b1%db%8c%d9%85",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 98,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "e6e1e28e7e373eff9de745d0",
           "source_edited": false
         },
         {
@@ -2253,25 +1303,6 @@
           "source_edited": false
         },
         {
-          "id": "catalog-ad3251cfdad2ee1447910b72",
-          "title": "نماهنگ قائد الاعظم",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/yVN29\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d9%82%d8%a7%d8%a6%d8%af-%d8%a7%d9%84%d8%a7%d8%b9%d8%b8%d9%85",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 101,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "ab42d740131035fc7c62e4ba",
-          "source_edited": false
-        },
-        {
           "id": "catalog-bdbc63c0a2fc1485790bb1e3",
           "title": "صوتی",
           "subtitle": "",
@@ -2288,44 +1319,6 @@
           "source_parent_url": "https:\/\/navaapp.com\/person\/%D9%86%D9%88%D8%A7",
           "entry_type": "collection",
           "source_item_id": "af3310c6c1b7a57eaa47eac8",
-          "source_edited": false
-        },
-        {
-          "id": "catalog-be99426166f54794d8340e38",
-          "title": "نماهنگ اباالفضل علمدار خامنه ای نگهدار",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/E37BZ\/%d8%a7%d8%a8%d8%a7%d8%a7%d9%84%d9%81%d8%b6%d9%84-%d8%b9%d9%84%d9%85%d8%af%d8%a7%d8%b1-%d8%ae%d8%a7%d9%85%d9%86%d9%87-%d8%a7%db%8c-%d9%86%da%af%d9%87%d8%af%d8%a7%d8%b1",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 103,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "2d677d6fbccb2131203c7a71",
-          "source_edited": false
-        },
-        {
-          "id": "catalog-48c6d23126f24bea79e7bcb7",
-          "title": "نماهنگ اسلحه پرچم",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/EKDno\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%a7%d8%b3%d9%84%d8%ad%d9%87-%d9%be%d8%b1%da%86%d9%85",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 104,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "89a0ae28d963e90b5e0c2000",
           "source_edited": false
         },
         {
@@ -2367,25 +1360,6 @@
           "source_edited": false
         },
         {
-          "id": "catalog-c15378362b368ddc7e9f8854",
-          "title": "نماهنگ ملت شب زنده دار پیروز است",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/mwnpg\/%d9%85%d9%84%d8%aa-%d8%b4%d8%a8-%d8%b2%d9%86%d8%af%d9%87-%d8%af%d8%a7%d8%b1-%d9%be%db%8c%d8%b1%d9%88%d8%b2-%d8%a7%d8%b3%d8%aa",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 107,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "9d20e3ef64e8ab883ce2b4e5",
-          "source_edited": false
-        },
-        {
           "id": "catalog-28ad084fa328f3001d5e6df4",
           "title": "کانون سرودکار - مهر باقر",
           "subtitle": "",
@@ -2402,44 +1376,6 @@
           "source_parent_url": "https:\/\/navaapp.com\/row-video\/videonojavanan",
           "entry_type": "video",
           "source_item_id": "d4eb9bcf6c7da9adfc3e1b8c",
-          "source_edited": false
-        },
-        {
-          "id": "catalog-ab0341294fcd1ccb69a4bdf4",
-          "title": "نماهنگ لبیک یا خامنه ای",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/yYpkb\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d9%84%d8%a8%db%8c%da%a9-%db%8c%d8%a7-%d8%ae%d8%a7%d9%85%d9%86%d9%87-%d8%a7%db%8c",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 109,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "14ec4960716a0349adaa20d0",
-          "source_edited": false
-        },
-        {
-          "id": "catalog-5b99971482292886d29e0f95",
-          "title": "نماهنگ گوش به فرمانم",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/EeqOQ\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%da%af%d9%88%d8%b4-%d8%a8%d9%87-%d9%81%d8%b1%d9%85%d8%a7%d9%86%d9%85",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 110,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "d9f85cdf256e85d11c0be62a",
           "source_edited": false
         },
         {
@@ -2481,44 +1417,6 @@
           "source_edited": false
         },
         {
-          "id": "catalog-27b413ee798734f30ba287e6",
-          "title": "نماهنگ جان فدا",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/ERpV8\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%ac%d8%a7%d9%86-%d9%81%d8%af%d8%a7",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 113,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "a7c2d68d5d99f94ffed4b5ef",
-          "source_edited": false
-        },
-        {
-          "id": "catalog-1d460e1bf0c6cf1a95bd061c",
-          "title": "نماهنگ ایران ای کشور علی",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/mxAaq\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%a7%db%8c%d8%b1%d8%a7%d9%86-%d8%a7%db%8c-%da%a9%d8%b4%d9%88%d8%b1-%d8%b9%d9%84%db%8c",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 114,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "788220b01c927875213301ff",
-          "source_edited": false
-        },
-        {
           "id": "catalog-4ca1768aae322ccca1b03e18",
           "title": "گروه سرود آل عبا شهرستان کنگان - شهر خونین",
           "subtitle": "",
@@ -2557,25 +1455,6 @@
           "source_edited": false
         },
         {
-          "id": "catalog-74ccc3ddf26007c9822e51a9",
-          "title": "نماهنگ مشت ایران",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/E0VYX\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d9%85%d8%b4%d8%aa-%d8%a7%db%8c%d8%b1%d8%a7%d9%86",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 117,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "9ada6d70ec5455f38b87da74",
-          "source_edited": false
-        },
-        {
           "id": "catalog-aef8481d8a5eb63d020ec7a8",
           "title": "حضرت ام کلثوم (س)",
           "subtitle": "",
@@ -2595,25 +1474,6 @@
           "source_edited": false
         },
         {
-          "id": "catalog-b2cf3b567feef98919e97286",
-          "title": "نماهنگ جاویدان ایران",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/yWDM1\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%ac%d8%a7%d9%88%db%8c%d8%af%d8%a7%d9%86-%d8%a7%db%8c%d8%b1%d8%a7%d9%86",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 119,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "15692505ba09b9f79ba08ebd",
-          "source_edited": false
-        },
-        {
           "id": "catalog-09b9ad5e62f0b221bf2f3f40",
           "title": "جام شراب نوشینت، هستی به هستم داده",
           "subtitle": "",
@@ -2630,44 +1490,6 @@
           "source_parent_url": "https:\/\/navaapp.com\/row\/navakhatereh",
           "entry_type": "audio",
           "source_item_id": "a567c49937f67766a2436dbd",
-          "source_edited": false
-        },
-        {
-          "id": "catalog-5b7741980c32159f90ae3af8",
-          "title": "مقاومت و جهاد اسلامی",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/playlist\/wdMxQ\/%d9%85%d8%af%d8%a7%d8%ad%db%8c-%d9%87%d8%a7%db%8c-%d9%85%d9%82%d8%a7%d9%88%d9%85%d8%aa-%d9%85%d8%b1%d8%af%d9%85-%d9%85%d8%b8%d9%84%d9%88%d9%85-%d9%81%d9%84%d8%b3%d8%b7%db%8c%d9%86",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 121,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "27ed8f8bd3011f58bbd2a9be",
-          "source_edited": false
-        },
-        {
-          "id": "catalog-04e4ab19f880e50848670ffe",
-          "title": "حاج محمود کریمی",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/ypXz8\/For-My-Leader",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 122,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "1d5b91cc4b517b99541b3658",
           "source_edited": false
         },
         {
@@ -2709,25 +1531,6 @@
           "source_edited": false
         },
         {
-          "id": "catalog-d43399ebe8a3465443eb8436",
-          "title": "حاج محمود کریمی",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/mgvYP\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%a8%d9%82%db%8c%d9%87-%d8%a7%d9%84%d8%b3%db%8c%d9%81",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 125,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "3d867a732f562048ea018b32",
-          "source_edited": false
-        },
-        {
           "id": "catalog-8004f6c8c1c84dc62ebfee63",
           "title": "جونم امام رضا",
           "subtitle": "",
@@ -2744,25 +1547,6 @@
           "source_parent_url": "https:\/\/navaapp.com\/row-video\/videonojavanan",
           "entry_type": "video",
           "source_item_id": "b6292d1228c9542e17138663",
-          "source_edited": false
-        },
-        {
-          "id": "catalog-b4009e884ed3deb0f806df77",
-          "title": "سید محمدرضا نوشه ور",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/audio\/E0Vwa\/%d8%a8%d8%b1-%d8%ae%d8%a7%d8%a6%d9%86-%d9%88-%d8%aa%d8%ac%d8%b2%db%8c%d9%87-%d8%b7%d9%84%d8%a8-%d9%84%d8%b9%d9%86%d8%aa",
-          "image_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/%D9%85%D8%AF%D8%A7%D8%AD%DB%8C-%D9%87%D8%A7%DB%8C-%D8%AD%D9%85%D8%A7%D8%B3%DB%8C-%D9%85%D8%A8%D8%A7%D8%B1%D8%B2%D9%87-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%D9%84",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 127,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "hos-muvonwkf",
-          "catalog_root_id": "hos-muvonwkf",
-          "source_parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "entry_type": "collection",
-          "source_item_id": "ce65dc1d32ef8bf75021630a",
           "source_edited": false
         },
         {
@@ -12114,25 +10898,6 @@
           "source_edited": false
         },
         {
-          "id": "hos-muvonwkf",
-          "title": "مداحی های حماسی",
-          "subtitle": "",
-          "source_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
-          "image_url": "",
-          "show_title_on_custom_banner": false,
-          "show_logo_on_custom_banner": false,
-          "enabled": true,
-          "display_order": 620,
-          "resolver_mode": "auto",
-          "resolver_url": "",
-          "parent_id": "madahi-audio",
-          "catalog_root_id": "",
-          "source_parent_url": "",
-          "entry_type": "collection",
-          "source_item_id": "",
-          "source_edited": false
-        },
-        {
           "id": "catalog-80acf952db3465ac1d75f1bd",
           "title": "محمدرضا خامه چیان",
           "subtitle": "",
@@ -14495,7 +13260,136 @@
         "catalog-f1cb77cb7fa4549c8958c940",
         "catalog-4a8cdb00af9eadd00c840fea",
         "catalog-ccbe59f1c90074a236bd5179",
-        "hos-muucdlt7"
+        "hos-muucdlt7",
+        "hos-muvonwkf",
+        "catalog-09e4e535ef27fd327ab7b895",
+        "catalog-5ac31c87ca3d3621ed352b58",
+        "catalog-b0760bbcf8bf810d224c2fd8",
+        "catalog-2dc8bc6b907cca9e49fc4c10",
+        "catalog-2d15c00c24668f4eed29efab",
+        "catalog-280795c2cbde9b8fc74a351c",
+        "catalog-2878d4825be4f46e0d67242f",
+        "catalog-04b5edec21770edadb96b1f6",
+        "catalog-2d436581f06beb1cc11d6624",
+        "catalog-c450ad0a6c035ba6142789b0",
+        "catalog-84bc650009953e585a272697",
+        "catalog-f7e36e5fab7d2f70fe94140f",
+        "catalog-704737205cdadfb90919f997",
+        "catalog-b0d65fcab270dbca24450cbe",
+        "catalog-81f7dfa49112e03b2d6fe504",
+        "catalog-008018034b92bc61ab95ff9f",
+        "catalog-aa29b3d3bd52292c765aff74",
+        "catalog-0cb1b0847c651f848b1ae37e",
+        "catalog-4a45903bb1a3eb70b2c35167",
+        "catalog-64f41beab27b604c2226f8da",
+        "catalog-513e1b89b3e7061be2732c53",
+        "catalog-edcbb1888301fbfa592c33d1",
+        "catalog-98f42294f32efe28a2c0e4c3",
+        "catalog-0f057b522b52bb08299c3330",
+        "catalog-9ab8bcd7cbf247d245ed3fba",
+        "catalog-1e9532a65e821a6ff2f37065",
+        "catalog-0ac479290d7a1d1f4315379c",
+        "catalog-349c1d3c2e110445962bc31f",
+        "catalog-14e11b9d62997356267ce9ab",
+        "catalog-aedf30e9b8163b42fd3fadc0",
+        "catalog-226cbf2d8b562d109e09e35d",
+        "catalog-aefd506c592ccb6c53be735b",
+        "catalog-3c5a791168fd253719040531",
+        "catalog-2415df213519ac36a0244692",
+        "catalog-aea2c86c5d61d13a543eca80",
+        "catalog-41caadce5c48085cdf887ee8",
+        "catalog-eee1c9b11a77bf245f4fca4c",
+        "catalog-f692643b835bdbd1bde4f1cb",
+        "catalog-1e9baea62ea232cc4c090e67",
+        "catalog-2df5668dea29bd28339233e3",
+        "catalog-92f1982117ea1b3a8d77dc86",
+        "catalog-e1ba2fe5bd6b546010828434",
+        "catalog-7268bc7a9fe29d05078c7409",
+        "catalog-e4314cb2777b856c3fbd2294",
+        "catalog-6b18febe32cf449dc25e00da",
+        "catalog-1c6884f4f8f7542a1a2ac9e6",
+        "catalog-c5dab9c10bda478bbec0af4c",
+        "catalog-422823ebd2b81f155145ea86",
+        "catalog-8dfa575dae52f52b8804073a",
+        "catalog-221310d2280e2fee7999ccd0",
+        "catalog-ad3251cfdad2ee1447910b72",
+        "catalog-be99426166f54794d8340e38",
+        "catalog-48c6d23126f24bea79e7bcb7",
+        "catalog-c15378362b368ddc7e9f8854",
+        "catalog-ab0341294fcd1ccb69a4bdf4",
+        "catalog-5b99971482292886d29e0f95",
+        "catalog-27b413ee798734f30ba287e6",
+        "catalog-1d460e1bf0c6cf1a95bd061c",
+        "catalog-74ccc3ddf26007c9822e51a9",
+        "catalog-b2cf3b567feef98919e97286",
+        "catalog-5b7741980c32159f90ae3af8",
+        "catalog-04e4ab19f880e50848670ffe",
+        "catalog-d43399ebe8a3465443eb8436",
+        "catalog-b4009e884ed3deb0f806df77",
+        "catalog-7f3c17f257e4a41a25392762",
+        "catalog-25351955a19972c875e905ae",
+        "catalog-92e8abe51cc52cd93d0b7e85",
+        "catalog-b3bae8d67926881bdbd7abff",
+        "catalog-f19fd536cfcbdd2357bcfbc1",
+        "catalog-7b0b0868a9e2ba0427c9552d",
+        "catalog-515aa6a9b6b935fa0977097f",
+        "catalog-ddbe6f2c7d2485e0cff0a903",
+        "catalog-6becd99b6907465f856bdfcc",
+        "catalog-1b42151e933fd55964fa0784",
+        "catalog-094421e75ced24909a474018",
+        "catalog-77f229bdd4f137f134ce49f6",
+        "catalog-a9713ce875787e46745e8067",
+        "catalog-e5e7a3d6d5f1da93562f63d2",
+        "catalog-8e9be3a7e26e31ca30a17a85",
+        "catalog-d70cdbf84911caecd116349e",
+        "catalog-d05179e4a18e3d4e9ef07db4",
+        "catalog-9c2bd25b105e6aaf623bea76",
+        "catalog-eb175c1a1ea7a6c26359aa39",
+        "catalog-4c95b7afc2f3252556d9eda3",
+        "catalog-c5bea22a64664c79418391a0",
+        "catalog-ecd9d6fbc5db762bc5c3ef92",
+        "catalog-30f966529fa9801a9a47997d",
+        "catalog-989d98d286ed9cd248c3874c",
+        "catalog-4aa0f371b048446ef4e0d928",
+        "catalog-a9fd91cfb1334bf20a58f965",
+        "catalog-e8e820ba71fea24e1b47c6f9",
+        "catalog-dbe250f65f02bbaa0b49a249",
+        "catalog-8b6ae76ece9e57d16a790d7b",
+        "catalog-8c9c39d1f3334712768af6bf",
+        "catalog-6b173b1fbf022c427c184a10",
+        "catalog-7f1edf0e657458a1c9708005",
+        "catalog-fe1f9628c95f3c55eb0fa4c9",
+        "catalog-34468cfacad8b24fecf4a371",
+        "catalog-70f8191b8ba3bcc634c90f6a",
+        "catalog-868edfed2c925bc66098f844",
+        "catalog-5e92a0525cda66bcd98403ba",
+        "catalog-5262d89717efa5db87f33880",
+        "catalog-298e3737bdbcdcb7f4b8f05c",
+        "catalog-a86dcf7e57ed07ceb557cb0c",
+        "catalog-b55bd404f760b51d3db002c2",
+        "catalog-f0deb4f1ffb90b0938242d65",
+        "catalog-b88489e4817cf5d70339b2ef",
+        "catalog-0a14658512d102bc38039d96",
+        "catalog-cbb20624d443e00d46fcf85f",
+        "catalog-0ab13cab7f7e081ad6d7fda3",
+        "catalog-c4ea87242ce159384d20ce07",
+        "catalog-f9858f4fcafbef76d85c54de",
+        "catalog-4d5083ded4b03a1c66e75657",
+        "catalog-32a32879d28c42efd154a4e2",
+        "catalog-0012c1c9fe663ae43125588c",
+        "catalog-f9bc04adc05fa266a18ad8dc",
+        "catalog-3c159b74454b18e49e63c4f4",
+        "catalog-b39231945140a204930b4d33",
+        "catalog-55d9e0c33ef94d8879540ea2",
+        "catalog-33821049bf95d99dc267172d",
+        "catalog-356b9eb16874a2263c7cefff",
+        "catalog-fed60c102631d2c7ddda00a5",
+        "catalog-8ae37ee25b6d16b416a5a4d9",
+        "catalog-1f32d953d09cae75f21df4f0",
+        "catalog-bdef4ecf1e568d4f63780512",
+        "catalog-07e3547498bea7d5a544d948",
+        "catalog-907238823040fb941bfb8a6c",
+        "catalog-5c9544c10a709eb311e98fa2"
       ],
       "hidden_sources": [
         {
@@ -15041,6 +13935,266 @@
         {
           "parent_url": "https:\/\/navaapp.com\/nava\/persons",
           "target_url": "https:\/\/navaapp.com\/"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/monasebat\/%d8%b4%d9%87%d8%a7%d8%af%d8%aa-%d8%ad%d8%b6%d8%b1%d8%aa-%d8%b1%d9%82%db%8c%d9%87"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/monasebat\/%d9%88%d9%81%d8%a7%d8%aa-%d8%ad%d8%b6%d8%b1%d8%aa-%d8%a7%d9%85-%d8%a7%d9%84%d8%a8%d9%86%db%8c%d9%86"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/monasebat\/%d9%85%d9%86%d8%a7%d8%ac%d8%a7%d8%aa-%d8%a7%d9%85%d8%a7%d9%85-%d8%b2%d9%85%d8%a7%d9%86"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/monasebat\/%d9%85%d9%86%d8%a7%d8%ac%d8%a7%d8%aa-%d8%a8%d8%a7-%d8%a7%d9%85%d8%a7%d9%85-%d8%ad%d8%b3%db%8c%d9%86"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/monasebat\/%d9%85%d9%86%d8%a7%d8%ac%d8%a7%d8%aa-%d8%a8%d8%a7-%d8%ad%d8%b6%d8%b1%d8%aa-%d8%a7%d8%a8%d8%a7%d9%84%d9%81%d8%b6%d9%84"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/monasebat\/%d9%85%d8%af%d8%ad-%d8%a7%d9%85%db%8c%d8%b1%d8%a7%d9%84%d9%85%d9%88%d9%85%d9%86%db%8c%d9%86"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/monasebat\/%d9%85%d9%86%d8%a7%d8%ac%d8%a7%d8%aa-%d8%a8%d8%a7-%d8%ad%d8%b6%d8%b1%d8%aa-%d9%81%d8%a7%d8%b7%d9%85%d9%87"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/monasebat\/%d9%81%d8%a7%d8%b7%d9%85%db%8c%d9%87"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/monasebat\/%d9%85%d9%82%d8%a7%d9%88%d9%85%d8%aa-%d9%88-%d8%ac%d9%87%d8%a7%d8%af-%d8%a7%d8%b3%d9%84%d8%a7%d9%85%db%8c"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/monasebat\/%d8%a7%db%8c%d8%b1%d8%a7%d9%86"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/yJnrD\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%a8%d8%b2%d9%86-%da%a9%d9%87-%d8%ae%d9%88%d8%a8-%d9%85%db%8c%d8%b2%d9%86%db%8c"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/yZbMq\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%a8%d8%a7%db%8c%d8%af-%d8%a8%d8%b1%d8%ae%d8%a7%d8%b3%d8%aa"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/yDWVn\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%a7%d9%84%d9%84%d9%87-%d8%a7%da%a9%d8%a8%d8%b1"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/y9BQ1\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d9%84%d8%b9%d9%86%d8%aa"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/EB4wW\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d9%85%db%8c%d8%af%d8%a7%d9%86-%d8%a8%d8%a7-%d8%aa%d9%88-%d8%ae%db%8c%d8%a7%d8%a8%d8%a7%d9%86-%d8%a8%d8%a7-%d9%85%d8%a7"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/EeqML\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%a8%d8%b1%d8%ae%db%8c%d8%b2%db%8c%d8%af"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/yYpMZ\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d9%81%d8%b1%d9%85%d8%a7%d9%86%d8%af%d9%87-%da%a9%d9%84-%d9%82%d9%88%d8%a7"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/y2vkL\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d9%88%d9%82%d8%aa-%d9%82%db%8c%d8%a7%d9%85-%d8%a2%d9%85%d8%af%d9%87"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/yDW1L\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%da%a9%d9%81-%d8%ae%db%8c%d8%a7%d8%a8%d9%88%d9%86"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/mAYr7\/%d8%ac%d9%88%d9%86-%d8%a7%db%8c%d8%b1%d9%88%d9%86%d9%87-%d8%ac%d9%86%d9%88%d8%a8-%d8%a7%db%8c%d8%b1%d9%88%d9%86%d9%87"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/E37nx\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d9%85%d8%b1%d8%af-%d8%ac%d9%86%da%af"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/mAYMz\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%ad%da%a9%d9%85-%d8%a2%d9%86%da%86%d9%87-%d8%aa%d9%88-%d9%81%d8%b1%d9%85%d8%a7%db%8c%db%8c"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/ELqRv\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d9%86%d8%b3%d9%84-%d9%82%d8%af%db%8c%d9%85-%d9%86%d8%b3%d9%84-%d8%ac%d8%af%db%8c%d8%af"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/GkgPZ\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%b1%d8%b9%d8%af"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/y6wnr\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%a7%db%8c%d8%b1%d8%a7%d9%86-%d8%ad%d8%b3%db%8c%d9%86"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/ypXlY\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%da%a9%d9%88%d8%aa%d8%a7%d9%87-%d9%86%d9%85%db%8c-%d8%a2%db%8c%db%8c%d9%85"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/GOD4R\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%a7%db%8c%d8%b1%d8%a7%d9%86"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/EqkVY\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%a8%d8%b3%d9%88%d8%b2-%da%a9%d9%87-%d8%ae%d9%88%d8%a8-%d9%85%db%8c%d8%b3%d9%88%d8%b2%db%8c"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/EQDo8\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d9%86%d8%b5%d8%b1-%d9%85%d9%86-%d8%a7%d9%84%d9%84%d9%87"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/EB4YP\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%a7%db%8c%d8%b1%d8%a7%d9%86%db%8c-%d8%ac%d8%b2%d8%a7%da%a9-%d8%a7%d9%84%d9%84%d9%87"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/EB4JP\/%d8%b1%d9%87%d8%a8%d8%b1%d9%85%d9%88%d9%86-%d9%87%d8%b1-%da%86%db%8c-%d8%a8%da%af%d9%87-%d9%87%d9%85%d9%88%d9%86%d9%87"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/y1pLj\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d9%84%d8%a8%db%8c%da%a9"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/GMqwD\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%a7%d9%86%d8%aa%d9%82%d8%a7%d9%85"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/mzx0z\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d9%87%db%8c%d9%87%d8%a7%d8%aa-%d9%85%d9%86%d8%a7-%d8%a7%d9%84%d8%b0%d9%84%d9%87"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/mv8V8\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d9%85%d8%b1%d8%af%d9%85-%d8%b4%da%af%d9%81%d8%aa-%d8%a7%d9%86%da%af%db%8c%d8%b2"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/ypXbY\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%a7%db%8c%d8%b1%d8%a7%d9%86-%d8%a7%d9%85%d8%a7%d9%85-%d8%b1%d8%b6%d8%a7"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/ydMrX\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%ad%db%8c-%d8%b9%d9%84%db%8c-%d8%a7%d9%84%d9%82%d8%b5%d8%a7%d8%b5"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/EjgOY\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%aa%d8%a7-%d9%be%d8%a7%db%8c-%d8%ac%d8%a7%d9%86-%d8%a8%d8%b1%d8%a7%db%8c-%d8%a7%db%8c%d8%b1%d8%a7%d9%86"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/mrgpJ\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%a7%d8%a8%d8%b1%d9%82%d8%af%d8%b1%d8%aa-%d8%a7%db%8c%d8%b1%d8%a7%d9%86%d9%87"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/mb7kN\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%a8%d9%87-%d8%b3%d9%88%db%8c-%d8%ae%db%8c%d8%a7%d8%a8%d8%a7%d9%86"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/GXBOv\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d9%82%d9%88%d9%85%d9%88%d8%a7-%d9%84%d9%84%d9%87"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/EKD55\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%a8%d8%b9%d8%ab%d8%aa-%d8%ae%d9%88%d9%86"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/ENqpx\/%d8%aa%d9%88-%d8%ba%d9%84%d8%b7-%d9%85%db%8c%da%a9%d9%86%db%8c"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/E5xz6\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d9%be%d8%b1%da%86%d9%85-%d9%85%d9%86"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/GXBN4\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%af%d8%b3%d8%aa-%d8%a7%d9%84%d9%87%db%8c"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/y9BYq\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%b4%db%8c%d9%be%d9%88%d8%b1-%d8%ac%d9%86%da%af"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/EjgMN\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d9%88%d8%b7%d9%86"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/E5x7p\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d9%be%d8%b1%da%86%d9%85-%d8%a8%d8%a7%d9%84%d8%a7"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/mb747\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%a8%d8%b4%d9%85%d8%a7%d8%b1-%db%8c%da%a9"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/G7kYN\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d9%85%d8%a7-%d9%85%d8%b3%d9%84%d8%ad-%d8%a8%d9%87-%d8%a7%d9%84%d9%84%d9%87-%d8%a7%da%a9%d8%a8%d8%b1%db%8c%d9%85"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/yVN29\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d9%82%d8%a7%d8%a6%d8%af-%d8%a7%d9%84%d8%a7%d8%b9%d8%b8%d9%85"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/E37BZ\/%d8%a7%d8%a8%d8%a7%d8%a7%d9%84%d9%81%d8%b6%d9%84-%d8%b9%d9%84%d9%85%d8%af%d8%a7%d8%b1-%d8%ae%d8%a7%d9%85%d9%86%d9%87-%d8%a7%db%8c-%d9%86%da%af%d9%87%d8%af%d8%a7%d8%b1"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/EKDno\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%a7%d8%b3%d9%84%d8%ad%d9%87-%d9%be%d8%b1%da%86%d9%85"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/mwnpg\/%d9%85%d9%84%d8%aa-%d8%b4%d8%a8-%d8%b2%d9%86%d8%af%d9%87-%d8%af%d8%a7%d8%b1-%d9%be%db%8c%d8%b1%d9%88%d8%b2-%d8%a7%d8%b3%d8%aa"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/yYpkb\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d9%84%d8%a8%db%8c%da%a9-%db%8c%d8%a7-%d8%ae%d8%a7%d9%85%d9%86%d9%87-%d8%a7%db%8c"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/EeqOQ\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%da%af%d9%88%d8%b4-%d8%a8%d9%87-%d9%81%d8%b1%d9%85%d8%a7%d9%86%d9%85"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/ERpV8\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%ac%d8%a7%d9%86-%d9%81%d8%af%d8%a7"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/mxAaq\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%a7%db%8c%d8%b1%d8%a7%d9%86-%d8%a7%db%8c-%da%a9%d8%b4%d9%88%d8%b1-%d8%b9%d9%84%db%8c"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/E0VYX\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d9%85%d8%b4%d8%aa-%d8%a7%db%8c%d8%b1%d8%a7%d9%86"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/yWDM1\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%ac%d8%a7%d9%88%db%8c%d8%af%d8%a7%d9%86-%d8%a7%db%8c%d8%b1%d8%a7%d9%86"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/playlist\/wdMxQ\/%d9%85%d8%af%d8%a7%d8%ad%db%8c-%d9%87%d8%a7%db%8c-%d9%85%d9%82%d8%a7%d9%88%d9%85%d8%aa-%d9%85%d8%b1%d8%af%d9%85-%d9%85%d8%b8%d9%84%d9%88%d9%85-%d9%81%d9%84%d8%b3%d8%b7%db%8c%d9%86"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/ypXz8\/For-My-Leader"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/mgvYP\/%d9%86%d9%85%d8%a7%d9%87%d9%86%da%af-%d8%a8%d9%82%db%8c%d9%87-%d8%a7%d9%84%d8%b3%db%8c%d9%81"
+        },
+        {
+          "parent_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل",
+          "target_url": "https:\/\/kashoob.com\/audio\/E0Vwa\/%d8%a8%d8%b1-%d8%ae%d8%a7%d8%a6%d9%86-%d9%88-%d8%aa%d8%ac%d8%b2%db%8c%d9%87-%d8%b7%d9%84%d8%a8-%d9%84%d8%b9%d9%86%d8%aa"
+        },
+        {
+          "parent_url": "https:\/\/navaapp.com\/nava\/playlist",
+          "target_url": "https:\/\/kashoob.com\/playlist\/9GOj9\/مداحی-های-حماسی-مبارزه-با-اسرائیل"
         }
       ],
       "media_links": []
