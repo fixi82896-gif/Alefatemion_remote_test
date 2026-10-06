@@ -1,17 +1,8 @@
 {
   "schema_version": 1,
-  "revision": 13,
-  "generated_at_millis": 1791176409186,
+  "revision": 14,
+  "generated_at_millis": 1791245340853,
   "events": [
-    {
-      "id": "radio-46cbc42b770d",
-      "type": "radio",
-      "title": "نوای تازه در رادیو آل فاطمیون",
-      "body": "2 نوای تازه به رادیو اضافه شد.",
-      "created_at_millis": 1790628575526,
-      "destination": "radio",
-      "destination_id": ""
-    },
     {
       "id": "ota-test43-1790720160000",
       "type": "ota",
