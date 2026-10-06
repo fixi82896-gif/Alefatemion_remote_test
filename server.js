@@ -5,18 +5,22 @@ const https = require('https');
 const fs = require('fs');
 const fsp = fs.promises;
 const path = require('path');
+const os = require('os');
 const crypto = require('crypto');
 const net = require('net');
 
 const PORT = Number(process.env.PORT || 3000);
 const HOST = '0.0.0.0';
 const SITE_ROOT = path.resolve(__dirname, 'docs');
-const CACHE_ROOT = path.resolve(__dirname, '.release-cache');
+// Deployment source folders can be unavailable for runtime writes (Liara ENOENT).
+const CACHE_ROOT = path.resolve(process.env.ALEFATEMION_RELEASE_CACHE_DIR ||
+  path.join(os.tmpdir(), 'alefatemion-release-cache'));
 const APK_CACHE = path.join(CACHE_ROOT, 'alefatemion-latest.apk');
 const APK_TEMP = path.join(CACHE_ROOT, 'alefatemion-latest.tmp');
 const SEED_ROOT = path.resolve(__dirname, 'release');
 const SEED_MANIFEST = path.join(SEED_ROOT, 'manifest.json');
 const PRODUCTION_CONFIG_URL = 'https://raw.githubusercontent.com/fixi82896-gif/Alefatemion_remote/main/app-config.json';
+const PRODUCTION_CONFIG_API_URL = 'https://api.github.com/repos/fixi82896-gif/Alefatemion_remote/contents/app-config.json?ref=main';
 const SYNC_INTERVAL_MS = 2 * 60 * 1000;
 const MAX_CONFIG_BYTES = 5 * 1024 * 1024;
 const MAX_APK_BYTES = 200 * 1024 * 1024;
@@ -42,68 +46,43 @@ function sha256Buffer(buffer) {
 function loadSeedRelease() {
   try {
     const manifest = JSON.parse(fs.readFileSync(SEED_MANIFEST, 'utf8'));
+    const apkFile = path.join(SEED_ROOT, path.basename(String(manifest.file_name || '')));
+    const apkBytes = fs.readFileSync(apkFile);
+    const actualHash = sha256Buffer(apkBytes);
     const expectedHash = String(manifest.sha256 || '').toLowerCase();
 
     if (!Number.isInteger(manifest.version_code) || manifest.version_code <= 0) throw new Error('invalid seed version_code');
     if (!String(manifest.version_name || '').trim()) throw new Error('invalid seed version_name');
     if (!/^[a-f0-9]{64}$/i.test(expectedHash)) throw new Error('invalid seed sha256');
+    if (actualHash !== expectedHash) throw new Error('seed APK SHA-256 mismatch');
 
-    const metadata = {
+    return {
+      config_revision: Number(manifest.config_revision || 0),
       version_code: manifest.version_code,
       version_name: String(manifest.version_name),
       sha256: expectedHash,
       published_at: manifest.published_at || null,
       message: manifest.message || '',
-      upstream_url: String(manifest.upstream_url || '')
-    };
-
-    try {
-      const apkFile = path.join(SEED_ROOT, path.basename(String(manifest.file_name || '')));
-      const apkBytes = fs.readFileSync(apkFile);
-      const actualHash = sha256Buffer(apkBytes);
-      if (actualHash !== expectedHash) throw new Error('seed APK SHA-256 mismatch');
-
-      return {
-        ...metadata,
-        size_bytes: apkBytes.length,
-        mirrored: true,
-        local_file: apkFile,
-        source_kind: 'bundled-seed',
-        last_sync_at: null,
-        last_error: null
-      };
-    } catch (error) {
-      console.warn(`[release-seed] metadata loaded; bundled APK unavailable: ${error && error.message ? error.message : 'unknown'}`);
-      return {
-        ...metadata,
-        size_bytes: 0,
-        mirrored: false,
-        local_file: null,
-        source_kind: 'metadata-seed',
-        last_sync_at: null,
-        last_error: 'Bundled APK unavailable; Production sync required'
-      };
-    }
-  } catch (error) {
-    console.error(`[release-seed] ${error && error.message ? error.message : 'invalid release metadata'}`);
-    return {
-      version_code: 0,
-      version_name: '',
-      sha256: '',
-      published_at: null,
-      message: '',
-      upstream_url: '',
-      size_bytes: 0,
-      mirrored: false,
-      local_file: null,
-      source_kind: 'unavailable',
+      upstream_url: String(manifest.upstream_url || ''),
+      size_bytes: apkBytes.length,
+      mirrored: true,
+      local_file: apkFile,
+      source_kind: 'bundled-seed',
       last_sync_at: null,
-      last_error: 'Release metadata unavailable'
+      last_error: null
+    };
+  } catch (error) {
+    console.error(`[release-seed] ${error && error.message ? error.message : 'invalid bundled release'}`);
+    return {
+      version_code: 0, version_name: '', sha256: '', published_at: null, message: '', upstream_url: '',
+      size_bytes: 0, mirrored: false, local_file: null, source_kind: 'unavailable', last_sync_at: null,
+      last_error: 'Bundled release unavailable'
     };
   }
 }
 
-let releaseState = loadSeedRelease();
+const seedRelease = loadSeedRelease();
+let releaseState = { ...seedRelease };
 let syncInFlight = null;
 
 function isAllowedHost(hostHeader) {
@@ -198,6 +177,7 @@ function isStrictPath(pathname) {
   return pathname === '/index.html' || pathname === '/privacy.html' || pathname.startsWith('/assets/site-vnext/') || pathname === '/api/release';
 }
 
+
 function sendErrorPage(req, res, statusCode) {
   const file = path.join(SITE_ROOT, statusCode === 404 ? '404.html' : '500.html');
   securityHeaders(req, res, false);
@@ -247,6 +227,7 @@ function requestBuffer(urlString, maxBytes, redirectCount = 0) {
         'Accept': 'application/json,text/plain,*/*',
         'Cache-Control': 'no-cache'
       },
+      family: 4,
       timeout: 20000
     }, (response) => {
       if (response.statusCode >= 300 && response.statusCode < 400 && response.headers.location) {
@@ -291,6 +272,7 @@ function isAllowedApkUrl(urlString) {
 
 function isAllowedRedirectHost(hostname) {
   return hostname === 'github.com' ||
+    hostname === 'api.github.com' ||
     hostname === 'release-assets.githubusercontent.com' ||
     hostname.endsWith('.githubusercontent.com');
 }
@@ -311,64 +293,43 @@ async function downloadApk(urlString, expectedHash) {
 
   return new Promise((resolve, reject) => {
     let redirects = 0;
-    let settled = false;
+    const hash = crypto.createHash('sha256');
+    let total = 0;
+    let output = null;
 
-    const fail = async (error) => {
-      if (settled) return;
-      settled = true;
+    const cleanup = async (error) => {
+      if (output) output.destroy();
       await fsp.rm(APK_TEMP, { force: true }).catch(() => {});
       reject(error);
     };
 
     const start = (currentUrl) => {
       let parsed;
-      try {
-        parsed = new URL(currentUrl);
-      } catch {
-        fail(new Error('Invalid APK URL'));
-        return;
-      }
-
+      try { parsed = new URL(currentUrl); } catch { cleanup(new Error('Invalid APK URL')); return; }
       if (parsed.protocol !== 'https:' || !isAllowedRedirectHost(parsed.hostname)) {
-        fail(new Error('APK redirect host rejected'));
+        cleanup(new Error('APK redirect host rejected'));
         return;
       }
 
       const req = https.get(parsed, {
-        headers: {
-          'User-Agent':'Alefatemion-Official-Site/2.2',
-          'Accept':'application/vnd.android.package-archive,application/octet-stream,*/*'
-        },
+        headers: { 'User-Agent':'Alefatemion-Official-Site/2.2', 'Accept':'application/octet-stream' },
+        family: 4,
         timeout: 30000
       }, (response) => {
         if (response.statusCode >= 300 && response.statusCode < 400 && response.headers.location) {
           response.resume();
           redirects += 1;
-          if (redirects > 5) {
-            fail(new Error('Too many APK redirects'));
-            return;
-          }
+          if (redirects > 5) { cleanup(new Error('Too many APK redirects')); return; }
           start(new URL(response.headers.location, parsed).toString());
           return;
         }
-
         if (response.statusCode !== 200) {
           response.resume();
-          fail(new Error(`APK HTTP ${response.statusCode}`));
+          cleanup(new Error(`APK HTTP ${response.statusCode}`));
           return;
         }
 
-        const contentLength = Number(response.headers['content-length'] || 0);
-        if (contentLength > MAX_APK_BYTES) {
-          response.resume();
-          fail(new Error('APK exceeds size limit'));
-          return;
-        }
-
-        const hash = crypto.createHash('sha256');
-        let total = 0;
-        const output = fs.createWriteStream(APK_TEMP, { flags:'w', mode:0o600 });
-
+        output = fs.createWriteStream(APK_TEMP, { flags:'w', mode:0o600 });
         response.on('data', (chunk) => {
           total += chunk.length;
           if (total > MAX_APK_BYTES) {
@@ -377,36 +338,23 @@ async function downloadApk(urlString, expectedHash) {
           }
           hash.update(chunk);
         });
-
-        response.on('error', fail);
-        output.on('error', fail);
         response.pipe(output);
-
-        output.on('finish', () => {
-          output.close(async (closeError) => {
-            if (closeError) {
-              fail(closeError);
-              return;
-            }
-            if (settled) return;
-            const actualHash = hash.digest('hex');
-            if (actualHash.toLowerCase() !== expectedHash.toLowerCase()) {
-              fail(new Error('APK SHA-256 mismatch'));
-              return;
-            }
-            try {
-              await fsp.rename(APK_TEMP, APK_CACHE);
-              settled = true;
-              resolve({ file: APK_CACHE, size_bytes: total, sha256: actualHash });
-            } catch (error) {
-              fail(error);
-            }
-          });
+        output.on('finish', async () => {
+          output.close();
+          const actualHash = hash.digest('hex');
+          if (actualHash.toLowerCase() !== expectedHash.toLowerCase()) {
+            await fsp.rm(APK_TEMP, { force:true }).catch(() => {});
+            reject(new Error('APK SHA-256 mismatch'));
+            return;
+          }
+          await fsp.rename(APK_TEMP, APK_CACHE);
+          resolve({ size_bytes: total, sha256: actualHash });
         });
+        output.on('error', cleanup);
+        response.on('error', cleanup);
       });
-
       req.on('timeout', () => req.destroy(new Error('APK request timeout')));
-      req.on('error', fail);
+      req.on('error', cleanup);
     };
 
     start(urlString);
@@ -430,8 +378,8 @@ async function localApkMatches(expectedHash) {
   const runtime = await verifiedFile(APK_CACHE, expectedHash);
   if (runtime) return runtime;
 
-  if (releaseState.source_kind === 'bundled-seed' && releaseState.local_file) {
-    const seed = await verifiedFile(releaseState.local_file, expectedHash);
+  if (seedRelease.mirrored && seedRelease.local_file) {
+    const seed = await verifiedFile(seedRelease.local_file, expectedHash);
     if (seed) return seed;
   }
 
@@ -442,28 +390,60 @@ async function localApkMatches(expectedHash) {
       return await verifiedFile(seedFile, expectedHash);
     }
   } catch {}
-
   return null;
+}
+
+async function productionConfig() {
+  try {
+    return JSON.parse((await requestBuffer(`${PRODUCTION_CONFIG_URL}?refresh=${Date.now()}`, MAX_CONFIG_BYTES)).toString('utf8'));
+  } catch (rawError) {
+    const response = JSON.parse((await requestBuffer(`${PRODUCTION_CONFIG_API_URL}&refresh=${Date.now()}`, MAX_CONFIG_BYTES * 2)).toString('utf8'));
+    if (response.encoding !== 'base64' || typeof response.content !== 'string') throw new Error('Invalid public config API response');
+    const bytes = Buffer.from(response.content, 'base64');
+    if (bytes.length > MAX_CONFIG_BYTES) throw new Error('Public config API payload too large');
+    return JSON.parse(bytes.toString('utf8'));
+  }
+}
+
+async function downloadProductionApk(ota) {
+  try {
+    return await downloadApk(String(ota.apk_url), String(ota.sha256));
+  } catch (downloadError) {
+    const parts = new URL(String(ota.apk_url)).pathname.split('/');
+    const tag = parts[5];
+    if (!/^android-v[0-9]+$/.test(tag || '')) throw downloadError;
+    const url = `https://api.github.com/repos/fixi82896-gif/Alefatemion_remote/releases/tags/${tag}`;
+    const release = JSON.parse((await requestBuffer(url, MAX_CONFIG_BYTES)).toString('utf8'));
+    const asset = (release.assets || []).find(item => item.browser_download_url === ota.apk_url);
+    if (!asset || !Number.isSafeInteger(asset.id) || asset.id <= 0) throw new Error('Official APK asset not found');
+    return downloadApk(`https://api.github.com/repos/fixi82896-gif/Alefatemion_remote/releases/assets/${asset.id}`, String(ota.sha256));
+  }
+}
+
+async function refreshIfDue() {
+  const last = Date.parse(releaseState.last_sync_at || '');
+  if (!Number.isFinite(last) || Date.now() - last >= SYNC_INTERVAL_MS) await syncProductionRelease();
 }
 
 async function syncProductionRelease() {
   if (syncInFlight) return syncInFlight;
-
   syncInFlight = (async () => {
+    let authoritativeOta = null;
     try {
-      const refreshUrl = `${PRODUCTION_CONFIG_URL}?refresh=${Date.now()}`;
-      const configBuffer = await requestBuffer(refreshUrl, MAX_CONFIG_BYTES);
-      const config = JSON.parse(configBuffer.toString('utf8'));
+      const config = await productionConfig();
       const ota = config && config.ota;
-
       if (!ota || !Number.isInteger(ota.version_code) || !ota.version_name || !ota.apk_url || !ota.sha256) {
         throw new Error('Production OTA metadata incomplete');
       }
       if (!/^[a-f0-9]{64}$/i.test(String(ota.sha256))) throw new Error('Invalid OTA SHA-256');
       if (!isAllowedApkUrl(String(ota.apk_url))) throw new Error('Production APK URL rejected');
-      if (releaseState.version_code > 0 && ota.version_code < releaseState.version_code) throw new Error('Production OTA downgrade rejected');
+      if (!Number.isSafeInteger(config.revision) || config.revision < 0) throw new Error('Invalid public config revision');
+      if (config.revision < (releaseState.config_revision || 0)) throw new Error('Stale public config rejected');
+      if (ota.version_code < releaseState.version_code && config.revision <= (releaseState.config_revision || 0)) throw new Error('Stale OTA rollback rejected');
+      authoritativeOta = ota;
 
       const nextState = {
+        config_revision: config.revision,
         version_code: ota.version_code,
         version_name: String(ota.version_name),
         sha256: String(ota.sha256).toLowerCase(),
@@ -479,15 +459,19 @@ async function syncProductionRelease() {
       };
 
       let local = await localApkMatches(nextState.sha256);
-      if (!local) local = await downloadApk(nextState.upstream_url, nextState.sha256);
-
+      if (!local) local = await downloadProductionApk(ota);
       nextState.size_bytes = local.size_bytes;
       nextState.mirrored = true;
-      nextState.local_file = local.file;
-      nextState.source_kind = local.file === APK_CACHE ? 'runtime-mirror' : 'bundled-seed';
+      nextState.local_file = local.file || APK_CACHE;
+      nextState.source_kind = nextState.local_file === APK_CACHE ? 'runtime-mirror' : 'bundled-seed';
       releaseState = nextState;
       console.log(`[release-sync] Production ${nextState.version_name} (${nextState.version_code}) ready, ${nextState.size_bytes} bytes`);
     } catch (error) {
+      // A known revocation or required newer version must not leave an obsolete APK offered.
+      if (authoritativeOta && (releaseState.version_code > authoritativeOta.version_code ||
+          releaseState.version_code < Number(authoritativeOta.min_supported_version_code || 0))) {
+        releaseState.mirrored = false;
+      }
       releaseState.last_error = error && error.message ? error.message : 'sync failed';
       releaseState.last_sync_at = new Date().toISOString();
       console.error(`[release-sync] ${releaseState.last_error}`);
@@ -495,7 +479,6 @@ async function syncProductionRelease() {
       syncInFlight = null;
     }
   })();
-
   return syncInFlight;
 }
 
@@ -509,7 +492,10 @@ function publicRelease() {
     size_bytes: releaseState.size_bytes,
     mirrored: releaseState.mirrored,
     download_url: '/download/android',
-    source: 'production-ota'
+    source: releaseState.source_kind === 'bundled-seed' ? 'bundled-official-release' : 'production-ota',
+    config_revision: releaseState.config_revision || 0,
+    sync_status: releaseState.last_error ? 'retrying' : (releaseState.last_sync_at ? 'synced' : 'pending'),
+    last_checked_at: releaseState.last_sync_at || null
   };
 }
 
@@ -518,17 +504,13 @@ async function sendReleaseApi(req, res) {
   res.setHeader('Content-Type','application/json; charset=utf-8');
   res.setHeader('Cache-Control','no-store');
 
-  if (!releaseState.mirrored) {
-    await syncProductionRelease().catch(() => {});
-  }
-
+  await refreshIfDue();
   if (!releaseState.mirrored || !releaseState.version_code) {
     res.statusCode = 503;
     res.setHeader('Retry-After','30');
     res.end(JSON.stringify({ ok:false, message:'نسخه رسمی موقتاً در دسترس نیست.' }));
     return;
   }
-
   res.statusCode = 200;
   res.end(JSON.stringify(publicRelease()));
 }
@@ -539,7 +521,6 @@ function parseByteRange(rangeHeader, size) {
   if (!value || value.includes(',')) return { invalid:true };
   const match = /^(\d*)-(\d*)$/.exec(value);
   if (!match) return { invalid:true };
-
   let start;
   let end;
   if (match[1] === '' && match[2] !== '') {
@@ -551,11 +532,7 @@ function parseByteRange(rangeHeader, size) {
     start = Number(match[1]);
     end = match[2] === '' ? size - 1 : Number(match[2]);
   }
-
-  if (!Number.isInteger(start) || !Number.isInteger(end) || start < 0 || end < start || start >= size) {
-    return { invalid:true };
-  }
-
+  if (!Number.isInteger(start) || !Number.isInteger(end) || start < 0 || end < start || start >= size) return { invalid:true };
   end = Math.min(end, size - 1);
   return { start, end };
 }
@@ -565,24 +542,20 @@ async function sendApk(req, res) {
   res.setHeader('Cache-Control','no-store');
   res.setHeader('Content-Type','application/vnd.android.package-archive');
   res.setHeader('X-Download-Source','alefatemion-site');
+  await refreshIfDue();
   res.setHeader('Accept-Ranges','bytes');
 
   try {
     let local = releaseState.mirrored && releaseState.local_file
       ? await verifiedFile(releaseState.local_file, releaseState.sha256)
       : null;
-
-    if (!local) {
-      local = await localApkMatches(releaseState.sha256);
-    }
-
+    if (!local) local = await localApkMatches(releaseState.sha256);
     if (!local) {
       await syncProductionRelease();
       local = releaseState.local_file
         ? await verifiedFile(releaseState.local_file, releaseState.sha256)
         : await localApkMatches(releaseState.sha256);
     }
-
     if (!local) {
       res.statusCode = 503;
       res.setHeader('Retry-After','30');
@@ -602,8 +575,7 @@ async function sendApk(req, res) {
       res.end();
       return;
     }
-
-    let streamOptions = undefined;
+    let streamOptions;
     if (range) {
       res.statusCode = 206;
       res.setHeader('Content-Range', `bytes ${range.start}-${range.end}/${local.size_bytes}`);
@@ -613,20 +585,11 @@ async function sendApk(req, res) {
       res.statusCode = 200;
       res.setHeader('Content-Length', local.size_bytes);
     }
-
-    if (req.method === 'HEAD') {
-      res.end();
-      return;
-    }
-
+    if (req.method === 'HEAD') { res.end(); return; }
     const stream = fs.createReadStream(local.file, streamOptions);
     stream.on('error', () => {
-      if (!res.headersSent) {
-        res.statusCode = 503;
-        res.end('دانلود موقتاً در دسترس نیست.');
-      } else {
-        res.destroy();
-      }
+      if (!res.headersSent) { res.statusCode = 503; res.end('دانلود موقتاً در دسترس نیست.'); }
+      else res.destroy();
     });
     stream.pipe(res);
   } catch {
@@ -668,7 +631,11 @@ const server = http.createServer(async (req, res) => {
         service:'alefatemion-official-site',
         release_ready:Boolean(releaseState.mirrored && releaseState.version_code),
         release_version:releaseState.version_name || null,
-        release_code:releaseState.version_code || null
+        release_code:releaseState.version_code || null,
+        site_release:'14',
+        config_revision:releaseState.config_revision || 0,
+        last_sync_at:releaseState.last_sync_at,
+        last_sync_error:releaseState.last_error
       }));
       return;
     }
@@ -682,7 +649,6 @@ const server = http.createServer(async (req, res) => {
       await sendApk(req, res);
       return;
     }
-
     if (pathname === '/pwa' || pathname.startsWith('/pwa/')) {
       securityHeaders(req, res, true);
       res.statusCode = 410;
@@ -702,7 +668,6 @@ const server = http.createServer(async (req, res) => {
       stream.pipe(res);
       return;
     }
-
     if (pathname === '/') pathname = '/index.html';
 
     const file = safeFile(SITE_ROOT, pathname);
@@ -713,17 +678,18 @@ const server = http.createServer(async (req, res) => {
       res.end('Bad Request');
       return;
     }
-
     sendFile(req, res, file, isStrictPath(pathname));
   } catch {
     sendErrorPage(req, res, 500);
   }
 });
 
-server.listen(PORT, HOST, () => {
+if (require.main === module) server.listen(PORT, HOST, () => {
   console.log(`Al Fatemiun official site listening on ${HOST}:${PORT}`);
   console.log(`[release-seed] ${releaseState.version_name || 'none'} (${releaseState.version_code || 0}), ready=${releaseState.mirrored}`);
   syncProductionRelease().catch(() => {});
   const timer = setInterval(() => syncProductionRelease().catch(() => {}), SYNC_INTERVAL_MS);
   if (typeof timer.unref === 'function') timer.unref();
 });
+
+module.exports = { server, syncProductionRelease, publicRelease };
