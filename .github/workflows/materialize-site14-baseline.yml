@@ -24,7 +24,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cat .site14-bootstrap/payload.0 .site14-bootstrap/payload.1 .site14-bootstrap/payload.2 .site14-bootstrap/payload.3 > /tmp/site14-text-baseline.tar.xz.b64
+          cat .site14-bootstrap/payload.0 .site14-bootstrap/payload.1 .site14-bootstrap/payload.2 .site14-bootstrap/payload.3a .site14-bootstrap/payload.3b .site14-bootstrap/payload.3c > /tmp/site14-text-baseline.tar.xz.b64
           base64 -d /tmp/site14-text-baseline.tar.xz.b64 > /tmp/site14-text-baseline.tar.xz
           echo "6a644994470bacd0f26c3cfe133a7bb14762b9afa698fd426db954149abaa8a4  /tmp/site14-text-baseline.tar.xz" | sha256sum -c -
           tar -xJf /tmp/site14-text-baseline.tar.xz -C .
