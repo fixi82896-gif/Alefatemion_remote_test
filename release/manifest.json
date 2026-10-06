@@ -1,9 +1,9 @@
 {
-  "version_code": 2100,
-  "version_name": "21",
-  "sha256": "1775bfb0d26bf5828b2741f6e84efe035ee7f432ddb545a9c75a869c0ca4828a",
-  "published_at": "2026-09-25T19:59:01.913983Z",
-  "message": "نسخه ۲۱ آل فاطمیون منتشر شد",
-  "upstream_url": "https://github.com/fixi82896-gif/Alefatemion_remote/releases/download/android-v2100/Alefatemion-2100.apk",
-  "file_name": "Alefatemion-2100.apk"
+  "version_code": 2401,
+  "version_name": "24.1",
+  "sha256": "feaaf044be840987490c3f6f6d227128d83d65111145ba80dae0603bf098aae8",
+  "published_at": "2026-10-06T19:51:55.000197Z",
+  "message": "نسخه ۲۴.۱ آل فاطمیون منتشر شد",
+  "upstream_url": "https://github.com/fixi82896-gif/Alefatemion_remote/releases/download/android-v2401/Alefatemion-2401.apk",
+  "file_name": "Alefatemion-2401.apk"
 }

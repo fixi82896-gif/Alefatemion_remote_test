@@ -42,32 +42,50 @@ function sha256Buffer(buffer) {
 function loadSeedRelease() {
   try {
     const manifest = JSON.parse(fs.readFileSync(SEED_MANIFEST, 'utf8'));
-    const apkFile = path.join(SEED_ROOT, path.basename(String(manifest.file_name || '')));
-    const apkBytes = fs.readFileSync(apkFile);
-    const actualHash = sha256Buffer(apkBytes);
     const expectedHash = String(manifest.sha256 || '').toLowerCase();
 
     if (!Number.isInteger(manifest.version_code) || manifest.version_code <= 0) throw new Error('invalid seed version_code');
     if (!String(manifest.version_name || '').trim()) throw new Error('invalid seed version_name');
     if (!/^[a-f0-9]{64}$/i.test(expectedHash)) throw new Error('invalid seed sha256');
-    if (actualHash !== expectedHash) throw new Error('seed APK SHA-256 mismatch');
 
-    return {
+    const metadata = {
       version_code: manifest.version_code,
       version_name: String(manifest.version_name),
       sha256: expectedHash,
       published_at: manifest.published_at || null,
       message: manifest.message || '',
-      upstream_url: String(manifest.upstream_url || ''),
-      size_bytes: apkBytes.length,
-      mirrored: true,
-      local_file: apkFile,
-      source_kind: 'bundled-seed',
-      last_sync_at: null,
-      last_error: null
+      upstream_url: String(manifest.upstream_url || '')
     };
+
+    try {
+      const apkFile = path.join(SEED_ROOT, path.basename(String(manifest.file_name || '')));
+      const apkBytes = fs.readFileSync(apkFile);
+      const actualHash = sha256Buffer(apkBytes);
+      if (actualHash !== expectedHash) throw new Error('seed APK SHA-256 mismatch');
+
+      return {
+        ...metadata,
+        size_bytes: apkBytes.length,
+        mirrored: true,
+        local_file: apkFile,
+        source_kind: 'bundled-seed',
+        last_sync_at: null,
+        last_error: null
+      };
+    } catch (error) {
+      console.warn(`[release-seed] metadata loaded; bundled APK unavailable: ${error && error.message ? error.message : 'unknown'}`);
+      return {
+        ...metadata,
+        size_bytes: 0,
+        mirrored: false,
+        local_file: null,
+        source_kind: 'metadata-seed',
+        last_sync_at: null,
+        last_error: 'Bundled APK unavailable; Production sync required'
+      };
+    }
   } catch (error) {
-    console.error(`[release-seed] ${error && error.message ? error.message : 'invalid bundled release'}`);
+    console.error(`[release-seed] ${error && error.message ? error.message : 'invalid release metadata'}`);
     return {
       version_code: 0,
       version_name: '',
@@ -80,7 +98,7 @@ function loadSeedRelease() {
       local_file: null,
       source_kind: 'unavailable',
       last_sync_at: null,
-      last_error: 'Bundled release unavailable'
+      last_error: 'Release metadata unavailable'
     };
   }
 }
