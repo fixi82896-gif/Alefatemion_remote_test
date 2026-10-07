@@ -1,26 +1,8 @@
 {
   "schema_version": 1,
-  "revision": 14,
-  "generated_at_millis": 1791245340853,
+  "revision": 15,
+  "generated_at_millis": 1791353413102,
   "events": [
-    {
-      "id": "ota-test43-1790720160000",
-      "type": "ota",
-      "title": "تست اعلان بروزرسانی آل فاطمیون",
-      "body": "این فقط تست اعلان Test43 است؛ هیچ بروزرسانی یا نصبی انجام نمی‌شود.",
-      "created_at_millis": 1790720160000,
-      "destination": "settings",
-      "destination_id": ""
-    },
-    {
-      "id": "ota-test43-second-1790720413177",
-      "type": "ota",
-      "title": "تست دوم اعلان بروزرسانی آل فاطمیون",
-      "body": "تست دوم Test43؛ فقط مسیر Notification بررسی می‌شود و هیچ بروزرسانی یا نصبی انجام نمی‌شود.",
-      "created_at_millis": 1790720413177,
-      "destination": "settings",
-      "destination_id": ""
-    },
     {
       "id": "radio-51824937820f",
       "type": "radio",
