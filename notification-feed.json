@@ -1,17 +1,8 @@
 {
   "schema_version": 1,
-  "revision": 15,
-  "generated_at_millis": 1791353413102,
+  "revision": 16,
+  "generated_at_millis": 1791501988443,
   "events": [
-    {
-      "id": "radio-51824937820f",
-      "type": "radio",
-      "title": "نوای تازه در رادیو آل فاطمیون",
-      "body": "15 نوای تازه به رادیو اضافه شد.",
-      "created_at_millis": 1790883392438,
-      "destination": "radio",
-      "destination_id": ""
-    },
     {
       "id": "radio-2476e9438b70",
       "type": "radio",

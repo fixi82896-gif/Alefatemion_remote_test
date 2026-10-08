@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 125,
+  "revision": 126,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -221,38 +221,6 @@
         "related_album_hash": "",
         "related_album_name": "",
         "related_track_id": "nava-1788001300700"
-      },
-      {
-        "id": "auto-folder-1790868488334-1-79a998215543",
-        "category": "album_update",
-        "origin": "auto_album",
-        "title": "آلبوم تازه «فیلم ها» ساخته شد",
-        "summary": "این آلبوم تازه به مجموعه افزوده شد.",
-        "body": "محتوای این آلبوم پس از افزوده‌شدن در برنامه قابل مشاهده خواهد بود.",
-        "image_url": "",
-        "published": true,
-        "pinned": false,
-        "published_at_millis": 1790868488335,
-        "expires_at_millis": 1793460488334,
-        "related_album_hash": "LxEqNrbbE7jklnmKJhMeGw",
-        "related_album_name": "فیلم ها",
-        "related_track_id": ""
-      },
-      {
-        "id": "auto-folder-1790868488334-0-58a276365b04",
-        "category": "album_update",
-        "origin": "auto_album",
-        "title": "آلبوم تازه «عکس ها» منتشر شد",
-        "summary": "10 تصویر به این آلبوم اضافه شد.",
-        "body": "10 تصویر به این آلبوم اضافه شد. برای مشاهده مستقیم، دکمه آلبوم را بزنید.",
-        "image_url": "",
-        "published": true,
-        "pinned": false,
-        "published_at_millis": 1790868488334,
-        "expires_at_millis": 1793460488334,
-        "related_album_hash": "0vXjGjLDZm6B8jWNDXUiSA",
-        "related_album_name": "عکس ها",
-        "related_track_id": ""
       }
     ]
   },
