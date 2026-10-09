@@ -209,3 +209,21 @@ button,a{font:inherit}
 
 /* v9 download simplification */
 .download-cards{grid-template-columns:minmax(0,880px);justify-content:center}.android-card{width:100%}
+
+
+/* Site 15 — live PWA access card */
+.pwa-card{display:grid;grid-template-columns:1fr auto;gap:22px;align-items:center;border-color:rgba(22,76,54,.22);background:linear-gradient(135deg,rgba(255,253,248,.98),rgba(244,250,246,.98))}
+.pwa-icon{background:linear-gradient(135deg,var(--green),var(--green-2))}
+.platform-list{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+.platform-list span{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid #dce5de;color:#304d40;padding:6px 11px;border-radius:999px;font-size:12px;font-weight:900;direction:ltr}
+.platform-list b{display:inline-grid;place-items:center;width:18px;height:18px;color:var(--green);font-size:14px;line-height:1}
+.pwa-button{gap:8px;text-decoration:none}
+.pwa-address{display:inline-flex;margin-top:12px;color:var(--green);font-size:13px;font-weight:900;text-decoration:none;border-bottom:1px dashed rgba(22,76,54,.35)}
+.pwa-address:hover,.pwa-address:focus-visible{color:var(--green-2);border-bottom-color:currentColor}
+.pwa-qr-card{background:linear-gradient(180deg,#fff,#fbfdfb)}
+@media(max-width:680px){
+  .pwa-card{grid-template-columns:1fr}
+  .platform-list{gap:6px}
+  .platform-list span{font-size:11px;padding:5px 9px}
+  .pwa-address{margin-top:10px}
+}
