@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 129,
+  "revision": 130,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -250,8 +250,8 @@
         "destination_type": "hosseiniyeh",
         "destination_id": "madahi",
         "destination_parent_id": "",
-        "external_url": "https:\/\/navaapp.com\/nava\/%D9%85%D8%A7%D8%AF%D8%B1-%D8%AE%D9%88%D8%A8%DB%8C-%D9%87%D8%A7",
-        "hosseiniyeh_path": "{\"steps\":[{\"id\":\"madahi-audio\",\"title\":\"صوتی\",\"url\":\"https:\\\/\\\/navaapp.com\\\/nava\\\/playlist\"},{\"id\":\"hos-muqr5637\",\"title\":\"استودیویی\",\"url\":\"https:\\\/\\\/navaapp.com\\\/nava\\\/studio\"},{\"id\":\"destination-b462d716258720e6404d211a\",\"title\":\"حضرت زهرا سلام الله علیها\",\"url\":\"https:\\\/\\\/navaapp.com\\\/studio-banner\\\/%D8%AD%D8%B6%D8%B1%D8%AA-%D8%B2%D9%87%D8%B1%D8%A7-%D8%B3%D9%84%D8%A7%D9%85-%D8%A7%D9%84%D9%84%D9%87-%D8%B9%D9%84%DB%8C%D9%87%D8%A7\"}],\"leaf\":true,\"target\":{\"id\":\"d607a792cc49c8c07329e22f\",\"title\":\"مادر خوبی ها\",\"type\":\"link\"}}",
+        "external_url": "https:\/\/navaapp.com\/row\/playlistfatemiyeh",
+        "hosseiniyeh_path": "{\"steps\":[{\"id\":\"madahi-audio\",\"url\":\"https:\\\/\\\/navaapp.com\\\/nava\\\/playlist\",\"title\":\"صوتی\"},{\"id\":\"nava-playlist-playlistfatemiyeh-n1506243355\",\"url\":\"https:\\\/\\\/navaapp.com\\\/row\\\/playlistfatemiyeh\",\"title\":\"فاطمیه\"}],\"leaf\":false}",
         "enabled": true,
         "sponsored": false,
         "display_order": 0,
