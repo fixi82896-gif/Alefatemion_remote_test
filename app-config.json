@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 130,
+  "revision": 131,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -247,11 +247,11 @@
         "image_url": "https:\/\/github.com\/fixi82896-gif\/Alefatemion_remote_test\/releases\/download\/remote-assets-v1\/intro-background-4ab5aadaa955bab9f019.jpg",
         "placement": "hero",
         "fixed": true,
-        "destination_type": "hosseiniyeh",
-        "destination_id": "madahi",
+        "destination_type": "none",
+        "destination_id": "",
         "destination_parent_id": "",
-        "external_url": "https:\/\/navaapp.com\/row\/playlistfatemiyeh",
-        "hosseiniyeh_path": "{\"steps\":[{\"id\":\"madahi-audio\",\"url\":\"https:\\\/\\\/navaapp.com\\\/nava\\\/playlist\",\"title\":\"صوتی\"},{\"id\":\"nava-playlist-playlistfatemiyeh-n1506243355\",\"url\":\"https:\\\/\\\/navaapp.com\\\/row\\\/playlistfatemiyeh\",\"title\":\"فاطمیه\"}],\"leaf\":false}",
+        "external_url": "",
+        "hosseiniyeh_path": "",
         "enabled": true,
         "sponsored": false,
         "display_order": 0,
