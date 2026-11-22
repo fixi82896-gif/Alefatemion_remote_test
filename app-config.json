@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 131,
+  "revision": 132,
   "source": {
     "root_hash": "BJPV-mKSsDD-nMfmncHIcw"
   },
@@ -204,6 +204,22 @@
         "expires_at_millis": 0,
         "related_album_hash": "",
         "related_album_name": "",
+        "related_track_id": ""
+      },
+      {
+        "id": "auto-album-1795381450097-0-4bc89bc2f6b7",
+        "category": "album_update",
+        "origin": "auto_album",
+        "title": "محتوای تازه در آلبوم عکس ها",
+        "summary": "1 تصویر به این آلبوم اضافه شد.",
+        "body": "1 تصویر به این آلبوم اضافه شد. برای مشاهده مستقیم، دکمه آلبوم را بزنید.",
+        "image_url": "",
+        "published": true,
+        "pinned": false,
+        "published_at_millis": 1795381450097,
+        "expires_at_millis": 1797973450097,
+        "related_album_hash": "fzEfV6_xxmt9UQ1N4vd74Q",
+        "related_album_name": "عکس ها",
         "related_track_id": ""
       }
     ]
